@@ -260,7 +260,7 @@ export default function CertificatePage() {
             <div className="relative">
               <div className="relative rounded-2xl overflow-hidden" style={{ height: '500px' }}>
                 <Image
-                  src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80"
+                  src="/certificate.jpg"
                   alt="Interior design materials and color swatches"
                   fill
                   className="object-cover"

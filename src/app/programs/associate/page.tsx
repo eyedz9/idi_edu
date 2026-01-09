@@ -73,7 +73,7 @@ export default function AssociatePage() {
       <section className="relative bg-[#0a0a0a] text-white py-24 lg:py-32 animate-on-scroll">
         <div className="absolute inset-0 opacity-20">
           <Image
-            src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=1920&q=80&fit=crop"
+            src="https://unsplash.com/photos/two-black-suede-armchairs-during-daytime-mx4mSkK9zeo&fit=crop"
             alt="Interior design studio workspace"
             fill
             className="object-cover"
