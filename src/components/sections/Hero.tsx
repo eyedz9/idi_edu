@@ -53,12 +53,12 @@ export function Hero() {
             <span className="text-xs font-mono uppercase tracking-widest" style={{ color: 'var(--text-secondary)' }}>Est. 1984</span>
           </div>
 
-          <h1 className="leading-[0.9] tracking-tight" style={{ color: 'var(--text-primary)' }}>
+          <h1 className="leading-[0.9] tracking-tight" style={{ color: 'var(--text-primary)', textShadow: '0 4px 30px rgba(0, 0, 0, 0.5), 0 2px 10px rgba(0, 0, 0, 0.3)' }}>
             <span
               className="block text-[10vw] md:text-[5rem] lg:text-[6rem] animate-slide-up opacity-0 font-bricolage font-light tracking-wide"
               style={{ animationDelay: '1.4s', animationFillMode: 'forwards', color: 'var(--text-muted)' }}
             >
-              WHERE
+              WHERE <span className="text-[10vw] md:text-[5rem] lg:text-[6rem] font-display italic font-light" style={{ color: 'var(--text-muted)' }}>Interior</span>
             </span>
             <span
               className="block text-[18vw] md:text-[12rem] lg:text-[14rem] animate-slide-up opacity-0 mix-blend-normal drop-shadow-2xl -mt-2 md:-mt-4 font-hero tracking-tight"
