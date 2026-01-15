@@ -77,9 +77,9 @@ const allProgramsBenefits = [
 
 export default function ProgramsPage() {
   return (
-    <div className="bg-[#0a0a0a]">
+    <div style={{ backgroundColor: 'var(--bg-primary)' }}>
       {/* Hero Section - Dark */}
-      <section className="relative bg-[#0a0a0a] text-white py-24 lg:py-32 animate-on-scroll">
+      <section className="relative py-24 lg:py-32 animate-on-scroll" style={{ backgroundColor: 'var(--bg-primary)' }}>
         <div className="absolute inset-0 opacity-20">
           <Image
             src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=1920&q=80&fit=crop"
@@ -92,22 +92,32 @@ export default function ProgramsPage() {
 
         <div className="relative max-w-7xl mx-auto px-6 lg:px-8">
           <div className="max-w-3xl">
-            <h1 className="font-bricolage text-5xl lg:text-6xl mb-6">
-              Find Your Path in Interior Design
+            <h1 className="font-bricolage text-5xl lg:text-6xl mb-6" style={{ color: 'var(--text-primary)' }}>
+              Find Your Path in <span className="font-display italic">Interior Design</span>
             </h1>
-            <p className="text-xl text-white/70 mb-8">
+            <p className="text-xl mb-8" style={{ color: 'var(--text-secondary)' }}>
               Whether you're exploring a new career or advancing your expertise, IDI offers four distinct pathways to achieve your design goals.
             </p>
             <div className="flex flex-wrap gap-4">
               <Link
                 href="/admissions"
-                className="inline-block px-8 py-4 bg-white text-black hover:bg-white/90 font-medium rounded-full transition-colors"
+                className="inline-block px-8 py-4 font-medium rounded-full transition-colors"
+                style={{
+                  backgroundColor: 'var(--text-primary)',
+                  color: 'var(--text-dark)'
+                }}
               >
                 Apply Now
               </Link>
               <Link
                 href="/contact"
-                className="inline-block px-8 py-4 bg-transparent border-2 border-white/10 hover:border-white/30 text-white font-medium rounded-full transition-colors"
+                className="inline-block px-8 py-4 font-medium rounded-full transition-colors"
+                style={{
+                  backgroundColor: 'transparent',
+                  borderWidth: '2px',
+                  borderColor: 'var(--border-default)',
+                  color: 'var(--text-primary)'
+                }}
               >
                 Schedule a Visit
               </Link>
@@ -117,7 +127,7 @@ export default function ProgramsPage() {
       </section>
 
       {/* Breadcrumb */}
-      <section className="max-w-7xl mx-auto px-6 lg:px-8 pt-8 bg-[#0a0a0a]">
+      <section className="max-w-7xl mx-auto px-6 lg:px-8 pt-8" style={{ backgroundColor: 'var(--bg-primary)' }}>
         <Breadcrumb
           items={[
             { label: 'Home', href: '/' },
@@ -127,12 +137,12 @@ export default function ProgramsPage() {
       </section>
 
       {/* Programs Comparison - Light */}
-      <section className="max-w-7xl mx-auto px-6 lg:px-8 py-16 bg-[#f8f8f8] animate-on-scroll" style={{ animationDelay: '0.1s' }}>
+      <section className="max-w-7xl mx-auto px-6 lg:px-8 py-16 animate-on-scroll" style={{ backgroundColor: 'var(--bg-light)', animationDelay: '0.1s' }}>
         <div className="text-center mb-12">
-          <h2 className="font-bricolage text-4xl lg:text-5xl mb-4 text-black">
-            Four Paths to Your Design Career
+          <h2 className="font-bricolage text-4xl lg:text-5xl mb-4" style={{ color: 'var(--text-dark)' }}>
+            Four Paths to Your <span className="font-display italic" style={{ color: 'var(--accent-terracotta)' }}>Design Career</span>
           </h2>
-          <p className="text-xl text-neutral-500 max-w-3xl mx-auto">
+          <p className="text-xl max-w-3xl mx-auto" style={{ color: 'var(--text-dark-secondary)' }}>
             From introductory certificates to advanced graduate degrees, choose the program that aligns with your career goals and lifestyle.
           </p>
         </div>
@@ -145,89 +155,116 @@ export default function ProgramsPage() {
       </section>
 
       {/* Which Program Section - Dark */}
-      <section className="bg-[#151515] py-16 animate-on-scroll" style={{ animationDelay: '0.2s' }}>
+      <section className="py-16 animate-on-scroll" style={{ backgroundColor: 'var(--bg-secondary)', animationDelay: '0.2s' }}>
         <div className="max-w-5xl mx-auto px-6 lg:px-8">
-          <h2 className="font-bricolage text-4xl mb-12 text-center text-white">
-            Which Program is Right for You?
+          <h2 className="font-bricolage text-4xl mb-12 text-center" style={{ color: 'var(--text-primary)' }}>
+            Which Program is <span className="font-display italic" style={{ color: 'var(--accent-gold)' }}>Right for You?</span>
           </h2>
 
           <div className="space-y-8">
             {/* Certificate */}
-            <div className="bg-[#0a0a0a] p-8 rounded-[32px] border border-white/10">
-              <h3 className="font-bricolage text-2xl mb-3 text-white">Choose the Certificate if you:</h3>
-              <ul className="space-y-2 text-white/70">
+            <div className="p-8 rounded-[32px]" style={{
+              backgroundColor: 'var(--bg-primary)',
+              borderWidth: '1px',
+              borderColor: 'var(--border-default)'
+            }}>
+              <h3 className="font-bricolage text-2xl mb-3" style={{ color: 'var(--text-primary)' }}>
+                Choose the <span className="font-display italic">Certificate</span> if you:
+              </h3>
+              <ul className="space-y-2" style={{ color: 'var(--text-secondary)' }}>
                 <li className="flex items-start gap-3">
-                  <CheckCircle2 className="w-5 h-5 text-[#C4725D] flex-shrink-0 mt-0.5" />
+                  <CheckCircle2 className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: 'var(--accent-gold)' }} />
                   <span>Want to explore interior design without a long-term commitment</span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <CheckCircle2 className="w-5 h-5 text-[#C4725D] flex-shrink-0 mt-0.5" />
+                  <CheckCircle2 className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: 'var(--accent-gold)' }} />
                   <span>Are considering a career change and want to test the waters</span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <CheckCircle2 className="w-5 h-5 text-[#C4725D] flex-shrink-0 mt-0.5" />
+                  <CheckCircle2 className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: 'var(--accent-gold)' }} />
                   <span>Need foundational design knowledge for your current role</span>
                 </li>
               </ul>
             </div>
 
             {/* Associate */}
-            <div className="bg-[#0a0a0a] p-8 rounded-[32px] border border-white/10">
-              <h3 className="font-bricolage text-2xl mb-3 text-white">Choose the Associate if you:</h3>
-              <ul className="space-y-2 text-white/70">
+            <div className="p-8 rounded-[32px]" style={{
+              backgroundColor: 'var(--bg-primary)',
+              borderWidth: '1px',
+              borderColor: 'var(--border-default)'
+            }}>
+              <h3 className="font-bricolage text-2xl mb-3" style={{ color: 'var(--text-primary)' }}>
+                Choose the <span className="font-display italic">Associate</span> if you:
+              </h3>
+              <ul className="space-y-2" style={{ color: 'var(--text-secondary)' }}>
                 <li className="flex items-start gap-3">
-                  <CheckCircle2 className="w-5 h-5 text-[#C4725D] flex-shrink-0 mt-0.5" />
+                  <CheckCircle2 className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: 'var(--accent-gold)' }} />
                   <span>Want a comprehensive foundation in interior design</span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <CheckCircle2 className="w-5 h-5 text-[#C4725D] flex-shrink-0 mt-0.5" />
+                  <CheckCircle2 className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: 'var(--accent-gold)' }} />
                   <span>Need flexible scheduling to work while studying</span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <CheckCircle2 className="w-5 h-5 text-[#C4725D] flex-shrink-0 mt-0.5" />
+                  <CheckCircle2 className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: 'var(--accent-gold)' }} />
                   <span>Plan to pursue entry-level design positions</span>
                 </li>
               </ul>
             </div>
 
             {/* Bachelor */}
-            <div className="bg-[#0a0a0a] p-8 rounded-[32px] border-2 border-[#C4725D]">
+            <div className="p-8 rounded-[32px]" style={{
+              backgroundColor: 'var(--bg-primary)',
+              borderWidth: '2px',
+              borderColor: 'var(--accent-gold)'
+            }}>
               <div className="flex items-center gap-3 mb-3">
-                <h3 className="font-bricolage text-2xl text-white">Choose the Bachelor if you:</h3>
-                <span className="px-3 py-1 bg-[#C4725D] text-white text-xs font-mono rounded-full">
+                <h3 className="font-bricolage text-2xl" style={{ color: 'var(--text-primary)' }}>
+                  Choose the <span className="font-display italic">Bachelor</span> if you:
+                </h3>
+                <span className="px-3 py-1 text-xs font-mono rounded-full uppercase" style={{
+                  backgroundColor: 'var(--accent-gold)',
+                  color: 'var(--text-dark)'
+                }}>
                   CIDA ACCREDITED
                 </span>
               </div>
-              <ul className="space-y-2 text-white/70">
+              <ul className="space-y-2" style={{ color: 'var(--text-secondary)' }}>
                 <li className="flex items-start gap-3">
-                  <CheckCircle2 className="w-5 h-5 text-[#C4725D] flex-shrink-0 mt-0.5" />
+                  <CheckCircle2 className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: 'var(--accent-gold)' }} />
                   <span>Want CIDA accreditation for professional practice</span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <CheckCircle2 className="w-5 h-5 text-[#C4725D] flex-shrink-0 mt-0.5" />
+                  <CheckCircle2 className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: 'var(--accent-gold)' }} />
                   <span>Plan to take the NCIDQ exam for licensure</span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <CheckCircle2 className="w-5 h-5 text-[#C4725D] flex-shrink-0 mt-0.5" />
+                  <CheckCircle2 className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: 'var(--accent-gold)' }} />
                   <span>Seek the most comprehensive education in interior design</span>
                 </li>
               </ul>
             </div>
 
             {/* Masters */}
-            <div className="bg-[#0a0a0a] p-8 rounded-[32px] border border-white/10">
-              <h3 className="font-bricolage text-2xl mb-3 text-white">Choose the Master's if you:</h3>
-              <ul className="space-y-2 text-white/70">
+            <div className="p-8 rounded-[32px]" style={{
+              backgroundColor: 'var(--bg-primary)',
+              borderWidth: '1px',
+              borderColor: 'var(--border-default)'
+            }}>
+              <h3 className="font-bricolage text-2xl mb-3" style={{ color: 'var(--text-primary)' }}>
+                Choose the <span className="font-display italic">Master's</span> if you:
+              </h3>
+              <ul className="space-y-2" style={{ color: 'var(--text-secondary)' }}>
                 <li className="flex items-start gap-3">
-                  <CheckCircle2 className="w-5 h-5 text-[#C4725D] flex-shrink-0 mt-0.5" />
+                  <CheckCircle2 className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: 'var(--accent-gold)' }} />
                   <span>Already have a bachelor's degree in any field</span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <CheckCircle2 className="w-5 h-5 text-[#C4725D] flex-shrink-0 mt-0.5" />
+                  <CheckCircle2 className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: 'var(--accent-gold)' }} />
                   <span>Want to advance your career with graduate-level expertise</span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <CheckCircle2 className="w-5 h-5 text-[#C4725D] flex-shrink-0 mt-0.5" />
+                  <CheckCircle2 className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: 'var(--accent-gold)' }} />
                   <span>Are interested in research and advanced interior architecture</span>
                 </li>
               </ul>
@@ -237,39 +274,49 @@ export default function ProgramsPage() {
       </section>
 
       {/* All Programs Benefits - Light */}
-      <section className="max-w-5xl mx-auto px-6 lg:px-8 py-16 bg-[#f8f8f8] animate-on-scroll" style={{ animationDelay: '0.3s' }}>
-        <h2 className="font-bricolage text-4xl mb-8 text-center text-black">
-          What All Our Programs Offer
+      <section className="max-w-5xl mx-auto px-6 lg:px-8 py-16 animate-on-scroll" style={{ backgroundColor: 'var(--bg-light)', animationDelay: '0.3s' }}>
+        <h2 className="font-bricolage text-4xl mb-8 text-center" style={{ color: 'var(--text-dark)' }}>
+          What <span className="font-display italic" style={{ color: 'var(--accent-terracotta)' }}>All Our Programs</span> Offer
         </h2>
         <div className="grid md:grid-cols-2 gap-6">
           {allProgramsBenefits.map((benefit, index) => (
             <div key={index} className="flex items-start gap-3">
-              <CheckCircle2 className="w-6 h-6 text-[#C4725D] flex-shrink-0 mt-0.5" />
-              <span className="text-neutral-500 text-lg">{benefit}</span>
+              <CheckCircle2 className="w-6 h-6 flex-shrink-0 mt-0.5" style={{ color: 'var(--accent-terracotta)' }} />
+              <span className="text-lg" style={{ color: 'var(--text-dark-secondary)' }}>{benefit}</span>
             </div>
           ))}
         </div>
       </section>
 
       {/* CTA Section - Dark */}
-      <section className="bg-[#0a0a0a] text-white py-16 animate-on-scroll" style={{ animationDelay: '0.4s' }}>
+      <section className="py-16 animate-on-scroll" style={{ backgroundColor: 'var(--bg-primary)', animationDelay: '0.4s' }}>
         <div className="max-w-4xl mx-auto px-6 lg:px-8 text-center">
-          <h2 className="font-bricolage text-4xl lg:text-5xl mb-6">
-            Ready to Start Your Design Journey?
+          <h2 className="font-bricolage text-4xl lg:text-5xl mb-6" style={{ color: 'var(--text-primary)' }}>
+            Ready to Start Your <span className="font-display italic" style={{ color: 'var(--accent-gold)' }}>Design Journey?</span>
           </h2>
-          <p className="text-xl mb-8 text-white/70">
+          <p className="text-xl mb-8" style={{ color: 'var(--text-secondary)' }}>
             Have questions about which program is right for you? Our admissions team is here to help you make the best choice for your career goals.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <Link
               href="/admissions"
-              className="inline-block px-8 py-4 bg-white text-black hover:bg-white/90 font-medium rounded-full transition-colors"
+              className="inline-block px-8 py-4 font-medium rounded-full transition-colors"
+              style={{
+                backgroundColor: 'var(--text-primary)',
+                color: 'var(--text-dark)'
+              }}
             >
               Apply Now
             </Link>
             <Link
               href="/contact"
-              className="inline-block px-8 py-4 bg-transparent border-2 border-white/10 hover:border-white/30 text-white font-medium rounded-full transition-colors"
+              className="inline-block px-8 py-4 font-medium rounded-full transition-colors"
+              style={{
+                backgroundColor: 'transparent',
+                borderWidth: '2px',
+                borderColor: 'var(--border-default)',
+                color: 'var(--text-primary)'
+              }}
             >
               Contact Admissions
             </Link>

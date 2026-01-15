@@ -151,7 +151,10 @@ export default function AboutPage() {
       />
 
       {/* Hero Section */}
-      <section className="relative min-h-[60vh] flex items-center justify-center bg-[#0a0a0a] text-white overflow-hidden">
+      <section
+        className="relative min-h-[60vh] flex items-center justify-center overflow-hidden"
+        style={{ backgroundColor: 'var(--bg-primary)', color: 'var(--text-primary)' }}
+      >
         {/* Background Image */}
         <div className="absolute inset-0 z-0">
           <Image
@@ -161,48 +164,76 @@ export default function AboutPage() {
             className="object-cover opacity-20"
             priority
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a0a]/80 via-[#0a0a0a]/70 to-[#0a0a0a]" />
+          <div
+            className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/70 to-black"
+            style={{
+              background: `linear-gradient(to bottom,
+                var(--bg-primary) 0%,
+                rgba(20, 32, 48, 0.7) 50%,
+                var(--bg-primary) 100%)`
+            }}
+          />
         </div>
 
         {/* Content */}
         <div className="relative z-10 max-w-7xl mx-auto px-6 py-24 text-center animate-on-scroll">
           {/* Breadcrumb */}
-          <nav className="flex items-center justify-center gap-2 text-sm text-white/60 mb-8" aria-label="Breadcrumb">
-            <Link href="/" className="hover:text-white transition-colors">
+          <nav
+            className="flex items-center justify-center gap-2 text-sm mb-8"
+            aria-label="Breadcrumb"
+            style={{ color: 'var(--text-muted)' }}
+          >
+            <Link
+              href="/"
+              className="transition-colors hover:opacity-100"
+              style={{ color: 'var(--text-primary)', opacity: 0.6 }}
+            >
               Home
             </Link>
             <ChevronRight className="w-4 h-4" />
-            <span className="text-white">About</span>
+            <span style={{ color: 'var(--text-primary)' }}>About</span>
           </nav>
 
           <h1 className="font-bricolage text-5xl md:text-7xl font-bold mb-6">
             About Interior Designers Institute
           </h1>
-          <p className="font-body text-xl md:text-2xl text-white/80 max-w-3xl mx-auto">
+          <p
+            className="font-body text-xl md:text-2xl max-w-3xl mx-auto"
+            style={{ color: 'var(--text-secondary)' }}
+          >
             Orange County's only dedicated interior design school since 1984, offering CIDA-accredited programs taught by 100% practicing professionals
           </p>
         </div>
       </section>
 
       {/* History/Story Section */}
-      <article className="py-24 px-6 bg-[#0a0a0a]">
+      <article className="py-24 px-6" style={{ backgroundColor: 'var(--bg-primary)' }}>
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             {/* Text Content */}
             <div className="animate-on-scroll">
               <div className="inline-block mb-4">
-                <span className="font-mono text-[#C4725D] text-sm font-semibold uppercase tracking-wider">
+                <span
+                  className="font-mono text-sm font-semibold uppercase tracking-wider"
+                  style={{ color: 'var(--accent-gold)' }}
+                >
                   Since 1984
                 </span>
               </div>
-              <h2 className="font-bricolage text-4xl md:text-5xl font-light mb-6 text-white">
+              <h2
+                className="font-bricolage text-4xl md:text-5xl font-light mb-6"
+                style={{ color: 'var(--text-primary)' }}
+              >
                 40 Years of Design Education Excellence
               </h2>
-              <div className="space-y-6 font-body text-lg text-white/70 leading-relaxed">
+              <div
+                className="space-y-6 font-body text-lg leading-relaxed"
+                style={{ color: 'var(--text-secondary)' }}
+              >
                 <p>
-                  <strong className="text-white">Founded in 1984 in Corona del Mar, California</strong>, Interior Designers Institute
-                  relocated to its current <strong className="text-white">Newport Beach location in 1990</strong>, establishing itself as{' '}
-                  <strong className="text-white">Orange County's only school exclusively dedicated to interior design education</strong>.
+                  <strong style={{ color: 'var(--text-primary)' }}>Founded in 1984 in Corona del Mar, California</strong>, Interior Designers Institute
+                  relocated to its current <strong style={{ color: 'var(--text-primary)' }}>Newport Beach location in 1990</strong>, establishing itself as{' '}
+                  <strong style={{ color: 'var(--text-primary)' }}>Orange County's only school exclusively dedicated to interior design education</strong>.
                 </p>
                 <p>
                   For four decades, we have maintained our commitment to small class sizes, personalized instruction, and hands-on
@@ -211,8 +242,8 @@ export default function AboutPage() {
                 </p>
                 <p>
                   What sets IDI apart is our unwavering commitment to quality. With a{' '}
-                  <strong className="text-white font-mono">10:1 student-to-faculty ratio</strong>, studio classes averaging just 15 students,
-                  and <strong className="text-white">100% practicing professionals as instructors</strong>, every student receives personalized
+                  <strong className="font-mono" style={{ color: 'var(--text-primary)' }}>10:1 student-to-faculty ratio</strong>, studio classes averaging just 15 students,
+                  and <strong style={{ color: 'var(--text-primary)' }}>100% practicing professionals as instructors</strong>, every student receives personalized
                   mentorship from designers actively working in the field.
                 </p>
                 <p>
@@ -227,14 +258,37 @@ export default function AboutPage() {
               </div>
 
               {/* Key Stats */}
-              <div className="grid grid-cols-2 gap-8 mt-12 pt-12 border-t border-white/10">
+              <div
+                className="grid grid-cols-2 gap-8 mt-12 pt-12 border-t"
+                style={{ borderColor: 'var(--border-default)' }}
+              >
                 <div>
-                  <div className="font-mono text-5xl font-bold text-[#C4725D] mb-2">40</div>
-                  <div className="font-body text-white/60">Years of Excellence</div>
+                  <div
+                    className="font-mono text-5xl font-bold mb-2"
+                    style={{ color: 'var(--accent-gold)' }}
+                  >
+                    40
+                  </div>
+                  <div
+                    className="font-body"
+                    style={{ color: 'var(--text-muted)' }}
+                  >
+                    Years of Excellence
+                  </div>
                 </div>
                 <div>
-                  <div className="font-mono text-5xl font-bold text-[#C4725D] mb-2">88%</div>
-                  <div className="font-body text-white/60">Graduation Rate</div>
+                  <div
+                    className="font-mono text-5xl font-bold mb-2"
+                    style={{ color: 'var(--accent-gold)' }}
+                  >
+                    88%
+                  </div>
+                  <div
+                    className="font-body"
+                    style={{ color: 'var(--text-muted)' }}
+                  >
+                    Graduation Rate
+                  </div>
                 </div>
               </div>
             </div>
@@ -253,13 +307,19 @@ export default function AboutPage() {
       </article>
 
       {/* Why Attend IDI Section - Light background for contrast */}
-      <section className="py-24 px-6 bg-[#f8f8f8]">
+      <section className="py-24 px-6" style={{ backgroundColor: 'var(--bg-light)' }}>
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16 animate-on-scroll">
-            <h2 className="font-bricolage text-4xl md:text-5xl font-light mb-6 text-neutral-900">
+            <h2
+              className="font-bricolage text-4xl md:text-5xl font-light mb-6"
+              style={{ color: 'var(--text-dark)' }}
+            >
               Why Attend Interior Designers Institute?
             </h2>
-            <p className="font-body text-xl text-neutral-600 max-w-3xl mx-auto">
+            <p
+              className="font-body text-xl max-w-3xl mx-auto"
+              style={{ color: 'var(--text-dark-secondary)' }}
+            >
               Six key advantages that set IDI apart from other interior design schools.
             </p>
           </div>
@@ -270,16 +330,29 @@ export default function AboutPage() {
               return (
                 <div
                   key={index}
-                  className="bg-white rounded-3xl p-8 border border-neutral-200 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 animate-on-scroll"
-                  style={{ animationDelay: `${0.1 + index * 0.1}s` }}
+                  className="rounded-3xl p-8 border shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 animate-on-scroll"
+                  style={{
+                    backgroundColor: 'white',
+                    borderColor: 'rgba(45, 42, 38, 0.1)',
+                    animationDelay: `${0.1 + index * 0.1}s`
+                  }}
                 >
-                  <div className="w-14 h-14 bg-neutral-100 rounded-2xl flex items-center justify-center mb-6">
-                    <Icon className="w-7 h-7 text-neutral-900" strokeWidth={1.5} />
+                  <div
+                    className="w-14 h-14 rounded-2xl flex items-center justify-center mb-6"
+                    style={{ backgroundColor: 'rgba(45, 42, 38, 0.05)' }}
+                  >
+                    <Icon className="w-7 h-7" strokeWidth={1.5} style={{ color: 'var(--text-dark)' }} />
                   </div>
-                  <h3 className="font-bricolage text-xl font-medium mb-3 text-neutral-900">
+                  <h3
+                    className="font-bricolage text-xl font-medium mb-3"
+                    style={{ color: 'var(--text-dark)' }}
+                  >
                     {reason.title}
                   </h3>
-                  <p className="font-body text-neutral-500 leading-relaxed">
+                  <p
+                    className="font-body leading-relaxed"
+                    style={{ color: 'var(--text-dark-secondary)' }}
+                  >
                     {reason.description}
                   </p>
                 </div>
@@ -290,7 +363,7 @@ export default function AboutPage() {
       </section>
 
       {/* Campus Section */}
-      <section className="py-24 px-6 bg-[#0a0a0a]">
+      <section className="py-24 px-6" style={{ backgroundColor: 'var(--bg-primary)' }}>
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             {/* Image */}
@@ -305,17 +378,26 @@ export default function AboutPage() {
 
             {/* Text Content */}
             <div className="order-1 lg:order-2 animate-on-scroll" style={{ animationDelay: '0.2s' }}>
-              <div className="inline-flex items-center gap-2 mb-4 text-[#C4725D]">
+              <div
+                className="inline-flex items-center gap-2 mb-4"
+                style={{ color: 'var(--accent-gold)' }}
+              >
                 <MapPin className="w-5 h-5" />
                 <span className="font-mono text-sm font-semibold uppercase tracking-wider">
                   Newport Beach, CA
                 </span>
               </div>
-              <h2 className="font-bricolage text-4xl md:text-5xl font-light mb-6 text-white">
+              <h2
+                className="font-bricolage text-4xl md:text-5xl font-light mb-6"
+                style={{ color: 'var(--text-primary)' }}
+              >
                 Campus Facilities
               </h2>
-              <p className="font-body text-lg text-white/70 leading-relaxed mb-8">
-                IDI's <strong className="text-white">Newport Beach campus at 1061 Camelback Street</strong> provides
+              <p
+                className="font-body text-lg leading-relaxed mb-8"
+                style={{ color: 'var(--text-secondary)' }}
+              >
+                IDI's <strong style={{ color: 'var(--text-primary)' }}>Newport Beach campus at 1061 Camelback Street</strong> provides
                 a focused design education environment with professional-grade facilities in the heart of Orange County's
                 affluent design market.
               </p>
@@ -323,10 +405,21 @@ export default function AboutPage() {
               <div className="space-y-4 mb-8">
                 {campusFeatures.map((feature, index) => (
                   <div key={index} className="flex items-start gap-3">
-                    <div className="w-6 h-6 bg-[#C4725D]/20 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                      <div className="w-2 h-2 bg-[#C4725D] rounded-full" />
+                    <div
+                      className="w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5"
+                      style={{ backgroundColor: 'rgba(255, 92, 141, 0.2)' }}
+                    >
+                      <div
+                        className="w-2 h-2 rounded-full"
+                        style={{ backgroundColor: 'var(--accent-gold)' }}
+                      />
                     </div>
-                    <span className="font-body text-white/70">{feature}</span>
+                    <span
+                      className="font-body"
+                      style={{ color: 'var(--text-secondary)' }}
+                    >
+                      {feature}
+                    </span>
                   </div>
                 ))}
               </div>
@@ -335,7 +428,11 @@ export default function AboutPage() {
                 href="https://www.google.com/maps/search/?api=1&query=1061+Camelback+Street,Newport+Beach,CA+92660"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-6 py-3 bg-white text-[#0a0a0a] font-semibold rounded-full hover:bg-neutral-200 transition-colors"
+                className="inline-flex items-center gap-2 px-6 py-3 font-semibold rounded-full transition-colors hover:opacity-80"
+                style={{
+                  backgroundColor: 'var(--bg-light)',
+                  color: 'var(--text-dark)'
+                }}
               >
                 <MapPin className="w-5 h-5" />
                 View on Map
@@ -346,40 +443,73 @@ export default function AboutPage() {
       </section>
 
       {/* Accreditation Section */}
-      <section className="py-24 px-6 bg-[#151515]">
+      <section className="py-24 px-6" style={{ backgroundColor: 'var(--bg-secondary)' }}>
         <div className="max-w-7xl mx-auto text-center animate-on-scroll">
-          <span className="text-xs uppercase tracking-[0.3em] text-white/40 font-medium mb-4 block">
+          <span
+            className="text-xs uppercase tracking-[0.3em] font-medium mb-4 block"
+            style={{ color: 'var(--text-muted)' }}
+          >
             Industry Recognized
           </span>
-          <h2 className="font-bricolage text-4xl md:text-5xl font-light text-white mb-6">
+          <h2
+            className="font-bricolage text-4xl md:text-5xl font-light mb-6"
+            style={{ color: 'var(--text-primary)' }}
+          >
             Accreditation & Recognition
           </h2>
-          <p className="text-white/60 text-lg max-w-2xl mx-auto mb-8">
+          <p
+            className="text-lg max-w-2xl mx-auto mb-8"
+            style={{ color: 'var(--text-muted)' }}
+          >
             Our programs meet the highest standards of quality in design education.
           </p>
           <div className="flex flex-wrap items-center justify-center gap-6 mb-12">
-            <span className="px-8 py-4 rounded-full border border-white/10 bg-white/5 text-sm uppercase tracking-wider text-white/60">
+            <span
+              className="px-8 py-4 rounded-full border text-sm uppercase tracking-wider"
+              style={{
+                borderColor: 'var(--border-default)',
+                backgroundColor: 'rgba(233, 216, 200, 0.05)',
+                color: 'var(--text-muted)'
+              }}
+            >
               CIDA Accredited Since 1992
             </span>
-            <span className="px-8 py-4 rounded-full border border-white/10 bg-white/5 text-sm uppercase tracking-wider text-white/60">
+            <span
+              className="px-8 py-4 rounded-full border text-sm uppercase tracking-wider"
+              style={{
+                borderColor: 'var(--border-default)',
+                backgroundColor: 'rgba(233, 216, 200, 0.05)',
+                color: 'var(--text-muted)'
+              }}
+            >
               ACCSC Accredited
             </span>
-            <span className="px-8 py-4 rounded-full border border-white/10 bg-white/5 text-sm uppercase tracking-wider text-white/60">
+            <span
+              className="px-8 py-4 rounded-full border text-sm uppercase tracking-wider"
+              style={{
+                borderColor: 'var(--border-default)',
+                backgroundColor: 'rgba(233, 216, 200, 0.05)',
+                color: 'var(--text-muted)'
+              }}
+            >
               BPPE Approved
             </span>
           </div>
-          <div className="max-w-3xl mx-auto text-left space-y-4 text-white/60 font-body">
+          <div
+            className="max-w-3xl mx-auto text-left space-y-4 font-body"
+            style={{ color: 'var(--text-muted)' }}
+          >
             <p>
-              <strong className="text-white">CIDA (Council for Interior Design Accreditation)</strong> - Our Bachelor of Arts program
+              <strong style={{ color: 'var(--text-primary)' }}>CIDA (Council for Interior Design Accreditation)</strong> - Our Bachelor of Arts program
               has been CIDA accredited since 1992. Over 60% of hiring professionals prefer CIDA graduates, who score 16% higher on
               NCIDQ licensing exams.
             </p>
             <p>
-              <strong className="text-white">ACCSC (Accrediting Commission of Career Schools and Colleges)</strong> - Institutional
+              <strong style={{ color: 'var(--text-primary)' }}>ACCSC (Accrediting Commission of Career Schools and Colleges)</strong> - Institutional
               accreditation ensuring educational quality and student success.
             </p>
             <p>
-              <strong className="text-white">BPPE (Bureau of Private Postsecondary Education)</strong> - Approved by California's
+              <strong style={{ color: 'var(--text-primary)' }}>BPPE (Bureau of Private Postsecondary Education)</strong> - Approved by California's
               regulatory agency for private postsecondary institutions.
             </p>
           </div>
@@ -387,23 +517,32 @@ export default function AboutPage() {
       </section>
 
       {/* Faculty Overview Section */}
-      <section className="py-24 px-6 bg-[#0a0a0a]">
+      <section className="py-24 px-6" style={{ backgroundColor: 'var(--bg-primary)' }}>
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             {/* Text Content */}
             <div className="animate-on-scroll">
-              <div className="inline-flex items-center gap-2 mb-4 text-[#C4725D]">
+              <div
+                className="inline-flex items-center gap-2 mb-4"
+                style={{ color: 'var(--accent-gold)' }}
+              >
                 <GraduationCap className="w-5 h-5" />
                 <span className="font-mono text-sm font-semibold uppercase tracking-wider">
                   Expert Faculty
                 </span>
               </div>
-              <h2 className="font-bricolage text-4xl md:text-5xl font-light mb-6 text-white">
+              <h2
+                className="font-bricolage text-4xl md:text-5xl font-light mb-6"
+                style={{ color: 'var(--text-primary)' }}
+              >
                 Learn from Practicing Professionals
               </h2>
-              <div className="space-y-6 font-body text-lg text-white/70 leading-relaxed">
+              <div
+                className="space-y-6 font-body text-lg leading-relaxed"
+                style={{ color: 'var(--text-secondary)' }}
+              >
                 <p>
-                  At IDI, <strong className="text-white font-mono">100% of our faculty are practicing professionals</strong>{' '}
+                  At IDI, <strong className="font-mono" style={{ color: 'var(--text-primary)' }}>100% of our faculty are practicing professionals</strong>{' '}
                   actively working in the interior design industry. This isn't just a statistic—it's a fundamental
                   part of who we are.
                 </p>
@@ -425,10 +564,29 @@ export default function AboutPage() {
                 </p>
               </div>
 
-              <div className="mt-12 p-8 bg-[#151515] rounded-2xl border border-white/10">
-                <div className="font-mono text-4xl font-bold text-[#C4725D] mb-2">10:1</div>
-                <div className="font-body text-white font-semibold mb-2">Student-to-Faculty Ratio</div>
-                <p className="font-body text-white/60">
+              <div
+                className="mt-12 p-8 rounded-2xl border"
+                style={{
+                  backgroundColor: 'var(--bg-secondary)',
+                  borderColor: 'var(--border-default)'
+                }}
+              >
+                <div
+                  className="font-mono text-4xl font-bold mb-2"
+                  style={{ color: 'var(--accent-gold)' }}
+                >
+                  10:1
+                </div>
+                <div
+                  className="font-body font-semibold mb-2"
+                  style={{ color: 'var(--text-primary)' }}
+                >
+                  Student-to-Faculty Ratio
+                </div>
+                <p
+                  className="font-body"
+                  style={{ color: 'var(--text-muted)' }}
+                >
                   Small class sizes mean personalized attention, detailed feedback on your work, and meaningful
                   mentorship relationships.
                 </p>
@@ -438,7 +596,11 @@ export default function AboutPage() {
             {/* Faculty Grid Placeholder */}
             <div className="grid grid-cols-2 gap-6 animate-on-scroll" style={{ animationDelay: '0.2s' }}>
               {[1, 2, 3, 4].map((item) => (
-                <div key={item} className="relative aspect-square rounded-2xl overflow-hidden bg-[#151515]">
+                <div
+                  key={item}
+                  className="relative aspect-square rounded-2xl overflow-hidden"
+                  style={{ backgroundColor: 'var(--bg-secondary)' }}
+                >
                   <Image
                     src={`https://images.unsplash.com/photo-${
                       item === 1 ? '1573496359142-b9b36e926d57' :
@@ -459,31 +621,47 @@ export default function AboutPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-24 px-6 bg-black text-white">
+      <section
+        className="py-24 px-6"
+        style={{ backgroundColor: '#000000', color: 'var(--text-primary)' }}
+      >
         <div className="max-w-4xl mx-auto text-center animate-on-scroll">
           <h2 className="font-bricolage text-4xl md:text-5xl font-light mb-6">
             Ready to Start Your Design Journey?
           </h2>
-          <p className="font-body text-xl text-white/70 mb-12 max-w-2xl mx-auto">
+          <p
+            className="font-body text-xl mb-12 max-w-2xl mx-auto"
+            style={{ color: 'var(--text-secondary)' }}
+          >
             Join 40 years of design excellence. Explore our programs, schedule a campus visit, or speak with an admissions advisor.
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link
               href="/programs"
-              className="w-full sm:w-auto px-8 py-4 bg-white text-black font-semibold rounded-full hover:bg-neutral-200 transition-colors text-center"
+              className="w-full sm:w-auto px-8 py-4 font-semibold rounded-full transition-colors text-center hover:opacity-80"
+              style={{
+                backgroundColor: 'var(--bg-light)',
+                color: 'var(--text-dark)'
+              }}
             >
               Explore Programs
             </Link>
             <Link
               href="/admissions#visit"
-              className="w-full sm:w-auto px-8 py-4 bg-transparent border border-white/20 hover:bg-white/10 text-white font-semibold rounded-full transition-colors text-center"
+              className="w-full sm:w-auto px-8 py-4 border font-semibold rounded-full transition-colors text-center hover:bg-white/10"
+              style={{
+                backgroundColor: 'transparent',
+                borderColor: 'var(--border-default)',
+                color: 'var(--text-primary)'
+              }}
             >
               Schedule a Visit
             </Link>
             <Link
               href="/contact"
-              className="w-full sm:w-auto px-8 py-4 text-white/60 hover:text-white font-semibold transition-colors text-center"
+              className="w-full sm:w-auto px-8 py-4 font-semibold transition-colors text-center hover:opacity-100"
+              style={{ color: 'var(--text-primary)', opacity: 0.6 }}
             >
               Contact Us
             </Link>

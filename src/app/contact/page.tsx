@@ -189,40 +189,40 @@ export default function ContactPage() {
       />
 
       {/* Hero Section */}
-      <section className="relative bg-[#0a0a0a] text-white py-24 md:py-32 animate-on-scroll">
+      <section className="relative text-[var(--text-primary)] py-24 md:py-32 animate-on-scroll" style={{ backgroundColor: 'var(--bg-primary)' }}>
         <div className="max-w-7xl mx-auto px-6">
           <div className="max-w-3xl">
             {/* Breadcrumb */}
             <nav className="mb-8 text-sm" style={{ animationDelay: '0.1s' }}>
-              <ol className="flex items-center gap-2 text-white/60">
+              <ol className="flex items-center gap-2" style={{ color: 'var(--text-secondary)' }}>
                 <li>
-                  <Link href="/" className="hover:text-white transition-colors">
+                  <Link href="/" className="transition-colors" style={{ color: 'var(--text-secondary)' }}>
                     Home
                   </Link>
                 </li>
                 <li>/</li>
-                <li className="text-white">Contact</li>
+                <li style={{ color: 'var(--text-primary)' }}>Contact</li>
               </ol>
             </nav>
 
-            <h1 className="font-bricolage text-5xl md:text-6xl lg:text-7xl font-bold mb-6" style={{ animationDelay: '0.2s' }}>
+            <h1 className="font-hero uppercase text-5xl md:text-6xl lg:text-7xl font-bold mb-6 tracking-tight" style={{ animationDelay: '0.2s', color: 'var(--text-primary)' }}>
               Contact Us
             </h1>
-            <p className="text-xl md:text-2xl text-white/70 leading-relaxed" style={{ animationDelay: '0.3s' }}>
-              Connect with our admissions team, career services, or financial aid office. We're here to help you start your interior design journey.
+            <p className="text-xl md:text-2xl leading-relaxed" style={{ animationDelay: '0.3s', color: 'var(--text-secondary)' }}>
+              Connect with our admissions team, career services, or financial aid office. We're here to help you start your <span className="font-display italic" style={{ color: 'var(--accent-gold)' }}>interior design journey</span>.
             </p>
           </div>
         </div>
       </section>
 
       {/* Quick Actions */}
-      <section className="py-20 bg-[#f8f8f8] animate-on-scroll">
+      <section className="py-20 animate-on-scroll" style={{ backgroundColor: 'var(--bg-light)' }}>
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-12" style={{ animationDelay: '0.1s' }}>
-            <h2 className="font-bricolage text-3xl md:text-4xl font-bold mb-4 text-[#0a0a0a]">
+            <h2 className="font-bricolage text-3xl md:text-4xl font-bold mb-4" style={{ color: 'var(--text-dark)' }}>
               Quick Links
             </h2>
-            <p className="text-xl text-neutral-600">
+            <p className="text-xl" style={{ color: 'var(--text-dark)', opacity: 0.7 }}>
               Access forms, calculators, and important resources
             </p>
           </div>
@@ -234,16 +234,27 @@ export default function ContactPage() {
                 href={action.link}
                 target={action.external ? '_blank' : undefined}
                 rel={action.external ? 'noopener noreferrer' : undefined}
-                className="bg-white p-8 rounded-[32px] border border-black/5 text-center hover:shadow-lg transition-all animate-on-scroll group"
-                style={{ animationDelay: `${0.2 + index * 0.05}s` }}
+                className="bg-white p-8 rounded-[32px] text-center hover:shadow-lg transition-all animate-on-scroll group"
+                style={{
+                  animationDelay: `${0.2 + index * 0.05}s`,
+                  borderWidth: '1px',
+                  borderStyle: 'solid',
+                  borderColor: 'var(--border-default)'
+                }}
               >
-                <h3 className="font-bricolage text-xl font-semibold mb-3 text-[#0a0a0a]">
+                <h3 className="font-bricolage text-xl font-semibold mb-3" style={{ color: 'var(--text-dark)' }}>
                   {action.title}
                 </h3>
-                <p className="text-neutral-600 mb-6">
+                <p className="mb-6" style={{ color: 'var(--text-dark)', opacity: 0.7 }}>
                   {action.description}
                 </p>
-                <span className="inline-flex items-center justify-center px-6 py-3 bg-white text-black border border-black group-hover:bg-black group-hover:text-white font-semibold rounded-full transition-all">
+                <span className="inline-flex items-center justify-center px-6 py-3 bg-white font-semibold rounded-full transition-all group-hover:text-white" style={{
+                  color: 'var(--text-dark)',
+                  borderWidth: '1px',
+                  borderStyle: 'solid',
+                  borderColor: 'var(--text-dark)',
+                  backgroundColor: 'white'
+                }}>
                   {action.buttonText}
                 </span>
               </a>
@@ -256,53 +267,71 @@ export default function ContactPage() {
       <section className="py-20 bg-white animate-on-scroll">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-12" style={{ animationDelay: '0.1s' }}>
-            <h2 className="font-bricolage text-3xl md:text-4xl font-bold mb-4 text-[#0a0a0a]">
+            <h2 className="font-bricolage text-3xl md:text-4xl font-bold mb-4" style={{ color: 'var(--text-dark)' }}>
               Staff Directory
             </h2>
-            <p className="text-xl text-neutral-600">
+            <p className="text-xl" style={{ color: 'var(--text-dark)', opacity: 0.7 }}>
               Connect with the right department for your needs
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-            <div className="bg-[#f8f8f8] p-8 rounded-[32px] border border-black/5 animate-on-scroll" style={{ animationDelay: '0.2s' }}>
-              <h3 className="font-bricolage text-xl font-semibold mb-4 text-[#0a0a0a]">
+            <div className="p-8 rounded-[32px] animate-on-scroll" style={{
+              animationDelay: '0.2s',
+              backgroundColor: 'var(--bg-light)',
+              borderWidth: '1px',
+              borderStyle: 'solid',
+              borderColor: 'var(--border-default)'
+            }}>
+              <h3 className="font-bricolage text-xl font-semibold mb-4" style={{ color: 'var(--text-dark)' }}>
                 Admissions & Student Services
               </h3>
               <div className="space-y-2 text-sm">
-                <p className="text-neutral-600">
-                  <strong>Phone:</strong> <a href="tel:+19496754451" className="hover:text-black transition-colors">(949) 675-4451</a>
+                <p style={{ color: 'var(--text-dark)', opacity: 0.7 }}>
+                  <strong>Phone:</strong> <a href="tel:+19496754451" className="hover:opacity-100 transition-opacity">(949) 675-4451</a>
                 </p>
-                <p className="text-neutral-600">
-                  <strong>Email:</strong> <a href="mailto:contact@idi.edu" className="hover:text-black transition-colors">contact@idi.edu</a>
+                <p style={{ color: 'var(--text-dark)', opacity: 0.7 }}>
+                  <strong>Email:</strong> <a href="mailto:contact@idi.edu" className="hover:opacity-100 transition-opacity">contact@idi.edu</a>
                 </p>
               </div>
             </div>
 
-            <div className="bg-[#f8f8f8] p-8 rounded-[32px] border border-black/5 animate-on-scroll" style={{ animationDelay: '0.3s' }}>
-              <h3 className="font-bricolage text-xl font-semibold mb-4 text-[#0a0a0a]">
+            <div className="p-8 rounded-[32px] animate-on-scroll" style={{
+              animationDelay: '0.3s',
+              backgroundColor: 'var(--bg-light)',
+              borderWidth: '1px',
+              borderStyle: 'solid',
+              borderColor: 'var(--border-default)'
+            }}>
+              <h3 className="font-bricolage text-xl font-semibold mb-4" style={{ color: 'var(--text-dark)' }}>
                 Career Services
               </h3>
               <div className="space-y-2 text-sm">
-                <p className="text-neutral-600">
+                <p style={{ color: 'var(--text-dark)', opacity: 0.7 }}>
                   <strong>Contact:</strong> Rachel Hulan
                 </p>
-                <p className="text-neutral-600">
-                  <strong>Email:</strong> <a href="mailto:rhulan@idi.edu" className="hover:text-black transition-colors">rhulan@idi.edu</a>
+                <p style={{ color: 'var(--text-dark)', opacity: 0.7 }}>
+                  <strong>Email:</strong> <a href="mailto:rhulan@idi.edu" className="hover:opacity-100 transition-opacity">rhulan@idi.edu</a>
                 </p>
               </div>
             </div>
 
-            <div className="bg-[#f8f8f8] p-8 rounded-[32px] border border-black/5 animate-on-scroll" style={{ animationDelay: '0.4s' }}>
-              <h3 className="font-bricolage text-xl font-semibold mb-4 text-[#0a0a0a]">
+            <div className="p-8 rounded-[32px] animate-on-scroll" style={{
+              animationDelay: '0.4s',
+              backgroundColor: 'var(--bg-light)',
+              borderWidth: '1px',
+              borderStyle: 'solid',
+              borderColor: 'var(--border-default)'
+            }}>
+              <h3 className="font-bricolage text-xl font-semibold mb-4" style={{ color: 'var(--text-dark)' }}>
                 Financial Aid Office
               </h3>
               <div className="space-y-2 text-sm">
-                <p className="text-neutral-600">
+                <p style={{ color: 'var(--text-dark)', opacity: 0.7 }}>
                   <strong>Contact:</strong> Renee Robles
                 </p>
-                <p className="text-neutral-600">
-                  <strong>Phone:</strong> <a href="tel:+19496754451" className="hover:text-black transition-colors">(949) 675-4451</a>
+                <p style={{ color: 'var(--text-dark)', opacity: 0.7 }}>
+                  <strong>Phone:</strong> <a href="tel:+19496754451" className="hover:opacity-100 transition-opacity">(949) 675-4451</a>
                 </p>
               </div>
             </div>
@@ -311,12 +340,12 @@ export default function ContactPage() {
       </section>
 
       {/* Contact Information & Form */}
-      <section className="py-20 bg-[#0a0a0a] animate-on-scroll">
+      <section className="py-20 animate-on-scroll" style={{ backgroundColor: 'var(--bg-primary)' }}>
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
             {/* Contact Information Sidebar */}
             <div className="lg:col-span-1" style={{ animationDelay: '0.1s' }}>
-              <h2 className="font-bricolage text-3xl font-bold mb-8 text-white">
+              <h2 className="font-bricolage text-3xl font-bold mb-8" style={{ color: 'var(--text-primary)' }}>
                 Main Contact
               </h2>
 
@@ -326,17 +355,19 @@ export default function ContactPage() {
                   return (
                     <div key={info.title} className="flex gap-4" style={{ animationDelay: `${0.2 + index * 0.1}s` }}>
                       <div className="flex-shrink-0">
-                        <div className="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center">
-                          <Icon className="w-6 h-6 text-white" />
+                        <div className="w-12 h-12 rounded-xl flex items-center justify-center" style={{
+                          backgroundColor: 'rgba(233, 216, 200, 0.1)'
+                        }}>
+                          <Icon className="w-6 h-6" style={{ color: 'var(--text-primary)' }} />
                         </div>
                       </div>
                       <div>
-                        <h3 className="font-semibold mb-2 text-white">{info.title}</h3>
-                        <p className="text-white/60 text-sm leading-relaxed whitespace-pre-line mb-2">
+                        <h3 className="font-semibold mb-2" style={{ color: 'var(--text-primary)' }}>{info.title}</h3>
+                        <p className="text-sm leading-relaxed whitespace-pre-line mb-2" style={{ color: 'var(--text-secondary)' }}>
                           {info.content}
                         </p>
                         {info.subtitle && (
-                          <p className="text-white/40 text-xs mb-2">
+                          <p className="text-xs mb-2" style={{ color: 'var(--text-muted)' }}>
                             {info.subtitle}
                           </p>
                         )}
@@ -345,7 +376,8 @@ export default function ContactPage() {
                             href={info.link}
                             target={info.external ? '_blank' : undefined}
                             rel={info.external ? 'noopener noreferrer' : undefined}
-                            className="text-white hover:text-white/80 font-semibold text-sm transition-colors"
+                            className="font-semibold text-sm transition-opacity hover:opacity-80"
+                            style={{ color: 'var(--text-primary)' }}
                           >
                             {info.linkText} →
                           </a>
@@ -358,7 +390,7 @@ export default function ContactPage() {
 
               {/* Social Media */}
               <div className="mt-12">
-                <h3 className="font-semibold mb-4 text-white">Connect With Us</h3>
+                <h3 className="font-semibold mb-4" style={{ color: 'var(--text-primary)' }}>Connect With Us</h3>
                 <div className="flex gap-4">
                   {socialLinks.map((social) => {
                     const Icon = social.icon;
@@ -366,12 +398,18 @@ export default function ContactPage() {
                       <a
                         key={social.name}
                         href={social.href}
-                        className="p-3 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 transition-all"
+                        className="p-3 rounded-xl transition-all"
+                        style={{
+                          backgroundColor: 'rgba(233, 216, 200, 0.05)',
+                          borderWidth: '1px',
+                          borderStyle: 'solid',
+                          borderColor: 'var(--border-default)'
+                        }}
                         aria-label={social.name}
                         target="_blank"
                         rel="noopener noreferrer"
                       >
-                        <Icon className="w-6 h-6 text-white" />
+                        <Icon className="w-6 h-6" style={{ color: 'var(--text-primary)' }} />
                       </a>
                     );
                   })}
@@ -381,19 +419,24 @@ export default function ContactPage() {
 
             {/* Contact Form */}
             <div className="lg:col-span-2" style={{ animationDelay: '0.2s' }}>
-              <div className="bg-[#151515] p-8 md:p-12 rounded-[32px] border border-white/10">
-                <h2 className="font-bricolage text-3xl font-bold mb-2 text-white">
+              <div className="p-8 md:p-12 rounded-[32px]" style={{
+                backgroundColor: 'var(--bg-secondary)',
+                borderWidth: '1px',
+                borderStyle: 'solid',
+                borderColor: 'var(--border-default)'
+              }}>
+                <h2 className="font-bricolage text-3xl font-bold mb-2" style={{ color: 'var(--text-primary)' }}>
                   Send Us a Message
                 </h2>
-                <p className="text-white/60 mb-8">
+                <p className="mb-8" style={{ color: 'var(--text-secondary)' }}>
                   Fill out the form below and we'll get back to you within 24 hours.
                 </p>
 
                 <form id="contact-form" onSubmit={handleSubmit}>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                     <div>
-                      <label htmlFor="firstName" className="block text-sm font-semibold mb-2 text-white">
-                        First Name <span className="text-white/40">*</span>
+                      <label htmlFor="firstName" className="block text-sm font-semibold mb-2" style={{ color: 'var(--text-primary)' }}>
+                        First Name <span style={{ color: 'var(--text-muted)' }}>*</span>
                       </label>
                       <input
                         type="text"
@@ -402,14 +445,21 @@ export default function ContactPage() {
                         value={formData.firstName}
                         onChange={handleChange}
                         required
-                        className="w-full px-4 py-3 border border-white/10 rounded-xl focus:outline-none focus:ring-2 focus:ring-white focus:border-transparent bg-black/50 text-white placeholder:text-white/30 transition-colors"
+                        className="w-full px-4 py-3 rounded-xl focus:outline-none focus:ring-2 transition-colors"
+                        style={{
+                          borderWidth: '1px',
+                          borderStyle: 'solid',
+                          borderColor: 'var(--border-default)',
+                          backgroundColor: 'rgba(0, 0, 0, 0.3)',
+                          color: 'var(--text-primary)'
+                        }}
                         placeholder="John"
                       />
                     </div>
 
                     <div>
-                      <label htmlFor="lastName" className="block text-sm font-semibold mb-2 text-white">
-                        Last Name <span className="text-white/40">*</span>
+                      <label htmlFor="lastName" className="block text-sm font-semibold mb-2" style={{ color: 'var(--text-primary)' }}>
+                        Last Name <span style={{ color: 'var(--text-muted)' }}>*</span>
                       </label>
                       <input
                         type="text"
@@ -418,7 +468,14 @@ export default function ContactPage() {
                         value={formData.lastName}
                         onChange={handleChange}
                         required
-                        className="w-full px-4 py-3 border border-white/10 rounded-xl focus:outline-none focus:ring-2 focus:ring-white focus:border-transparent bg-black/50 text-white placeholder:text-white/30 transition-colors"
+                        className="w-full px-4 py-3 rounded-xl focus:outline-none focus:ring-2 transition-colors"
+                        style={{
+                          borderWidth: '1px',
+                          borderStyle: 'solid',
+                          borderColor: 'var(--border-default)',
+                          backgroundColor: 'rgba(0, 0, 0, 0.3)',
+                          color: 'var(--text-primary)'
+                        }}
                         placeholder="Doe"
                       />
                     </div>
@@ -426,8 +483,8 @@ export default function ContactPage() {
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                     <div>
-                      <label htmlFor="email" className="block text-sm font-semibold mb-2 text-white">
-                        Email <span className="text-white/40">*</span>
+                      <label htmlFor="email" className="block text-sm font-semibold mb-2" style={{ color: 'var(--text-primary)' }}>
+                        Email <span style={{ color: 'var(--text-muted)' }}>*</span>
                       </label>
                       <input
                         type="email"
@@ -436,14 +493,21 @@ export default function ContactPage() {
                         value={formData.email}
                         onChange={handleChange}
                         required
-                        className="w-full px-4 py-3 border border-white/10 rounded-xl focus:outline-none focus:ring-2 focus:ring-white focus:border-transparent bg-black/50 text-white placeholder:text-white/30 transition-colors"
+                        className="w-full px-4 py-3 rounded-xl focus:outline-none focus:ring-2 transition-colors"
+                        style={{
+                          borderWidth: '1px',
+                          borderStyle: 'solid',
+                          borderColor: 'var(--border-default)',
+                          backgroundColor: 'rgba(0, 0, 0, 0.3)',
+                          color: 'var(--text-primary)'
+                        }}
                         placeholder="john@example.com"
                       />
                     </div>
 
                     <div>
-                      <label htmlFor="phone" className="block text-sm font-semibold mb-2 text-white">
-                        Phone <span className="text-white/40 text-xs">(optional)</span>
+                      <label htmlFor="phone" className="block text-sm font-semibold mb-2" style={{ color: 'var(--text-primary)' }}>
+                        Phone <span className="text-xs" style={{ color: 'var(--text-muted)' }}>(optional)</span>
                       </label>
                       <input
                         type="tel"
@@ -451,7 +515,14 @@ export default function ContactPage() {
                         name="phone"
                         value={formData.phone}
                         onChange={handleChange}
-                        className="w-full px-4 py-3 border border-white/10 rounded-xl focus:outline-none focus:ring-2 focus:ring-white focus:border-transparent bg-black/50 text-white placeholder:text-white/30 transition-colors"
+                        className="w-full px-4 py-3 rounded-xl focus:outline-none focus:ring-2 transition-colors"
+                        style={{
+                          borderWidth: '1px',
+                          borderStyle: 'solid',
+                          borderColor: 'var(--border-default)',
+                          backgroundColor: 'rgba(0, 0, 0, 0.3)',
+                          color: 'var(--text-primary)'
+                        }}
                         placeholder="(555) 123-4567"
                       />
                     </div>
@@ -459,8 +530,8 @@ export default function ContactPage() {
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                     <div>
-                      <label htmlFor="program" className="block text-sm font-semibold mb-2 text-white">
-                        Program of Interest <span className="text-white/40">*</span>
+                      <label htmlFor="program" className="block text-sm font-semibold mb-2" style={{ color: 'var(--text-primary)' }}>
+                        Program of Interest <span style={{ color: 'var(--text-muted)' }}>*</span>
                       </label>
                       <select
                         id="program"
@@ -468,7 +539,14 @@ export default function ContactPage() {
                         value={formData.program}
                         onChange={handleChange}
                         required
-                        className="w-full px-4 py-3 border border-white/10 rounded-xl focus:outline-none focus:ring-2 focus:ring-white focus:border-transparent bg-black/50 text-white transition-colors"
+                        className="w-full px-4 py-3 rounded-xl focus:outline-none focus:ring-2 transition-colors"
+                        style={{
+                          borderWidth: '1px',
+                          borderStyle: 'solid',
+                          borderColor: 'var(--border-default)',
+                          backgroundColor: 'rgba(0, 0, 0, 0.3)',
+                          color: 'var(--text-primary)'
+                        }}
                       >
                         <option value="">Select a program</option>
                         <option value="certificate">Certificate Program</option>
@@ -480,15 +558,22 @@ export default function ContactPage() {
                     </div>
 
                     <div>
-                      <label htmlFor="contactMethod" className="block text-sm font-semibold mb-2 text-white">
-                        Preferred Contact Method <span className="text-white/40 text-xs">(optional)</span>
+                      <label htmlFor="contactMethod" className="block text-sm font-semibold mb-2" style={{ color: 'var(--text-primary)' }}>
+                        Preferred Contact Method <span className="text-xs" style={{ color: 'var(--text-muted)' }}>(optional)</span>
                       </label>
                       <select
                         id="contactMethod"
                         name="contactMethod"
                         value={formData.contactMethod}
                         onChange={handleChange}
-                        className="w-full px-4 py-3 border border-white/10 rounded-xl focus:outline-none focus:ring-2 focus:ring-white focus:border-transparent bg-black/50 text-white transition-colors"
+                        className="w-full px-4 py-3 rounded-xl focus:outline-none focus:ring-2 transition-colors"
+                        style={{
+                          borderWidth: '1px',
+                          borderStyle: 'solid',
+                          borderColor: 'var(--border-default)',
+                          backgroundColor: 'rgba(0, 0, 0, 0.3)',
+                          color: 'var(--text-primary)'
+                        }}
                       >
                         <option value="">Select preferred method</option>
                         <option value="email">Email</option>
@@ -500,8 +585,8 @@ export default function ContactPage() {
                   </div>
 
                   <div className="mb-6">
-                    <label htmlFor="message" className="block text-sm font-semibold mb-2 text-white">
-                      Message <span className="text-white/40">*</span>
+                    <label htmlFor="message" className="block text-sm font-semibold mb-2" style={{ color: 'var(--text-primary)' }}>
+                      Message <span style={{ color: 'var(--text-muted)' }}>*</span>
                     </label>
                     <textarea
                       id="message"
@@ -510,22 +595,39 @@ export default function ContactPage() {
                       onChange={handleChange}
                       required
                       rows={6}
-                      className="w-full px-4 py-3 border border-white/10 rounded-xl focus:outline-none focus:ring-2 focus:ring-white focus:border-transparent bg-black/50 text-white placeholder:text-white/30 transition-colors resize-none"
+                      className="w-full px-4 py-3 rounded-xl focus:outline-none focus:ring-2 transition-colors resize-none"
+                      style={{
+                        borderWidth: '1px',
+                        borderStyle: 'solid',
+                        borderColor: 'var(--border-default)',
+                        backgroundColor: 'rgba(0, 0, 0, 0.3)',
+                        color: 'var(--text-primary)'
+                      }}
                       placeholder="Tell us about your questions or how we can help you..."
                     />
                   </div>
 
                   {submitStatus === 'success' && (
-                    <div className="mb-6 p-4 bg-green-500/10 border border-green-500/20 rounded-xl">
-                      <p className="text-green-400 font-semibold">
+                    <div className="mb-6 p-4 rounded-xl" style={{
+                      backgroundColor: 'rgba(74, 124, 89, 0.1)',
+                      borderWidth: '1px',
+                      borderStyle: 'solid',
+                      borderColor: 'rgba(74, 124, 89, 0.2)'
+                    }}>
+                      <p className="font-semibold" style={{ color: '#4A7C59' }}>
                         Thank you! Your message has been sent successfully. We'll get back to you within 24 hours.
                       </p>
                     </div>
                   )}
 
                   {submitStatus === 'error' && (
-                    <div className="mb-6 p-4 bg-red-500/10 border border-red-500/20 rounded-xl">
-                      <p className="text-red-400 font-semibold">
+                    <div className="mb-6 p-4 rounded-xl" style={{
+                      backgroundColor: 'rgba(196, 93, 93, 0.1)',
+                      borderWidth: '1px',
+                      borderStyle: 'solid',
+                      borderColor: 'rgba(196, 93, 93, 0.2)'
+                    }}>
+                      <p className="font-semibold" style={{ color: '#C45D5D' }}>
                         Sorry, there was an error sending your message. Please try again or call us directly.
                       </p>
                     </div>
@@ -534,11 +636,18 @@ export default function ContactPage() {
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full px-8 py-4 bg-white hover:bg-white/90 text-black font-semibold rounded-full transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-3"
+                    className="w-full px-8 py-4 font-semibold rounded-full transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-3"
+                    style={{
+                      backgroundColor: 'white',
+                      color: 'var(--text-dark)'
+                    }}
                   >
                     {isSubmitting ? (
                       <>
-                        <span className="w-5 h-5 border-2 border-black/30 border-t-black rounded-full animate-spin" />
+                        <span className="w-5 h-5 border-2 rounded-full animate-spin" style={{
+                          borderColor: 'rgba(0, 0, 0, 0.3)',
+                          borderTopColor: 'black'
+                        }} />
                         Sending...
                       </>
                     ) : (
@@ -549,7 +658,7 @@ export default function ContactPage() {
                     )}
                   </button>
 
-                  <p className="text-sm text-white/40 mt-4 text-center">
+                  <p className="text-sm mt-4 text-center" style={{ color: 'var(--text-muted)' }}>
                     By submitting this form, you agree to be contacted by IDI regarding your inquiry.
                   </p>
                 </form>
@@ -560,37 +669,48 @@ export default function ContactPage() {
       </section>
 
       {/* Map Section */}
-      <section className="py-20 bg-[#f8f8f8] animate-on-scroll">
+      <section className="py-20 animate-on-scroll" style={{ backgroundColor: 'var(--bg-light)' }}>
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-12" style={{ animationDelay: '0.1s' }}>
-            <h2 className="font-bricolage text-3xl md:text-4xl font-bold mb-4 text-[#0a0a0a]">
-              Visit Our Campus
+            <h2 className="font-bricolage text-3xl md:text-4xl font-bold mb-4" style={{ color: 'var(--text-dark)' }}>
+              Visit Our <span className="font-display italic" style={{ color: 'var(--accent-gold)' }}>Campus</span>
             </h2>
-            <p className="text-xl text-neutral-600 mb-2">
+            <p className="text-xl mb-2" style={{ color: 'var(--text-dark)', opacity: 0.7 }}>
               1061 Camelback Street, Newport Beach, CA 92660
             </p>
-            <p className="text-neutral-500">
+            <p style={{ color: 'var(--text-dark)', opacity: 0.6 }}>
               Located in the heart of Orange County design. Near Laguna Design Center, Fashion Island, and SOCO.
             </p>
           </div>
 
           {/* Google Maps Embed Placeholder */}
-          <div className="bg-white rounded-[32px] overflow-hidden border border-black/5 animate-on-scroll" style={{ animationDelay: '0.2s' }}>
+          <div className="bg-white rounded-[32px] overflow-hidden animate-on-scroll" style={{
+            animationDelay: '0.2s',
+            borderWidth: '1px',
+            borderStyle: 'solid',
+            borderColor: 'var(--border-default)'
+          }}>
             <div className="aspect-[16/9] md:aspect-[21/9] bg-neutral-100 flex items-center justify-center relative">
               {/* Placeholder for Google Maps - Replace with actual embed in production */}
               <div className="absolute inset-0 flex flex-col items-center justify-center p-8 text-center">
-                <MapPin className="w-16 h-16 text-[#0a0a0a] mb-4" />
-                <h3 className="font-bricolage text-2xl font-bold mb-2 text-[#0a0a0a]">
+                <MapPin className="w-16 h-16 mb-4" style={{ color: 'var(--text-dark)' }} />
+                <h3 className="font-bricolage text-2xl font-bold mb-2" style={{ color: 'var(--text-dark)' }}>
                   Interactive Map Coming Soon
                 </h3>
-                <p className="text-neutral-600 mb-6 max-w-md">
+                <p className="mb-6 max-w-md" style={{ color: 'var(--text-dark)', opacity: 0.7 }}>
                   Google Maps integration will be added during production deployment
                 </p>
                 <a
                   href="https://www.google.com/maps/place/1061+Camelback+St,+Newport+Beach,+CA+92660"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center px-6 py-3 bg-white text-black border border-black hover:bg-black hover:text-white font-semibold rounded-full transition-all"
+                  className="inline-flex items-center justify-center px-6 py-3 bg-white font-semibold rounded-full transition-all"
+                  style={{
+                    color: 'var(--text-dark)',
+                    borderWidth: '1px',
+                    borderStyle: 'solid',
+                    borderColor: 'var(--text-dark)'
+                  }}
                 >
                   Open in Google Maps
                 </a>
@@ -601,43 +721,64 @@ export default function ContactPage() {
           <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6">
             <a
               href="tel:+19496754451"
-              className="bg-white p-6 rounded-[32px] border border-black/5 hover:shadow-lg transition-all flex items-center gap-4 group animate-on-scroll"
-              style={{ animationDelay: '0.3s' }}
+              className="bg-white p-6 rounded-[32px] hover:shadow-lg transition-all flex items-center gap-4 group animate-on-scroll"
+              style={{
+                animationDelay: '0.3s',
+                borderWidth: '1px',
+                borderStyle: 'solid',
+                borderColor: 'var(--border-default)'
+              }}
             >
-              <div className="w-12 h-12 bg-black/5 rounded-xl flex items-center justify-center group-hover:bg-black/10 transition-colors">
-                <Phone className="w-6 h-6 text-[#0a0a0a]" />
+              <div className="w-12 h-12 rounded-xl flex items-center justify-center transition-colors" style={{
+                backgroundColor: 'rgba(45, 42, 38, 0.05)'
+              }}>
+                <Phone className="w-6 h-6" style={{ color: 'var(--text-dark)' }} />
               </div>
               <div>
-                <p className="text-sm text-neutral-500 mb-1">Call Us</p>
-                <p className="font-semibold text-[#0a0a0a]">(949) 675-4451</p>
+                <p className="text-sm mb-1" style={{ color: 'var(--text-dark)', opacity: 0.6 }}>Call Us</p>
+                <p className="font-semibold" style={{ color: 'var(--text-dark)' }}>(949) 675-4451</p>
               </div>
             </a>
 
             <a
               href="mailto:contact@idi.edu"
-              className="bg-white p-6 rounded-[32px] border border-black/5 hover:shadow-lg transition-all flex items-center gap-4 group animate-on-scroll"
-              style={{ animationDelay: '0.4s' }}
+              className="bg-white p-6 rounded-[32px] hover:shadow-lg transition-all flex items-center gap-4 group animate-on-scroll"
+              style={{
+                animationDelay: '0.4s',
+                borderWidth: '1px',
+                borderStyle: 'solid',
+                borderColor: 'var(--border-default)'
+              }}
             >
-              <div className="w-12 h-12 bg-black/5 rounded-xl flex items-center justify-center group-hover:bg-black/10 transition-colors">
-                <Mail className="w-6 h-6 text-[#0a0a0a]" />
+              <div className="w-12 h-12 rounded-xl flex items-center justify-center transition-colors" style={{
+                backgroundColor: 'rgba(45, 42, 38, 0.05)'
+              }}>
+                <Mail className="w-6 h-6" style={{ color: 'var(--text-dark)' }} />
               </div>
               <div>
-                <p className="text-sm text-neutral-500 mb-1">Email Us</p>
-                <p className="font-semibold text-[#0a0a0a]">contact@idi.edu</p>
+                <p className="text-sm mb-1" style={{ color: 'var(--text-dark)', opacity: 0.6 }}>Email Us</p>
+                <p className="font-semibold" style={{ color: 'var(--text-dark)' }}>contact@idi.edu</p>
               </div>
             </a>
 
             <Link
               href="/admissions#visit"
-              className="bg-white p-6 rounded-[32px] border border-black/5 hover:shadow-lg transition-all flex items-center gap-4 group animate-on-scroll"
-              style={{ animationDelay: '0.5s' }}
+              className="bg-white p-6 rounded-[32px] hover:shadow-lg transition-all flex items-center gap-4 group animate-on-scroll"
+              style={{
+                animationDelay: '0.5s',
+                borderWidth: '1px',
+                borderStyle: 'solid',
+                borderColor: 'var(--border-default)'
+              }}
             >
-              <div className="w-12 h-12 bg-black/5 rounded-xl flex items-center justify-center group-hover:bg-black/10 transition-colors">
-                <Calendar className="w-6 h-6 text-[#0a0a0a]" />
+              <div className="w-12 h-12 rounded-xl flex items-center justify-center transition-colors" style={{
+                backgroundColor: 'rgba(45, 42, 38, 0.05)'
+              }}>
+                <Calendar className="w-6 h-6" style={{ color: 'var(--text-dark)' }} />
               </div>
               <div>
-                <p className="text-sm text-neutral-500 mb-1">Schedule</p>
-                <p className="font-semibold text-[#0a0a0a]">Campus Visit</p>
+                <p className="text-sm mb-1" style={{ color: 'var(--text-dark)', opacity: 0.6 }}>Schedule</p>
+                <p className="font-semibold" style={{ color: 'var(--text-dark)' }}>Campus Visit</p>
               </div>
             </Link>
           </div>
@@ -645,36 +786,48 @@ export default function ContactPage() {
       </section>
 
       {/* FAQ Quick Links */}
-      <section className="py-20 bg-[#0a0a0a] animate-on-scroll">
+      <section className="py-20 animate-on-scroll" style={{ backgroundColor: 'var(--bg-primary)' }}>
         <div className="max-w-4xl mx-auto px-6 text-center">
-          <h2 className="font-bricolage text-3xl md:text-4xl font-bold mb-6 text-white" style={{ animationDelay: '0.1s' }}>
+          <h2 className="font-bricolage text-3xl md:text-4xl font-bold mb-6" style={{ animationDelay: '0.1s', color: 'var(--text-primary)' }}>
             Looking for Something Else?
           </h2>
-          <p className="text-white/60 mb-8" style={{ animationDelay: '0.2s' }}>
+          <p className="mb-8" style={{ animationDelay: '0.2s', color: 'var(--text-secondary)' }}>
             Find quick answers to common questions
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <Link
               href="/admissions#faq"
-              className="bg-[#151515] p-6 rounded-[32px] border border-white/10 hover:bg-white/5 transition-all text-left animate-on-scroll"
-              style={{ animationDelay: '0.3s' }}
+              className="p-6 rounded-[32px] transition-all text-left animate-on-scroll"
+              style={{
+                animationDelay: '0.3s',
+                backgroundColor: 'var(--bg-secondary)',
+                borderWidth: '1px',
+                borderStyle: 'solid',
+                borderColor: 'var(--border-default)'
+              }}
             >
-              <h3 className="font-bricolage text-lg font-semibold mb-2 text-white">
+              <h3 className="font-bricolage text-lg font-semibold mb-2" style={{ color: 'var(--text-primary)' }}>
                 Admissions FAQ
               </h3>
-              <p className="text-white/60 text-sm">
+              <p className="text-sm" style={{ color: 'var(--text-secondary)' }}>
                 Application process, requirements, and deadlines
               </p>
             </Link>
             <Link
               href="/programs"
-              className="bg-[#151515] p-6 rounded-[32px] border border-white/10 hover:bg-white/5 transition-all text-left animate-on-scroll"
-              style={{ animationDelay: '0.4s' }}
+              className="p-6 rounded-[32px] transition-all text-left animate-on-scroll"
+              style={{
+                animationDelay: '0.4s',
+                backgroundColor: 'var(--bg-secondary)',
+                borderWidth: '1px',
+                borderStyle: 'solid',
+                borderColor: 'var(--border-default)'
+              }}
             >
-              <h3 className="font-bricolage text-lg font-semibold mb-2 text-white">
+              <h3 className="font-bricolage text-lg font-semibold mb-2" style={{ color: 'var(--text-primary)' }}>
                 Program Information
               </h3>
-              <p className="text-white/60 text-sm">
+              <p className="text-sm" style={{ color: 'var(--text-secondary)' }}>
                 Detailed program descriptions and curriculum
               </p>
             </Link>

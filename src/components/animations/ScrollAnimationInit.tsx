@@ -13,11 +13,16 @@ export function ScrollAnimationInit() {
       );
     };
 
-    // Immediately animate elements already in view
     const elements = document.querySelectorAll('.animate-on-scroll');
+
+    // Process each element: show if in viewport, hide if not
     elements.forEach((el) => {
       if (isInViewport(el)) {
+        // Already in viewport - animate immediately
         el.classList.add('animate');
+      } else {
+        // Not in viewport - hide it so it can animate in later
+        el.classList.add('scroll-hidden');
       }
     });
 
@@ -55,7 +60,7 @@ export function ScrollAnimationInit() {
             observer.unobserve(el);
           }
         });
-      }, 100); // Small delay to let scroll complete
+      }, 100);
     };
 
     window.addEventListener('hashchange', handleHashChange);

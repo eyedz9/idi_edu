@@ -251,7 +251,8 @@
 }
 
 /* Scroll-triggered Animation Logic */
-.animate-on-scroll {
+/* Elements start visible, JS adds .scroll-hidden when ready to animate */
+.animate-on-scroll.scroll-hidden {
   opacity: 0;
 }
 

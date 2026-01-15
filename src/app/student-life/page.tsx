@@ -33,7 +33,7 @@ const organizations = [
       'Career advancement opportunities',
     ],
     icon: Award,
-    color: 'terracotta',
+    color: 'pink',
   },
   {
     name: 'IIDA',
@@ -46,7 +46,7 @@ const organizations = [
       'International design initiatives',
     ],
     icon: Network,
-    color: 'gold',
+    color: 'eggplant',
   },
   {
     name: 'NEWH',
@@ -59,7 +59,7 @@ const organizations = [
       'Networking with hospitality professionals',
     ],
     icon: Handshake,
-    color: 'terracotta',
+    color: 'pink',
   },
   {
     name: 'NKBA',
@@ -72,7 +72,7 @@ const organizations = [
       'Professional networking opportunities',
     ],
     icon: Trophy,
-    color: 'gold',
+    color: 'eggplant',
   },
 ];
 
@@ -283,32 +283,33 @@ const socialMedia = [
 export default function StudentLifePage() {
   return (
     <>
-      {/* Hero Section - Dark */}
-      <section className="relative bg-[#0a0a0a] text-white py-24 md:py-32 animate-on-scroll">
+      {/* Hero Section - Dark Navy */}
+      <section className="relative text-white py-24 md:py-32 animate-on-scroll" style={{ backgroundColor: 'var(--bg-primary)' }}>
         <div className="max-w-7xl mx-auto px-6">
           <div className="max-w-3xl">
             {/* Breadcrumb */}
             <nav className="mb-8 text-sm">
-              <ol className="flex items-center gap-2 text-white/60">
+              <ol className="flex items-center gap-2" style={{ color: 'var(--text-secondary)' }}>
                 <li>
-                  <Link href="/" className="hover:text-[#B8977E] transition-colors">
+                  <Link href="/" className="transition-colors" style={{ color: 'var(--text-secondary)' }}>
                     Home
                   </Link>
                 </li>
                 <li>/</li>
-                <li className="text-white">Student Life</li>
+                <li style={{ color: 'var(--text-primary)' }}>Student Life</li>
               </ol>
             </nav>
 
-            <h1 className="font-bricolage text-5xl md:text-6xl lg:text-7xl font-bold mb-6">
-              Life at IDI
+            <h1 className="font-bricolage text-5xl md:text-6xl lg:text-7xl font-bold mb-6" style={{ color: 'var(--text-primary)' }}>
+              Life at <span className="font-display italic" style={{ color: 'var(--accent-gold)' }}>IDI</span>
             </h1>
-            <p className="text-xl md:text-2xl text-white/70 leading-relaxed mb-8">
+            <p className="text-xl md:text-2xl leading-relaxed mb-8" style={{ color: 'var(--text-secondary)' }}>
               Join a vibrant community of designers, connect with industry professionals, and build the career you've always wanted.
             </p>
             <a
               href="#diverse-community"
-              className="inline-flex items-center justify-center px-8 py-4 bg-white text-black font-semibold rounded-full transition-all hover:scale-105"
+              className="inline-flex items-center justify-center px-8 py-4 font-semibold rounded-full transition-all hover:scale-105"
+              style={{ backgroundColor: 'var(--bg-light)', color: 'var(--text-dark)' }}
             >
               Explore Student Life
             </a>
@@ -316,14 +317,14 @@ export default function StudentLifePage() {
         </div>
       </section>
 
-      {/* Diverse Student Body - Light */}
-      <section id="diverse-community" className="py-20 bg-[#f8f8f8] animate-on-scroll" style={{ animationDelay: '0.1s' }}>
+      {/* Diverse Student Body - Light Cream */}
+      <section id="diverse-community" className="py-20 animate-on-scroll" style={{ backgroundColor: 'var(--bg-light)', animationDelay: '0.1s' }}>
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-16">
-            <h2 className="font-bricolage text-4xl md:text-5xl font-bold mb-4 text-black">
-              A Diverse Student Community
+            <h2 className="font-bricolage text-4xl md:text-5xl font-bold mb-4" style={{ color: 'var(--text-dark)' }}>
+              A <span className="font-display italic" style={{ color: 'var(--accent-gold)' }}>Diverse</span> Student Community
             </h2>
-            <p className="text-xl text-neutral-600 max-w-2xl mx-auto">
+            <p className="text-xl max-w-2xl mx-auto" style={{ color: 'var(--text-dark)', opacity: 0.7 }}>
               IDI welcomes students from all backgrounds and life stages
             </p>
           </div>
@@ -334,16 +335,23 @@ export default function StudentLifePage() {
               return (
                 <div
                   key={type.title}
-                  className="bg-white p-6 rounded-3xl border border-black/10 text-center"
-                  style={{ animationDelay: `${0.2 + index * 0.1}s` }}
+                  className="p-6 rounded-3xl text-center"
+                  style={{
+                    backgroundColor: 'white',
+                    border: '1px solid var(--border-default)',
+                    animationDelay: `${0.2 + index * 0.1}s`
+                  }}
                 >
-                  <div className="w-16 h-16 bg-[#C4725D]/20 rounded-lg flex items-center justify-center mx-auto mb-4">
-                    <Icon className="w-8 h-8 text-[#C4725D]" />
+                  <div
+                    className="w-16 h-16 rounded-lg flex items-center justify-center mx-auto mb-4"
+                    style={{ backgroundColor: 'rgba(255, 92, 141, 0.2)' }}
+                  >
+                    <Icon className="w-8 h-8" style={{ color: 'var(--accent-gold)' }} />
                   </div>
-                  <h3 className="font-bricolage text-lg font-semibold mb-2 text-black">
+                  <h3 className="font-bricolage text-lg font-semibold mb-2" style={{ color: 'var(--text-dark)' }}>
                     {type.title}
                   </h3>
-                  <p className="text-neutral-600 text-sm leading-relaxed">
+                  <p className="text-sm leading-relaxed" style={{ color: 'var(--text-dark)', opacity: 0.7 }}>
                     {type.description}
                   </p>
                 </div>
@@ -353,14 +361,14 @@ export default function StudentLifePage() {
         </div>
       </section>
 
-      {/* Flexible Scheduling - Dark */}
-      <section className="py-20 bg-[#0a0a0a] text-white animate-on-scroll" style={{ animationDelay: '0.2s' }}>
+      {/* Flexible Scheduling - Dark Navy */}
+      <section className="py-20 animate-on-scroll" style={{ backgroundColor: 'var(--bg-primary)', color: 'var(--text-primary)', animationDelay: '0.2s' }}>
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-16">
-            <h2 className="font-bricolage text-4xl md:text-5xl font-bold mb-4">
-              Flexible for Working Students
+            <h2 className="font-bricolage text-4xl md:text-5xl font-bold mb-4" style={{ color: 'var(--text-primary)' }}>
+              <span className="font-display italic" style={{ color: 'var(--accent-gold)' }}>Flexible</span> for Working Students
             </h2>
-            <p className="text-xl text-white/70 max-w-2xl mx-auto">
+            <p className="text-xl max-w-2xl mx-auto" style={{ color: 'var(--text-secondary)' }}>
               Programs designed to accommodate professional schedules and working students
             </p>
           </div>
@@ -371,17 +379,24 @@ export default function StudentLifePage() {
               return (
                 <div
                   key={feature.title}
-                  className="bg-[#151515] p-8 rounded-[32px] border border-white/10 flex items-start gap-6"
-                  style={{ animationDelay: `${0.3 + index * 0.1}s` }}
+                  className="p-8 rounded-[32px] flex items-start gap-6"
+                  style={{
+                    backgroundColor: 'var(--bg-secondary)',
+                    border: '1px solid var(--border-default)',
+                    animationDelay: `${0.3 + index * 0.1}s`
+                  }}
                 >
-                  <div className="w-14 h-14 bg-[#B8977E]/20 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <Icon className="w-7 h-7 text-[#B8977E]" />
+                  <div
+                    className="w-14 h-14 rounded-lg flex items-center justify-center flex-shrink-0"
+                    style={{ backgroundColor: 'rgba(115, 37, 83, 0.2)' }}
+                  >
+                    <Icon className="w-7 h-7" style={{ color: 'var(--accent-terracotta)' }} />
                   </div>
                   <div>
-                    <h3 className="font-bricolage text-xl font-semibold mb-2">
+                    <h3 className="font-bricolage text-xl font-semibold mb-2" style={{ color: 'var(--text-primary)' }}>
                       {feature.title}
                     </h3>
-                    <p className="text-white/70 leading-relaxed">
+                    <p className="leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
                       {feature.description}
                     </p>
                   </div>
@@ -392,14 +407,14 @@ export default function StudentLifePage() {
         </div>
       </section>
 
-      {/* Professional Organizations - Light */}
-      <section id="organizations" className="py-20 bg-[#f8f8f8] animate-on-scroll" style={{ animationDelay: '0.1s' }}>
+      {/* Professional Organizations - Light Cream */}
+      <section id="organizations" className="py-20 animate-on-scroll" style={{ backgroundColor: 'var(--bg-light)', animationDelay: '0.1s' }}>
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-16">
-            <h2 className="font-bricolage text-4xl md:text-5xl font-bold mb-4 text-black">
-              Professional Organizations
+            <h2 className="font-bricolage text-4xl md:text-5xl font-bold mb-4" style={{ color: 'var(--text-dark)' }}>
+              <span className="font-display italic" style={{ color: 'var(--accent-gold)' }}>Professional</span> Organizations
             </h2>
-            <p className="text-xl text-neutral-600 max-w-2xl mx-auto">
+            <p className="text-xl max-w-2xl mx-auto" style={{ color: 'var(--text-dark)', opacity: 0.7 }}>
               Build your professional network and gain industry recognition through student chapters
             </p>
           </div>
@@ -410,32 +425,39 @@ export default function StudentLifePage() {
               return (
                 <div
                   key={org.name}
-                  className="bg-white p-8 rounded-[32px] border border-black/10 hover:shadow-xl transition-all"
-                  style={{ animationDelay: `${0.2 + index * 0.1}s` }}
+                  className="p-8 rounded-[32px] hover:shadow-xl transition-all"
+                  style={{
+                    backgroundColor: 'white',
+                    border: '1px solid var(--border-default)',
+                    animationDelay: `${0.2 + index * 0.1}s`
+                  }}
                 >
                   <div className="flex items-start gap-6 mb-6">
-                    <div className={`w-16 h-16 ${org.color === 'terracotta' ? 'bg-[#C4725D]/20' : 'bg-[#B8977E]/20'} rounded-lg flex items-center justify-center flex-shrink-0`}>
-                      <Icon className={`w-8 h-8 ${org.color === 'terracotta' ? 'text-[#C4725D]' : 'text-[#B8977E]'}`} />
+                    <div
+                      className={`w-16 h-16 rounded-lg flex items-center justify-center flex-shrink-0`}
+                      style={{ backgroundColor: org.color === 'pink' ? 'rgba(255, 92, 141, 0.2)' : 'rgba(115, 37, 83, 0.2)' }}
+                    >
+                      <Icon className="w-8 h-8" style={{ color: org.color === 'pink' ? 'var(--accent-gold)' : 'var(--accent-terracotta)' }} />
                     </div>
                     <div>
-                      <h3 className="font-bricolage text-2xl font-bold mb-1 text-black">
+                      <h3 className="font-bricolage text-2xl font-bold mb-1" style={{ color: 'var(--text-dark)' }}>
                         {org.name}
                       </h3>
-                      <p className="text-sm text-neutral-500 font-mono">
+                      <p className="text-sm font-mono" style={{ color: 'var(--text-dark)', opacity: 0.6 }}>
                         {org.fullName}
                       </p>
                     </div>
                   </div>
-                  <p className="text-neutral-600 leading-relaxed mb-6">
+                  <p className="leading-relaxed mb-6" style={{ color: 'var(--text-dark)', opacity: 0.7 }}>
                     {org.description}
                   </p>
                   <div className="space-y-3">
-                    <h4 className="font-semibold text-black">Member Benefits:</h4>
+                    <h4 className="font-semibold" style={{ color: 'var(--text-dark)' }}>Member Benefits:</h4>
                     <ul className="space-y-2">
                       {org.benefits.map((benefit, idx) => (
                         <li key={idx} className="flex items-start gap-3">
-                          <span className="text-[#C4725D] mt-1">•</span>
-                          <span className="text-neutral-600">{benefit}</span>
+                          <span className="mt-1" style={{ color: 'var(--accent-gold)' }}>•</span>
+                          <span style={{ color: 'var(--text-dark)', opacity: 0.7 }}>{benefit}</span>
                         </li>
                       ))}
                     </ul>
@@ -447,14 +469,14 @@ export default function StudentLifePage() {
         </div>
       </section>
 
-      {/* Career Services - Dark */}
-      <section className="py-20 bg-[#0a0a0a] text-white animate-on-scroll" style={{ animationDelay: '0.4s' }}>
+      {/* Career Services - Dark Navy */}
+      <section className="py-20 animate-on-scroll" style={{ backgroundColor: 'var(--bg-primary)', color: 'var(--text-primary)', animationDelay: '0.4s' }}>
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-16">
-            <h2 className="font-bricolage text-4xl md:text-5xl font-bold mb-4">
-              Career Services
+            <h2 className="font-bricolage text-4xl md:text-5xl font-bold mb-4" style={{ color: 'var(--text-primary)' }}>
+              Career <span className="font-display italic" style={{ color: 'var(--accent-gold)' }}>Services</span>
             </h2>
-            <p className="text-xl text-white/70 max-w-2xl mx-auto">
+            <p className="text-xl max-w-2xl mx-auto" style={{ color: 'var(--text-secondary)' }}>
               Job placement assistance for AA, BA, and MIA graduates. Internship program for BA students.
             </p>
           </div>
@@ -465,16 +487,23 @@ export default function StudentLifePage() {
               return (
                 <div
                   key={service.title}
-                  className="bg-[#151515] p-8 rounded-[32px] border border-white/10 hover:border-white/20 transition-all"
-                  style={{ animationDelay: `${0.5 + index * 0.1}s` }}
+                  className="p-8 rounded-[32px] transition-all"
+                  style={{
+                    backgroundColor: 'var(--bg-secondary)',
+                    border: '1px solid var(--border-default)',
+                    animationDelay: `${0.5 + index * 0.1}s`
+                  }}
                 >
-                  <div className="w-14 h-14 bg-[#C4725D]/20 rounded-lg flex items-center justify-center mb-6">
-                    <Icon className="w-7 h-7 text-[#C4725D]" />
+                  <div
+                    className="w-14 h-14 rounded-lg flex items-center justify-center mb-6"
+                    style={{ backgroundColor: 'rgba(255, 92, 141, 0.2)' }}
+                  >
+                    <Icon className="w-7 h-7" style={{ color: 'var(--accent-gold)' }} />
                   </div>
-                  <h3 className="font-bricolage text-xl font-semibold mb-3">
+                  <h3 className="font-bricolage text-xl font-semibold mb-3" style={{ color: 'var(--text-primary)' }}>
                     {service.title}
                   </h3>
-                  <p className="text-white/70 leading-relaxed">
+                  <p className="leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
                     {service.description}
                   </p>
                 </div>
@@ -482,16 +511,23 @@ export default function StudentLifePage() {
             })}
           </div>
 
-          <div className="bg-[#151515] p-8 rounded-[32px] border border-white/10 max-w-2xl mx-auto text-center">
-            <h3 className="font-bricolage text-2xl font-semibold mb-4">
+          <div
+            className="p-8 rounded-[32px] max-w-2xl mx-auto text-center"
+            style={{
+              backgroundColor: 'var(--bg-secondary)',
+              border: '1px solid var(--border-default)'
+            }}
+          >
+            <h3 className="font-bricolage text-2xl font-semibold mb-4" style={{ color: 'var(--text-primary)' }}>
               Contact Career Services
             </h3>
-            <p className="text-white/70 mb-6">
+            <p className="mb-6" style={{ color: 'var(--text-secondary)' }}>
               Rachel Hulan, Career Services Director
             </p>
             <a
               href="mailto:rhulan@idi.edu"
-              className="inline-flex items-center justify-center px-8 py-4 bg-white text-black font-semibold rounded-full transition-all hover:scale-105"
+              className="inline-flex items-center justify-center px-8 py-4 font-semibold rounded-full transition-all hover:scale-105"
+              style={{ backgroundColor: 'var(--bg-light)', color: 'var(--text-dark)' }}
             >
               Email: rhulan@idi.edu
             </a>
@@ -499,14 +535,14 @@ export default function StudentLifePage() {
         </div>
       </section>
 
-      {/* Firms That Hire IDI Graduates - Light */}
-      <section className="py-20 bg-[#f8f8f8] animate-on-scroll" style={{ animationDelay: '0.5s' }}>
+      {/* Firms That Hire IDI Graduates - Light Cream */}
+      <section className="py-20 animate-on-scroll" style={{ backgroundColor: 'var(--bg-light)', animationDelay: '0.5s' }}>
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-16">
-            <h2 className="font-bricolage text-4xl md:text-5xl font-bold mb-4 text-black">
-              Firms That Hire IDI Graduates
+            <h2 className="font-bricolage text-4xl md:text-5xl font-bold mb-4" style={{ color: 'var(--text-dark)' }}>
+              Firms That <span className="font-display italic" style={{ color: 'var(--accent-gold)' }}>Hire</span> IDI Graduates
             </h2>
-            <p className="text-xl text-neutral-600 max-w-2xl mx-auto">
+            <p className="text-xl max-w-2xl mx-auto" style={{ color: 'var(--text-dark)', opacity: 0.7 }}>
               Our graduates work at leading design firms and organizations around the world
             </p>
           </div>
@@ -517,16 +553,23 @@ export default function StudentLifePage() {
               return (
                 <div
                   key={firm.name}
-                  className="bg-white p-6 rounded-3xl border border-black/10 text-center hover:shadow-lg transition-all"
-                  style={{ animationDelay: `${0.6 + index * 0.05}s` }}
+                  className="p-6 rounded-3xl text-center hover:shadow-lg transition-all"
+                  style={{
+                    backgroundColor: 'white',
+                    border: '1px solid var(--border-default)',
+                    animationDelay: `${0.6 + index * 0.05}s`
+                  }}
                 >
-                  <div className="w-12 h-12 bg-[#C4725D]/20 rounded-lg flex items-center justify-center mx-auto mb-3">
-                    <Icon className="w-6 h-6 text-[#C4725D]" />
+                  <div
+                    className="w-12 h-12 rounded-lg flex items-center justify-center mx-auto mb-3"
+                    style={{ backgroundColor: 'rgba(255, 92, 141, 0.2)' }}
+                  >
+                    <Icon className="w-6 h-6" style={{ color: 'var(--accent-gold)' }} />
                   </div>
-                  <h3 className="font-bricolage font-semibold mb-1 text-black">
+                  <h3 className="font-bricolage font-semibold mb-1" style={{ color: 'var(--text-dark)' }}>
                     {firm.name}
                   </h3>
-                  <p className="text-xs text-neutral-500">
+                  <p className="text-xs" style={{ color: 'var(--text-dark)', opacity: 0.6 }}>
                     {firm.description}
                   </p>
                 </div>
@@ -535,21 +578,21 @@ export default function StudentLifePage() {
           </div>
 
           <div className="mt-12 text-center">
-            <p className="text-neutral-600 italic">
+            <p className="font-display italic" style={{ color: 'var(--text-dark)', opacity: 0.7 }}>
               And many more leading design firms across the country
             </p>
           </div>
         </div>
       </section>
 
-      {/* Campus Culture - Dark */}
-      <section className="py-20 bg-[#0a0a0a] text-white animate-on-scroll" style={{ animationDelay: '0.6s' }}>
+      {/* Campus Culture - Dark Navy */}
+      <section className="py-20 animate-on-scroll" style={{ backgroundColor: 'var(--bg-primary)', color: 'var(--text-primary)', animationDelay: '0.6s' }}>
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-16">
-            <h2 className="font-bricolage text-4xl md:text-5xl font-bold mb-4">
-              Campus Culture
+            <h2 className="font-bricolage text-4xl md:text-5xl font-bold mb-4" style={{ color: 'var(--text-primary)' }}>
+              Campus <span className="font-display italic" style={{ color: 'var(--accent-gold)' }}>Culture</span>
             </h2>
-            <p className="text-xl text-white/70 max-w-2xl mx-auto">
+            <p className="text-xl max-w-2xl mx-auto" style={{ color: 'var(--text-secondary)' }}>
               A hands-on, collaborative environment that prepares you for the professional world
             </p>
           </div>
@@ -558,25 +601,32 @@ export default function StudentLifePage() {
             {campusCulture.map((item, index) => (
               <div
                 key={index}
-                className="bg-[#151515] p-6 rounded-3xl border border-white/10 flex items-center gap-4"
-                style={{ animationDelay: `${0.7 + index * 0.05}s` }}
+                className="p-6 rounded-3xl flex items-center gap-4"
+                style={{
+                  backgroundColor: 'var(--bg-secondary)',
+                  border: '1px solid var(--border-default)',
+                  animationDelay: `${0.7 + index * 0.05}s`
+                }}
               >
-                <div className="w-2 h-2 bg-[#B8977E] rounded-full flex-shrink-0" />
-                <p className="text-white/90">{item}</p>
+                <div
+                  className="w-2 h-2 rounded-full flex-shrink-0"
+                  style={{ backgroundColor: 'var(--accent-terracotta)' }}
+                />
+                <p style={{ color: 'var(--text-primary)' }}>{item}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Campus Resources - Light */}
-      <section className="py-20 bg-[#f8f8f8] animate-on-scroll" style={{ animationDelay: '0.3s' }}>
+      {/* Campus Resources - Light Cream */}
+      <section className="py-20 animate-on-scroll" style={{ backgroundColor: 'var(--bg-light)', animationDelay: '0.3s' }}>
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-16">
-            <h2 className="font-bricolage text-4xl md:text-5xl font-bold mb-4 text-black">
-              Campus Facilities & Resources
+            <h2 className="font-bricolage text-4xl md:text-5xl font-bold mb-4" style={{ color: 'var(--text-dark)' }}>
+              Campus <span className="font-display italic" style={{ color: 'var(--accent-gold)' }}>Facilities</span> & Resources
             </h2>
-            <p className="text-xl text-neutral-600 max-w-2xl mx-auto">
+            <p className="text-xl max-w-2xl mx-auto" style={{ color: 'var(--text-dark)', opacity: 0.7 }}>
               Everything you need to succeed, all in one place
             </p>
           </div>
@@ -585,13 +635,17 @@ export default function StudentLifePage() {
             {resources.map((resource, index) => (
               <div
                 key={resource.title}
-                className="bg-white p-6 rounded-3xl border border-black/10"
-                style={{ animationDelay: `${0.4 + index * 0.05}s` }}
+                className="p-6 rounded-3xl"
+                style={{
+                  backgroundColor: 'white',
+                  border: '1px solid var(--border-default)',
+                  animationDelay: `${0.4 + index * 0.05}s`
+                }}
               >
-                <h3 className="font-bricolage text-lg font-semibold mb-2 text-black">
+                <h3 className="font-bricolage text-lg font-semibold mb-2" style={{ color: 'var(--text-dark)' }}>
                   {resource.title}
                 </h3>
-                <p className="text-neutral-600 text-sm leading-relaxed">
+                <p className="text-sm leading-relaxed" style={{ color: 'var(--text-dark)', opacity: 0.7 }}>
                   {resource.description}
                 </p>
               </div>
@@ -600,14 +654,14 @@ export default function StudentLifePage() {
         </div>
       </section>
 
-      {/* Newport Beach Location - Dark */}
-      <section className="py-20 bg-[#0a0a0a] text-white animate-on-scroll" style={{ animationDelay: '0.7s' }}>
+      {/* Newport Beach Location - Dark Navy */}
+      <section className="py-20 animate-on-scroll" style={{ backgroundColor: 'var(--bg-primary)', color: 'var(--text-primary)', animationDelay: '0.7s' }}>
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-16">
-            <h2 className="font-bricolage text-4xl md:text-5xl font-bold mb-4">
-              Heart of Orange County Design
+            <h2 className="font-bricolage text-4xl md:text-5xl font-bold mb-4" style={{ color: 'var(--text-primary)' }}>
+              Heart of <span className="font-display italic" style={{ color: 'var(--accent-gold)' }}>Orange County</span> Design
             </h2>
-            <p className="text-xl text-white/70 max-w-2xl mx-auto">
+            <p className="text-xl max-w-2xl mx-auto" style={{ color: 'var(--text-secondary)' }}>
               Our Newport Beach location puts you at the center of Southern California's design community
             </p>
           </div>
@@ -618,17 +672,24 @@ export default function StudentLifePage() {
               return (
                 <div
                   key={benefit.title}
-                  className="bg-[#151515] p-8 rounded-[32px] border border-white/10 flex items-start gap-6"
-                  style={{ animationDelay: `${0.8 + index * 0.1}s` }}
+                  className="p-8 rounded-[32px] flex items-start gap-6"
+                  style={{
+                    backgroundColor: 'var(--bg-secondary)',
+                    border: '1px solid var(--border-default)',
+                    animationDelay: `${0.8 + index * 0.1}s`
+                  }}
                 >
-                  <div className="w-12 h-12 bg-[#B8977E]/20 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <Icon className="w-6 h-6 text-[#B8977E]" />
+                  <div
+                    className="w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0"
+                    style={{ backgroundColor: 'rgba(115, 37, 83, 0.2)' }}
+                  >
+                    <Icon className="w-6 h-6" style={{ color: 'var(--accent-terracotta)' }} />
                   </div>
                   <div>
-                    <h3 className="font-bricolage text-xl font-semibold mb-2">
+                    <h3 className="font-bricolage text-xl font-semibold mb-2" style={{ color: 'var(--text-primary)' }}>
                       {benefit.title}
                     </h3>
-                    <p className="text-white/70 leading-relaxed">
+                    <p className="leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
                       {benefit.description}
                     </p>
                   </div>
@@ -642,7 +703,8 @@ export default function StudentLifePage() {
               href="https://www.google.com/maps/place/1061+Camelback+St,+Newport+Beach,+CA+92660"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center px-8 py-4 bg-white text-black font-semibold rounded-full transition-all hover:scale-105"
+              className="inline-flex items-center justify-center px-8 py-4 font-semibold rounded-full transition-all hover:scale-105"
+              style={{ backgroundColor: 'var(--bg-light)', color: 'var(--text-dark)' }}
             >
               <MapPin className="w-5 h-5 mr-2" />
               Visit Our Campus
@@ -651,14 +713,14 @@ export default function StudentLifePage() {
         </div>
       </section>
 
-      {/* Social Media - Light */}
-      <section className="py-20 bg-[#f8f8f8] animate-on-scroll" style={{ animationDelay: '0.8s' }}>
+      {/* Social Media - Light Cream */}
+      <section className="py-20 animate-on-scroll" style={{ backgroundColor: 'var(--bg-light)', animationDelay: '0.8s' }}>
         <div className="max-w-5xl mx-auto px-6">
           <div className="text-center mb-16">
-            <h2 className="font-bricolage text-4xl md:text-5xl font-bold mb-4 text-black">
-              Connect With IDI
+            <h2 className="font-bricolage text-4xl md:text-5xl font-bold mb-4" style={{ color: 'var(--text-dark)' }}>
+              Connect With <span className="font-display italic" style={{ color: 'var(--accent-gold)' }}>IDI</span>
             </h2>
-            <p className="text-xl text-neutral-600 max-w-2xl mx-auto">
+            <p className="text-xl max-w-2xl mx-auto" style={{ color: 'var(--text-dark)', opacity: 0.7 }}>
               Follow us on social media for design inspiration, student work, campus updates, and industry news
             </p>
           </div>
@@ -672,18 +734,25 @@ export default function StudentLifePage() {
                   href={platform.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="bg-white p-6 rounded-3xl border border-black/10 hover:shadow-lg transition-all group"
-                  style={{ animationDelay: `${0.9 + index * 0.05}s` }}
+                  className="p-6 rounded-3xl hover:shadow-lg transition-all group"
+                  style={{
+                    backgroundColor: 'white',
+                    border: '1px solid var(--border-default)',
+                    animationDelay: `${0.9 + index * 0.05}s`
+                  }}
                 >
                   <div className="flex items-center gap-4">
-                    <div className="w-12 h-12 bg-[#C4725D]/20 rounded-lg flex items-center justify-center group-hover:bg-[#C4725D]/30 transition-colors">
-                      <Icon className="w-6 h-6 text-[#C4725D]" />
+                    <div
+                      className="w-12 h-12 rounded-lg flex items-center justify-center transition-colors"
+                      style={{ backgroundColor: 'rgba(255, 92, 141, 0.2)' }}
+                    >
+                      <Icon className="w-6 h-6" style={{ color: 'var(--accent-gold)' }} />
                     </div>
                     <div>
-                      <h3 className="font-bricolage font-semibold text-black">
+                      <h3 className="font-bricolage font-semibold" style={{ color: 'var(--text-dark)' }}>
                         {platform.name}
                       </h3>
-                      <p className="text-sm text-neutral-500">
+                      <p className="text-sm" style={{ color: 'var(--text-dark)', opacity: 0.6 }}>
                         {platform.handle}
                       </p>
                     </div>
@@ -695,25 +764,31 @@ export default function StudentLifePage() {
         </div>
       </section>
 
-      {/* CTA Section - Dark */}
-      <section className="py-20 bg-[#0a0a0a] text-white animate-on-scroll" style={{ animationDelay: '0.9s' }}>
+      {/* CTA Section - Dark Navy */}
+      <section className="py-20 animate-on-scroll" style={{ backgroundColor: 'var(--bg-primary)', color: 'var(--text-primary)', animationDelay: '0.9s' }}>
         <div className="max-w-4xl mx-auto px-6 text-center">
-          <h2 className="font-bricolage text-4xl md:text-5xl font-bold mb-6">
-            Experience IDI for Yourself
+          <h2 className="font-bricolage text-4xl md:text-5xl font-bold mb-6" style={{ color: 'var(--text-primary)' }}>
+            Experience <span className="font-display italic" style={{ color: 'var(--accent-gold)' }}>IDI</span> for Yourself
           </h2>
-          <p className="text-xl text-white/70 mb-12 max-w-2xl mx-auto">
+          <p className="text-xl mb-12 max-w-2xl mx-auto" style={{ color: 'var(--text-secondary)' }}>
             Schedule a campus visit to tour our facilities, meet students and faculty, and see what makes IDI special.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               href="/contact"
-              className="inline-flex items-center justify-center px-8 py-4 bg-white text-black font-semibold rounded-full transition-all hover:scale-105"
+              className="inline-flex items-center justify-center px-8 py-4 font-semibold rounded-full transition-all hover:scale-105"
+              style={{ backgroundColor: 'var(--bg-light)', color: 'var(--text-dark)' }}
             >
               Schedule a Visit
             </Link>
             <Link
               href="/admissions"
-              className="inline-flex items-center justify-center px-8 py-4 bg-white/10 text-white font-semibold rounded-full transition-all hover:scale-105 border border-white/20"
+              className="inline-flex items-center justify-center px-8 py-4 font-semibold rounded-full transition-all hover:scale-105"
+              style={{
+                backgroundColor: 'transparent',
+                color: 'var(--text-primary)',
+                border: '1px solid var(--border-default)'
+              }}
             >
               View Admissions Info
             </Link>

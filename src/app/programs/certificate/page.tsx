@@ -195,7 +195,7 @@ export default function CertificatePage() {
           <div
             className="absolute inset-0 animate-gradient-shift"
             style={{
-              background: 'linear-gradient(-45deg, #142030, #1E3442, #142030, #1a2a3d, #142030)',
+              background: 'linear-gradient(-45deg, var(--bg-primary), var(--bg-secondary), var(--bg-primary), #1a2a3d, var(--bg-primary))',
               backgroundSize: '400% 400%',
             }}
           />
@@ -210,9 +210,9 @@ export default function CertificatePage() {
         <div className="relative z-10 w-full max-w-7xl mx-auto px-6 md:px-12">
           {/* Breadcrumb */}
           <div className="flex items-center gap-2 text-sm mb-8" style={{ color: 'var(--text-muted)' }}>
-            <Link href="/" className="hover:text-white transition-colors">Home</Link>
+            <Link href="/" className="hover:opacity-80 transition-opacity">Home</Link>
             <span>/</span>
-            <Link href="/programs" className="hover:text-white transition-colors">Programs</Link>
+            <Link href="/programs" className="hover:opacity-80 transition-opacity">Programs</Link>
             <span>/</span>
             <span style={{ color: 'var(--accent-gold)' }}>Certificate</span>
           </div>
@@ -227,8 +227,8 @@ export default function CertificatePage() {
               </div>
 
               <h1 className="font-hero text-5xl md:text-7xl tracking-tight mb-6" style={{ color: 'var(--text-primary)' }}>
-                CERTIFICATE <span className="text-[5vw] md:text-[2rem] lg:text-[3rem] font-display italic font-light" style={{ color: 'var(--text-muted)' }}>of</span><br />
-                <span style={{ color: 'var(--text-muted)' }}>INTERIOR DESIGN</span>
+                CERTIFICATE <span className="text-[5vw] md:text-[2rem] lg:text-[3rem] font-display italic font-light" style={{ color: 'var(--text-secondary)' }}>of</span><br />
+                <span style={{ color: 'var(--text-secondary)' }}>INTERIOR DESIGN</span>
               </h1>
 
               <p className="text-xl mb-8 leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
@@ -349,7 +349,7 @@ export default function CertificatePage() {
           {/* Comparison callout */}
           <div className="mt-12 p-8 rounded-2xl text-center" style={{ backgroundColor: 'var(--bg-primary)' }}>
             <p className="text-lg mb-4" style={{ color: 'var(--text-primary)' }}>
-              <strong>The truth about online design courses:</strong> You can watch videos about fabric texture, or you can <em>feel</em> the difference between silk and linen. You can read about color temperature, or you can see how the same swatch looks different under warm vs. cool lighting.
+              <strong>The truth about online design courses:</strong> You can watch videos about fabric texture, or you can <em className="font-display italic">feel</em> the difference between silk and linen. You can read about color temperature, or you can see how the same swatch looks different under warm vs. cool lighting.
             </p>
             <p className="font-semibold" style={{ color: 'var(--accent-gold)' }}>
               Some things you have to experience in person. Interior design is one of them.
@@ -363,7 +363,7 @@ export default function CertificatePage() {
         <div
           className="absolute inset-0 animate-gradient-shift"
           style={{
-            background: 'linear-gradient(-45deg, #142030, #1E3442, #142030, #1a2a3d, #142030)',
+            background: 'linear-gradient(-45deg, var(--bg-primary), var(--bg-secondary), var(--bg-primary), #1a2a3d, var(--bg-primary))',
             backgroundSize: '400% 400%',
           }}
         />
@@ -672,7 +672,7 @@ export default function CertificatePage() {
         <div className="w-full max-w-4xl mx-auto px-6 md:px-12 text-center">
           <h2 className="text-4xl md:text-5xl font-hero tracking-tight mb-6" style={{ color: 'var(--text-dark)' }}>
             READY TO START YOUR<br />
-            <span style={{ color: 'var(--accent-gold)' }}>DESIGN JOURNEY?</span>
+            <span className="font-display italic" style={{ color: 'var(--accent-gold)' }}>DESIGN JOURNEY?</span>
           </h2>
           <p className="text-xl mb-8 max-w-2xl mx-auto" style={{ color: 'var(--text-dark-secondary)' }}>
             Join our next Certificate cohort and discover what makes IDI the premier choice for design education in Orange County.
