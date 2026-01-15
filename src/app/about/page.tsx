@@ -4,11 +4,18 @@ import Image from 'next/image';
 import { ChevronRight, MapPin, Users, Award, Lightbulb, Target, Heart, GraduationCap } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'About Us',
-  description: "Learn about IDI, Orange County's premier interior design school since 1984. CIDA accredited programs taught by practicing professionals.",
+  title: 'About Us | Orange County Interior Design School Since 1984',
+  description: "Orange County's only dedicated interior design school since 1984. CIDA-accredited programs, 10:1 student-faculty ratio, 100% practicing professionals as instructors. Newport Beach campus near Laguna Design Center.",
+  keywords: [
+    'interior design school Orange County',
+    'CIDA accredited interior design',
+    'Newport Beach design school',
+    'interior design education California',
+    'practicing design professionals',
+  ],
   openGraph: {
-    title: 'About Us | Interior Designers Institute',
-    description: "Learn about IDI, Orange County's premier interior design school since 1984. CIDA accredited programs taught by practicing professionals.",
+    title: 'About IDI | Orange County Interior Design School Since 1984',
+    description: "Orange County's only dedicated interior design school. CIDA-accredited, 88% graduation rate, 100% practicing professionals.",
   },
 };
 
@@ -90,36 +97,48 @@ const organizationSchema = {
   },
 };
 
-const values = [
+const whyAttendIDI = [
   {
-    icon: Target,
-    title: 'Excellence',
-    description: 'Maintaining the highest standards in design education through rigorous curriculum and expert faculty.',
+    icon: Users,
+    title: 'Small Class Sizes',
+    description: 'Studio classes maximum 22 students (average 15), lecture classes maximum 49. 10:1 student-to-faculty ratio ensures personalized attention and detailed feedback.',
+  },
+  {
+    icon: GraduationCap,
+    title: '100% Practicing Professionals',
+    description: 'Every instructor is an active design professional bringing current industry experience, real-world projects, and valuable networking opportunities.',
+  },
+  {
+    icon: Award,
+    title: 'CIDA Accredited',
+    description: 'Our Bachelor of Arts program has been CIDA accredited since 1992. Over 60% of employers prefer CIDA graduates, who score 16% higher on NCIDQ licensing exams.',
   },
   {
     icon: Lightbulb,
-    title: 'Creativity',
-    description: 'Fostering innovative thinking and unique design perspectives in every student.',
+    title: 'Flexible Scheduling',
+    description: 'Day and evening classes accommodate working professionals. Many students work full-time while pursuing their degree.',
   },
   {
-    icon: Users,
-    title: 'Industry Connection',
-    description: 'Building bridges between education and professional practice through real-world experience.',
+    icon: Target,
+    title: 'Technology Training',
+    description: 'Master industry-standard software including Revit, AutoCAD, SketchUp, Photoshop, InDesign, TinkerCad, and Design Manager.',
   },
   {
     icon: Heart,
-    title: 'Student Success',
-    description: 'Providing personalized support and mentorship to help each student achieve their career goals.',
+    title: 'Career Development',
+    description: 'Internship program for BA students, job placement assistance for AA, BA, and MIA graduates, plus industry connections through ASID, IIDA, NEWH, and NKBA chapters.',
   },
 ];
 
 const campusFeatures = [
-  'Modern design studios with professional-grade equipment',
-  'Extensive materials library with fabric, finish, and furniture samples',
-  'Computer labs with industry-standard software',
-  'Photography studio for portfolio development',
-  'Student lounge and collaborative workspace',
-  'Proximity to Laguna Design Center and SOCO design district',
+  'Design studios with professional-grade drafting equipment',
+  'Computer center with industry-standard software (AutoCAD, Revit, SketchUp, Photoshop)',
+  'Library with design reference materials and industry publications',
+  'Extensive material samples and finish libraries',
+  'Student lounge for collaboration and study',
+  'On-site parking',
+  'Near Laguna Design Center (Orange County\'s premier design resource)',
+  'Near Stonemill Design Center and SOCO/The OC Mix showrooms',
 ];
 
 export default function AboutPage() {
@@ -160,13 +179,13 @@ export default function AboutPage() {
             About Interior Designers Institute
           </h1>
           <p className="font-body text-xl md:text-2xl text-white/80 max-w-3xl mx-auto">
-            Orange County's only dedicated interior design school since 1984
+            Orange County's only dedicated interior design school since 1984, offering CIDA-accredited programs taught by 100% practicing professionals
           </p>
         </div>
       </section>
 
       {/* History/Story Section */}
-      <section className="py-24 px-6 bg-[#0a0a0a]">
+      <article className="py-24 px-6 bg-[#0a0a0a]">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             {/* Text Content */}
@@ -181,25 +200,29 @@ export default function AboutPage() {
               </h2>
               <div className="space-y-6 font-body text-lg text-white/70 leading-relaxed">
                 <p>
-                  Founded in 1984, Interior Designers Institute stands as{' '}
+                  <strong className="text-white">Founded in 1984 in Corona del Mar, California</strong>, Interior Designers Institute
+                  relocated to its current <strong className="text-white">Newport Beach location in 1990</strong>, establishing itself as{' '}
                   <strong className="text-white">Orange County's only school exclusively dedicated to interior design education</strong>.
-                  For four decades, we have been preparing students for successful careers in residential and commercial interior design.
                 </p>
                 <p>
-                  Our mission is simple yet profound: to provide comprehensive, hands-on training that prepares students
-                  to enter the interior design profession with confidence and expertise. We believe that the best design
-                  education combines creative exploration with practical, real-world skills.
+                  For four decades, we have maintained our commitment to small class sizes, personalized instruction, and hands-on
+                  learning from working design professionals. IDI is one of only four CIDA-accredited programs in Southern California,
+                  with our Bachelor of Arts program achieving accreditation in 1992.
                 </p>
                 <p>
                   What sets IDI apart is our unwavering commitment to quality. With a{' '}
-                  <strong className="text-white font-mono">10:1 student-to-faculty ratio</strong>, small class sizes,
-                  and 100% practicing professionals as instructors, every student receives personalized mentorship from
-                  designers actively working in the field.
+                  <strong className="text-white font-mono">10:1 student-to-faculty ratio</strong>, studio classes averaging just 15 students,
+                  and <strong className="text-white">100% practicing professionals as instructors</strong>, every student receives personalized
+                  mentorship from designers actively working in the field.
                 </p>
                 <p>
-                  Located in the heart of Newport Beach, we're surrounded by some of Southern California's most vibrant
-                  design centers and showrooms, providing our students with unparalleled access to industry resources
-                  and networking opportunities.
+                  We have developed active student chapters of ASID (American Society of Interior Designers), IIDA (International Interior
+                  Design Association), NEWH (Hospitality Industry Network), and NKBA (National Kitchen & Bath Association), providing students
+                  with professional networking opportunities before graduation.
+                </p>
+                <p>
+                  Located in the heart of Newport Beach, we're surrounded by Orange County's premier design centers including Laguna Design Center,
+                  Stonemill Design Center, and SOCO/The OC Mix, providing unparalleled access to industry resources and the region's vibrant design market.
                 </p>
               </div>
 
@@ -220,44 +243,44 @@ export default function AboutPage() {
             <div className="relative h-[600px] rounded-[32px] overflow-hidden shadow-xl animate-on-scroll" style={{ animationDelay: '0.2s' }}>
               <Image
                 src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?w=800&q=80&fit=crop"
-                alt="Students working in design studio"
+                alt="Students working in design studio at Interior Designers Institute"
                 fill
                 className="object-cover"
               />
             </div>
           </div>
         </div>
-      </section>
+      </article>
 
-      {/* Mission & Values Section - Light background for contrast */}
+      {/* Why Attend IDI Section - Light background for contrast */}
       <section className="py-24 px-6 bg-[#f8f8f8]">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16 animate-on-scroll">
             <h2 className="font-bricolage text-4xl md:text-5xl font-light mb-6 text-neutral-900">
-              Our Mission & Values
+              Why Attend Interior Designers Institute?
             </h2>
             <p className="font-body text-xl text-neutral-600 max-w-3xl mx-auto">
-              Everything we do is guided by our commitment to student success and design excellence.
+              Six key advantages that set IDI apart from other interior design schools.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {values.map((value, index) => {
-              const Icon = value.icon;
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {whyAttendIDI.map((reason, index) => {
+              const Icon = reason.icon;
               return (
                 <div
                   key={index}
                   className="bg-white rounded-3xl p-8 border border-neutral-200 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 animate-on-scroll"
                   style={{ animationDelay: `${0.1 + index * 0.1}s` }}
                 >
-                  <div className="w-14 h-14 bg-neutral-100 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-neutral-900">
+                  <div className="w-14 h-14 bg-neutral-100 rounded-2xl flex items-center justify-center mb-6">
                     <Icon className="w-7 h-7 text-neutral-900" strokeWidth={1.5} />
                   </div>
                   <h3 className="font-bricolage text-xl font-medium mb-3 text-neutral-900">
-                    {value.title}
+                    {reason.title}
                   </h3>
                   <p className="font-body text-neutral-500 leading-relaxed">
-                    {value.description}
+                    {reason.description}
                   </p>
                 </div>
               );
@@ -274,7 +297,7 @@ export default function AboutPage() {
             <div className="relative h-[500px] rounded-[32px] overflow-hidden shadow-xl order-2 lg:order-1 animate-on-scroll">
               <Image
                 src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=800&q=80&fit=crop"
-                alt="IDI campus in Newport Beach"
+                alt="IDI campus at 1061 Camelback Street, Newport Beach, California"
                 fill
                 className="object-cover"
               />
@@ -289,12 +312,12 @@ export default function AboutPage() {
                 </span>
               </div>
               <h2 className="font-bricolage text-4xl md:text-5xl font-light mb-6 text-white">
-                Our Campus
+                Campus Facilities
               </h2>
               <p className="font-body text-lg text-white/70 leading-relaxed mb-8">
-                Located at <strong className="text-white">1061 Camelback Street in Newport Beach</strong>,
-                our modern campus provides students with everything they need to develop their design skills in a
-                professional environment.
+                IDI's <strong className="text-white">Newport Beach campus at 1061 Camelback Street</strong> provides
+                a focused design education environment with professional-grade facilities in the heart of Orange County's
+                affluent design market.
               </p>
 
               <div className="space-y-4 mb-8">
@@ -329,15 +352,36 @@ export default function AboutPage() {
             Industry Recognized
           </span>
           <h2 className="font-bricolage text-4xl md:text-5xl font-light text-white mb-6">
-            Accreditation
+            Accreditation & Recognition
           </h2>
-          <p className="text-white/60 text-lg max-w-2xl mx-auto mb-12">
+          <p className="text-white/60 text-lg max-w-2xl mx-auto mb-8">
             Our programs meet the highest standards of quality in design education.
           </p>
-          <div className="flex flex-wrap items-center justify-center gap-6">
-            <span className="px-8 py-4 rounded-full border border-white/10 bg-white/5 text-sm uppercase tracking-wider text-white/60">CIDA Accredited</span>
-            <span className="px-8 py-4 rounded-full border border-white/10 bg-white/5 text-sm uppercase tracking-wider text-white/60">ACCSC</span>
-            <span className="px-8 py-4 rounded-full border border-white/10 bg-white/5 text-sm uppercase tracking-wider text-white/60">BPPE Approved</span>
+          <div className="flex flex-wrap items-center justify-center gap-6 mb-12">
+            <span className="px-8 py-4 rounded-full border border-white/10 bg-white/5 text-sm uppercase tracking-wider text-white/60">
+              CIDA Accredited Since 1992
+            </span>
+            <span className="px-8 py-4 rounded-full border border-white/10 bg-white/5 text-sm uppercase tracking-wider text-white/60">
+              ACCSC Accredited
+            </span>
+            <span className="px-8 py-4 rounded-full border border-white/10 bg-white/5 text-sm uppercase tracking-wider text-white/60">
+              BPPE Approved
+            </span>
+          </div>
+          <div className="max-w-3xl mx-auto text-left space-y-4 text-white/60 font-body">
+            <p>
+              <strong className="text-white">CIDA (Council for Interior Design Accreditation)</strong> - Our Bachelor of Arts program
+              has been CIDA accredited since 1992. Over 60% of hiring professionals prefer CIDA graduates, who score 16% higher on
+              NCIDQ licensing exams.
+            </p>
+            <p>
+              <strong className="text-white">ACCSC (Accrediting Commission of Career Schools and Colleges)</strong> - Institutional
+              accreditation ensuring educational quality and student success.
+            </p>
+            <p>
+              <strong className="text-white">BPPE (Bureau of Private Postsecondary Education)</strong> - Approved by California's
+              regulatory agency for private postsecondary institutions.
+            </p>
           </div>
         </div>
       </section>
@@ -364,16 +408,20 @@ export default function AboutPage() {
                   part of who we are.
                 </p>
                 <p>
-                  Our instructors bring real-world experience directly into the classroom, sharing current industry
-                  practices, emerging trends, and practical insights that can only come from active professional work.
-                  They maintain relationships with design firms, vendors, and clients throughout Southern California,
-                  providing students with valuable networking opportunities.
+                  Our 17 practicing design professionals bring an average of 10 years of experience directly into the classroom,
+                  sharing current industry practices, emerging trends, and practical insights. Many hold affiliations with ASID,
+                  IIDA, and AIA. Several are award-winning designers, and many are IDI alumni who returned to teach. More than
+                  half of our faculty hold master's degrees.
+                </p>
+                <p>
+                  Faculty maintain relationships with design firms, vendors, and clients throughout Southern California, providing
+                  students with valuable networking opportunities. IDI graduates have been hired by leading firms including Gensler
+                  (world's largest architecture firm), WATG, Disney Studios, HGTV, Sony Studios, and IA Interior Architects.
                 </p>
                 <p>
                   From residential design specialists to commercial space planners, from sustainable design experts to
-                  hospitality designers, our faculty represents the full spectrum of interior design practice. Their
-                  diverse backgrounds ensure students receive a comprehensive education that prepares them for any
-                  path in the profession.
+                  hospitality designers, our faculty represents the full spectrum of interior design practice, preparing
+                  students for any career path in the profession.
                 </p>
               </div>
 

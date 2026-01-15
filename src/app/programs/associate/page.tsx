@@ -26,31 +26,50 @@ const softwareTools = [
   'TinkerCad',
 ];
 
+// Complete AA Curriculum from content.md (90 Quarter Units, 22 courses)
 const curriculum = [
-  'Design principles and theory',
-  'Space planning and programming',
-  'Color theory and application',
-  'Materials and finishes selection',
-  'Furniture design and specification',
-  'Lighting design fundamentals',
-  'Building codes and regulations',
-  'Sustainable design practices',
-  'Hand drafting and sketching',
-  'Computer-aided design (CAD)',
-  '3D modeling and rendering',
-  'Design presentation techniques',
-  'Business practices for designers',
-  'Portfolio development',
+  { code: '125', title: 'Designing Phase I', units: 4 },
+  { code: '126', title: 'Designing Phase II', units: 4 },
+  { code: '200', title: 'Architectural Drafting', units: 4 },
+  { code: '201', title: 'History of Interiors and Architecture I', units: 4 },
+  { code: '202', title: 'History of Interiors and Architecture II', units: 4 },
+  { code: '203', title: 'Residential Design', units: 4 },
+  { code: '205', title: 'Commercial Design I', units: 4 },
+  { code: '206', title: 'Commercial Design II', units: 4 },
+  { code: '207', title: 'Materials Specification', units: 4 },
+  { code: '208', title: 'Construction Principles', units: 4 },
+  { code: '209', title: 'Design Thinking', units: 4 },
+  { code: '210', title: 'Color', units: 4 },
+  { code: '212', title: 'Perspective', units: 4 },
+  { code: '215', title: 'Spaceplanning', units: 4 },
+  { code: '216', title: 'SketchUp', units: 4 },
+  { code: '217', title: 'Business Principles', units: 4 },
+  { code: '218', title: 'Textiles', units: 4 },
+  { code: '220', title: 'Healthcare Design', units: 4 },
+  { code: '221', title: 'Photoshop', units: 4 },
+  { code: '222', title: 'Building Codes', units: 4 },
+  { code: '223', title: 'Environmental Design', units: 4 },
+  { code: '225', title: 'Computer-Aided Drafting I', units: 6 },
+];
+
+const careerPaths = [
+  'Model home design',
+  'Set design',
+  'Office spaceplanning',
+  'Small commercial design',
+  'Interior illustration/rendering',
+  'Furniture, textile, and wallcovering design',
+  'Lighting design',
 ];
 
 const faqItems = [
   {
     question: 'How long is the Associate degree program?',
-    answer: 'The Associate of Arts in Interior Design can be completed in 24-48 months depending on your schedule. We offer flexible day, evening, and weekend classes to accommodate working students, allowing you to progress at your own pace.',
+    answer: 'The Associate of Arts in Interior Design can be completed in 24-48 months depending on your schedule. The program consists of 90 quarter units across 22 courses. We offer flexible day, evening, and weekend classes to accommodate working students.',
   },
   {
     question: 'What is the tuition for the Associate program?',
-    answer: 'The total tuition for the Associate of Arts program is $40,600. This includes all course materials and access to our design studios and software. Financial aid, scholarships, and payment plans are available for qualified students.',
+    answer: 'The total tuition is $40,600, which includes tuition ($39,900 for 20 classes at $1,995/class), registration fee ($100), estimated textbooks/supplies ($2,500), and lab fees ($600). Payment plans available: Full-time $7,980/term, 3/4 time $5,985/term, Part-time $3,990/term.',
   },
   {
     question: 'Can I work while attending this program?',
@@ -58,22 +77,41 @@ const faqItems = [
   },
   {
     question: 'What software will I learn in this program?',
-    answer: 'You will receive comprehensive training in industry-standard software including AutoCAD, SketchUp, Revit, Adobe Photoshop, Adobe InDesign, and TinkerCad. By graduation, you\'ll be proficient in the tools used by professional design firms.',
+    answer: 'You will receive comprehensive training in industry-standard software including AutoCAD, SketchUp, Photoshop, InDesign, TinkerCad, and Design Manager. By graduation, you\'ll be proficient in the tools used by professional design firms.',
   },
   {
-    question: 'What can I do with an Associate degree in Interior Design?',
-    answer: 'Graduates are prepared for entry-level positions such as Junior Designer, Design Assistant, CAD Drafter, Showroom Consultant, or Project Coordinator. Many also use it as a foundation for our CIDA-accredited Bachelor program.',
+    question: 'What careers can I pursue with an Associate degree?',
+    answer: 'Graduates are prepared for careers in model home design, set design, office spaceplanning, small commercial design, interior rendering, furniture/textile design, and lighting design. The AA also serves as prerequisite for our CIDA-accredited Bachelor program.',
   },
 ];
+
+// FAQ Schema for AEO
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqItems.map((faq) => ({
+    '@type': 'Question',
+    name: faq.question,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: faq.answer,
+    },
+  })),
+};
 
 export default function AssociatePage() {
   return (
     <div className="bg-[#0a0a0a]">
+      {/* Schema.org JSON-LD for AEO */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
       {/* Hero Section - Dark */}
       <section className="relative bg-[#0a0a0a] text-white py-24 lg:py-32 animate-on-scroll">
         <div className="absolute inset-0 opacity-20">
           <Image
-            src="https://unsplash.com/photos/two-black-suede-armchairs-during-daytime-mx4mSkK9zeo&fit=crop"
+            src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=1920&q=80&fit=crop"
             alt="Interior design studio workspace"
             fill
             className="object-cover"
@@ -207,15 +245,33 @@ export default function AssociatePage() {
       {/* Curriculum - Light */}
       <section className="max-w-5xl mx-auto px-6 lg:px-8 py-16 bg-[#f8f8f8] animate-on-scroll" style={{ animationDelay: '0.3s' }}>
         <h2 className="font-bricolage text-4xl mb-8 text-center text-black">
-          What You'll Learn
+          Complete Curriculum: 90 Quarter Units
         </h2>
-        <div className="grid md:grid-cols-2 gap-6">
-          {curriculum.map((item, index) => (
-            <div key={index} className="flex items-start gap-3">
-              <CheckCircle2 className="w-6 h-6 text-[#C4725D] flex-shrink-0 mt-0.5" />
-              <span className="text-neutral-500 text-lg">{item}</span>
+        <p className="text-neutral-500 text-lg text-center max-w-3xl mx-auto mb-12">
+          22 comprehensive courses covering all aspects of residential and commercial interior design.
+        </p>
+        <div className="grid md:grid-cols-2 gap-4">
+          {curriculum.map((course) => (
+            <div key={course.code} className="flex items-start gap-3 bg-white p-4 rounded-2xl">
+              <span className="font-mono text-sm text-[#C4725D] font-bold flex-shrink-0">{course.code}</span>
+              <div className="flex-1">
+                <span className="text-neutral-700 font-medium">{course.title}</span>
+                <span className="text-neutral-400 text-sm ml-2">({course.units} units)</span>
+              </div>
             </div>
           ))}
+        </div>
+
+        <div className="mt-12 bg-white p-8 rounded-3xl">
+          <h3 className="font-bricolage text-2xl mb-6 text-black">Career Opportunities</h3>
+          <div className="grid md:grid-cols-2 gap-4">
+            {careerPaths.map((career, index) => (
+              <div key={index} className="flex items-start gap-3">
+                <CheckCircle2 className="w-5 h-5 text-[#C4725D] flex-shrink-0 mt-0.5" />
+                <span className="text-neutral-500">{career}</span>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 

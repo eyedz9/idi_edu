@@ -24,38 +24,34 @@ import {
   MessageCircle
 } from 'lucide-react';
 
-// Curriculum modules
-const curriculum = [
-  {
-    module: 'Week 1-2',
-    title: 'Design Foundations',
-    topics: ['Elements of design', 'Principles of composition', 'Visual balance and harmony'],
-  },
-  {
-    module: 'Week 3-4',
-    title: 'Color Theory & Application',
-    topics: ['Color psychology', 'Creating color palettes', 'Working with light and color'],
-  },
-  {
-    module: 'Week 5-6',
-    title: 'Space Planning',
-    topics: ['Floor plan basics', 'Traffic flow analysis', 'Furniture arrangement'],
-  },
-  {
-    module: 'Week 7-8',
-    title: 'Materials & Finishes',
-    topics: ['Fabric selection', 'Surface materials', 'Sustainable options'],
-  },
-  {
-    module: 'Week 9-10',
-    title: 'Design Software Intro',
-    topics: ['SketchUp basics', 'Digital mood boards', 'Presentation tools'],
-  },
-  {
-    module: 'Week 11-12',
-    title: 'Portfolio Project',
-    topics: ['Client presentation', 'Design documentation', 'Portfolio development'],
-  },
+// Lecture Series Topics (from content.md)
+const lectureTopics = [
+  'Beautiful Kitchens',
+  'Luxury Bathroom',
+  'Great Windows and Walls',
+  'Magic of Color',
+  'Natural and Healthy Home',
+  'History of the Chair',
+  'Outdoor Spaces',
+  'High-Tech Home',
+  'Indoor Plantscaping',
+  'Design Resources',
+  'Floors That Rock',
+  'Home Staging',
+  'Principles & Elements of Design',
+  'Planning the Space',
+];
+
+// Studio Workshop Topics (from content.md)
+const studioWorkshops = [
+  'Tools and Equipment',
+  'Drafting and Spaceplanning',
+  'Color Systems and Solutions',
+  'Furniture Specifications',
+  'Textile Specifications',
+  'Concept Development',
+  'Finalizing the Concept',
+  'Design Concept',
 ];
 
 // Why in-person learning benefits
@@ -126,15 +122,15 @@ const whatsIncluded = [
   'Career guidance consultation',
 ];
 
-// FAQ items
+// FAQ items (with accurate data from content.md)
 const faqItems = [
   {
     question: 'How long is the Certificate program?',
-    answer: 'The Certificate of Interior Design is a 12-week intensive program. Classes meet twice per week for 3 hours each session (6 hours total per week), offered in evening and weekend formats.',
+    answer: 'The Certificate of Interior Design is a 12-week program. Classes meet twice per week (in-person options: Tue/Wed or Tue/Thu 9:00-11:30 AM, or hybrid option: Tue/Thu 6:00-8:30 PM online).',
   },
   {
     question: 'What is the tuition for the Certificate program?',
-    answer: 'The total tuition is $2,795, which includes all course materials, supplies, and access to our design studios and materials library. Payment plans are available.',
+    answer: 'The total tuition is $2,795, which includes tuition ($2,400), registration fee ($95), supply kit/notebook/textbook/bag ($300), and estimated additional supplies ($250). You can register for Lecture Series OR Studio Workshop separately at $1,200 each.',
   },
   {
     question: 'Do I need any prior experience or prerequisites?',
@@ -142,11 +138,11 @@ const faqItems = [
   },
   {
     question: 'Can I work while taking this program?',
-    answer: 'Absolutely. The program is specifically designed for working professionals. Choose evening classes (Tues/Thurs 6-9pm) or weekend classes (Sat 9am-3pm) to fit your schedule.',
+    answer: 'Absolutely. The program is specifically designed for working professionals with in-person morning options (Tue/Wed or Tue/Thu 9:00-11:30 AM) or hybrid evening classes (Tue/Thu 6:00-8:30 PM online) to fit your schedule.',
   },
   {
-    question: 'What software will I learn?',
-    answer: 'You\'ll get an introduction to SketchUp for 3D modeling, plus digital tools for mood boards and presentations. The focus is on foundational design skills, with software as a supporting tool.',
+    question: 'What will I learn in the lecture series?',
+    answer: 'The lecture series covers 14 topics including Beautiful Kitchens, Luxury Bathroom, Magic of Color, History of the Chair, High-Tech Home, Principles & Elements of Design, and more. You\'ll also take field trips to Laguna Design Center and Stonemill Design Center.',
   },
   {
     question: 'Is this program CIDA accredited?',
@@ -154,7 +150,7 @@ const faqItems = [
   },
   {
     question: 'Can credits transfer to a degree program?',
-    answer: 'While certificate credits don\'t transfer directly, completing the certificate demonstrates your commitment and gives you a foundation that will accelerate your learning in our Associate or Bachelor programs.',
+    answer: 'Yes! Certificate completers may continue to the AA program with just a $100 registration fee and will be awarded 8 quarter credit units toward the Associate degree.',
   },
   {
     question: 'What can I do with a certificate?',
@@ -166,13 +162,32 @@ const faqItems = [
   },
   {
     question: 'When does the next cohort start?',
-    answer: 'We start new cohorts every quarter. Contact admissions at (949) 675-4451 or visit our campus to learn about upcoming start dates and reserve your spot.',
+    answer: 'Next start date: January 12 - April 4, 2026. Contact admissions at (949) 675-4451 or visit our campus to reserve your spot.',
   },
 ];
+
+// FAQ Schema for AEO
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqItems.map((faq) => ({
+    '@type': 'Question',
+    name: faq.question,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: faq.answer,
+    },
+  })),
+};
 
 export default function CertificatePage() {
   return (
     <div style={{ backgroundColor: 'var(--bg-primary)' }}>
+      {/* Schema.org JSON-LD for AEO */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
       {/* Hero Section */}
       <section className="relative overflow-hidden" style={{ paddingTop: '10rem', paddingBottom: '10rem' }}>
         {/* Background */}
@@ -275,8 +290,8 @@ export default function CertificatePage() {
                       <Calendar className="w-6 h-6" style={{ color: 'var(--text-inverse)' }} />
                     </div>
                     <div>
-                      <p className="font-semibold" style={{ color: 'var(--text-primary)' }}>Next Cohort Starts Soon</p>
-                      <p className="text-sm" style={{ color: 'var(--text-muted)' }}>Limited spots available • Evening & weekend options</p>
+                      <p className="font-semibold" style={{ color: 'var(--text-primary)' }}>Next Start: January 12 - April 4, 2026</p>
+                      <p className="text-sm" style={{ color: 'var(--text-muted)' }}>In-person & hybrid options available</p>
                     </div>
                   </div>
                 </div>
@@ -369,35 +384,56 @@ export default function CertificatePage() {
             </p>
           </div>
 
-          {/* Curriculum Grid */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {curriculum.map((item, index) => (
-              <div
-                key={item.module}
-                className="p-6 rounded-2xl backdrop-blur-xl"
-                style={{
-                  backgroundColor: 'rgba(30, 52, 66, 0.5)',
-                  border: '1px solid var(--border-default)',
-                }}
-              >
-                <div className="flex items-center gap-3 mb-4">
-                  <span className="px-3 py-1 rounded-full text-xs font-mono" style={{ backgroundColor: 'var(--accent-gold)', color: 'var(--text-inverse)' }}>
-                    {item.module}
-                  </span>
-                </div>
-                <h3 className="text-xl font-bricolage font-semibold mb-3" style={{ color: 'var(--text-primary)' }}>
-                  {item.title}
+          {/* Curriculum - Lectures & Studios */}
+          <div className="grid md:grid-cols-2 gap-8">
+            {/* Lecture Series */}
+            <div className="p-8 rounded-2xl backdrop-blur-xl" style={{ backgroundColor: 'rgba(30, 52, 66, 0.5)', border: '1px solid var(--border-default)' }}>
+              <div className="flex items-center gap-3 mb-6">
+                <BookOpen className="w-6 h-6" style={{ color: 'var(--accent-gold)' }} />
+                <h3 className="text-2xl font-bricolage font-semibold" style={{ color: 'var(--text-primary)' }}>
+                  Lecture Series
                 </h3>
-                <ul className="space-y-2">
-                  {item.topics.map((topic) => (
-                    <li key={topic} className="flex items-start gap-2 text-sm" style={{ color: 'var(--text-muted)' }}>
-                      <CheckCircle2 className="w-4 h-4 flex-shrink-0 mt-0.5" style={{ color: 'var(--accent-gold)' }} />
-                      {topic}
-                    </li>
-                  ))}
-                </ul>
               </div>
-            ))}
+              <ul className="space-y-3">
+                {lectureTopics.map((topic) => (
+                  <li key={topic} className="flex items-start gap-2" style={{ color: 'var(--text-muted)' }}>
+                    <CheckCircle2 className="w-4 h-4 flex-shrink-0 mt-0.5" style={{ color: 'var(--accent-gold)' }} />
+                    <span>{topic}</span>
+                  </li>
+                ))}
+              </ul>
+              <div className="mt-6 pt-6" style={{ borderTop: '1px solid var(--border-default)' }}>
+                <p className="text-sm" style={{ color: 'var(--text-secondary)' }}>
+                  <strong>Field Trips:</strong> Stonemill Design Center, Laguna Design Center
+                </p>
+              </div>
+            </div>
+
+            {/* Studio Workshops */}
+            <div className="p-8 rounded-2xl backdrop-blur-xl" style={{ backgroundColor: 'rgba(30, 52, 66, 0.5)', border: '1px solid var(--border-default)' }}>
+              <div className="flex items-center gap-3 mb-6">
+                <Palette className="w-6 h-6" style={{ color: 'var(--accent-gold)' }} />
+                <h3 className="text-2xl font-bricolage font-semibold" style={{ color: 'var(--text-primary)' }}>
+                  Studio Workshops
+                </h3>
+              </div>
+              <ul className="space-y-3">
+                {studioWorkshops.map((workshop) => (
+                  <li key={workshop} className="flex items-start gap-2" style={{ color: 'var(--text-muted)' }}>
+                    <CheckCircle2 className="w-4 h-4 flex-shrink-0 mt-0.5" style={{ color: 'var(--accent-gold)' }} />
+                    <span>{workshop}</span>
+                  </li>
+                ))}
+              </ul>
+              <div className="mt-6 pt-6" style={{ borderTop: '1px solid var(--border-default)' }}>
+                <p className="text-sm" style={{ color: 'var(--text-secondary)' }}>
+                  <strong>Grading:</strong> Pass/Not Pass system
+                </p>
+                <p className="text-sm mt-2" style={{ color: 'var(--text-secondary)' }}>
+                  <strong>Advancement:</strong> Continue to AA with $100 registration fee + 8 quarter credits
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </section>

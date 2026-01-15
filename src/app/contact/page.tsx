@@ -19,6 +19,7 @@ const contactInfo = [
     content: '(949) 675-4451',
     link: 'tel:+19496754451',
     linkText: 'Call Us',
+    subtitle: 'Fax: (949) 759-0667',
   },
   {
     icon: Mail,
@@ -30,28 +31,53 @@ const contactInfo = [
   {
     icon: Clock,
     title: 'Office Hours',
-    content: 'Monday - Friday: 9:00 AM - 6:00 PM\nSaturday: 9:00 AM - 1:00 PM\nSunday: Closed',
+    content: 'Contact for current hours and appointment availability',
+    subtitle: 'Zoom appointments available upon request',
   },
 ];
 
 const quickActions = [
   {
+    title: 'Winter 2026 Registration',
+    description: 'Register for upcoming winter quarter',
+    link: 'https://interiordesignersinstitute.formstack.com/forms/winter_2026_registration',
+    buttonText: 'Register Now',
+    external: true,
+  },
+  {
+    title: 'MIA Application',
+    description: 'Apply for Master of Interior Architecture program',
+    link: 'https://idi.edu/wp-content/uploads/2025/09/MIA-Application2.pdf',
+    buttonText: 'Download PDF',
+    external: true,
+  },
+  {
+    title: 'Transfer Student Registration',
+    description: 'Register as a transfer student',
+    link: 'https://interiordesignersinstitute.formstack.com/forms/transfer_student',
+    buttonText: 'Transfer Form',
+    external: true,
+  },
+  {
+    title: 'Net Price Calculator',
+    description: 'Calculate your estimated costs and financial aid',
+    link: 'https://idi.edu/NetPriceCalculator/npcalc.html',
+    buttonText: 'Calculate Costs',
+    external: true,
+  },
+  {
+    title: 'School Catalog',
+    description: '2025-26 complete catalog and addendum',
+    link: 'https://idi.edu/wp-content/uploads/2025/03/IDI-Catalog-Addendum-24-25-032025.pdf',
+    buttonText: 'Download Catalog',
+    external: true,
+  },
+  {
     title: 'Schedule a Campus Visit',
     description: 'Tour our facilities and meet with faculty',
     link: '/admissions#visit',
     buttonText: 'Schedule Visit',
-  },
-  {
-    title: 'Request Information',
-    description: 'Get detailed program and tuition information',
-    link: '#contact-form',
-    buttonText: 'Request Info',
-  },
-  {
-    title: 'Apply Now',
-    description: 'Start your application to IDI',
-    link: '/admissions#apply',
-    buttonText: 'Apply Today',
+    external: false,
   },
 ];
 
@@ -86,21 +112,13 @@ const localBusinessSchema = {
     longitude: -117.9298,
   },
   telephone: '+1-949-675-4451',
+  faxNumber: '+1-949-759-0667',
   email: 'contact@idi.edu',
-  openingHoursSpecification: [
-    {
-      '@type': 'OpeningHoursSpecification',
-      dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
-      opens: '09:00',
-      closes: '18:00',
-    },
-    {
-      '@type': 'OpeningHoursSpecification',
-      dayOfWeek: 'Saturday',
-      opens: '09:00',
-      closes: '13:00',
-    },
-  ],
+  openingHoursSpecification: {
+    '@type': 'OpeningHoursSpecification',
+    dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+    description: 'Contact for current office hours and appointment availability',
+  },
   sameAs: [
     'https://www.facebook.com/interiordesignersinstitute',
     'https://www.instagram.com/idi_newportbeach',
@@ -125,6 +143,7 @@ export default function ContactPage() {
     email: '',
     phone: '',
     program: '',
+    contactMethod: '',
     message: '',
   });
 
@@ -145,6 +164,7 @@ export default function ContactPage() {
         email: '',
         phone: '',
         program: '',
+        contactMethod: '',
         message: '',
       });
 
@@ -186,10 +206,10 @@ export default function ContactPage() {
             </nav>
 
             <h1 className="font-bricolage text-5xl md:text-6xl lg:text-7xl font-bold mb-6" style={{ animationDelay: '0.2s' }}>
-              Get in Touch
+              Contact Us
             </h1>
             <p className="text-xl md:text-2xl text-white/70 leading-relaxed" style={{ animationDelay: '0.3s' }}>
-              Have questions? We're here to help you start your interior design journey.
+              Connect with our admissions team, career services, or financial aid office. We're here to help you start your interior design journey.
             </p>
           </div>
         </div>
@@ -200,19 +220,22 @@ export default function ContactPage() {
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-12" style={{ animationDelay: '0.1s' }}>
             <h2 className="font-bricolage text-3xl md:text-4xl font-bold mb-4 text-[#0a0a0a]">
-              How Can We Help?
+              Quick Links
             </h2>
             <p className="text-xl text-neutral-600">
-              Choose the option that best fits your needs
+              Access forms, calculators, and important resources
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
             {quickActions.map((action, index) => (
-              <div
+              <a
                 key={action.title}
-                className="bg-white p-8 rounded-[32px] border border-black/5 text-center hover:shadow-lg transition-all animate-on-scroll"
-                style={{ animationDelay: `${0.2 + index * 0.1}s` }}
+                href={action.link}
+                target={action.external ? '_blank' : undefined}
+                rel={action.external ? 'noopener noreferrer' : undefined}
+                className="bg-white p-8 rounded-[32px] border border-black/5 text-center hover:shadow-lg transition-all animate-on-scroll group"
+                style={{ animationDelay: `${0.2 + index * 0.05}s` }}
               >
                 <h3 className="font-bricolage text-xl font-semibold mb-3 text-[#0a0a0a]">
                   {action.title}
@@ -220,14 +243,69 @@ export default function ContactPage() {
                 <p className="text-neutral-600 mb-6">
                   {action.description}
                 </p>
-                <a
-                  href={action.link}
-                  className="inline-flex items-center justify-center px-6 py-3 bg-white text-black border border-black hover:bg-black hover:text-white font-semibold rounded-full transition-all"
-                >
+                <span className="inline-flex items-center justify-center px-6 py-3 bg-white text-black border border-black group-hover:bg-black group-hover:text-white font-semibold rounded-full transition-all">
                   {action.buttonText}
-                </a>
-              </div>
+                </span>
+              </a>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Staff Directory */}
+      <section className="py-20 bg-white animate-on-scroll">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="text-center mb-12" style={{ animationDelay: '0.1s' }}>
+            <h2 className="font-bricolage text-3xl md:text-4xl font-bold mb-4 text-[#0a0a0a]">
+              Staff Directory
+            </h2>
+            <p className="text-xl text-neutral-600">
+              Connect with the right department for your needs
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+            <div className="bg-[#f8f8f8] p-8 rounded-[32px] border border-black/5 animate-on-scroll" style={{ animationDelay: '0.2s' }}>
+              <h3 className="font-bricolage text-xl font-semibold mb-4 text-[#0a0a0a]">
+                Admissions & Student Services
+              </h3>
+              <div className="space-y-2 text-sm">
+                <p className="text-neutral-600">
+                  <strong>Phone:</strong> <a href="tel:+19496754451" className="hover:text-black transition-colors">(949) 675-4451</a>
+                </p>
+                <p className="text-neutral-600">
+                  <strong>Email:</strong> <a href="mailto:contact@idi.edu" className="hover:text-black transition-colors">contact@idi.edu</a>
+                </p>
+              </div>
+            </div>
+
+            <div className="bg-[#f8f8f8] p-8 rounded-[32px] border border-black/5 animate-on-scroll" style={{ animationDelay: '0.3s' }}>
+              <h3 className="font-bricolage text-xl font-semibold mb-4 text-[#0a0a0a]">
+                Career Services
+              </h3>
+              <div className="space-y-2 text-sm">
+                <p className="text-neutral-600">
+                  <strong>Contact:</strong> Rachel Hulan
+                </p>
+                <p className="text-neutral-600">
+                  <strong>Email:</strong> <a href="mailto:rhulan@idi.edu" className="hover:text-black transition-colors">rhulan@idi.edu</a>
+                </p>
+              </div>
+            </div>
+
+            <div className="bg-[#f8f8f8] p-8 rounded-[32px] border border-black/5 animate-on-scroll" style={{ animationDelay: '0.4s' }}>
+              <h3 className="font-bricolage text-xl font-semibold mb-4 text-[#0a0a0a]">
+                Financial Aid Office
+              </h3>
+              <div className="space-y-2 text-sm">
+                <p className="text-neutral-600">
+                  <strong>Contact:</strong> Renee Robles
+                </p>
+                <p className="text-neutral-600">
+                  <strong>Phone:</strong> <a href="tel:+19496754451" className="hover:text-black transition-colors">(949) 675-4451</a>
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -239,7 +317,7 @@ export default function ContactPage() {
             {/* Contact Information Sidebar */}
             <div className="lg:col-span-1" style={{ animationDelay: '0.1s' }}>
               <h2 className="font-bricolage text-3xl font-bold mb-8 text-white">
-                Contact Information
+                Main Contact
               </h2>
 
               <div className="space-y-8">
@@ -257,6 +335,11 @@ export default function ContactPage() {
                         <p className="text-white/60 text-sm leading-relaxed whitespace-pre-line mb-2">
                           {info.content}
                         </p>
+                        {info.subtitle && (
+                          <p className="text-white/40 text-xs mb-2">
+                            {info.subtitle}
+                          </p>
+                        )}
                         {info.link && (
                           <a
                             href={info.link}
@@ -374,25 +457,46 @@ export default function ContactPage() {
                     </div>
                   </div>
 
-                  <div className="mb-6">
-                    <label htmlFor="program" className="block text-sm font-semibold mb-2 text-white">
-                      Program of Interest <span className="text-white/40">*</span>
-                    </label>
-                    <select
-                      id="program"
-                      name="program"
-                      value={formData.program}
-                      onChange={handleChange}
-                      required
-                      className="w-full px-4 py-3 border border-white/10 rounded-xl focus:outline-none focus:ring-2 focus:ring-white focus:border-transparent bg-black/50 text-white transition-colors"
-                    >
-                      <option value="">Select a program</option>
-                      <option value="certificate">Certificate Program</option>
-                      <option value="associate">Associate's Degree</option>
-                      <option value="bachelor">Bachelor's Degree</option>
-                      <option value="masters">Master's Degree</option>
-                      <option value="undecided">Not Sure / General Inquiry</option>
-                    </select>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                    <div>
+                      <label htmlFor="program" className="block text-sm font-semibold mb-2 text-white">
+                        Program of Interest <span className="text-white/40">*</span>
+                      </label>
+                      <select
+                        id="program"
+                        name="program"
+                        value={formData.program}
+                        onChange={handleChange}
+                        required
+                        className="w-full px-4 py-3 border border-white/10 rounded-xl focus:outline-none focus:ring-2 focus:ring-white focus:border-transparent bg-black/50 text-white transition-colors"
+                      >
+                        <option value="">Select a program</option>
+                        <option value="certificate">Certificate Program</option>
+                        <option value="associate">Associate's Degree</option>
+                        <option value="bachelor">Bachelor's Degree</option>
+                        <option value="masters">Master's Degree</option>
+                        <option value="undecided">Not Sure / General Inquiry</option>
+                      </select>
+                    </div>
+
+                    <div>
+                      <label htmlFor="contactMethod" className="block text-sm font-semibold mb-2 text-white">
+                        Preferred Contact Method <span className="text-white/40 text-xs">(optional)</span>
+                      </label>
+                      <select
+                        id="contactMethod"
+                        name="contactMethod"
+                        value={formData.contactMethod}
+                        onChange={handleChange}
+                        className="w-full px-4 py-3 border border-white/10 rounded-xl focus:outline-none focus:ring-2 focus:ring-white focus:border-transparent bg-black/50 text-white transition-colors"
+                      >
+                        <option value="">Select preferred method</option>
+                        <option value="email">Email</option>
+                        <option value="phone">Phone</option>
+                        <option value="text">Text Message</option>
+                        <option value="any">Any Method</option>
+                      </select>
+                    </div>
                   </div>
 
                   <div className="mb-6">
@@ -462,8 +566,11 @@ export default function ContactPage() {
             <h2 className="font-bricolage text-3xl md:text-4xl font-bold mb-4 text-[#0a0a0a]">
               Visit Our Campus
             </h2>
-            <p className="text-xl text-neutral-600">
+            <p className="text-xl text-neutral-600 mb-2">
               1061 Camelback Street, Newport Beach, CA 92660
+            </p>
+            <p className="text-neutral-500">
+              Located in the heart of Orange County design. Near Laguna Design Center, Fashion Island, and SOCO.
             </p>
           </div>
 

@@ -25,31 +25,47 @@ export const metadata: Metadata = {
   },
 };
 
+// CIDA Benefits (with accurate stats from content.md)
 const cidaBenefits = [
-  'Eligibility for NCIDQ examination',
-  'Professional licensure qualification',
-  'Recognition by employers nationwide',
-  'Access to advanced career opportunities',
-  'Enhanced credibility with clients',
-  'Foundation for graduate study',
+  {
+    stat: '60%+',
+    description: 'of employers prefer CIDA program graduates',
+  },
+  {
+    stat: '16%',
+    description: 'higher NCIDQ exam scores for CIDA graduates',
+  },
+  {
+    stat: '77-94%',
+    description: 'of CIDA graduates employed in field within 6 months',
+  },
+  {
+    stat: '172%',
+    description: 'higher average salaries for jobs requiring NCIDQ certification',
+  },
 ];
 
-const curriculum = [
-  'Advanced design theory and history',
-  'Comprehensive space planning',
-  'Environmental psychology',
-  'Sustainable and universal design',
-  'Building systems and construction',
-  'Advanced lighting design',
-  'Building codes and life safety',
-  'Professional practice and ethics',
-  'Contract documentation',
-  'Advanced CAD and BIM (Revit)',
-  '3D modeling and visualization',
-  'Material research and specification',
-  'Senior capstone project',
-  'Industry internship opportunities',
-  'Professional portfolio development',
+// BA-Specific Curriculum (from content.md) - Includes all AA courses PLUS these 9 courses
+const baCurriculum = [
+  { code: '421', title: 'Computer-Aided Drafting II', units: 4 },
+  { code: '429', title: 'Historic Preservation Thesis', units: 8 },
+  { code: '430', title: 'Career Study/Internship', units: 6 },
+  { code: '434', title: 'Senior Show/Portfolio Preparation and Web Design', units: 6 },
+  { code: '435', title: 'Revit Architecture', units: 4 },
+  { code: '440', title: 'Senior Studio', units: 4 },
+  { code: '441', title: 'Kitchen and Bath Design', units: 4 },
+  { code: '442', title: 'Digital Presentation (TinkerCad, InDesign, SketchUp Animation)', units: 5 },
+  { code: '443', title: 'Advanced SketchUp', units: 4 },
+];
+
+const programHighlights = [
+  'CIDA accredited since 1992',
+  '180 quarter units (120 semester equivalent)',
+  '45 quarter units of General Education required',
+  'Internship program included',
+  'Senior portfolio and web design course',
+  'Comprehensive capstone experience',
+  'GPA: Cumulative 2.0 required',
 ];
 
 const softwareTools = [
@@ -64,23 +80,23 @@ const softwareTools = [
 const faqItems = [
   {
     question: 'How long is the Bachelor program?',
-    answer: 'The Bachelor of Arts in Interior Design can be completed in 30-54 months depending on your schedule. Full-time students typically complete the program in 30-36 months, while part-time students working while studying may take up to 54 months.',
+    answer: 'The Bachelor of Arts in Interior Design can be completed in 30-54 months depending on your schedule. The program consists of 180 quarter units (120 semester equivalent) including 45 quarter units of General Education. Full-time students typically complete in 30-36 months.',
   },
   {
     question: 'What is the tuition for the Bachelor program?',
-    answer: 'The total tuition for the complete Bachelor of Arts program is $61,450. This includes all course materials, access to design studios, and software licenses. Financial aid, scholarships, and payment plans are available for qualified students.',
+    answer: 'The total tuition for the complete BA program is $61,450 (combined AA + BA). The BA-specific portion is $20,850, which includes tuition ($19,950 for 9 classes at $2,217/class), registration fee ($100), textbooks/supplies ($2,500), and lab fees ($800). Payment plans available: 3/4 time $6,651/term, Part-time $4,434/term.',
   },
   {
     question: 'What does CIDA accreditation mean?',
-    answer: 'CIDA (Council for Interior Design Accreditation) is the premier accrediting body for interior design education. CIDA accreditation is required to sit for the NCIDQ exam and obtain professional licensure in many states. It ensures our curriculum meets the highest professional standards.',
+    answer: 'CIDA (Council for Interior Design Accreditation) is the premier accrediting body for interior design education. Over 60% of employers prefer CIDA graduates, who score 16% higher on NCIDQ exams and see 77-94% employment within 6 months. CIDA accreditation is required to sit for the NCIDQ exam.',
   },
   {
     question: 'Can I work while attending the Bachelor program?',
-    answer: 'Yes! We offer flexible scheduling with day, evening, and weekend classes to accommodate working students. Many of our students maintain employment while pursuing their degree, though the program does require significant time commitment for studio work.',
+    answer: 'Yes! We offer flexible scheduling with day, evening, and weekend classes to accommodate working students. The program is designed for working professionals, though studio work requires significant time commitment outside of class.',
   },
   {
     question: 'Will this program prepare me for the NCIDQ exam?',
-    answer: 'Absolutely. Our CIDA-accredited Bachelor program is specifically designed to prepare you for the NCIDQ (National Council for Interior Design Qualification) exam, which is required for professional licensure in many states and demonstrates competency in interior design practice.',
+    answer: 'Absolutely. Our CIDA-accredited Bachelor program is specifically designed to prepare you for the NCIDQ (National Council for Interior Design Qualification) exam. CIDA graduates score 16% higher on the NCIDQ exam than non-CIDA graduates.',
   },
 ];
 
@@ -311,11 +327,14 @@ export default function BachelorPage() {
           <h2 className="font-bricolage text-4xl mb-8 text-center text-white">
             Why CIDA Accreditation Matters
           </h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <p className="text-white/70 text-lg text-center max-w-3xl mx-auto mb-12">
+            CIDA accreditation gives you a measurable competitive advantage in the job market and on professional licensing exams.
+          </p>
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {cidaBenefits.map((benefit, index) => (
-              <div key={index} className="flex items-start gap-3 bg-[#0a0a0a] p-6 rounded-3xl border border-white/10">
-                <Award className="w-6 h-6 text-[#C4725D] flex-shrink-0 mt-0.5" />
-                <span className="text-white/70 text-lg">{benefit}</span>
+              <div key={index} className="bg-[#0a0a0a] p-8 rounded-3xl border-2 border-[#C4725D] text-center">
+                <div className="font-mono text-4xl font-bold text-[#C4725D] mb-3">{benefit.stat}</div>
+                <p className="text-white/70">{benefit.description}</p>
               </div>
             ))}
           </div>
@@ -325,18 +344,36 @@ export default function BachelorPage() {
       {/* Curriculum - Light */}
       <section className="max-w-5xl mx-auto px-6 lg:px-8 py-16 bg-[#f8f8f8] animate-on-scroll" style={{ animationDelay: '0.4s' }}>
         <h2 className="font-bricolage text-4xl mb-8 text-center text-black">
-          Comprehensive Curriculum
+          BA Curriculum: 180 Quarter Units
         </h2>
-        <p className="text-neutral-500 text-lg text-center max-w-3xl mx-auto mb-12">
-          Our CIDA-accredited curriculum covers every aspect of professional interior design practice, from foundational principles to advanced studio work.
+        <p className="text-neutral-500 text-lg text-center max-w-3xl mx-auto mb-8">
+          The Bachelor program includes all AA courses PLUS these advanced courses:
         </p>
-        <div className="grid md:grid-cols-2 gap-6">
-          {curriculum.map((item, index) => (
-            <div key={index} className="flex items-start gap-3">
-              <CheckCircle2 className="w-6 h-6 text-[#C4725D] flex-shrink-0 mt-0.5" />
-              <span className="text-neutral-500 text-lg">{item}</span>
+
+        {/* BA-Specific Courses */}
+        <div className="grid md:grid-cols-2 gap-4 mb-12">
+          {baCurriculum.map((course) => (
+            <div key={course.code} className="flex items-start gap-3 bg-white p-4 rounded-2xl border-2 border-[#C4725D]">
+              <span className="font-mono text-sm text-[#C4725D] font-bold flex-shrink-0">{course.code}</span>
+              <div className="flex-1">
+                <span className="text-neutral-700 font-medium">{course.title}</span>
+                <span className="text-neutral-400 text-sm ml-2">({course.units} units)</span>
+              </div>
             </div>
           ))}
+        </div>
+
+        {/* Program Highlights */}
+        <div className="bg-white p-8 rounded-3xl">
+          <h3 className="font-bricolage text-2xl mb-6 text-black">Program Highlights</h3>
+          <div className="grid md:grid-cols-2 gap-4">
+            {programHighlights.map((highlight, index) => (
+              <div key={index} className="flex items-start gap-3">
+                <Award className="w-5 h-5 text-[#C4725D] flex-shrink-0 mt-0.5" />
+                <span className="text-neutral-500">{highlight}</span>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 

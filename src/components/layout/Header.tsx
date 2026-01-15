@@ -2,17 +2,16 @@
 
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import { Menu, X } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 const navigation = [
-  { name: 'Programs', href: '#programs' },
-  { name: 'Why IDI', href: '#why-idi' },
-  { name: 'Stats', href: '#stats' },
-  { name: 'Accreditation', href: '#accreditation' },
-  { name: 'Student Network', href: '#student-network' },
-  { name: 'Location', href: '#location' },
-  { name: 'Contact', href: '#contact' },
+  { name: 'Programs', href: '/programs' },
+  { name: 'About', href: '/about' },
+  { name: 'Admissions', href: '/admissions' },
+  { name: 'Student Life', href: '/student-life' },
+  { name: 'Contact', href: '/contact' },
 ];
 
 export function Header() {
@@ -48,22 +47,8 @@ export function Header() {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
-    e.preventDefault();
+  const closeMobileMenu = () => {
     setIsMobileMenuOpen(false);
-
-    const targetId = href.replace('#', '');
-    const element = document.getElementById(targetId);
-
-    if (element) {
-      const elementPosition = element.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.pageYOffset;
-
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: 'smooth'
-      });
-    }
   };
 
   return (
@@ -85,14 +70,10 @@ export function Header() {
         }}
       >
         {/* Logo Area */}
-        <a
-          href="#top"
+        <Link
+          href="/"
           className="flex items-center pl-4 group cursor-pointer"
-          onClick={(e) => {
-            e.preventDefault();
-            setIsMobileMenuOpen(false);
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-          }}
+          onClick={closeMobileMenu}
         >
           <Image
             src="/idi_logo_stacked.png"
@@ -102,35 +83,31 @@ export function Header() {
             className="h-8 w-auto group-hover:scale-105 transition-transform"
             priority
           />
-        </a>
+        </Link>
 
         {/* Desktop Navigation Links */}
         <div className="hidden md:flex items-center gap-8 text-sm font-medium" style={{ color: 'var(--text-secondary)' }}>
           {navigation.map((item) => (
-            <a
+            <Link
               key={item.name}
               href={item.href}
-              onClick={(e) => handleNavClick(e, item.href)}
-              className="transition-colors focus-visible:outline-none cursor-pointer"
+              className="transition-colors focus-visible:outline-none cursor-pointer hover:text-[var(--text-primary)]"
               style={{ color: 'var(--text-secondary)' }}
-              onMouseEnter={(e) => e.currentTarget.style.color = 'var(--text-primary)'}
-              onMouseLeave={(e) => e.currentTarget.style.color = 'var(--text-secondary)'}
             >
               {item.name}
-            </a>
+            </Link>
           ))}
         </div>
 
         {/* Desktop Actions */}
         <div className="hidden md:flex items-center gap-2">
-          <a
-            href="#contact"
-            onClick={(e) => handleNavClick(e, '#contact')}
+          <Link
+            href="/admissions"
             className="px-5 py-2.5 font-medium rounded-full transition-all text-sm cursor-pointer"
             style={{ backgroundColor: 'var(--accent-gold)', color: 'var(--text-inverse)', padding: '0.25rem 3rem' }}
           >
             Apply Now
-          </a>
+          </Link>
         </div>
 
         {/* Mobile Menu Button */}
@@ -164,27 +141,27 @@ export function Header() {
       >
         <nav className="flex flex-col p-4" aria-label="Mobile navigation">
           {navigation.map((item) => (
-            <a
+            <Link
               key={item.name}
               href={item.href}
-              onClick={(e) => handleNavClick(e, item.href)}
+              onClick={closeMobileMenu}
               className="block px-4 py-4 min-h-[48px] rounded-xl transition-colors cursor-pointer"
               style={{ color: 'var(--text-secondary)' }}
             >
               {item.name}
-            </a>
+            </Link>
           ))}
 
           {/* Mobile CTAs */}
           <div className="flex flex-col gap-3 mt-4 pt-4" style={{ borderTopWidth: '1px', borderTopColor: 'var(--border-default)' }}>
-            <a
-              href="#contact"
-              onClick={(e) => handleNavClick(e, '#contact')}
+            <Link
+              href="/admissions"
+              onClick={closeMobileMenu}
               className="text-center px-6 py-3.5 min-h-[48px] font-semibold rounded-full transition-all duration-200 cursor-pointer"
               style={{ backgroundColor: 'var(--accent-gold)', color: 'var(--text-inverse)' }}
             >
               Apply Now
-            </a>
+            </Link>
           </div>
         </nav>
       </div>

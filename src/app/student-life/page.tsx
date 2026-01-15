@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { Users, Briefcase, BookOpen, Award, Calendar, MapPin, Network, Lightbulb, Handshake, Trophy } from 'lucide-react';
+import { Users, Briefcase, BookOpen, Award, Calendar, MapPin, Network, Lightbulb, Handshake, Trophy, Building2, GraduationCap, Clock, Facebook, Instagram, Youtube } from 'lucide-react';
 
 export const metadata: Metadata = {
   title: 'Student Life | Professional Organizations & Career Services',
@@ -23,53 +23,53 @@ export const metadata: Metadata = {
 
 const organizations = [
   {
-    name: 'ASID Student Chapter',
+    name: 'ASID',
     fullName: 'American Society of Interior Designers',
-    description: 'Join the leading professional organization for interior designers. Network with industry professionals, attend design events, and access exclusive resources.',
+    description: 'The largest professional organization for interior designers, providing unparalleled networking opportunities and industry connections.',
     benefits: [
-      'Industry networking events',
-      'Professional development workshops',
-      'Design competition opportunities',
-      'Access to ASID resources and publications',
+      'Networking events and industry connections',
+      'Student membership benefits',
+      'Access to professional resources',
+      'Career advancement opportunities',
     ],
     icon: Award,
     color: 'terracotta',
   },
   {
-    name: 'IIDA Campus Center',
+    name: 'IIDA',
     fullName: 'International Interior Design Association',
-    description: 'Connect with a global community of designers. Participate in international design initiatives and build your professional network.',
+    description: 'A global design community offering professional development resources and career advancement opportunities.',
     benefits: [
       'Global design community access',
-      'Mentorship programs',
-      'Student design competitions',
-      'Industry insights and trends',
+      'Professional development resources',
+      'Career advancement opportunities',
+      'International design initiatives',
     ],
     icon: Network,
     color: 'gold',
   },
   {
-    name: 'NEWH Student Chapter',
+    name: 'NEWH',
     fullName: 'Hospitality Industry Network',
-    description: 'Specialize in hospitality design. Connect with professionals in hotel, restaurant, and resort design.',
+    description: 'Specializing in hospitality design with a focus on hotels, restaurants, and resort design. Offering scholarship opportunities and industry mentorship.',
     benefits: [
       'Hospitality design focus',
-      'Industry scholarships',
-      'Site tours of hospitality projects',
-      'Career placement assistance',
+      'Scholarship opportunities',
+      'Industry mentorship programs',
+      'Networking with hospitality professionals',
     ],
     icon: Handshake,
     color: 'terracotta',
   },
   {
-    name: 'NKBA Student Chapter',
+    name: 'NKBA',
     fullName: 'National Kitchen & Bath Association',
-    description: 'Focus on kitchen and bath design specialization. Learn from industry experts and access cutting-edge design resources.',
+    description: 'Leading non-profit trade group for the kitchen and bath industry, providing resources, research, certification, and events (like the KBIS trade show) to designers, remodelers, manufacturers, and installers.',
     benefits: [
-      'Kitchen & bath specialization',
-      'Certification preparation',
-      'Manufacturer partnerships',
-      'Design showcase opportunities',
+      'Kitchen & bath industry resources',
+      'Certification programs',
+      'Access to KBIS trade show',
+      'Professional networking opportunities',
     ],
     icon: Trophy,
     color: 'gold',
@@ -170,6 +170,116 @@ const events = [
   'Professional development workshops',
 ];
 
+const hiringFirms = [
+  {
+    name: 'Gensler',
+    description: "World's largest architecture firm",
+    icon: Building2,
+  },
+  {
+    name: 'WATG',
+    description: 'Global hospitality design',
+    icon: Building2,
+  },
+  {
+    name: 'Disney Studios',
+    description: 'Entertainment design',
+    icon: Building2,
+  },
+  {
+    name: 'Sony Studios',
+    description: 'Entertainment design',
+    icon: Building2,
+  },
+  {
+    name: 'HGTV',
+    description: 'Media and television',
+    icon: Building2,
+  },
+  {
+    name: 'Mercedes Benz',
+    description: 'Automotive showrooms',
+    icon: Building2,
+  },
+  {
+    name: 'IA Interior Architects',
+    description: 'Corporate interiors',
+    icon: Building2,
+  },
+  {
+    name: 'Michael Graves',
+    description: 'Architecture and design',
+    icon: Building2,
+  },
+  {
+    name: 'H. Hendy',
+    description: 'Commercial interiors',
+    icon: Building2,
+  },
+];
+
+const studentBodyTypes = [
+  {
+    title: 'Recent High School Graduates',
+    description: 'Beginning their design journey right after high school',
+    icon: GraduationCap,
+  },
+  {
+    title: 'Transfer Students',
+    description: 'Coming from other colleges to pursue interior design',
+    icon: Users,
+  },
+  {
+    title: 'Career Changers',
+    description: 'Seeking new professional paths in design',
+    icon: Briefcase,
+  },
+  {
+    title: 'Students of All Ages',
+    description: 'Pursuing their passion for design at any life stage',
+    icon: Award,
+  },
+];
+
+const flexibilityFeatures = [
+  {
+    title: 'Day & Evening Classes',
+    description: 'Multiple class time options throughout the week to accommodate your schedule',
+    icon: Clock,
+  },
+  {
+    title: 'Work While You Study',
+    description: 'Many students work full-time while pursuing their degree',
+    icon: Briefcase,
+  },
+  {
+    title: 'Enter the Field Early',
+    description: 'Some students begin working in design while completing their degree',
+    icon: Building2,
+  },
+  {
+    title: 'Professional Schedules',
+    description: 'Programs designed to accommodate working professionals',
+    icon: Calendar,
+  },
+];
+
+const campusCulture = [
+  'Small class sizes foster collaboration and community',
+  'Hands-on studio environment',
+  'Field trips to design centers and showrooms',
+  'Industry events and guest speakers',
+  'Student work showcases and exhibitions',
+];
+
+const socialMedia = [
+  { name: 'Facebook', handle: 'Interior Designers Institute', icon: Facebook, url: 'https://facebook.com' },
+  { name: 'Instagram', handle: '@interiordesignersinstitute', icon: Instagram, url: 'https://instagram.com/interiordesignersinstitute' },
+  { name: 'TikTok', handle: '@idi_newportbeach', icon: Award, url: 'https://tiktok.com/@idi_newportbeach' },
+  { name: 'Pinterest', handle: '@idinewportbeach', icon: Award, url: 'https://pinterest.com/idinewportbeach' },
+  { name: 'YouTube', handle: 'Interior Designers Institute', icon: Youtube, url: 'https://youtube.com' },
+];
+
 export default function StudentLifePage() {
   return (
     <>
@@ -197,11 +307,87 @@ export default function StudentLifePage() {
               Join a vibrant community of designers, connect with industry professionals, and build the career you've always wanted.
             </p>
             <a
-              href="#organizations"
+              href="#diverse-community"
               className="inline-flex items-center justify-center px-8 py-4 bg-white text-black font-semibold rounded-full transition-all hover:scale-105"
             >
-              Explore Student Organizations
+              Explore Student Life
             </a>
+          </div>
+        </div>
+      </section>
+
+      {/* Diverse Student Body - Light */}
+      <section id="diverse-community" className="py-20 bg-[#f8f8f8] animate-on-scroll" style={{ animationDelay: '0.1s' }}>
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="text-center mb-16">
+            <h2 className="font-bricolage text-4xl md:text-5xl font-bold mb-4 text-black">
+              A Diverse Student Community
+            </h2>
+            <p className="text-xl text-neutral-600 max-w-2xl mx-auto">
+              IDI welcomes students from all backgrounds and life stages
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {studentBodyTypes.map((type, index) => {
+              const Icon = type.icon;
+              return (
+                <div
+                  key={type.title}
+                  className="bg-white p-6 rounded-3xl border border-black/10 text-center"
+                  style={{ animationDelay: `${0.2 + index * 0.1}s` }}
+                >
+                  <div className="w-16 h-16 bg-[#C4725D]/20 rounded-lg flex items-center justify-center mx-auto mb-4">
+                    <Icon className="w-8 h-8 text-[#C4725D]" />
+                  </div>
+                  <h3 className="font-bricolage text-lg font-semibold mb-2 text-black">
+                    {type.title}
+                  </h3>
+                  <p className="text-neutral-600 text-sm leading-relaxed">
+                    {type.description}
+                  </p>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* Flexible Scheduling - Dark */}
+      <section className="py-20 bg-[#0a0a0a] text-white animate-on-scroll" style={{ animationDelay: '0.2s' }}>
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="text-center mb-16">
+            <h2 className="font-bricolage text-4xl md:text-5xl font-bold mb-4">
+              Flexible for Working Students
+            </h2>
+            <p className="text-xl text-white/70 max-w-2xl mx-auto">
+              Programs designed to accommodate professional schedules and working students
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+            {flexibilityFeatures.map((feature, index) => {
+              const Icon = feature.icon;
+              return (
+                <div
+                  key={feature.title}
+                  className="bg-[#151515] p-8 rounded-[32px] border border-white/10 flex items-start gap-6"
+                  style={{ animationDelay: `${0.3 + index * 0.1}s` }}
+                >
+                  <div className="w-14 h-14 bg-[#B8977E]/20 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <Icon className="w-7 h-7 text-[#B8977E]" />
+                  </div>
+                  <div>
+                    <h3 className="font-bricolage text-xl font-semibold mb-2">
+                      {feature.title}
+                    </h3>
+                    <p className="text-white/70 leading-relaxed">
+                      {feature.description}
+                    </p>
+                  </div>
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -262,25 +448,25 @@ export default function StudentLifePage() {
       </section>
 
       {/* Career Services - Dark */}
-      <section className="py-20 bg-[#0a0a0a] text-white animate-on-scroll" style={{ animationDelay: '0.2s' }}>
+      <section className="py-20 bg-[#0a0a0a] text-white animate-on-scroll" style={{ animationDelay: '0.4s' }}>
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-16">
             <h2 className="font-bricolage text-4xl md:text-5xl font-bold mb-4">
               Career Services
             </h2>
             <p className="text-xl text-white/70 max-w-2xl mx-auto">
-              Comprehensive support to launch and advance your design career
+              Job placement assistance for AA, BA, and MIA graduates. Internship program for BA students.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
             {careerServices.map((service, index) => {
               const Icon = service.icon;
               return (
                 <div
                   key={service.title}
                   className="bg-[#151515] p-8 rounded-[32px] border border-white/10 hover:border-white/20 transition-all"
-                  style={{ animationDelay: `${0.3 + index * 0.1}s` }}
+                  style={{ animationDelay: `${0.5 + index * 0.1}s` }}
                 >
                   <div className="w-14 h-14 bg-[#C4725D]/20 rounded-lg flex items-center justify-center mb-6">
                     <Icon className="w-7 h-7 text-[#C4725D]" />
@@ -296,16 +482,89 @@ export default function StudentLifePage() {
             })}
           </div>
 
-          <div className="mt-12 text-center">
+          <div className="bg-[#151515] p-8 rounded-[32px] border border-white/10 max-w-2xl mx-auto text-center">
+            <h3 className="font-bricolage text-2xl font-semibold mb-4">
+              Contact Career Services
+            </h3>
             <p className="text-white/70 mb-6">
-              Our career services team is dedicated to your success, from your first day of classes through your entire career.
+              Rachel Hulan, Career Services Director
             </p>
-            <Link
-              href="/contact"
+            <a
+              href="mailto:rhulan@idi.edu"
               className="inline-flex items-center justify-center px-8 py-4 bg-white text-black font-semibold rounded-full transition-all hover:scale-105"
             >
-              Contact Career Services
-            </Link>
+              Email: rhulan@idi.edu
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* Firms That Hire IDI Graduates - Light */}
+      <section className="py-20 bg-[#f8f8f8] animate-on-scroll" style={{ animationDelay: '0.5s' }}>
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="text-center mb-16">
+            <h2 className="font-bricolage text-4xl md:text-5xl font-bold mb-4 text-black">
+              Firms That Hire IDI Graduates
+            </h2>
+            <p className="text-xl text-neutral-600 max-w-2xl mx-auto">
+              Our graduates work at leading design firms and organizations around the world
+            </p>
+          </div>
+
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+            {hiringFirms.map((firm, index) => {
+              const Icon = firm.icon;
+              return (
+                <div
+                  key={firm.name}
+                  className="bg-white p-6 rounded-3xl border border-black/10 text-center hover:shadow-lg transition-all"
+                  style={{ animationDelay: `${0.6 + index * 0.05}s` }}
+                >
+                  <div className="w-12 h-12 bg-[#C4725D]/20 rounded-lg flex items-center justify-center mx-auto mb-3">
+                    <Icon className="w-6 h-6 text-[#C4725D]" />
+                  </div>
+                  <h3 className="font-bricolage font-semibold mb-1 text-black">
+                    {firm.name}
+                  </h3>
+                  <p className="text-xs text-neutral-500">
+                    {firm.description}
+                  </p>
+                </div>
+              );
+            })}
+          </div>
+
+          <div className="mt-12 text-center">
+            <p className="text-neutral-600 italic">
+              And many more leading design firms across the country
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Campus Culture - Dark */}
+      <section className="py-20 bg-[#0a0a0a] text-white animate-on-scroll" style={{ animationDelay: '0.6s' }}>
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="text-center mb-16">
+            <h2 className="font-bricolage text-4xl md:text-5xl font-bold mb-4">
+              Campus Culture
+            </h2>
+            <p className="text-xl text-white/70 max-w-2xl mx-auto">
+              A hands-on, collaborative environment that prepares you for the professional world
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-4xl mx-auto">
+            {campusCulture.map((item, index) => (
+              <div
+                key={index}
+                className="bg-[#151515] p-6 rounded-3xl border border-white/10 flex items-center gap-4"
+                style={{ animationDelay: `${0.7 + index * 0.05}s` }}
+              >
+                <div className="w-2 h-2 bg-[#B8977E] rounded-full flex-shrink-0" />
+                <p className="text-white/90">{item}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -342,7 +601,7 @@ export default function StudentLifePage() {
       </section>
 
       {/* Newport Beach Location - Dark */}
-      <section className="py-20 bg-[#0a0a0a] text-white animate-on-scroll" style={{ animationDelay: '0.4s' }}>
+      <section className="py-20 bg-[#0a0a0a] text-white animate-on-scroll" style={{ animationDelay: '0.7s' }}>
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-16">
             <h2 className="font-bricolage text-4xl md:text-5xl font-bold mb-4">
@@ -360,7 +619,7 @@ export default function StudentLifePage() {
                 <div
                   key={benefit.title}
                   className="bg-[#151515] p-8 rounded-[32px] border border-white/10 flex items-start gap-6"
-                  style={{ animationDelay: `${0.5 + index * 0.1}s` }}
+                  style={{ animationDelay: `${0.8 + index * 0.1}s` }}
                 >
                   <div className="w-12 h-12 bg-[#B8977E]/20 rounded-lg flex items-center justify-center flex-shrink-0">
                     <Icon className="w-6 h-6 text-[#B8977E]" />
@@ -392,101 +651,69 @@ export default function StudentLifePage() {
         </div>
       </section>
 
-      {/* Events & Activities - Light */}
-      <section className="py-20 bg-[#f8f8f8] animate-on-scroll" style={{ animationDelay: '0.5s' }}>
+      {/* Social Media - Light */}
+      <section className="py-20 bg-[#f8f8f8] animate-on-scroll" style={{ animationDelay: '0.8s' }}>
         <div className="max-w-5xl mx-auto px-6">
           <div className="text-center mb-16">
             <h2 className="font-bricolage text-4xl md:text-5xl font-bold mb-4 text-black">
-              Events & Opportunities
+              Connect With IDI
             </h2>
             <p className="text-xl text-neutral-600 max-w-2xl mx-auto">
-              Year-round programming to enhance your education and expand your network
+              Follow us on social media for design inspiration, student work, campus updates, and industry news
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-12">
-            {events.map((event, index) => (
-              <div
-                key={index}
-                className="bg-white p-6 rounded-3xl border border-black/10 flex items-center gap-4"
-                style={{ animationDelay: `${0.6 + index * 0.05}s` }}
-              >
-                <div className="w-2 h-2 bg-[#C4725D] rounded-full flex-shrink-0" />
-                <p className="text-black font-medium">{event}</p>
-              </div>
-            ))}
-          </div>
-
-          <div className="bg-[#C4725D]/20 border border-[#C4725D]/30 p-8 rounded-[32px] text-center">
-            <Lightbulb className="w-12 h-12 text-[#C4725D] mx-auto mb-4" />
-            <h3 className="font-bricolage text-2xl font-bold mb-3 text-black">
-              Get Involved
-            </h3>
-            <p className="text-neutral-600 mb-6 max-w-2xl mx-auto">
-              The more you participate in campus life, the more you'll gain from your IDI experience. Join organizations, attend events, and build lasting connections.
-            </p>
-            <Link
-              href="/admissions"
-              className="inline-flex items-center justify-center px-8 py-4 bg-black text-white font-semibold rounded-full transition-all hover:scale-105"
-            >
-              Apply to IDI Today
-            </Link>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-4xl mx-auto">
+            {socialMedia.map((platform, index) => {
+              const Icon = platform.icon;
+              return (
+                <a
+                  key={platform.name}
+                  href={platform.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-white p-6 rounded-3xl border border-black/10 hover:shadow-lg transition-all group"
+                  style={{ animationDelay: `${0.9 + index * 0.05}s` }}
+                >
+                  <div className="flex items-center gap-4">
+                    <div className="w-12 h-12 bg-[#C4725D]/20 rounded-lg flex items-center justify-center group-hover:bg-[#C4725D]/30 transition-colors">
+                      <Icon className="w-6 h-6 text-[#C4725D]" />
+                    </div>
+                    <div>
+                      <h3 className="font-bricolage font-semibold text-black">
+                        {platform.name}
+                      </h3>
+                      <p className="text-sm text-neutral-500">
+                        {platform.handle}
+                      </p>
+                    </div>
+                  </div>
+                </a>
+              );
+            })}
           </div>
         </div>
       </section>
 
-      {/* Student Testimonials - Dark */}
-      <section className="py-20 bg-[#0a0a0a] text-white animate-on-scroll" style={{ animationDelay: '0.6s' }}>
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center mb-16">
-            <h2 className="font-bricolage text-4xl md:text-5xl font-bold mb-4">
-              Student Success Stories
-            </h2>
-            <p className="text-xl text-white/70 max-w-2xl mx-auto">
-              Hear from current students and alumni about their IDI experience
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {[1, 2, 3].map((i) => (
-              <div
-                key={i}
-                className="bg-white/5 p-8 rounded-[32px] border border-white/10"
-                style={{ animationDelay: `${0.7 + i * 0.1}s` }}
-              >
-                <div className="w-20 h-20 bg-white/10 rounded-full mx-auto mb-6" />
-                <p className="text-white/60 italic mb-6 leading-relaxed">
-                  "Testimonial content will be added during content integration phase. Real student stories showcasing their IDI experience and career success."
-                </p>
-                <div className="text-center">
-                  <p className="font-semibold text-white">Student Name</p>
-                  <p className="text-sm text-white/50">Program, Class of 20XX</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* CTA Section - Light */}
-      <section className="py-20 bg-[#f8f8f8] animate-on-scroll" style={{ animationDelay: '0.7s' }}>
+      {/* CTA Section - Dark */}
+      <section className="py-20 bg-[#0a0a0a] text-white animate-on-scroll" style={{ animationDelay: '0.9s' }}>
         <div className="max-w-4xl mx-auto px-6 text-center">
-          <h2 className="font-bricolage text-4xl md:text-5xl font-bold mb-6 text-black">
+          <h2 className="font-bricolage text-4xl md:text-5xl font-bold mb-6">
             Experience IDI for Yourself
           </h2>
-          <p className="text-xl text-neutral-600 mb-12 max-w-2xl mx-auto">
+          <p className="text-xl text-white/70 mb-12 max-w-2xl mx-auto">
             Schedule a campus visit to tour our facilities, meet students and faculty, and see what makes IDI special.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               href="/contact"
-              className="inline-flex items-center justify-center px-8 py-4 bg-black text-white font-semibold rounded-full transition-all hover:scale-105"
+              className="inline-flex items-center justify-center px-8 py-4 bg-white text-black font-semibold rounded-full transition-all hover:scale-105"
             >
               Schedule a Visit
             </Link>
             <Link
               href="/admissions"
-              className="inline-flex items-center justify-center px-8 py-4 bg-white text-black font-semibold rounded-full transition-all hover:scale-105 border border-black/20"
+              className="inline-flex items-center justify-center px-8 py-4 bg-white/10 text-white font-semibold rounded-full transition-all hover:scale-105 border border-white/20"
             >
               View Admissions Info
             </Link>

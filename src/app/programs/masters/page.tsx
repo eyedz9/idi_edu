@@ -17,19 +17,32 @@ export const metadata: Metadata = {
   ],
 };
 
-const curriculum = [
-  'Advanced design theory and research',
-  'Interior architecture principles',
-  'Sustainable design strategies',
-  'Historic preservation and adaptive reuse',
-  'Advanced building systems',
-  'Design research methodologies',
-  'Professional practice at advanced level',
-  'Thesis development and research',
-  'Graduate studio projects',
-  'Industry collaboration projects',
-  'Advanced digital design tools',
-  'Design leadership and management',
+// MIA Curriculum from content.md (45 Quarter Units, 8 courses)
+const miaCurriculum = [
+  { code: '502', title: 'Design Project Part 1', units: 4.5 },
+  { code: '503', title: 'Research Methods Part 1', units: 3 },
+  { code: '504', title: 'Graduate Seminar: Special Topics', units: 6.5 },
+  { code: '505', title: 'Design Project Part 2', units: 4.5 },
+  { code: '506', title: 'Research Methods Part 2', units: 3 },
+  { code: '507', title: 'Graduate Seminar: Professional Practices', units: 6.5 },
+  { code: '508', title: 'Design Project Part 3', units: 7.5 },
+  { code: '509', title: 'Research Methods Part 3', units: 3 },
+];
+
+const admissionRequirements = [
+  "Bachelor's degree in interior design, interior architecture, or architecture from a US college/university",
+  'Portfolio review required',
+  'Personal interview required',
+  'Proficiency in AutoCAD, Photoshop, and 3D CAD software',
+];
+
+const programRequirements = [
+  'Must be granted Candidacy by Graduate Committee',
+  'Cumulative 3.0 GPA (minimum 2.0 per course)',
+  'Fulfill all financial obligations',
+  'Complete capstone project with exhibit and presentation',
+  'Format: Part-time, Monday/Thursday evenings',
+  'Small class size with limited enrollment',
 ];
 
 const idealCandidates = [
@@ -54,29 +67,48 @@ const idealCandidates = [
 const faqItems = [
   {
     question: 'How long is the Master of Interior Architecture program?',
-    answer: 'The MIA program can be completed in 12-15 months depending on your pace and whether you attend full-time or part-time. Full-time students typically complete the program in 12 months, while working professionals may take up to 15 months.',
+    answer: 'The MIA program can be completed in 12-15 months. The program consists of 45 quarter units across 8 courses. Classes meet part-time on Monday/Thursday evenings to accommodate working professionals.',
   },
   {
     question: 'What is the tuition for the Master\'s program?',
-    answer: 'The total tuition for the Master of Interior Architecture program is $22,600. This includes all course materials, thesis advising, and access to our design studios and research facilities. Financial aid and payment plans are available for qualified students.',
+    answer: 'The total tuition is $22,600, which includes tuition ($22,500 for 9 classes at $2,500/class), registration fee ($100), and estimated textbooks/supplies ($2,500). Payment options: 3 terms at $7,500/term or 4 terms at $2,500/class.',
   },
   {
     question: 'Do I need a design degree to apply?',
-    answer: 'No, you do not need a prior degree in interior design. The MIA program accepts students with bachelor\'s degrees in any field. However, applicants without design backgrounds may be required to complete foundational courses before beginning graduate-level work.',
+    answer: 'Yes, the MIA program requires a bachelor\'s degree in interior design, interior architecture, or architecture from a US college/university. You must also demonstrate proficiency in AutoCAD, Photoshop, and 3D CAD software, pass a portfolio review, and complete a personal interview.',
   },
   {
-    question: 'What is the thesis component?',
-    answer: 'All MIA students complete a thesis project, which involves independent research on a topic of professional interest. You\'ll work closely with faculty advisors to develop your research question, methodology, and final presentation. The thesis demonstrates your ability to contribute original knowledge to the field.',
+    question: 'What is the capstone project component?',
+    answer: 'All MIA students complete a comprehensive capstone design project that culminates in a student exhibit and verbal presentation. This demonstrates your ability to conduct independent research and contribute original knowledge to the field of interior architecture.',
   },
   {
     question: 'Can I work while completing the Master\'s program?',
-    answer: 'Yes, many MIA students work while completing their degree. We offer flexible scheduling options including evening and weekend classes. However, the graduate-level coursework and thesis research do require significant time commitment outside of class.',
+    answer: 'Yes! The MIA program is specifically designed for working professionals with part-time, evening classes on Monday/Thursday. Classes are in-person only, and while the program accommodates working students, graduate-level coursework requires significant time commitment.',
   },
 ];
+
+// FAQ Schema for AEO
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqItems.map((faq) => ({
+    '@type': 'Question',
+    name: faq.question,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: faq.answer,
+    },
+  })),
+};
 
 export default function MastersPage() {
   return (
     <div className="bg-[#0a0a0a]">
+      {/* Schema.org JSON-LD for AEO */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
       {/* Hero Section - Dark */}
       <section className="relative bg-[#0a0a0a] text-white py-24 lg:py-32 animate-on-scroll">
         <div className="absolute inset-0 opacity-20">
@@ -214,18 +246,49 @@ export default function MastersPage() {
       {/* Curriculum - Light */}
       <section className="max-w-5xl mx-auto px-6 lg:px-8 py-16 bg-[#f8f8f8] animate-on-scroll" style={{ animationDelay: '0.3s' }}>
         <h2 className="font-bricolage text-4xl mb-8 text-center text-black">
-          Graduate-Level Curriculum
+          Graduate Curriculum: 45 Quarter Units
         </h2>
         <p className="text-neutral-500 text-lg text-center max-w-3xl mx-auto mb-12">
-          Our MIA curriculum emphasizes advanced theory, research methodologies, and independent scholarship alongside practical application.
+          8 comprehensive graduate courses emphasizing design research, advanced theory, and capstone project.
         </p>
-        <div className="grid md:grid-cols-2 gap-6">
-          {curriculum.map((item, index) => (
-            <div key={index} className="flex items-start gap-3">
-              <CheckCircle2 className="w-6 h-6 text-[#C4725D] flex-shrink-0 mt-0.5" />
-              <span className="text-neutral-500 text-lg">{item}</span>
+
+        {/* MIA Courses */}
+        <div className="grid md:grid-cols-2 gap-4 mb-12">
+          {miaCurriculum.map((course) => (
+            <div key={course.code} className="flex items-start gap-3 bg-white p-4 rounded-2xl border-2 border-[#C4725D]">
+              <span className="font-mono text-sm text-[#C4725D] font-bold flex-shrink-0">{course.code}</span>
+              <div className="flex-1">
+                <span className="text-neutral-700 font-medium">{course.title}</span>
+                <span className="text-neutral-400 text-sm ml-2">({course.units} units)</span>
+              </div>
             </div>
           ))}
+        </div>
+
+        {/* Requirements */}
+        <div className="grid md:grid-cols-2 gap-8">
+          <div className="bg-white p-8 rounded-3xl">
+            <h3 className="font-bricolage text-2xl mb-6 text-black">Admission Requirements</h3>
+            <ul className="space-y-3">
+              {admissionRequirements.map((req, index) => (
+                <li key={index} className="flex items-start gap-3">
+                  <CheckCircle2 className="w-5 h-5 text-[#C4725D] flex-shrink-0 mt-0.5" />
+                  <span className="text-neutral-500 text-sm">{req}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div className="bg-white p-8 rounded-3xl">
+            <h3 className="font-bricolage text-2xl mb-6 text-black">Program Requirements</h3>
+            <ul className="space-y-3">
+              {programRequirements.map((req, index) => (
+                <li key={index} className="flex items-start gap-3">
+                  <CheckCircle2 className="w-5 h-5 text-[#C4725D] flex-shrink-0 mt-0.5" />
+                  <span className="text-neutral-500 text-sm">{req}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       </section>
 
@@ -239,18 +302,18 @@ export default function MastersPage() {
                 Thesis Research
               </h2>
               <p className="text-white/70 text-lg mb-6">
-                Every MIA student completes an independent thesis project—a rigorous research endeavor that demonstrates your ability to contribute original knowledge to the field of interior architecture.
+                Every MIA student completes a comprehensive capstone design project—a rigorous research endeavor that demonstrates your ability to contribute original knowledge to the field of interior architecture.
               </p>
               <p className="text-white/70 text-lg mb-6">
-                Working closely with faculty advisors who are experts in their fields, you'll develop a research question, conduct thorough investigation, and present your findings through written and visual documentation.
+                Working closely with faculty advisors who are experts in their fields, you'll develop a design project over three progressive courses (Design Project Parts 1, 2, and 3) alongside research methodologies training.
               </p>
               <p className="text-white/70 text-lg">
-                Thesis topics vary widely and can address design theory, sustainable practices, historic preservation, material innovation, or any area of professional interest.
+                The program culminates in a student exhibit and verbal presentation, showcasing your independent research and design work to demonstrate mastery of interior architecture principles.
               </p>
             </div>
 
             <div className="bg-[#0a0a0a] p-8 rounded-[32px] border border-white/10">
-              <h3 className="font-bricolage text-2xl mb-6 text-white">Recent Thesis Topics</h3>
+              <h3 className="font-bricolage text-2xl mb-6 text-white">Capstone Project Examples</h3>
               <ul className="space-y-4">
                 <li className="border-l-4 border-[#B8977E] pl-4">
                   <p className="text-white font-medium mb-1">Adaptive Reuse of Industrial Spaces</p>
@@ -269,6 +332,11 @@ export default function MastersPage() {
                   <p className="text-white/70 text-sm">Residential strategies for multi-generational living</p>
                 </li>
               </ul>
+              <div className="mt-6 pt-6" style={{ borderTop: '1px solid rgba(255,255,255,0.1)' }}>
+                <p className="text-white/70 text-sm">
+                  All capstone projects culminate in a professional exhibit and presentation before faculty and industry professionals.
+                </p>
+              </div>
             </div>
           </div>
         </div>
