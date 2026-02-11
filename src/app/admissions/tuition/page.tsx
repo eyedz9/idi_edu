@@ -1,0 +1,325 @@
+import type { Metadata } from "next";
+import Link from "next/link";
+import { Section } from "@/components/ui/section";
+import { Card } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { tuitionData, getCombinedBATuition } from "@/data";
+import { FORMSTACK_URL } from "@/lib/constants";
+
+/* -------------------------------------------------------------------------- */
+/*  Metadata                                                                  */
+/* -------------------------------------------------------------------------- */
+
+export const metadata: Metadata = {
+  title: "Tuition & Fees",
+  description:
+    "View tuition costs, fees, payment schedules, and payment options for all Interior Designers Institute programs. Certificate, Associate, Bachelor's, and Master's programs.",
+};
+
+/* -------------------------------------------------------------------------- */
+/*  Helpers                                                                   */
+/* -------------------------------------------------------------------------- */
+
+const fmt = new Intl.NumberFormat("en-US", {
+  style: "currency",
+  currency: "USD",
+  maximumFractionDigits: 0,
+});
+
+/* -------------------------------------------------------------------------- */
+/*  Breadcrumbs                                                               */
+/* -------------------------------------------------------------------------- */
+
+function Breadcrumbs() {
+  return (
+    <nav aria-label="Breadcrumb" className="mb-4 text-sm text-sandstone/70">
+      <ol className="flex items-center gap-1.5">
+        <li>
+          <Link href="/" className="hover:text-pink-400 transition-colors">
+            Home
+          </Link>
+        </li>
+        <li aria-hidden="true">/</li>
+        <li>
+          <Link href="/admissions" className="hover:text-pink-400 transition-colors">
+            Admissions
+          </Link>
+        </li>
+        <li aria-hidden="true">/</li>
+        <li className="font-medium text-parchment">Tuition &amp; Fees</li>
+      </ol>
+    </nav>
+  );
+}
+
+/* -------------------------------------------------------------------------- */
+/*  Page                                                                      */
+/* -------------------------------------------------------------------------- */
+
+export default function TuitionPage() {
+  const combinedBA = getCombinedBATuition();
+
+  return (
+    <>
+      {/* -- Hero ----------------------------------------------------------- */}
+      <section className="relative overflow-hidden mesh-plum grain py-24 md:py-32">
+        <div className="relative z-10 mx-auto max-w-5xl px-4 text-center sm:px-6 lg:px-8">
+          <Breadcrumbs />
+          <h1 className="font-heading text-5xl font-bold text-parchment md:text-6xl">
+            <span className="text-gradient-pink">Tuition</span> &amp; Fees
+          </h1>
+          <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-sandstone">
+            Transparent pricing for every program. Review tuition breakdowns,
+            payment schedules, and options to help plan your education investment.
+          </p>
+        </div>
+      </section>
+
+      {/* -- Program-by-program Tuition ------------------------------------- */}
+      {tuitionData.map((program, idx) => (
+        <Section
+          key={program.programSlug}
+          bg={idx % 2 === 0 ? "default" : "light"}
+          title={program.programName}
+        >
+          {/* Cost breakdown table */}
+          <div className="mb-10 overflow-x-auto">
+            <table className="w-full min-w-[480px] text-left text-sm">
+              <thead>
+                <tr className="border-b-2 border-plum-900/10">
+                  <th className="py-3 pr-4 font-semibold text-plum-900">
+                    Fee
+                  </th>
+                  <th className="py-3 text-right font-semibold text-plum-900">
+                    Amount
+                  </th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-warm-200">
+                <tr>
+                  <td className="py-3 pr-4 text-neutral-600">Tuition</td>
+                  <td className="py-3 text-right font-medium text-neutral-700">
+                    {fmt.format(program.tuition)}
+                  </td>
+                </tr>
+                <tr>
+                  <td className="py-3 pr-4 text-neutral-600">
+                    Registration Fee
+                  </td>
+                  <td className="py-3 text-right font-medium text-neutral-700">
+                    {fmt.format(program.registrationFee)}
+                  </td>
+                </tr>
+                {program.stlmFee > 0 && (
+                  <tr>
+                    <td className="py-3 pr-4 text-neutral-600">
+                      STLM/STRF Fee
+                    </td>
+                    <td className="py-3 text-right font-medium text-neutral-700">
+                      {fmt.format(program.stlmFee)}
+                    </td>
+                  </tr>
+                )}
+                {program.supplyCost > 0 && (
+                  <tr>
+                    <td className="py-3 pr-4 text-neutral-600">
+                      Supplies / Materials
+                    </td>
+                    <td className="py-3 text-right font-medium text-neutral-700">
+                      {fmt.format(program.supplyCost)}
+                    </td>
+                  </tr>
+                )}
+                <tr className="border-t-2 border-plum-900/10">
+                  <td className="py-3 pr-4 font-semibold text-plum-900">
+                    Total Charges
+                  </td>
+                  <td className="py-3 text-right font-bold text-plum-900">
+                    {fmt.format(program.totalCharges)}
+                  </td>
+                </tr>
+                <tr>
+                  <td className="py-3 pr-4 font-semibold text-plum-900">
+                    Total Estimated Cost
+                  </td>
+                  <td className="py-3 text-right font-bold text-pink-500">
+                    {fmt.format(program.totalEstimatedCost)}
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          {/* Combined BA note */}
+          {program.programSlug === "bachelor-of-arts" && (
+            <Card className="mb-10 border-l-4 border-amber-500 p-4 md:p-6">
+              <p className="text-sm leading-relaxed text-neutral-600">
+                <strong className="text-plum-900">Note:</strong> The Bachelor
+                of Arts tuition of {fmt.format(program.tuition)} is in addition
+                to the Associate of Arts degree tuition. Combined AA + BA total
+                tuition: <strong>{fmt.format(combinedBA)}</strong>.
+              </p>
+            </Card>
+          )}
+
+          {/* Payment schedule */}
+          {program.paymentSchedule.length > 0 && (
+            <>
+              <h3 className="mb-4 font-heading text-xl font-bold text-plum-900">
+                Payment Schedule
+              </h3>
+              <div className="mb-10 overflow-x-auto">
+                <table className="w-full min-w-[560px] text-left text-sm">
+                  <thead>
+                    <tr className="border-b-2 border-plum-900/10">
+                      <th className="py-3 pr-4 font-semibold text-plum-900">
+                        Enrollment Status
+                      </th>
+                      <th className="py-3 pr-4 font-semibold text-plum-900">
+                        Units / Term
+                      </th>
+                      <th className="py-3 pr-4 font-semibold text-plum-900">
+                        Tuition / Term
+                      </th>
+                      <th className="py-3 font-semibold text-plum-900">
+                        Time to Complete
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-warm-200">
+                    {program.paymentSchedule.map((row) => (
+                      <tr key={row.enrollment}>
+                        <td className="py-3 pr-4 font-medium text-neutral-700">
+                          {row.enrollment}
+                        </td>
+                        <td className="py-3 pr-4 text-neutral-600">
+                          {row.unitsPerTerm}
+                        </td>
+                        <td className="py-3 pr-4 text-neutral-600">
+                          {fmt.format(row.tuitionPerTerm)}
+                        </td>
+                        <td className="py-3 text-neutral-600">
+                          {row.termsToComplete}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </>
+          )}
+
+          {/* Payment options */}
+          {program.paymentOptions.length > 0 && (
+            <>
+              <h3 className="mb-4 font-heading text-xl font-bold text-plum-900">
+                Payment Options
+              </h3>
+              <div className="mb-6 grid gap-4 sm:grid-cols-2">
+                {program.paymentOptions.map((opt) => (
+                  <Card key={opt.type} className="p-5">
+                    <h4 className="font-body text-sm font-semibold text-plum-900">
+                      {opt.type}
+                    </h4>
+                    <p className="mt-1 text-sm leading-relaxed text-neutral-500">
+                      {opt.description}
+                    </p>
+                    {opt.amount > 0 && (
+                      <p className="mt-2 text-sm font-semibold text-pink-500">
+                        {fmt.format(opt.amount)}
+                        {opt.perPeriod && (
+                          <span className="font-normal text-neutral-500">
+                            {" "}
+                            {opt.perPeriod}
+                          </span>
+                        )}
+                      </p>
+                    )}
+                  </Card>
+                ))}
+              </div>
+            </>
+          )}
+
+          {/* Notes */}
+          {program.notes.length > 0 && (
+            <div className="rounded-lg bg-warm-100 p-4 md:p-6">
+              <h4 className="mb-2 text-xs font-semibold uppercase tracking-wider text-neutral-500">
+                Important Notes
+              </h4>
+              <ul className="space-y-1.5">
+                {program.notes.map((note, i) => (
+                  <li
+                    key={i}
+                    className="flex items-start gap-2 text-sm leading-relaxed text-neutral-600"
+                  >
+                    <span className="mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-pink-500" />
+                    {note}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+        </Section>
+      ))}
+
+      {/* -- Financial Aid CTA (mesh-aurora + grain) ------------------------ */}
+      <section className="relative overflow-hidden mesh-aurora grain py-16 md:py-24">
+        <div className="relative z-10 mx-auto max-w-3xl px-4 text-center sm:px-6 lg:px-8">
+          <h2 className="font-heading text-3xl font-bold text-parchment md:text-4xl">
+            Need Help <span className="text-gradient-pink">Paying</span> for School?
+          </h2>
+          <p className="mt-4 text-lg leading-relaxed text-sandstone">
+            Federal financial aid, including grants and loans, is available for
+            students who qualify. Our Financial Aid office is here to help you
+            explore your options.
+          </p>
+          <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
+            <Link href="/admissions/financial-aid">
+              <Button variant="primary" size="lg" className="glow-amber">
+                Explore Financial Aid
+              </Button>
+            </Link>
+            <Button
+              as="a"
+              href={FORMSTACK_URL}
+              variant="secondary"
+              size="lg"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Apply Now
+            </Button>
+          </div>
+        </div>
+      </section>
+
+      {/* -- Disclosures ---------------------------------------------------- */}
+      <Section>
+        <div className="mx-auto max-w-3xl">
+          <h2 className="mb-6 font-heading text-2xl font-bold text-plum-900">
+            Important Disclosures
+          </h2>
+          <div className="space-y-3 text-sm leading-relaxed text-neutral-500">
+            <p>
+              Tuition and fees are subject to change. The figures listed above
+              reflect the current academic year and are provided for planning
+              purposes. Please contact the Admissions office for the most
+              up-to-date information.
+            </p>
+            <p>
+              Total estimated cost includes books, supplies, and other expenses
+              not included in total charges paid directly to the institution.
+            </p>
+            <p>
+              Interior Designers Institute is accredited by the Accrediting
+              Commission of Career Schools and Colleges (ACCSC). The Bachelor of
+              Arts program is additionally accredited by the Council for Interior
+              Design Accreditation (CIDA).
+            </p>
+          </div>
+        </div>
+      </Section>
+    </>
+  );
+}
