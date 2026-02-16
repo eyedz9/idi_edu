@@ -56,6 +56,17 @@
   /* Typography */
   --font-heading: "Playfair Display", serif;
   --font-body: "Inter", sans-serif;
+
+  /* Perfect Fourth (1.333) Type Scale */
+  --font-size-xs: 0.563rem;
+  --font-size-sm: 0.75rem;
+  --font-size-base: 1rem;
+  --font-size-h6: 1.333rem;
+  --font-size-h5: 1.777rem;
+  --font-size-h4: 2.369rem;
+  --font-size-h3: 3.157rem;
+  --font-size-h2: 4.209rem;
+  --font-size-h1: 5.61rem;
 }
 
 /* ================================================================
@@ -76,7 +87,17 @@
   h5,
   h6 {
     font-family: var(--font-heading);
+    line-height: 1.1;
   }
+
+  h1 { font-size: var(--font-size-h1); }
+  h2 { font-size: var(--font-size-h2); }
+  h3 { font-size: var(--font-size-h3); }
+  h4 { font-size: var(--font-size-h4); }
+  h5 { font-size: var(--font-size-h5); }
+  h6 { font-size: var(--font-size-h6); }
+  p  { font-size: var(--font-size-base); }
+  small { font-size: var(--font-size-sm); }
 
   ::selection {
     background: rgba(245, 166, 35, 0.3);

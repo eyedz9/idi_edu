@@ -151,7 +151,7 @@ export function TestimonialsSection() {
         {/* Quote text — large editorial serif */}
         <blockquote
           ref={quoteRef}
-          className="text-center font-heading text-2xl font-bold leading-relaxed text-parchment italic md:text-3xl lg:text-4xl"
+          className="text-center font-heading text-lg font-bold leading-relaxed text-parchment italic md:text-xl"
         >
           &ldquo;{current.quote}&rdquo;
         </blockquote>

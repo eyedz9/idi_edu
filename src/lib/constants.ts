@@ -17,5 +17,5 @@ export const SOCIAL_LINKS = {
   pinterest: "https://www.pinterest.com/idinewportbeach/",
 };
 
-export const NEXT_CLASS_DATE = "May 5";
+export const NEXT_CLASS_DATE = "May 11";
 export const ENROLLMENT_PERIOD = "Spring/Summer 2026";
