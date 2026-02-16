@@ -10,6 +10,7 @@ import { AnimatedSection } from "@/components/animations";
 export const metadata: Metadata = {
   title: "Staff Directory",
   description: `Meet the dedicated staff at ${SITE_NAME}. Our administrative team supports students from admissions through graduation and career placement.`,
+  alternates: { canonical: "/about/staff" },
 };
 
 /* -------------------------------------------------------------------------- */

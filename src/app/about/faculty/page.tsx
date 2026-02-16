@@ -11,6 +11,7 @@ import { AnimatedSection } from "@/components/animations";
 export const metadata: Metadata = {
   title: "Faculty",
   description: `Meet the faculty at ${SITE_NAME}. Our experienced instructors bring real-world interior design expertise to the classroom, mentoring students in studio-based learning.`,
+  alternates: { canonical: "/about/faculty" },
 };
 
 /* -------------------------------------------------------------------------- */

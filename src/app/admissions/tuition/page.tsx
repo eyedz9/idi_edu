@@ -14,6 +14,7 @@ export const metadata: Metadata = {
   title: "Tuition & Fees",
   description:
     "View tuition costs, fees, payment schedules, and payment options for all Interior Designers Institute programs. Certificate, Associate, Bachelor's, and Master's programs.",
+  alternates: { canonical: "/admissions/tuition" },
 };
 
 /* -------------------------------------------------------------------------- */

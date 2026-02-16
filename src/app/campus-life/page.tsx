@@ -12,6 +12,7 @@ import { AnimatedSection } from "@/components/animations";
 export const metadata: Metadata = {
   title: "Campus Life",
   description: `Experience life at ${SITE_NAME} in Newport Beach, California. Student organizations, campus facilities, and the inspiration of Southern California's design community.`,
+  alternates: { canonical: "/campus-life" },
 };
 
 const facilities = [

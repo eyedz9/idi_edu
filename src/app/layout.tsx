@@ -3,6 +3,7 @@ import { Playfair_Display, Inter } from "next/font/google";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { MotionProvider } from "@/components/animations/motion-provider";
+import { JsonLd } from "@/components/seo/JsonLd";
 import "./globals.css";
 
 const playfairDisplay = Playfair_Display({
@@ -25,7 +26,10 @@ export const metadata: Metadata = {
     template: "%s | Interior Designers Institute",
   },
   description:
-    "Interior Designers Institute (IDI) in Newport Beach, CA offers accredited Associate, Bachelor's, and Master's degree programs in Interior Design and Interior Architecture. Enroll today.",
+    "IDI in Newport Beach, CA offers accredited Certificate, Associate, Bachelor's, and Master's programs in Interior Design. Enroll for Spring 2026.",
+  alternates: {
+    canonical: "/",
+  },
   keywords: [
     "interior design school",
     "interior design degree",
@@ -85,6 +89,67 @@ export default function RootLayout({
         >
           Skip to content
         </a>
+        <JsonLd
+          data={{
+            "@context": "https://schema.org",
+            "@type": ["EducationalOrganization", "CollegeOrUniversity"],
+            "@id": "https://idi.edu/#organization",
+            name: "Interior Designers Institute",
+            alternateName: "IDI",
+            url: "https://idi.edu",
+            logo: "https://idi.edu/images/idi_logo_stacked.png",
+            image: "https://idi.edu/images/og-default.jpg",
+            description:
+              "Interior Designers Institute (IDI) in Newport Beach, CA offers accredited Associate, Bachelor's, and Master's degree programs in Interior Design and Interior Architecture.",
+            foundingDate: "1984",
+            telephone: "+1-949-675-4451",
+            email: "contact@idi.edu",
+            address: {
+              "@type": "PostalAddress",
+              streetAddress: "1061 Camelback Street",
+              addressLocality: "Newport Beach",
+              addressRegion: "CA",
+              postalCode: "92660",
+              addressCountry: "US",
+            },
+            geo: {
+              "@type": "GeoCoordinates",
+              latitude: 33.6189,
+              longitude: -117.9289,
+            },
+            areaServed: {
+              "@type": "State",
+              name: "California",
+            },
+            hasCredential: [
+              {
+                "@type": "EducationalOccupationalCredential",
+                credentialCategory: "Accreditation",
+                recognizedBy: {
+                  "@type": "Organization",
+                  name: "Accrediting Commission of Career Schools and Colleges",
+                  alternateName: "ACCSC",
+                },
+              },
+              {
+                "@type": "EducationalOccupationalCredential",
+                credentialCategory: "Program Accreditation",
+                recognizedBy: {
+                  "@type": "Organization",
+                  name: "Council for Interior Design Accreditation",
+                  alternateName: "CIDA",
+                },
+              },
+            ],
+            sameAs: [
+              "https://www.facebook.com/interiordesignersinstitute/",
+              "https://www.instagram.com/interiordesignersinstitute/",
+              "https://www.youtube.com/channel/UCI4GyaEGMw_sdJhaMwe_faA",
+              "https://www.tiktok.com/@idi_newportbeach",
+              "https://www.pinterest.com/idinewportbeach/",
+            ],
+          }}
+        />
         <MotionProvider>
           <Header />
           <main id="main-content" className="min-h-screen">{children}</main>

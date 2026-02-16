@@ -15,6 +15,7 @@ export const metadata: Metadata = {
   title: "Financial Aid",
   description:
     "Explore financial aid options at Interior Designers Institute including federal grants, loans, and scholarships. FAFSA school code 041863.",
+  alternates: { canonical: "/admissions/financial-aid" },
 };
 
 /* -------------------------------------------------------------------------- */

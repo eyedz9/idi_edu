@@ -12,6 +12,7 @@ import { AnimatedSection } from "@/components/animations";
 export const metadata: Metadata = {
   title: "Documents & Disclosures",
   description: `Access institutional documents, accreditation disclosures, financial aid information, and student outcome reports from ${SITE_NAME}.`,
+  alternates: { canonical: "/disclosures" },
 };
 
 /** Map category names to descriptive summaries */

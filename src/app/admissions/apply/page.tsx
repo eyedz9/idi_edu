@@ -10,8 +10,9 @@ import {
   enrollmentSteps,
   admissionRequirements,
 } from "@/data";
-import { FORMSTACK_URL, PHONE, EMAIL } from "@/lib/constants";
+import { FORMSTACK_URL, PHONE, EMAIL, SITE_URL } from "@/lib/constants";
 import { FAQAccordion } from "@/components/sections/faq-accordion";
+import { JsonLd } from "@/components/seo/JsonLd";
 
 /* -------------------------------------------------------------------------- */
 /*  Metadata                                                                  */
@@ -21,6 +22,7 @@ export const metadata: Metadata = {
   title: "Apply to IDI",
   description:
     "Start your application to Interior Designers Institute. Apply online for our Certificate, Associate, Bachelor's, or Master's programs in interior design.",
+  alternates: { canonical: "/admissions/apply" },
 };
 
 /* -------------------------------------------------------------------------- */
@@ -124,6 +126,32 @@ const requirementSummary = [
 export default function ApplyPage() {
   return (
     <>
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          mainEntity: faqs.map((faq) => ({
+            "@type": "Question",
+            name: faq.question,
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: faq.answer,
+            },
+          })),
+        }}
+      />
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          itemListElement: [
+            { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL },
+            { "@type": "ListItem", position: 2, name: "Admissions", item: `${SITE_URL}/admissions` },
+            { "@type": "ListItem", position: 3, name: "Apply" },
+          ],
+        }}
+      />
+
       {/* -- Hero ----------------------------------------------------------- */}
       <section className="relative overflow-hidden mesh-aurora grain py-24 md:py-32">
         {/* Background image */}

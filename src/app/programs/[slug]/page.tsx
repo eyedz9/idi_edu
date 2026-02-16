@@ -3,12 +3,13 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { programs, getProgramBySlug, getTuitionByProgram } from "@/data";
-import { SITE_NAME } from "@/lib/constants";
+import { SITE_NAME, SITE_URL } from "@/lib/constants";
 import { Section } from "@/components/ui/section";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, ProgramCard } from "@/components/ui/card";
 import { AnimatedSection } from "@/components/animations";
+import { JsonLd } from "@/components/seo/JsonLd";
 
 const programImages: Record<string, string> = {
   certificate:
@@ -45,6 +46,9 @@ export async function generateMetadata({
   return {
     title: program.name,
     description: `${program.description.split(". ").slice(0, 2).join(". ")}. Learn more about the ${program.shortName} at ${SITE_NAME}.`,
+    alternates: {
+      canonical: `/programs/${slug}`,
+    },
   };
 }
 
@@ -74,6 +78,69 @@ export default async function ProgramDetailPage({ params }: PageProps) {
 
   return (
     <>
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "Course",
+          name: program.name,
+          description: program.description,
+          provider: { "@id": "https://idi.edu/#organization" },
+          timeRequired: program.duration,
+          educationalLevel: program.degreeType,
+          numberOfCredits: {
+            "@type": "StructuredValue",
+            value: program.creditUnits,
+          },
+          offers: {
+            "@type": "Offer",
+            price: program.tuition,
+            priceCurrency: "USD",
+            category: "Tuition",
+          },
+          hasCourseInstance: {
+            "@type": "CourseInstance",
+            courseMode: program.onlineAvailable ? ["onsite", "online"] : "onsite",
+            location: {
+              "@type": "Place",
+              name: "Interior Designers Institute",
+              address: {
+                "@type": "PostalAddress",
+                streetAddress: "1061 Camelback Street",
+                addressLocality: "Newport Beach",
+                addressRegion: "CA",
+                postalCode: "92660",
+                addressCountry: "US",
+              },
+            },
+          },
+        }}
+      />
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          itemListElement: [
+            {
+              "@type": "ListItem",
+              position: 1,
+              name: "Home",
+              item: SITE_URL,
+            },
+            {
+              "@type": "ListItem",
+              position: 2,
+              name: "Programs",
+              item: `${SITE_URL}/programs`,
+            },
+            {
+              "@type": "ListItem",
+              position: 3,
+              name: program.shortName,
+            },
+          ],
+        }}
+      />
+
       {/* ── Breadcrumb ──────────────────────────────────────────────────── */}
       <div className="border-b border-white/10 bg-plum-800">
         <div className="mx-auto max-w-7xl px-4 py-3 sm:px-6 lg:px-8">

@@ -24,6 +24,7 @@ export const metadata: Metadata = {
   title: "Contact Us",
   description:
     "Contact Interior Designers Institute in Newport Beach, CA. Phone, email, address, office hours, and campus map. We're here to help with admissions, financial aid, and more.",
+  alternates: { canonical: "/contact" },
 };
 
 /* -------------------------------------------------------------------------- */

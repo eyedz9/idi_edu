@@ -20,6 +20,7 @@ export const metadata: Metadata = {
   title: "Admissions",
   description:
     "Learn how to apply to Interior Designers Institute. Explore enrollment steps, admission requirements, tuition, financial aid, and start your application.",
+  alternates: { canonical: "/admissions" },
 };
 
 /* -------------------------------------------------------------------------- */

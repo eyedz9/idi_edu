@@ -11,6 +11,7 @@ import { AnimatedSection } from "@/components/animations";
 export const metadata: Metadata = {
   title: "Our History",
   description: `Explore the history of ${SITE_NAME}, founded in 1984 in Corona del Mar and now located in Newport Beach, California. Over 40 years of excellence in interior design education.`,
+  alternates: { canonical: "/about/history" },
 };
 
 export default function HistoryPage() {

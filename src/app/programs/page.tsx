@@ -12,6 +12,7 @@ import { AnimatedSection } from "@/components/animations";
 export const metadata: Metadata = {
   title: "Our Programs",
   description: `Explore accredited interior design programs at ${SITE_NAME}. Certificate, Associate, Bachelor's, and Master's degrees in Interior Design and Interior Architecture.`,
+  alternates: { canonical: "/programs" },
 };
 
 const programImages: Record<string, string> = {

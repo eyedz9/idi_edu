@@ -12,6 +12,7 @@ import { AnimatedSection, CountUp } from "@/components/animations";
 export const metadata: Metadata = {
   title: "About",
   description: `Learn about ${SITE_NAME}, California's premier interior design school since 1984. Accredited programs, Newport Beach campus, and over 40 years of excellence in design education.`,
+  alternates: { canonical: "/about" },
 };
 
 const quickLinks = [

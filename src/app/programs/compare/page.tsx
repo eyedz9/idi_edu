@@ -11,6 +11,7 @@ import { AnimatedSection } from "@/components/animations";
 export const metadata: Metadata = {
   title: "Compare Programs",
   description: `Compare all interior design programs at ${SITE_NAME}. See degree types, duration, tuition, and career outcomes side by side.`,
+  alternates: { canonical: "/programs/compare" },
 };
 
 function formatCurrency(amount: number): string {

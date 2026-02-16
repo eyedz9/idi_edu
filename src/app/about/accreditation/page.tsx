@@ -12,6 +12,7 @@ import { AnimatedSection } from "@/components/animations";
 export const metadata: Metadata = {
   title: "Accreditation & Approvals",
   description: `${SITE_NAME} is accredited by ACCSC and CIDA, and approved by the California BPPE. Learn about our institutional accreditations and program-specific approvals.`,
+  alternates: { canonical: "/about/accreditation" },
 };
 
 /** Longer descriptions for each accreditation body */
