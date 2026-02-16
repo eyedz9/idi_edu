@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
 import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -57,19 +57,57 @@ export function GallerySection() {
   const headerRef = useRef<HTMLDivElement>(null);
   const { animationsEnabled } = useMotion();
 
-  useGSAP(
-    () => {
-      if (!animationsEnabled) return;
+  // Safety timeout: force gallery visible after 4s if ScrollTrigger hasn't fired
+  useEffect(() => {
+    const timer = setTimeout(() => {
       const el = sectionRef.current;
       if (!el) return;
+      const cards = el.querySelectorAll<HTMLElement>("[data-gallery-card]");
+      cards.forEach((card) => {
+        const computed = window.getComputedStyle(card);
+        if (computed.opacity === "0" || computed.visibility === "hidden") {
+          card.style.clipPath = "none";
+          card.style.opacity = "1";
+          card.style.visibility = "visible";
+        }
+      });
+      if (headerRef.current) {
+        const h = window.getComputedStyle(headerRef.current);
+        if (h.opacity === "0" || h.visibility === "hidden") {
+          headerRef.current.style.opacity = "1";
+          headerRef.current.style.visibility = "visible";
+          headerRef.current.style.transform = "none";
+        }
+      }
+    }, 4000);
+    return () => clearTimeout(timer);
+  }, []);
+
+  useGSAP(
+    () => {
+      const el = sectionRef.current;
+      if (!el) return;
+
+      const cards = el.querySelectorAll<HTMLElement>("[data-gallery-card]");
+
+      if (!animationsEnabled) {
+        // Ensure everything is visible when animations are disabled
+        if (headerRef.current) {
+          gsap.set(headerRef.current, { opacity: 1, y: 0 });
+        }
+        cards.forEach((card) => {
+          gsap.set(card, { clipPath: "none", opacity: 1 });
+        });
+        return;
+      }
 
       // Animate header
       if (headerRef.current) {
         gsap.fromTo(
           headerRef.current,
-          { opacity: 0, y: 40 },
+          { autoAlpha: 0, y: 40 },
           {
-            opacity: 1,
+            autoAlpha: 1,
             y: 0,
             duration: 0.8,
             ease: "power3.out",
@@ -83,17 +121,16 @@ export function GallerySection() {
       }
 
       // Clip-path reveal for each gallery card
-      const cards = el.querySelectorAll<HTMLElement>("[data-gallery-card]");
       cards.forEach((card, i) => {
         gsap.fromTo(
           card,
           {
             clipPath: "inset(100% 0% 0% 0%)",
-            opacity: 0,
+            autoAlpha: 0,
           },
           {
             clipPath: "inset(0% 0% 0% 0%)",
-            opacity: 1,
+            autoAlpha: 1,
             duration: 1.2,
             delay: i * 0.12,
             ease: "power3.inOut",
@@ -153,11 +190,11 @@ export function GallerySection() {
         </div>
 
         {/* Masonry grid */}
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-12 lg:auto-rows-[220px]">
+        <div className="grid w-full grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-12 lg:auto-rows-[200px]">
           {/* Item 1 — Large, spans 7 cols / 2 rows */}
           <div
             data-gallery-card
-            className="group relative overflow-hidden rounded-2xl lg:col-span-7 lg:row-span-2"
+            className="group relative overflow-hidden rounded-2xl lg:col-span-7 lg:row-span-2 lg:row-start-1"
           >
             <div data-gallery-img className="absolute inset-0">
               <Image
@@ -170,7 +207,7 @@ export function GallerySection() {
             </div>
             <div className="absolute inset-0 bg-gradient-to-t from-plum-900/80 via-transparent to-transparent opacity-70 transition-opacity duration-300 group-hover:opacity-90" />
             <div className="absolute inset-x-0 bottom-0 translate-y-2 p-6 opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100 sm:p-8">
-              <p className="text-xs font-semibold uppercase tracking-[0.15em] text-pink-500">
+              <p className="text-xs sm:text-sm font-semibold uppercase tracking-[0.15em] text-pink-500">
                 {galleryItems[0].caption}
               </p>
               <p className="mt-1 font-heading text-xl font-bold text-parchment">
@@ -195,7 +232,7 @@ export function GallerySection() {
             </div>
             <div className="absolute inset-0 bg-gradient-to-t from-plum-900/80 via-transparent to-transparent opacity-70 transition-opacity duration-300 group-hover:opacity-90" />
             <div className="absolute inset-x-0 bottom-0 translate-y-2 p-6 opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
-              <p className="text-xs font-semibold uppercase tracking-[0.15em] text-pink-500">
+              <p className="text-xs sm:text-sm font-semibold uppercase tracking-[0.15em] text-pink-500">
                 {galleryItems[1].caption}
               </p>
               <p className="mt-1 font-heading text-lg font-bold text-parchment">
@@ -220,7 +257,7 @@ export function GallerySection() {
             </div>
             <div className="absolute inset-0 bg-gradient-to-t from-plum-900/80 via-transparent to-transparent opacity-70 transition-opacity duration-300 group-hover:opacity-90" />
             <div className="absolute inset-x-0 bottom-0 translate-y-2 p-6 opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
-              <p className="text-xs font-semibold uppercase tracking-[0.15em] text-pink-500">
+              <p className="text-xs sm:text-sm font-semibold uppercase tracking-[0.15em] text-pink-500">
                 {galleryItems[2].caption}
               </p>
               <p className="mt-1 font-heading text-lg font-bold text-parchment">
@@ -232,7 +269,7 @@ export function GallerySection() {
           {/* Item 4 — 5 cols, 2 rows */}
           <div
             data-gallery-card
-            className="group relative overflow-hidden rounded-2xl lg:col-span-5 lg:row-span-2"
+            className="group relative overflow-hidden rounded-2xl lg:col-span-5 lg:row-span-2 lg:row-start-1"
           >
             <div data-gallery-img className="absolute inset-0">
               <Image
@@ -245,7 +282,7 @@ export function GallerySection() {
             </div>
             <div className="absolute inset-0 bg-gradient-to-t from-plum-900/80 via-transparent to-transparent opacity-70 transition-opacity duration-300 group-hover:opacity-90" />
             <div className="absolute inset-x-0 bottom-0 translate-y-2 p-6 opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100 sm:p-8">
-              <p className="text-xs font-semibold uppercase tracking-[0.15em] text-pink-500">
+              <p className="text-xs sm:text-sm font-semibold uppercase tracking-[0.15em] text-pink-500">
                 {galleryItems[3].caption}
               </p>
               <p className="mt-1 font-heading text-xl font-bold text-parchment">
@@ -257,7 +294,7 @@ export function GallerySection() {
           {/* Item 5 — 7 cols, 2 rows */}
           <div
             data-gallery-card
-            className="group relative overflow-hidden rounded-2xl lg:col-span-7 lg:row-span-2"
+            className="group relative overflow-hidden rounded-2xl lg:col-span-7 lg:row-span-2 lg:row-start-3"
           >
             <div data-gallery-img className="absolute inset-0">
               <Image
@@ -270,7 +307,7 @@ export function GallerySection() {
             </div>
             <div className="absolute inset-0 bg-gradient-to-t from-plum-900/80 via-transparent to-transparent opacity-70 transition-opacity duration-300 group-hover:opacity-90" />
             <div className="absolute inset-x-0 bottom-0 translate-y-2 p-6 opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100 sm:p-8">
-              <p className="text-xs font-semibold uppercase tracking-[0.15em] text-pink-500">
+              <p className="text-xs sm:text-sm font-semibold uppercase tracking-[0.15em] text-pink-500">
                 {galleryItems[4].caption}
               </p>
               <p className="mt-1 font-heading text-xl font-bold text-parchment">

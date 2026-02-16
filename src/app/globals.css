@@ -64,8 +64,8 @@
 
 @layer base {
   body {
-    background-color: var(--color-warm-50);
-    color: var(--color-neutral-700);
+    background-color: var(--color-plum-900);
+    color: var(--color-parchment);
     font-family: var(--font-body);
   }
 

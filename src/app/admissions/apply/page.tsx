@@ -11,6 +11,7 @@ import {
   admissionRequirements,
 } from "@/data";
 import { FORMSTACK_URL, PHONE, EMAIL } from "@/lib/constants";
+import { FAQAccordion } from "@/components/sections/faq-accordion";
 
 /* -------------------------------------------------------------------------- */
 /*  Metadata                                                                  */
@@ -35,13 +36,13 @@ function Breadcrumbs() {
             Home
           </Link>
         </li>
-        <li aria-hidden="true">/</li>
+        <li aria-hidden="true" className="text-sandstone/40">&rsaquo;</li>
         <li>
           <Link href="/admissions" className="hover:text-pink-400 transition-colors">
             Admissions
           </Link>
         </li>
-        <li aria-hidden="true">/</li>
+        <li aria-hidden="true" className="text-sandstone/40">&rsaquo;</li>
         <li className="font-medium text-parchment">Apply</li>
       </ol>
     </nav>
@@ -185,15 +186,15 @@ export default function ApplyPage() {
         <div className="mx-auto max-w-4xl">
           <div className="grid gap-6 md:grid-cols-3">
             <Card className="p-6 text-center">
-              <p className="text-xs font-semibold uppercase tracking-wider text-neutral-500">
+              <p className="text-xs sm:text-sm font-semibold uppercase tracking-wider text-sandstone">
                 Enrollment Period
               </p>
-              <p className="mt-2 font-heading text-xl font-bold text-plum-900">
+              <p className="mt-2 font-heading text-xl font-bold text-parchment">
                 {enrollmentConfig.registrationPeriod}
               </p>
             </Card>
             <Card className="p-6 text-center">
-              <p className="text-xs font-semibold uppercase tracking-wider text-neutral-500">
+              <p className="text-xs sm:text-sm font-semibold uppercase tracking-wider text-sandstone">
                 Next Class Date
               </p>
               <p className="mt-2 font-heading text-xl font-bold text-pink-500">
@@ -201,10 +202,10 @@ export default function ApplyPage() {
               </p>
             </Card>
             <Card className="p-6 text-center">
-              <p className="text-xs font-semibold uppercase tracking-wider text-neutral-500">
+              <p className="text-xs sm:text-sm font-semibold uppercase tracking-wider text-sandstone">
                 Application Fee
               </p>
-              <p className="mt-2 font-heading text-xl font-bold text-plum-900">
+              <p className="mt-2 font-heading text-xl font-bold text-parchment">
                 Free
               </p>
             </Card>
@@ -222,14 +223,14 @@ export default function ApplyPage() {
         <div className="grid gap-6 md:grid-cols-2">
           {requirementSummary.map((group) => (
             <Card key={group.program} className="p-6">
-              <h3 className="font-heading text-lg font-bold text-plum-900">
+              <h3 className="font-heading text-lg font-bold text-parchment">
                 {group.program}
               </h3>
               <ul className="mt-3 space-y-2">
                 {group.items.map((item, i) => (
                   <li
                     key={i}
-                    className="flex items-start gap-2 text-sm leading-relaxed text-neutral-600"
+                    className="flex items-start gap-2 text-sm leading-relaxed text-sandstone"
                   >
                     <svg
                       className="mt-0.5 h-4 w-4 flex-shrink-0 text-pink-500"
@@ -251,7 +252,7 @@ export default function ApplyPage() {
               </ul>
               <Link
                 href="/admissions"
-                className="mt-3 inline-flex items-center gap-1 text-sm font-semibold text-pink-500 hover:text-pink-400 transition-colors"
+                className="mt-3 inline-flex items-center min-h-[44px] gap-1 text-sm font-semibold text-pink-500 hover:text-pink-400 transition-colors"
               >
                 View all requirements
                 <svg
@@ -316,38 +317,49 @@ export default function ApplyPage() {
         </div>
       </Section>
 
+      {/* -- Notice to Prospective Students --------------------------------- */}
+      <Section>
+        <div className="mx-auto max-w-3xl">
+          <Card className="border-l-4 border-amber-500 p-6 md:p-8">
+            <h3 className="font-heading text-lg font-bold text-parchment">
+              Notice to Prospective Students
+            </h3>
+            <p className="mt-3 text-sm leading-relaxed text-sandstone">
+              As a prospective student, you are encouraged to review the{" "}
+              <a href="/documents/idi-catalog.pdf" className="text-pink-500 hover:text-pink-400 transition-colors" target="_blank" rel="noopener noreferrer">
+                School Catalog
+              </a>{" "}
+              and{" "}
+              <a href="/documents/school-performance-fact-sheet.pdf" className="text-pink-500 hover:text-pink-400 transition-colors" target="_blank" rel="noopener noreferrer">
+                School Performance Fact Sheet
+              </a>{" "}
+              prior to signing an enrollment agreement.
+            </p>
+          </Card>
+        </div>
+      </Section>
+
       {/* -- FAQs ----------------------------------------------------------- */}
       <Section
         bg="light"
         overline="Common Questions"
         title="Application FAQs"
       >
-        <div className="mx-auto max-w-3xl divide-y divide-warm-200">
-          {faqs.map((faq) => (
-            <div key={faq.question} className="py-6 first:pt-0 last:pb-0">
-              <h3 className="font-body text-base font-semibold text-plum-900">
-                {faq.question}
-              </h3>
-              <p className="mt-2 text-sm leading-relaxed text-neutral-500">
-                {faq.answer}
-              </p>
-            </div>
-          ))}
-        </div>
+        <FAQAccordion faqs={faqs} />
       </Section>
 
       {/* -- Contact for Questions ------------------------------------------ */}
       <Section>
         <div className="mx-auto max-w-3xl text-center">
-          <h2 className="font-heading text-3xl font-bold text-plum-900 md:text-4xl">
+          <h2 className="font-heading text-3xl font-bold text-parchment md:text-4xl">
             Have Questions?
           </h2>
-          <p className="mt-4 text-lg leading-relaxed text-neutral-500">
+          <p className="mt-4 text-lg leading-relaxed text-sandstone">
             Our admissions team is here to help. Reach out anytime.
           </p>
-          <div className="mt-6 flex flex-col items-center gap-3 text-neutral-600">
+          <div className="mt-6 flex flex-col items-center gap-3 text-sandstone">
             <p>
-              <span className="font-semibold text-plum-900">Phone:</span>{" "}
+              <span className="font-semibold text-parchment">Phone:</span>{" "}
               <a
                 href={`tel:${PHONE.replace(/\D/g, "")}`}
                 className="text-pink-500 hover:text-pink-400 transition-colors"
@@ -356,7 +368,7 @@ export default function ApplyPage() {
               </a>
             </p>
             <p>
-              <span className="font-semibold text-plum-900">Email:</span>{" "}
+              <span className="font-semibold text-parchment">Email:</span>{" "}
               <a
                 href={`mailto:${EMAIL}`}
                 className="text-pink-500 hover:text-pink-400 transition-colors"
@@ -367,15 +379,33 @@ export default function ApplyPage() {
           </div>
           <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
             <Link href="/admissions/tuition">
-              <Button variant="secondary" size="md" className="border-plum-900 text-plum-900 hover:bg-plum-900 hover:text-parchment">
+              <Button variant="secondary" size="md" className="border-white/20 text-parchment hover:bg-white/10">
                 View Tuition
               </Button>
             </Link>
             <Link href="/admissions/financial-aid">
-              <Button variant="secondary" size="md" className="border-plum-900 text-plum-900 hover:bg-plum-900 hover:text-parchment">
+              <Button variant="secondary" size="md" className="border-white/20 text-parchment hover:bg-white/10">
                 Financial Aid
               </Button>
             </Link>
+          </div>
+
+          {/* Pre-enrollment document links */}
+          <div className="mt-8 border-t border-white/10 pt-6">
+            <p className="text-xs font-semibold uppercase tracking-wider text-sandstone/70">
+              Pre-Enrollment Documents
+            </p>
+            <div className="mt-3 flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm">
+              <a href="/documents/idi-catalog.pdf" className="text-pink-500 hover:text-pink-400 transition-colors" target="_blank" rel="noopener noreferrer">
+                School Catalog
+              </a>
+              <a href="/documents/school-performance-fact-sheet.pdf" className="text-pink-500 hover:text-pink-400 transition-colors" target="_blank" rel="noopener noreferrer">
+                Performance Fact Sheet
+              </a>
+              <Link href="/disclosures#strf" className="text-pink-500 hover:text-pink-400 transition-colors">
+                STRF Disclosure
+              </Link>
+            </div>
           </div>
         </div>
       </Section>

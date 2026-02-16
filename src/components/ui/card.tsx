@@ -11,7 +11,7 @@ import type { Program, Testimonial } from "@/types";
 
 const cardVariantStyles = {
   light:
-    "bg-white border border-warm-200 shadow-sm hover:shadow-md",
+    "bg-plum-800 border border-white/10 hover:border-white/20",
   dark:
     "bg-plum-700 border border-plum-700/60 hover:shadow-[0_0_30px_rgba(176,108,255,0.12)]",
   glass:
@@ -88,21 +88,21 @@ export function ProgramCard({
 
       {/* Content */}
       <div className="flex flex-1 flex-col p-6">
-        <p className="mb-1 font-body text-xs font-semibold uppercase tracking-[0.15em] text-pink-500">
+        <p className="mb-1 font-body text-xs sm:text-sm font-semibold uppercase tracking-[0.15em] text-pink-500">
           {program.degreeType}
         </p>
-        <h3 className="font-heading text-xl font-bold text-plum-900">
+        <h3 className="font-heading text-xl font-bold text-parchment">
           {program.name}
         </h3>
-        <p className="mt-2 flex-1 text-sm leading-relaxed text-neutral-500 line-clamp-3">
+        <p className="mt-2 flex-1 text-sm leading-relaxed text-sandstone line-clamp-3">
           {program.description}
         </p>
 
         {/* Meta row */}
-        <div className="mt-4 flex items-center justify-between border-t border-warm-200 pt-4">
+        <div className="mt-4 flex items-center justify-between border-t border-white/10 pt-4">
           <div>
-            <p className="text-xs text-neutral-500">Tuition</p>
-            <p className="font-body text-sm font-semibold text-plum-900">
+            <p className="text-xs sm:text-sm text-sandstone">Tuition</p>
+            <p className="font-body text-sm font-semibold text-parchment">
               {tuitionFormatted}
             </p>
           </div>
@@ -115,7 +115,7 @@ export function ProgramCard({
         {/* CTA */}
         <Link
           href={`/programs/${program.slug}`}
-          className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-pink-500 transition-colors hover:text-pink-400"
+          className="mt-4 inline-flex items-center min-h-[44px] gap-1.5 text-sm font-semibold text-pink-500 transition-colors hover:text-pink-400"
           aria-label={`Learn more about ${program.name}`}
         >
           Learn More
@@ -164,14 +164,14 @@ export function TestimonialCard({
         <path d="M4.583 17.321C3.553 16.227 3 15 3 13.011c0-3.5 2.457-6.637 6.03-8.188l.893 1.378c-3.335 1.804-3.987 4.145-4.247 5.621.537-.278 1.24-.375 1.929-.311C9.591 11.69 11 13.166 11 15c0 1.933-1.567 3.5-3.5 3.5-1.171 0-2.274-.556-2.917-1.179zM15.583 17.321C14.553 16.227 14 15 14 13.011c0-3.5 2.457-6.637 6.03-8.188l.893 1.378c-3.335 1.804-3.987 4.145-4.247 5.621.537-.278 1.24-.375 1.929-.311C20.591 11.69 22 13.166 22 15c0 1.933-1.567 3.5-3.5 3.5-1.171 0-2.274-.556-2.917-1.179z" />
       </svg>
 
-      <blockquote className="flex-1 text-base leading-relaxed text-neutral-700 italic">
+      <blockquote className="flex-1 text-base leading-relaxed text-parchment italic">
         &ldquo;{testimonial.quote}&rdquo;
       </blockquote>
 
       {/* Author */}
-      <div className="mt-6 flex items-center gap-4 border-t border-warm-200 pt-4">
+      <div className="mt-6 flex items-center gap-4 border-t border-white/10 pt-4">
         {testimonial.imageSrc && (
-          <div className="relative h-12 w-12 flex-shrink-0 overflow-hidden rounded-full bg-warm-200">
+          <div className="relative h-12 w-12 flex-shrink-0 overflow-hidden rounded-full bg-plum-700">
             <Image
               src={testimonial.imageSrc}
               alt={testimonial.name}
@@ -182,10 +182,10 @@ export function TestimonialCard({
           </div>
         )}
         <div>
-          <p className="font-body text-sm font-semibold text-plum-900">
+          <p className="font-body text-sm font-semibold text-parchment">
             {testimonial.name}
           </p>
-          <p className="text-xs text-neutral-500">
+          <p className="text-xs text-sandstone">
             {testimonial.currentTitle}
             {testimonial.company && `, ${testimonial.company}`}
           </p>
@@ -225,7 +225,7 @@ export function FacultyCard({
       {...props}
     >
       {/* Photo */}
-      <div className="relative aspect-[3/4] w-full overflow-hidden bg-warm-200">
+      <div className="relative aspect-[3/4] w-full overflow-hidden bg-plum-700">
         {faculty.imageSrc ? (
           <Image
             src={faculty.imageSrc}
@@ -241,13 +241,13 @@ export function FacultyCard({
 
       {/* Info */}
       <div className="p-6">
-        <h3 className="font-heading text-lg font-bold text-plum-900">
+        <h3 className="font-heading text-lg font-bold text-parchment">
           {faculty.name}
         </h3>
-        <p className="mt-0.5 text-xs font-semibold uppercase tracking-wider text-pink-500">
+        <p className="mt-0.5 text-xs sm:text-sm font-semibold uppercase tracking-wider text-pink-500">
           {faculty.title}
         </p>
-        <p className="mt-3 text-sm leading-relaxed text-neutral-500 line-clamp-3">
+        <p className="mt-3 text-sm leading-relaxed text-sandstone line-clamp-3">
           {faculty.bio}
         </p>
 
@@ -256,7 +256,7 @@ export function FacultyCard({
             {faculty.specialties.map((s) => (
               <span
                 key={s}
-                className="rounded-full bg-warm-50 px-2.5 py-0.5 text-[11px] font-medium text-neutral-500"
+                className="rounded-full bg-white/5 px-2.5 py-0.5 text-[11px] font-medium text-sandstone"
               >
                 {s}
               </span>

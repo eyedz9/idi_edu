@@ -35,7 +35,7 @@ function Breadcrumbs() {
             Home
           </Link>
         </li>
-        <li aria-hidden="true">/</li>
+        <li aria-hidden="true" className="text-sandstone/40">&rsaquo;</li>
         <li className="font-medium text-parchment">Admissions</li>
       </ol>
     </nav>
@@ -63,6 +63,7 @@ const quickLinks = [
     description:
       "View program-by-program tuition breakdowns, payment schedules, and payment options.",
     href: "/admissions/tuition",
+    imageSrc: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&q=75",
     icon: (
       <svg className="h-8 w-8" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" aria-hidden="true">
         <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v12m-3-2.818.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
@@ -74,6 +75,7 @@ const quickLinks = [
     description:
       "Explore federal grants, loans, and scholarships. Get FAFSA guidance and contact our Financial Aid office.",
     href: "/admissions/financial-aid",
+    imageSrc: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=800&q=75",
     icon: (
       <svg className="h-8 w-8" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" aria-hidden="true">
         <path strokeLinecap="round" strokeLinejoin="round" d="M4.26 10.147a60.438 60.438 0 0 0-.491 6.347A48.62 48.62 0 0 1 12 20.904a48.62 48.62 0 0 1 8.232-4.41 60.46 60.46 0 0 0-.491-6.347m-15.482 0a50.636 50.636 0 0 0-2.658-.813A59.906 59.906 0 0 1 12 3.493a59.903 59.903 0 0 1 10.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.717 50.717 0 0 1 12 13.489a50.702 50.702 0 0 1 7.74-3.342M6.75 15a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm0 0v-3.675A55.378 55.378 0 0 1 12 8.443m-7.007 11.55A5.981 5.981 0 0 0 6.75 15.75v-1.5" />
@@ -85,6 +87,7 @@ const quickLinks = [
     description:
       "Ready to start? Complete your online application and take the first step toward your design career.",
     href: "/admissions/apply",
+    imageSrc: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&q=75",
     icon: (
       <svg className="h-8 w-8" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" aria-hidden="true">
         <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" />
@@ -174,14 +177,14 @@ export default function AdmissionsPage() {
         <div className="grid gap-8 md:grid-cols-2">
           {Object.entries(admissionRequirements).map(([key, group]) => (
             <Card key={key} className="p-6 md:p-8">
-              <h3 className="font-heading text-xl font-bold text-plum-900">
+              <h3 className="font-heading text-xl font-bold text-parchment">
                 {requirementLabels[key]}
               </h3>
               <ul className="mt-4 space-y-2">
                 {group.requirements.map((req, i) => (
                   <li
                     key={i}
-                    className="flex items-start gap-2 text-sm leading-relaxed text-neutral-600"
+                    className="flex items-start gap-2 text-sm leading-relaxed text-sandstone"
                   >
                     <svg
                       className="mt-0.5 h-4 w-4 flex-shrink-0 text-pink-500"
@@ -215,34 +218,94 @@ export default function AdmissionsPage() {
         <div className="grid gap-8 md:grid-cols-3">
           {quickLinks.map((link) => (
             <Link key={link.href} href={link.href} className="group">
-              <Card className="flex h-full flex-col p-6 md:p-8 transition-all group-hover:shadow-lg group-hover:ring-2 group-hover:ring-amber-500/30">
-                <div className="mb-4 text-pink-500">{link.icon}</div>
-                <h3 className="font-heading text-xl font-bold text-plum-900 group-hover:text-pink-500 transition-colors">
-                  {link.title}
-                </h3>
-                <p className="mt-2 flex-1 text-sm leading-relaxed text-neutral-500">
-                  {link.description}
-                </p>
-                <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-pink-500">
-                  Learn More
-                  <svg
-                    className="h-4 w-4 transition-transform group-hover:translate-x-0.5"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    strokeWidth={2}
-                    stroke="currentColor"
-                    aria-hidden="true"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"
-                    />
-                  </svg>
-                </span>
+              <Card className="group flex h-full flex-col overflow-hidden transition-all group-hover:shadow-[0_0_30px_rgba(176,108,255,0.12)] group-hover:ring-2 group-hover:ring-amber-500/30">
+                <div className="relative aspect-[16/10] w-full overflow-hidden">
+                  <Image
+                    src={link.imageSrc}
+                    alt={link.title}
+                    fill
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    sizes="(max-width: 768px) 100vw, 33vw"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-plum-900/60 to-transparent" />
+                  <div className="absolute bottom-3 left-4 text-pink-500">{link.icon}</div>
+                </div>
+                <div className="flex flex-1 flex-col p-6">
+                  <h3 className="font-heading text-xl font-bold text-parchment group-hover:text-pink-500 transition-colors">
+                    {link.title}
+                  </h3>
+                  <p className="mt-2 flex-1 text-sm leading-relaxed text-sandstone">
+                    {link.description}
+                  </p>
+                  <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-pink-500">
+                    Learn More
+                    <svg
+                      className="h-4 w-4 transition-transform group-hover:translate-x-0.5"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      strokeWidth={2}
+                      stroke="currentColor"
+                      aria-hidden="true"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"
+                      />
+                    </svg>
+                  </span>
+                </div>
               </Card>
             </Link>
           ))}
+        </div>
+      </Section>
+
+      {/* -- Pre-Enrollment Information -------------------------------------- */}
+      <Section>
+        <div className="mx-auto max-w-3xl">
+          <Card className="border-l-4 border-amber-500 p-6 md:p-8">
+            <h3 className="font-heading text-xl font-bold text-parchment">
+              Pre-Enrollment Information
+            </h3>
+            <p className="mt-3 text-sm leading-relaxed text-sandstone">
+              Before enrolling, please review the following important documents:
+            </p>
+            <ul className="mt-4 space-y-2">
+              <li className="flex items-start gap-2 text-sm leading-relaxed text-sandstone">
+                <svg className="mt-0.5 h-4 w-4 flex-shrink-0 text-pink-500" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" aria-hidden="true">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" />
+                </svg>
+                <a href="/documents/idi-catalog.pdf" className="text-pink-500 hover:text-pink-400 transition-colors" target="_blank" rel="noopener noreferrer">
+                  School Catalog (PDF)
+                </a>
+              </li>
+              <li className="flex items-start gap-2 text-sm leading-relaxed text-sandstone">
+                <svg className="mt-0.5 h-4 w-4 flex-shrink-0 text-pink-500" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" aria-hidden="true">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" />
+                </svg>
+                <a href="/documents/school-performance-fact-sheet.pdf" className="text-pink-500 hover:text-pink-400 transition-colors" target="_blank" rel="noopener noreferrer">
+                  School Performance Fact Sheet (PDF)
+                </a>
+              </li>
+              <li className="flex items-start gap-2 text-sm leading-relaxed text-sandstone">
+                <svg className="mt-0.5 h-4 w-4 flex-shrink-0 text-pink-500" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" aria-hidden="true">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" />
+                </svg>
+                <Link href="/disclosures#strf" className="text-pink-500 hover:text-pink-400 transition-colors">
+                  Student Tuition Recovery Fund (STRF)
+                </Link>
+              </li>
+              <li className="flex items-start gap-2 text-sm leading-relaxed text-sandstone">
+                <svg className="mt-0.5 h-4 w-4 flex-shrink-0 text-pink-500" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" aria-hidden="true">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" />
+                </svg>
+                <Link href="/disclosures" className="text-pink-500 hover:text-pink-400 transition-colors">
+                  All Disclosures &amp; Consumer Information
+                </Link>
+              </li>
+            </ul>
+          </Card>
         </div>
       </Section>
 

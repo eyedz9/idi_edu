@@ -84,7 +84,7 @@ const defaultColumns: FooterColumn[] = [
   {
     title: "Resources",
     links: [
-      { label: "Disclosures", href: "/disclosures" },
+      { label: "Consumer Information", href: "/disclosures" },
       { label: "Financial Aid", href: "/admissions/financial-aid" },
       { label: "Privacy Policy", href: "/disclosures#privacy" },
       { label: "Accreditation", href: "/about/accreditation" },
@@ -106,7 +106,7 @@ const defaultSocials: SocialLink[] = [
 
 export default function Footer({
   brandName = "Interior Designers Institute",
-  tagline = "California's Premier Interior Design School",
+  tagline = "Where Creative Talent Becomes Professional Design",
   address = "1061 Camelback Street, Newport Beach, CA 92660",
   phone = "(949) 675-4451",
   email = "contact@idi.edu",
@@ -146,7 +146,7 @@ export default function Footer({
               <p>
                 <a
                   href={phoneHref}
-                  className="transition-colors hover:text-pink-400"
+                  className="inline-flex items-center min-h-[44px] transition-colors hover:text-pink-400"
                 >
                   {phone}
                 </a>
@@ -154,7 +154,7 @@ export default function Footer({
               <p>
                 <a
                   href={`mailto:${email}`}
-                  className="transition-colors hover:text-pink-400"
+                  className="inline-flex items-center min-h-[44px] transition-colors hover:text-pink-400"
                 >
                   {email}
                 </a>
@@ -176,14 +176,14 @@ export default function Footer({
                         href={link.href}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-sandstone transition-colors hover:text-parchment"
+                        className="inline-flex items-center min-h-[44px] text-sandstone transition-colors hover:text-parchment"
                       >
                         {link.label}
                       </a>
                     ) : (
                       <Link
                         href={link.href}
-                        className="text-sandstone transition-colors hover:text-parchment"
+                        className="inline-flex items-center min-h-[44px] text-sandstone transition-colors hover:text-parchment"
                       >
                         {link.label}
                       </Link>
@@ -208,7 +208,7 @@ export default function Footer({
                   href={social.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex h-10 w-10 items-center justify-center rounded-full bg-white/5 text-sandstone transition-colors hover:bg-pink-500 hover:text-plum-900"
+                  className="flex h-11 w-11 items-center justify-center rounded-full bg-white/5 text-sandstone transition-colors hover:bg-pink-500 hover:text-plum-900"
                   aria-label={`Follow us on ${social.srLabel}`}
                 >
                   {socialIcons[social.platform] ?? (
@@ -242,7 +242,8 @@ export default function Footer({
                 alt="ACCSC Accredited"
                 width={80}
                 height={32}
-                className="h-8 w-auto brightness-0 invert opacity-60 hover:opacity-100 transition-opacity"
+                className="brightness-0 invert opacity-60 hover:opacity-100 transition-opacity"
+                style={{ height: 'auto', width: 'auto', maxHeight: '2rem' }}
                 unoptimized
               />
               <Image
@@ -250,7 +251,8 @@ export default function Footer({
                 alt="BPPE Approved"
                 width={80}
                 height={32}
-                className="h-8 w-auto brightness-0 invert opacity-60 hover:opacity-100 transition-opacity"
+                className="brightness-0 invert opacity-60 hover:opacity-100 transition-opacity"
+                style={{ height: 'auto', width: 'auto', maxHeight: '2rem' }}
                 unoptimized
               />
               <Image
@@ -258,7 +260,8 @@ export default function Footer({
                 alt="CIDA Accredited"
                 width={80}
                 height={32}
-                className="h-8 w-auto brightness-0 invert opacity-60 hover:opacity-100 transition-opacity"
+                className="brightness-0 invert opacity-60 hover:opacity-100 transition-opacity"
+                style={{ height: 'auto', width: 'auto', maxHeight: '2rem' }}
                 unoptimized
               />
             </div>

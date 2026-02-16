@@ -116,19 +116,19 @@ export default function CompareProgramsPage() {
   return (
     <>
       {/* ── Breadcrumb ──────────────────────────────────────────────────── */}
-      <div className="border-b border-warm-200 bg-warm-100">
+      <div className="border-b border-white/10 bg-plum-800">
         <div className="mx-auto max-w-7xl px-4 py-3 sm:px-6 lg:px-8">
           <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-sm">
             <Link
               href="/programs"
-              className="text-neutral-400 transition-colors hover:text-pink-500"
+              className="text-sandstone/60 transition-colors hover:text-pink-500"
             >
               Programs
             </Link>
-            <span className="text-neutral-300" aria-hidden="true">
+            <span className="text-sandstone/40" aria-hidden="true">
               &rsaquo;
             </span>
-            <span className="font-medium text-plum-900">
+            <span className="font-medium text-parchment">
               Compare Programs
             </span>
           </nav>
@@ -156,7 +156,7 @@ export default function CompareProgramsPage() {
         <AnimatedSection>
           {/* Desktop/tablet: horizontal scroll table */}
           <div className="hidden md:block">
-            <div className="overflow-x-auto rounded-xl border border-warm-200">
+            <div className="overflow-x-auto rounded-xl border border-white/10">
               <table className="w-full min-w-[700px] text-left text-sm">
                 <thead>
                   <tr className="border-b border-warm-200 bg-plum-900">
@@ -180,19 +180,19 @@ export default function CompareProgramsPage() {
                     ))}
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-warm-200">
+                <tbody className="divide-y divide-white/10">
                   {rows.map((row, i) => (
                     <tr
                       key={row.label}
-                      className={i % 2 === 0 ? "bg-warm-50" : "bg-warm-100"}
+                      className={i % 2 === 0 ? "bg-plum-800" : "bg-plum-900"}
                     >
-                      <td className="px-6 py-3 font-medium text-plum-900">
+                      <td className="px-6 py-3 font-medium text-parchment">
                         {row.label}
                       </td>
                       {programs.map((p) => (
                         <td
                           key={p.slug}
-                          className="px-6 py-3 text-neutral-600"
+                          className="px-6 py-3 text-sandstone"
                         >
                           {row.getValue(p.slug)}
                         </td>
@@ -201,12 +201,12 @@ export default function CompareProgramsPage() {
                   ))}
                 </tbody>
                 <tfoot>
-                  <tr className="border-t border-warm-200 bg-warm-100">
+                  <tr className="border-t border-white/10 bg-plum-900">
                     <td className="px-6 py-4" />
                     {programs.map((p) => (
                       <td key={p.slug} className="px-6 py-4">
                         <Link href={`/programs/${p.slug}`}>
-                          <Button as="button" variant="primary" size="sm">
+                          <Button as="button" variant="primary" size="sm" className="min-h-[44px]">
                             Learn More
                           </Button>
                         </Link>
@@ -235,7 +235,7 @@ export default function CompareProgramsPage() {
                   </div>
 
                   {/* Data rows */}
-                  <dl className="divide-y divide-warm-200">
+                  <dl className="divide-y divide-white/10">
                     <MobileRow label="Duration" value={p.duration} />
                     <MobileRow
                       label="Units"
@@ -297,7 +297,7 @@ export default function CompareProgramsPage() {
                         as="button"
                         variant="primary"
                         size="sm"
-                        className="w-full"
+                        className="w-full min-h-[44px]"
                       >
                         Learn More
                       </Button>
@@ -350,10 +350,10 @@ export default function CompareProgramsPage() {
 function MobileRow({ label, value }: { label: string; value: string }) {
   return (
     <div className="flex items-start justify-between gap-4 px-5 py-3">
-      <dt className="text-xs font-semibold uppercase tracking-wider text-neutral-400">
+      <dt className="text-xs font-semibold uppercase tracking-wider text-sandstone/60">
         {label}
       </dt>
-      <dd className="text-right text-sm text-neutral-700">{value}</dd>
+      <dd className="text-right text-sm text-parchment">{value}</dd>
     </div>
   );
 }

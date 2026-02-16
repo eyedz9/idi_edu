@@ -19,21 +19,25 @@ const quickLinks = [
     title: "Our History",
     description: "From our founding in 1984 to four decades of design education excellence.",
     href: "/about/history",
+    imageSrc: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=75",
   },
   {
     title: "Accreditation",
     description: "ACCSC and CIDA accredited with California BPPE approval.",
     href: "/about/accreditation",
+    imageSrc: "https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=75",
   },
   {
     title: "Faculty",
     description: "Industry-connected professionals who bring real-world expertise to the classroom.",
     href: "/about/faculty",
+    imageSrc: "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=800&q=75",
   },
   {
     title: "Staff Directory",
     description: "Meet the dedicated team supporting your educational journey at IDI.",
     href: "/about/staff",
+    imageSrc: "https://images.unsplash.com/photo-1631679706909-1844bbd07221?w=800&q=75",
   },
 ];
 
@@ -48,14 +52,14 @@ export default function AboutPage() {
     <>
       {/* ── Breadcrumb ──────────────────────────────────────────────────── */}
       <nav aria-label="Breadcrumb" className="mx-auto max-w-7xl px-4 pt-6 sm:px-6 lg:px-8">
-        <ol className="flex items-center gap-2 text-sm text-neutral-400">
+        <ol className="flex items-center gap-2 text-sm text-sandstone/60">
           <li>
             <Link href="/" className="hover:text-pink-500 transition-colors">
               Home
             </Link>
           </li>
-          <li aria-hidden="true">/</li>
-          <li className="text-plum-900 font-medium">About</li>
+          <li aria-hidden="true" className="text-sandstone/40">&rsaquo;</li>
+          <li className="text-parchment font-medium">About</li>
         </ol>
       </nav>
 
@@ -75,7 +79,7 @@ export default function AboutPage() {
           <div className="absolute inset-0 bg-gradient-to-r from-plum-900/60 to-transparent" />
         </div>
         <div className="relative text-center">
-          <p className="mb-3 font-body text-xs font-semibold uppercase tracking-[0.2em] text-pink-500">
+          <p className="mb-3 font-body text-xs sm:text-sm font-semibold uppercase tracking-[0.2em] text-pink-500">
             About
           </p>
           <h1 className="font-heading text-5xl font-bold text-parchment md:text-6xl lg:text-7xl">
@@ -103,14 +107,14 @@ export default function AboutPage() {
       >
         <AnimatedSection>
           <div className="mx-auto max-w-3xl space-y-6 text-center">
-            <p className="text-lg leading-relaxed text-neutral-600">
+            <p className="text-lg leading-relaxed text-sandstone">
               Interior Designers Institute has been dedicated to providing
               quality education in interior design since 1984. Located in
               Newport Beach, California, our mission is to nurture creative
               talent through hands-on, studio-based learning and personalized
               mentorship from industry-connected faculty.
             </p>
-            <p className="text-lg leading-relaxed text-neutral-600">
+            <p className="text-lg leading-relaxed text-sandstone">
               With four progressive programs from a Certificate Course through a
               Master of Interior Architecture, IDI offers a comprehensive
               pathway for aspiring designers at every stage of their career. Our
@@ -126,31 +130,43 @@ export default function AboutPage() {
         <AnimatedSection stagger={0.1}>
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {quickLinks.map((link) => (
-              <Link key={link.href} href={link.href}>
-                <Card className="flex h-full flex-col p-6 transition-all hover:shadow-lg hover:shadow-amber-500/5 hover:ring-2 hover:ring-amber-500/20">
-                  <h3 className="font-heading text-lg font-bold text-plum-900">
-                    {link.title}
-                  </h3>
-                  <p className="mt-2 flex-1 text-sm leading-relaxed text-neutral-500">
-                    {link.description}
-                  </p>
-                  <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-pink-500">
-                    Learn More
-                    <svg
-                      className="h-4 w-4 transition-transform group-hover:translate-x-0.5"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      strokeWidth={2}
-                      stroke="currentColor"
-                      aria-hidden="true"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"
-                      />
-                    </svg>
-                  </span>
+              <Link key={link.href} href={link.href} className="group">
+                <Card className="group flex h-full flex-col overflow-hidden transition-all hover:shadow-[0_0_30px_rgba(176,108,255,0.12)] hover:ring-2 hover:ring-amber-500/20">
+                  <div className="relative aspect-[16/10] w-full overflow-hidden">
+                    <Image
+                      src={link.imageSrc}
+                      alt={link.title}
+                      fill
+                      className="object-cover transition-transform duration-500 group-hover:scale-105"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-plum-900/60 to-transparent" />
+                  </div>
+                  <div className="flex flex-1 flex-col p-6">
+                    <h3 className="font-heading text-lg font-bold text-parchment">
+                      {link.title}
+                    </h3>
+                    <p className="mt-2 flex-1 text-sm leading-relaxed text-sandstone">
+                      {link.description}
+                    </p>
+                    <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-pink-500">
+                      Learn More
+                      <svg
+                        className="h-4 w-4 transition-transform group-hover:translate-x-0.5"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        strokeWidth={2}
+                        stroke="currentColor"
+                        aria-hidden="true"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"
+                        />
+                      </svg>
+                    </span>
+                  </div>
                 </Card>
               </Link>
             ))}
@@ -165,7 +181,7 @@ export default function AboutPage() {
         <AnimatedSection>
           <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="mb-12 text-center md:mb-16">
-              <p className="mb-3 font-body text-xs font-semibold uppercase tracking-[0.2em] text-pink-500">
+              <p className="mb-3 font-body text-xs sm:text-sm font-semibold uppercase tracking-[0.2em] text-pink-500">
                 By the Numbers
               </p>
               <h2 className="font-heading text-3xl font-bold text-parchment md:text-4xl lg:text-5xl">
@@ -190,7 +206,7 @@ export default function AboutPage() {
                     <p className="mt-2 font-body text-sm font-semibold uppercase tracking-wider text-parchment">
                       {stat.label}
                     </p>
-                    <p className="mt-1 text-xs text-sandstone">
+                    <p className="mt-1 text-xs sm:text-sm text-sandstone">
                       {stat.description}
                     </p>
                   </div>
@@ -207,7 +223,7 @@ export default function AboutPage() {
       <Section overline="Philosophy" title="Our Commitment to Design Education">
         <AnimatedSection>
           <div className="mx-auto max-w-3xl space-y-6 text-center">
-            <p className="text-lg leading-relaxed text-neutral-600">
+            <p className="text-lg leading-relaxed text-sandstone">
               At IDI, we believe that great design begins with a strong
               foundation in both technical skill and creative vision. Our
               studio-based curriculum immerses students in real-world projects,
@@ -215,9 +231,9 @@ export default function AboutPage() {
               partnerships with industry professionals ensure graduates are
               prepared for the demands of modern design practice.
             </p>
-            <p className="text-lg leading-relaxed text-neutral-600">
-              Every aspect of our institution -- from our ACCSC and CIDA
-              accreditations to our intentionally small class sizes -- reflects
+            <p className="text-lg leading-relaxed text-sandstone">
+              Every aspect of our institution — from our ACCSC and CIDA
+              accreditations to our intentionally small class sizes — reflects
               our dedication to student success. We are proud to be a community
               where aspiring designers find their voice and build the skills to
               transform spaces and lives.
@@ -234,7 +250,7 @@ export default function AboutPage() {
             <span className="text-gradient-pink">programs</span>?
           </h2>
           <p className="mx-auto mt-4 max-w-xl text-sandstone">
-            Discover the program that fits your goals -- from a 12-week
+            Discover the program that fits your goals — from a 12-week
             certificate to a master&apos;s degree in interior architecture.
           </p>
           <div className="mt-8">

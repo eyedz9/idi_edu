@@ -39,7 +39,7 @@ function Breadcrumbs() {
             Home
           </Link>
         </li>
-        <li aria-hidden="true">/</li>
+        <li aria-hidden="true" className="text-sandstone/40">&rsaquo;</li>
         <li className="font-medium text-white">Contact</li>
       </ol>
     </nav>
@@ -129,11 +129,11 @@ export default function ContactPage() {
           <div>
             {/* Address */}
             <div className="mb-8">
-              <h2 className="font-heading text-2xl font-bold text-plum-900">
+              <h2 className="font-heading text-2xl font-bold text-parchment">
                 Visit Our Campus
               </h2>
-              <address className="mt-4 not-italic text-neutral-600 leading-relaxed">
-                <p className="font-semibold text-plum-900">
+              <address className="mt-4 not-italic text-sandstone leading-relaxed">
+                <p className="font-semibold text-parchment">
                   Interior Designers Institute
                 </p>
                 <p>{contactInfo.address}</p>
@@ -149,7 +149,7 @@ export default function ContactPage() {
                   size="sm"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="border-plum-900 text-plum-900 hover:bg-plum-900 hover:text-parchment"
+                  className="border-white/20 text-parchment hover:bg-white/10 min-h-[44px]"
                 >
                   Get Directions
                 </Button>
@@ -158,7 +158,7 @@ export default function ContactPage() {
 
             {/* Phone, Fax, Email */}
             <div className="mb-8 space-y-3">
-              <h3 className="font-heading text-lg font-bold text-plum-900">
+              <h3 className="font-heading text-lg font-bold text-parchment">
                 Get in Touch
               </h3>
               <div className="flex items-center gap-3">
@@ -177,12 +177,12 @@ export default function ContactPage() {
                   />
                 </svg>
                 <div>
-                  <p className="text-xs font-semibold uppercase tracking-wider text-neutral-500">
+                  <p className="text-xs sm:text-sm font-semibold uppercase tracking-wider text-sandstone">
                     Phone
                   </p>
                   <a
                     href={`tel:${PHONE.replace(/\D/g, "")}`}
-                    className="text-sm font-medium text-plum-900 hover:text-pink-500 transition-colors"
+                    className="text-sm font-medium text-parchment hover:text-pink-500 transition-colors"
                   >
                     {PHONE}
                   </a>
@@ -205,10 +205,10 @@ export default function ContactPage() {
                   />
                 </svg>
                 <div>
-                  <p className="text-xs font-semibold uppercase tracking-wider text-neutral-500">
+                  <p className="text-xs sm:text-sm font-semibold uppercase tracking-wider text-sandstone">
                     Fax
                   </p>
-                  <p className="text-sm font-medium text-plum-900">{FAX}</p>
+                  <p className="text-sm font-medium text-parchment">{FAX}</p>
                 </div>
               </div>
 
@@ -228,12 +228,12 @@ export default function ContactPage() {
                   />
                 </svg>
                 <div>
-                  <p className="text-xs font-semibold uppercase tracking-wider text-neutral-500">
+                  <p className="text-xs sm:text-sm font-semibold uppercase tracking-wider text-sandstone">
                     Email
                   </p>
                   <a
                     href={`mailto:${EMAIL}`}
-                    className="text-sm font-medium text-plum-900 hover:text-pink-500 transition-colors"
+                    className="text-sm font-medium text-parchment hover:text-pink-500 transition-colors"
                   >
                     {EMAIL}
                   </a>
@@ -243,10 +243,10 @@ export default function ContactPage() {
 
             {/* Office Hours */}
             <div className="mb-8">
-              <h3 className="font-heading text-lg font-bold text-plum-900">
+              <h3 className="font-heading text-lg font-bold text-parchment">
                 Office Hours
               </h3>
-              <div className="mt-3 space-y-1 text-sm text-neutral-600">
+              <div className="mt-3 space-y-1 text-sm text-sandstone">
                 <p>{officeHours.weekdays}</p>
                 <p>{officeHours.saturday}</p>
                 <p>{officeHours.sunday}</p>
@@ -255,7 +255,7 @@ export default function ContactPage() {
 
             {/* Social Media */}
             <div className="mb-8">
-              <h3 className="font-heading text-lg font-bold text-plum-900">
+              <h3 className="font-heading text-lg font-bold text-parchment">
                 Follow Us
               </h3>
               <div className="mt-3 flex gap-3">
@@ -265,7 +265,7 @@ export default function ContactPage() {
                     href={link.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex h-10 w-10 items-center justify-center rounded-full bg-warm-100 text-neutral-500 transition-all duration-200 hover:bg-pink-500 hover:text-white hover:scale-110"
+                    className="flex h-11 w-11 items-center justify-center rounded-full bg-white/10 text-sandstone transition-all duration-200 hover:bg-pink-500 hover:text-white hover:scale-110"
                     aria-label={`Follow IDI on ${link.platform}`}
                   >
                     <SocialIcon icon={link.icon} />
@@ -276,18 +276,18 @@ export default function ContactPage() {
 
             {/* School Codes */}
             <div>
-              <h3 className="font-heading text-lg font-bold text-plum-900">
+              <h3 className="font-heading text-lg font-bold text-parchment">
                 School Codes
               </h3>
-              <div className="mt-3 space-y-2 text-sm text-neutral-600">
+              <div className="mt-3 space-y-2 text-sm text-sandstone">
                 <p>
-                  <span className="font-semibold text-plum-900">
+                  <span className="font-semibold text-parchment">
                     BPPE School Code:
                   </span>{" "}
                   {bppeSchoolCode}
                 </p>
                 <p>
-                  <span className="font-semibold text-plum-900">
+                  <span className="font-semibold text-parchment">
                     Federal School Code (FAFSA):
                   </span>{" "}
                   {federalSchoolCode}
@@ -310,7 +310,7 @@ export default function ContactPage() {
                 title={`Map showing Interior Designers Institute at ${fullAddress}`}
               />
             </Card>
-            <p className="mt-3 text-center text-xs text-neutral-500">
+            <p className="mt-3 text-center text-xs text-sandstone">
               {fullAddress}
             </p>
           </div>
@@ -330,35 +330,35 @@ export default function ContactPage() {
               department: "Admissions",
               description:
                 "Questions about programs, enrollment, campus tours, and the application process.",
-              email: "contact@idi.edu",
+              email: "admissions@idi.edu",
               phone: PHONE,
             },
             {
               department: "Financial Aid",
               description:
                 "FAFSA assistance, grants, loans, scholarships, and payment plans.",
-              email: "contact@idi.edu",
+              email: "financialaid@idi.edu",
               phone: PHONE,
             },
             {
               department: "Student Services",
               description:
                 "Current student support, academic advising, and registrar services.",
-              email: "contact@idi.edu",
+              email: "studentservices@idi.edu",
               phone: PHONE,
             },
             {
               department: "Career Services",
               description:
                 "Job placement assistance, resume review, and industry connections.",
-              email: "contact@idi.edu",
+              email: "careers@idi.edu",
               phone: PHONE,
             },
             {
               department: "Academic Affairs",
               description:
                 "Curriculum questions, faculty inquiries, and academic policies.",
-              email: "contact@idi.edu",
+              email: "academics@idi.edu",
               phone: PHONE,
             },
             {
@@ -369,11 +369,11 @@ export default function ContactPage() {
               phone: PHONE,
             },
           ].map((dept) => (
-            <Card key={dept.department} className="p-6 border-warm-200 hover:border-amber-500/30 hover:shadow-md transition-all duration-300">
-              <h3 className="font-heading text-lg font-bold text-plum-900">
+            <Card key={dept.department} className="p-6 border-white/10 hover:border-amber-500/30 hover:shadow-[0_0_20px_rgba(176,108,255,0.08)] transition-all duration-300">
+              <h3 className="font-heading text-lg font-bold text-parchment">
                 {dept.department}
               </h3>
-              <p className="mt-2 text-sm leading-relaxed text-neutral-500">
+              <p className="mt-2 text-sm leading-relaxed text-sandstone">
                 {dept.description}
               </p>
               <div className="mt-4 space-y-1.5 text-sm">
@@ -388,7 +388,7 @@ export default function ContactPage() {
                 <p>
                   <a
                     href={`tel:${dept.phone.replace(/\D/g, "")}`}
-                    className="text-neutral-600 hover:text-pink-500 transition-colors"
+                    className="text-sandstone hover:text-pink-500 transition-colors"
                   >
                     {dept.phone}
                   </a>

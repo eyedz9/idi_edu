@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
@@ -45,11 +45,21 @@ export function useCountUp(
     return `${prefix}${numStr}${suffix}`;
   };
 
-  const [display, setDisplay] = useState(() =>
-    animationsEnabled ? format(0) : format(target),
-  );
-
+  // Initialize with target value (SSR-safe fallback) — GSAP will reset to 0 before animating
+  const [display, setDisplay] = useState(() => format(target));
   const proxy = useRef({ value: 0 });
+  const hasAnimated = useRef(false);
+
+  // Safety timeout: if counter still shows 0 after 5s, force to target
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (!hasAnimated.current) {
+        setDisplay(format(target));
+      }
+    }, 5000);
+    return () => clearTimeout(timer);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [target, suffix, prefix, useLocale]);
 
   useGSAP(
     () => {
@@ -58,10 +68,11 @@ export function useCountUp(
 
       if (!animationsEnabled) {
         setDisplay(format(target));
+        hasAnimated.current = true;
         return;
       }
 
-      // Reset proxy
+      // Reset proxy and display to 0 for animation start
       proxy.current.value = 0;
       setDisplay(format(0));
 
@@ -75,8 +86,15 @@ export function useCountUp(
           start,
           toggleActions: "play none none none",
         },
+        onStart() {
+          hasAnimated.current = true;
+        },
         onUpdate() {
           setDisplay(format(proxy.current.value));
+        },
+        onComplete() {
+          // Ensure final value is exact
+          setDisplay(format(target));
         },
       });
     },

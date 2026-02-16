@@ -24,24 +24,24 @@ interface TestimonialData {
 const testimonials: TestimonialData[] = [
   {
     quote:
-      "IDI gave me the foundation and confidence to launch my own residential design firm. The small class sizes meant I got real mentorship from faculty who are working designers themselves.",
-    name: "Sarah Mitchell",
-    title: "Principal Designer, Mitchell Interiors",
-    program: "BA in Interior Design",
+      "When looking for an interior design school, I chose IDI because of its excellent reputation and the positive things I was hearing from IDI graduates and students alike. I was attracted to the smallness of the school and felt that it was a good fit for my interior design education. The education I received at IDI set me up well for my future career in design. As the principal of Haus of Design, I am fortunate to work in an industry I love and work with other creatives who inspire me daily! I also value the connection I still maintain with IDI, as some of our best interns have come from the school, and we have also hired IDI graduates as designers at the company.",
+    name: "Nicole Perrault",
+    title: "Principal, Haus of Design",
+    program: "Associate of Arts Degree in Interior Design",
   },
   {
     quote:
-      "The Master of Interior Architecture program challenged me to think critically about space and human experience. The connections I made at IDI opened doors I never expected.",
-    name: "David Chen",
-    title: "Senior Designer, Gensler",
+      "My dream has been to pursue theme park design, so I cannot thank you and the rest of the faculty enough for providing me with the knowledge and tools to get to this point. The best part about IDI is the faculty. Each professor had professional experiences that they brought to the classroom to prepare me better. Their attentive teaching styles and hands-on learning created a unique environment that provided the tools for a more successful career.",
+    name: "Brad Bain",
+    title: "Theme Lighting Designer, Walt Disney Imagineering",
+    program: "Bachelor of Arts Degree in Interior Design",
+  },
+  {
+    quote:
+      "I had finally found a college that understood what I wanted to do and knew how to get me there.",
+    name: "Sarah Libben",
+    title: "Interior Designer, Project Manager \u2014 NBC Universal",
     program: "Master of Interior Architecture",
-  },
-  {
-    quote:
-      "Starting with the certificate course was the best decision. It confirmed my passion for design, and I continued all the way through the BA program. The Newport Beach location is incredibly inspiring.",
-    name: "Maria Gonzalez",
-    title: "Interior Designer, HBA Design",
-    program: "AA in Interior Design",
   },
 ];
 
@@ -123,7 +123,7 @@ export function TestimonialsSection() {
   return (
     <section
       ref={sectionRef}
-      className="relative overflow-hidden bg-warm-50 py-20 md:py-32"
+      className="relative overflow-hidden bg-plum-800 py-20 md:py-32"
       aria-label="Testimonials"
     >
       {/* Decorative gradient corners */}
@@ -132,7 +132,7 @@ export function TestimonialsSection() {
 
       <div className="relative z-10 mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
         {/* Overline */}
-        <p className="mb-10 text-center font-body text-xs font-semibold uppercase tracking-[0.2em] text-pink-500 md:mb-14">
+        <p className="mb-10 text-center font-body text-xs sm:text-sm font-semibold uppercase tracking-[0.2em] text-pink-500 md:mb-14">
           Student Stories
         </p>
 
@@ -151,7 +151,7 @@ export function TestimonialsSection() {
         {/* Quote text — large editorial serif */}
         <blockquote
           ref={quoteRef}
-          className="text-center font-heading text-2xl font-bold leading-relaxed text-plum-900 italic md:text-3xl lg:text-4xl"
+          className="text-center font-heading text-2xl font-bold leading-relaxed text-parchment italic md:text-3xl lg:text-4xl"
         >
           &ldquo;{current.quote}&rdquo;
         </blockquote>
@@ -159,28 +159,32 @@ export function TestimonialsSection() {
         {/* Author info */}
         <div ref={authorRef} className="mt-10 text-center">
           <div className="mx-auto mb-4 h-px w-12 bg-pink-500/40" />
-          <p className="font-body text-sm font-semibold text-plum-900">
+          <p className="font-body text-sm font-semibold text-parchment">
             {current.name}
           </p>
-          <p className="mt-0.5 text-sm text-neutral-500">{current.title}</p>
-          <p className="mt-0.5 text-xs font-semibold text-pink-500">
+          <p className="mt-0.5 text-sm text-sandstone">{current.title}</p>
+          <p className="mt-0.5 text-xs sm:text-sm font-semibold text-pink-500">
             {current.program}
           </p>
         </div>
 
         {/* Navigation dots */}
-        <div className="mt-10 flex items-center justify-center gap-3">
+        <div className="mt-10 flex items-center justify-center gap-1">
           {testimonials.map((_, i) => (
             <button
               key={i}
               onClick={() => goTo(i)}
               aria-label={`Show testimonial ${i + 1}`}
-              className={`h-2.5 rounded-full transition-all duration-300 ${
-                i === activeIndex
-                  ? "w-8 bg-pink-500"
-                  : "w-2.5 bg-neutral-300 hover:bg-neutral-400"
-              }`}
-            />
+              className="flex items-center justify-center p-4 min-h-[44px] min-w-[44px]"
+            >
+              <span
+                className={`block h-2.5 rounded-full transition-all duration-300 ${
+                  i === activeIndex
+                    ? "w-8 bg-pink-500"
+                    : "w-2.5 bg-white/20 hover:bg-white/40"
+                }`}
+              />
+            </button>
           ))}
         </div>
       </div>

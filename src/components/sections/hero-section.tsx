@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useEffect, useCallback } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import gsap from "gsap";
@@ -19,15 +19,50 @@ export function HeroSection() {
   const imageRef = useRef<HTMLDivElement>(null);
   const accredRef = useRef<HTMLDivElement>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
+  const animatedRef = useRef(false);
   const { animationsEnabled } = useMotion();
+
+  // Safety timeout: if GSAP hasn't animated within 3s, force everything visible
+  const forceVisible = useCallback(() => {
+    if (animatedRef.current) return;
+    const els = [
+      headlineRef.current,
+      subtitleRef.current,
+      ctaRef.current,
+      badgeRef.current,
+      imageRef.current,
+      accredRef.current,
+      scrollRef.current,
+    ].filter(Boolean);
+    els.forEach((el) => {
+      if (el) {
+        el.style.opacity = "1";
+        el.style.transform = "none";
+        el.style.visibility = "visible";
+      }
+    });
+  }, []);
+
+  useEffect(() => {
+    const timer = setTimeout(forceVisible, 3000);
+    return () => clearTimeout(timer);
+  }, [forceVisible]);
 
   useGSAP(
     () => {
-      if (!animationsEnabled) return;
+      if (!animationsEnabled) {
+        forceVisible();
+        return;
+      }
 
-      const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
+      const tl = gsap.timeline({
+        defaults: { ease: "power3.out" },
+        onComplete: () => {
+          animatedRef.current = true;
+        },
+      });
 
-      // Set initial states
+      // Use autoAlpha (visibility + opacity) for more reliable hiding/showing
       gsap.set(
         [
           headlineRef.current,
@@ -36,22 +71,27 @@ export function HeroSection() {
           badgeRef.current,
           scrollRef.current,
         ],
-        { opacity: 0, y: 40 },
+        { autoAlpha: 0, y: 40 },
       );
-      gsap.set(imageRef.current, { opacity: 0, scale: 1.08, x: 60 });
-      gsap.set(accredRef.current, { opacity: 0, y: 20 });
+      gsap.set(imageRef.current, { autoAlpha: 0, scale: 1.08, x: 60 });
+      gsap.set(accredRef.current, { autoAlpha: 0, y: 20 });
 
-      tl.to(headlineRef.current, { opacity: 1, y: 0, duration: 1.2 }, 0.3)
-        .to(subtitleRef.current, { opacity: 1, y: 0, duration: 0.8 }, 0.7)
-        .to(badgeRef.current, { opacity: 1, y: 0, duration: 0.6 }, 0.9)
-        .to(ctaRef.current, { opacity: 1, y: 0, duration: 0.8 }, 1.0)
+      tl.to(headlineRef.current, { autoAlpha: 1, y: 0, duration: 1.2 }, 0.3)
+        .to(subtitleRef.current, { autoAlpha: 1, y: 0, duration: 0.8 }, 0.7)
+        .to(badgeRef.current, { autoAlpha: 1, y: 0, duration: 0.6 }, 0.9)
+        .to(ctaRef.current, { autoAlpha: 1, y: 0, duration: 0.8 }, 1.0)
         .to(
           imageRef.current,
-          { opacity: 1, scale: 1, x: 0, duration: 1.4, ease: "power2.out" },
+          { autoAlpha: 1, scale: 1, x: 0, duration: 1.4, ease: "power2.out" },
           0.5,
         )
-        .to(accredRef.current, { opacity: 1, y: 0, duration: 0.6 }, 1.2)
-        .to(scrollRef.current, { opacity: 1, y: 0, duration: 0.6 }, 1.4);
+        .to(accredRef.current, { autoAlpha: 1, y: 0, duration: 0.6 }, 1.2)
+        .to(scrollRef.current, { autoAlpha: 1, y: 0, duration: 0.6 }, 1.4);
+
+      // Mark as animated once the first tween fires
+      tl.eventCallback("onStart", () => {
+        animatedRef.current = true;
+      });
 
       // Subtle float on accreditation badges
       gsap.to(accredRef.current, {
@@ -68,13 +108,13 @@ export function HeroSection() {
   return (
     <section
       ref={sectionRef}
-      className="relative flex min-h-[calc(100vh-65px)] items-center overflow-hidden mesh-aurora grain"
+      className="relative flex h-[calc(100svh-64px)] min-h-[600px] items-center overflow-hidden mesh-aurora grain"
       aria-label="Hero"
     >
       {/* Hero image — asymmetric right offset */}
       <div
         ref={imageRef}
-        className="absolute right-0 top-0 h-full w-[55%] max-lg:w-full max-lg:opacity-30"
+        className="absolute inset-0 lg:left-[45%] max-lg:opacity-30"
       >
         <Image
           src="https://images.unsplash.com/photo-1502005229762-cf1b2da7c5d6?w=1920&q=80"
@@ -92,7 +132,7 @@ export function HeroSection() {
 
       {/* Content — left aligned */}
       <div className="relative z-10 mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="max-w-2xl pt-24 pb-32 lg:pt-0 lg:pb-0">
+        <div className="max-w-2xl py-24 md:py-32 lg:py-40">
           {/* Enrollment badge */}
           <div ref={badgeRef} className="mb-8 inline-flex items-center gap-2">
             <span className="relative flex h-2.5 w-2.5">
@@ -154,7 +194,7 @@ export function HeroSection() {
         >
           <Image
             src="/images/ACCCS_logo.png"
-            alt=""
+            alt="ACCSC logo"
             width={24}
             height={24}
             className="h-5 w-auto brightness-0 invert"
@@ -168,7 +208,7 @@ export function HeroSection() {
         >
           <Image
             src="/images/cida_logo.png"
-            alt=""
+            alt="CIDA logo"
             width={24}
             height={24}
             className="h-5 w-auto brightness-0 invert"

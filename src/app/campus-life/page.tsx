@@ -19,21 +19,25 @@ const facilities = [
     name: "Design Studios",
     description:
       "Purpose-built studio spaces where students work on projects using professional-grade materials and tools, fostering hands-on learning in a collaborative environment.",
+    imageSrc: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=800&q=75",
   },
   {
     name: "Resource Library",
     description:
       "A curated collection of design books, trade publications, material samples, and digital resources to support student research and creative exploration.",
+    imageSrc: "https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=75",
   },
   {
     name: "Computer Lab",
     description:
       "Equipped with industry-standard software including AutoCAD, SketchUp, and the Adobe Creative Suite for digital design and presentation work.",
+    imageSrc: "https://images.unsplash.com/photo-1631679706909-1844bbd07221?w=800&q=75",
   },
   {
     name: "Materials Room",
     description:
       "An extensive collection of fabric, finish, and material samples from leading manufacturers, giving students hands-on experience with professional specification.",
+    imageSrc: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&q=75",
   },
 ];
 
@@ -43,12 +47,14 @@ const studentOrganizations = [
     fullName: "American Society of Interior Designers",
     description:
       "IDI's student chapter of ASID connects students with the nation's largest professional organization for interior designers. Members gain access to industry events, networking opportunities, design competitions, and mentorship from practicing ASID professionals.",
+    imageSrc: "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=800&q=75",
   },
   {
     name: "IIDA Student Chapter",
     fullName: "International Interior Design Association",
     description:
       "The IIDA student chapter at IDI provides connections to a global network of design professionals. Students participate in IIDA events, explore commercial and contract design career paths, and build relationships with industry leaders in commercial interiors.",
+    imageSrc: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=75",
   },
 ];
 
@@ -84,14 +90,14 @@ export default function CampusLifePage() {
     <>
       {/* -- Breadcrumb ---------------------------------------------------- */}
       <nav aria-label="Breadcrumb" className="mx-auto max-w-7xl px-4 pt-6 sm:px-6 lg:px-8">
-        <ol className="flex items-center gap-2 text-sm text-neutral-400">
+        <ol className="flex items-center gap-2 text-sm text-sandstone/60">
           <li>
             <Link href="/" className="hover:text-pink-500 transition-colors">
               Home
             </Link>
           </li>
-          <li aria-hidden="true">/</li>
-          <li className="text-plum-900 font-medium">Campus Life</li>
+          <li aria-hidden="true" className="text-sandstone/40">&rsaquo;</li>
+          <li className="text-parchment font-medium">Campus Life</li>
         </ol>
       </nav>
 
@@ -136,14 +142,14 @@ export default function CampusLifePage() {
           <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
             {/* Text content */}
             <div className="space-y-6">
-              <p className="text-lg leading-relaxed text-neutral-600">
-                Newport Beach is far more than a beautiful coastal city -- it is
+              <p className="text-lg leading-relaxed text-sandstone">
+                Newport Beach is far more than a beautiful coastal city — it is
                 one of Southern California&apos;s premier design destinations.
                 Our campus at {fullAddress} places students in
                 the heart of a community where world-class design is part of
                 everyday life.
               </p>
-              <p className="text-base leading-relaxed text-neutral-600">
+              <p className="text-base leading-relaxed text-sandstone">
                 Students have direct access to major design centers including the
                 Laguna Design Center and Stonemill Design Center, luxury
                 showrooms, and a thriving network of working interior designers
@@ -151,7 +157,7 @@ export default function CampusLifePage() {
                 and commercial projects provides endless inspiration and
                 real-world learning opportunities.
               </p>
-              <p className="text-base leading-relaxed text-neutral-600">
+              <p className="text-base leading-relaxed text-sandstone">
                 Beyond design, Newport Beach offers beaches, art galleries, fine
                 dining, and a quality of life that enriches the student
                 experience. The creative energy of the area infuses every aspect
@@ -185,6 +191,21 @@ export default function CampusLifePage() {
         </AnimatedSection>
       </Section>
 
+      {/* -- Housing Disclosure --------------------------------------------- */}
+      <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+        <div className="rounded-lg border-l-4 border-amber-500 bg-plum-800/40 p-6">
+          <h3 className="mb-2 text-sm font-semibold uppercase tracking-widest text-amber-500">
+            Housing Disclosure
+          </h3>
+          <p className="text-sm leading-relaxed text-sandstone">
+            Interior Designers Institute does not have dormitory facilities under
+            its control and has no responsibility to find or assist a student in
+            finding housing. Students are encouraged to research housing options
+            in the Newport Beach and surrounding areas independently.
+          </p>
+        </div>
+      </div>
+
       {/* -- Student Organizations ----------------------------------------- */}
       <Section
         bg="light"
@@ -195,16 +216,28 @@ export default function CampusLifePage() {
         <AnimatedSection stagger={0.12}>
           <div className="grid gap-8 md:grid-cols-2">
             {studentOrganizations.map((org) => (
-              <Card key={org.name} className="flex flex-col p-8 hover:border-amber-500/30 hover:shadow-lg transition-all duration-300">
-                <Badge variant="jade" className="mb-4 self-start">
-                  {org.name}
-                </Badge>
-                <h3 className="font-heading text-xl font-bold text-plum-900">
-                  {org.fullName}
-                </h3>
-                <p className="mt-4 flex-1 text-base leading-relaxed text-neutral-600">
-                  {org.description}
-                </p>
+              <Card key={org.name} className="group flex flex-col overflow-hidden hover:border-amber-500/30 hover:shadow-[0_0_30px_rgba(176,108,255,0.12)] transition-all duration-300">
+                <div className="relative aspect-[16/10] w-full overflow-hidden">
+                  <Image
+                    src={org.imageSrc}
+                    alt={org.name}
+                    fill
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-plum-900/60 to-transparent" />
+                </div>
+                <div className="flex flex-1 flex-col p-8">
+                  <Badge variant="jade" className="mb-4 self-start">
+                    {org.name}
+                  </Badge>
+                  <h3 className="font-heading text-xl font-bold text-parchment">
+                    {org.fullName}
+                  </h3>
+                  <p className="mt-4 flex-1 text-base leading-relaxed text-sandstone">
+                    {org.description}
+                  </p>
+                </div>
               </Card>
             ))}
           </div>
@@ -245,13 +278,25 @@ export default function CampusLifePage() {
         <AnimatedSection stagger={0.1}>
           <div className="grid gap-8 sm:grid-cols-2">
             {facilities.map((facility) => (
-              <Card key={facility.name} variant="glass" className="p-6">
-                <h3 className="font-heading text-lg font-bold text-pink-500">
-                  {facility.name}
-                </h3>
-                <p className="mt-2 text-sm leading-relaxed text-sandstone">
-                  {facility.description}
-                </p>
+              <Card key={facility.name} variant="glass" className="group flex flex-col overflow-hidden">
+                <div className="relative aspect-[16/10] w-full overflow-hidden">
+                  <Image
+                    src={facility.imageSrc}
+                    alt={facility.name}
+                    fill
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    sizes="(max-width: 640px) 100vw, 50vw"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-plum-900/60 to-transparent" />
+                </div>
+                <div className="p-6">
+                  <h3 className="font-heading text-lg font-bold text-pink-500">
+                    {facility.name}
+                  </h3>
+                  <p className="mt-2 text-sm leading-relaxed text-sandstone">
+                    {facility.description}
+                  </p>
+                </div>
               </Card>
             ))}
           </div>

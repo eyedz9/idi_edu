@@ -14,6 +14,17 @@ export const metadata: Metadata = {
   description: `Explore accredited interior design programs at ${SITE_NAME}. Certificate, Associate, Bachelor's, and Master's degrees in Interior Design and Interior Architecture.`,
 };
 
+const programImages: Record<string, string> = {
+  certificate:
+    "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&q=75",
+  "associate-of-arts":
+    "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=800&q=75",
+  "bachelor-of-arts":
+    "https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=75",
+  "master-interior-architecture":
+    "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&q=75",
+};
+
 function formatCurrency(amount: number): string {
   return new Intl.NumberFormat("en-US", {
     style: "currency",
@@ -42,7 +53,7 @@ export default function ProgramsPage() {
         </div>
 
         <div className="relative z-10 mx-auto max-w-7xl px-4 text-center sm:px-6 lg:px-8">
-          <p className="mb-3 font-body text-xs font-semibold uppercase tracking-[0.2em] text-pink-500">
+          <p className="mb-3 font-body text-xs sm:text-sm font-semibold uppercase tracking-[0.2em] text-pink-500">
             Programs
           </p>
           <h1 className="font-heading text-5xl font-bold text-parchment md:text-6xl lg:text-7xl">
@@ -74,12 +85,20 @@ export default function ProgramsPage() {
                   key={program.slug}
                   className="group flex flex-col overflow-hidden"
                 >
-                  {/* Gradient header */}
-                  <div className="relative flex items-end bg-gradient-to-br from-plum-900 via-plum-700 to-amber-500/40 px-6 pb-6 pt-10">
-                    <div className="absolute right-4 top-4">
+                  {/* Image header */}
+                  <div className="relative flex items-end overflow-hidden px-6 pb-6 pt-16 md:pt-20">
+                    <Image
+                      src={programImages[program.slug]}
+                      alt={program.name}
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 768px) 100vw, 50vw"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-plum-900 via-plum-900/70 to-plum-900/30" />
+                    <div className="absolute right-4 top-4 z-10">
                       <Badge variant="dark">{program.duration}</Badge>
                     </div>
-                    <div>
+                    <div className="relative z-10">
                       <Badge variant="accent" className="mb-2">
                         {program.degreeType}
                       </Badge>
@@ -91,25 +110,25 @@ export default function ProgramsPage() {
 
                   {/* Body */}
                   <div className="flex flex-1 flex-col p-6">
-                    <p className="flex-1 text-sm leading-relaxed text-neutral-500">
+                    <p className="flex-1 text-sm leading-relaxed text-sandstone">
                       {briefDescription}
                     </p>
 
                     {/* Stats row */}
-                    <div className="mt-6 grid grid-cols-2 gap-4 border-t border-warm-200 pt-4">
+                    <div className="mt-6 grid grid-cols-2 gap-4 border-t border-white/10 pt-4">
                       <div>
-                        <p className="text-xs text-neutral-400">
+                        <p className="text-xs sm:text-sm text-sandstone/60">
                           Starting Tuition
                         </p>
-                        <p className="font-body text-base font-semibold text-plum-900">
+                        <p className="font-body text-base font-semibold text-parchment">
                           {formatCurrency(
                             tuition?.tuition ?? program.tuition,
                           )}
                         </p>
                       </div>
                       <div>
-                        <p className="text-xs text-neutral-400">Units</p>
-                        <p className="font-body text-sm font-semibold text-plum-900">
+                        <p className="text-xs sm:text-sm text-sandstone/60">Units</p>
+                        <p className="font-body text-sm font-semibold text-parchment">
                           {program.creditUnits.split(" (")[0]}
                         </p>
                       </div>
@@ -118,7 +137,7 @@ export default function ProgramsPage() {
                     {/* CTA */}
                     <div className="mt-6">
                       <Link href={`/programs/${program.slug}`}>
-                        <Button as="button" variant="primary" size="sm" className="w-full">
+                        <Button as="button" variant="primary" size="sm" className="w-full min-h-[44px]">
                           Learn More
                         </Button>
                       </Link>

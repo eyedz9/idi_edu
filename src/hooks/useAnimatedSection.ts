@@ -1,6 +1,6 @@
 "use client";
 
-import { type RefObject } from "react";
+import { type RefObject, useEffect } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
@@ -52,6 +52,25 @@ export function useAnimatedSection(
     trigger,
   } = options;
 
+  // Safety timeout: force elements visible if ScrollTrigger hasn't fired after 4s
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      const el = ref.current;
+      if (!el) return;
+      const targets = el.children.length > 0 ? el.children : [el];
+      Array.from(targets).forEach((child) => {
+        const htmlChild = child as HTMLElement;
+        const computed = window.getComputedStyle(htmlChild);
+        if (computed.opacity === "0" || computed.visibility === "hidden") {
+          htmlChild.style.opacity = "1";
+          htmlChild.style.visibility = "visible";
+          htmlChild.style.transform = "none";
+        }
+      });
+    }, 4000);
+    return () => clearTimeout(timer);
+  }, [ref]);
+
   useGSAP(
     () => {
       const el = ref.current;
@@ -60,7 +79,7 @@ export function useAnimatedSection(
       // If reduced-motion is active, make sure elements are visible and bail
       if (!animationsEnabled) {
         gsap.set(el.children.length > 0 ? el.children : el, {
-          opacity: 1,
+          autoAlpha: 1,
           y: 0,
           scale: 1,
         });
@@ -69,12 +88,12 @@ export function useAnimatedSection(
 
       const targets = el.children.length > 0 ? el.children : el;
 
-      // Set initial state
-      gsap.set(targets, { opacity: 0, y, scale });
+      // Set initial state using autoAlpha for better visibility management
+      gsap.set(targets, { autoAlpha: 0, y, scale });
 
       // Animate in on scroll
       gsap.to(targets, {
-        opacity: 1,
+        autoAlpha: 1,
         y: 0,
         scale: 1,
         duration,

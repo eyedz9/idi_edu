@@ -39,13 +39,13 @@ function Breadcrumbs() {
             Home
           </Link>
         </li>
-        <li aria-hidden="true">/</li>
+        <li aria-hidden="true" className="text-sandstone/40">&rsaquo;</li>
         <li>
           <Link href="/admissions" className="hover:text-pink-400 transition-colors">
             Admissions
           </Link>
         </li>
-        <li aria-hidden="true">/</li>
+        <li aria-hidden="true" className="text-sandstone/40">&rsaquo;</li>
         <li className="font-medium text-parchment">Tuition &amp; Fees</li>
       </ol>
     </nav>
@@ -83,63 +83,64 @@ export default function TuitionPage() {
           title={program.programName}
         >
           {/* Cost breakdown table */}
-          <div className="mb-10 overflow-x-auto">
-            <table className="w-full min-w-[480px] text-left text-sm">
+          <div className="relative mb-10">
+            <div className="overflow-x-auto [&::-webkit-scrollbar]{display:none} [-webkit-overflow-scrolling:touch]">
+            <table className="w-full min-w-[360px] text-left text-sm">
               <thead>
-                <tr className="border-b-2 border-plum-900/10">
-                  <th className="py-3 pr-4 font-semibold text-plum-900">
+                <tr className="border-b-2 border-white/10">
+                  <th className="py-3 pr-4 font-semibold text-parchment">
                     Fee
                   </th>
-                  <th className="py-3 text-right font-semibold text-plum-900">
+                  <th className="py-3 text-right font-semibold text-parchment">
                     Amount
                   </th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-warm-200">
+              <tbody className="divide-y divide-white/10">
                 <tr>
-                  <td className="py-3 pr-4 text-neutral-600">Tuition</td>
-                  <td className="py-3 text-right font-medium text-neutral-700">
+                  <td className="py-3 pr-4 text-sandstone">Tuition</td>
+                  <td className="py-3 text-right font-medium text-parchment">
                     {fmt.format(program.tuition)}
                   </td>
                 </tr>
                 <tr>
-                  <td className="py-3 pr-4 text-neutral-600">
+                  <td className="py-3 pr-4 text-sandstone">
                     Registration Fee
                   </td>
-                  <td className="py-3 text-right font-medium text-neutral-700">
+                  <td className="py-3 text-right font-medium text-parchment">
                     {fmt.format(program.registrationFee)}
                   </td>
                 </tr>
                 {program.stlmFee > 0 && (
                   <tr>
-                    <td className="py-3 pr-4 text-neutral-600">
+                    <td className="py-3 pr-4 text-sandstone">
                       STLM/STRF Fee
                     </td>
-                    <td className="py-3 text-right font-medium text-neutral-700">
+                    <td className="py-3 text-right font-medium text-parchment">
                       {fmt.format(program.stlmFee)}
                     </td>
                   </tr>
                 )}
                 {program.supplyCost > 0 && (
                   <tr>
-                    <td className="py-3 pr-4 text-neutral-600">
+                    <td className="py-3 pr-4 text-sandstone">
                       Supplies / Materials
                     </td>
-                    <td className="py-3 text-right font-medium text-neutral-700">
+                    <td className="py-3 text-right font-medium text-parchment">
                       {fmt.format(program.supplyCost)}
                     </td>
                   </tr>
                 )}
-                <tr className="border-t-2 border-plum-900/10">
-                  <td className="py-3 pr-4 font-semibold text-plum-900">
+                <tr className="border-t-2 border-white/10">
+                  <td className="py-3 pr-4 font-semibold text-parchment">
                     Total Charges
                   </td>
-                  <td className="py-3 text-right font-bold text-plum-900">
+                  <td className="py-3 text-right font-bold text-parchment">
                     {fmt.format(program.totalCharges)}
                   </td>
                 </tr>
                 <tr>
-                  <td className="py-3 pr-4 font-semibold text-plum-900">
+                  <td className="py-3 pr-4 font-semibold text-parchment">
                     Total Estimated Cost
                   </td>
                   <td className="py-3 text-right font-bold text-pink-500">
@@ -148,13 +149,14 @@ export default function TuitionPage() {
                 </tr>
               </tbody>
             </table>
+            </div>
           </div>
 
           {/* Combined BA note */}
           {program.programSlug === "bachelor-of-arts" && (
             <Card className="mb-10 border-l-4 border-amber-500 p-4 md:p-6">
-              <p className="text-sm leading-relaxed text-neutral-600">
-                <strong className="text-plum-900">Note:</strong> The Bachelor
+              <p className="text-sm leading-relaxed text-sandstone">
+                <strong className="text-parchment">Note:</strong> The Bachelor
                 of Arts tuition of {fmt.format(program.tuition)} is in addition
                 to the Associate of Arts degree tuition. Combined AA + BA total
                 tuition: <strong>{fmt.format(combinedBA)}</strong>.
@@ -165,46 +167,48 @@ export default function TuitionPage() {
           {/* Payment schedule */}
           {program.paymentSchedule.length > 0 && (
             <>
-              <h3 className="mb-4 font-heading text-xl font-bold text-plum-900">
+              <h3 className="mb-4 font-heading text-xl font-bold text-parchment">
                 Payment Schedule
               </h3>
-              <div className="mb-10 overflow-x-auto">
+              <div className="relative mb-10">
+                <div className="overflow-x-auto [&::-webkit-scrollbar]{display:none} [-webkit-overflow-scrolling:touch]">
                 <table className="w-full min-w-[560px] text-left text-sm">
                   <thead>
-                    <tr className="border-b-2 border-plum-900/10">
-                      <th className="py-3 pr-4 font-semibold text-plum-900">
+                    <tr className="border-b-2 border-white/10">
+                      <th className="py-3 pr-4 font-semibold text-parchment">
                         Enrollment Status
                       </th>
-                      <th className="py-3 pr-4 font-semibold text-plum-900">
+                      <th className="py-3 pr-4 font-semibold text-parchment">
                         Units / Term
                       </th>
-                      <th className="py-3 pr-4 font-semibold text-plum-900">
+                      <th className="py-3 pr-4 font-semibold text-parchment">
                         Tuition / Term
                       </th>
-                      <th className="py-3 font-semibold text-plum-900">
+                      <th className="py-3 font-semibold text-parchment">
                         Time to Complete
                       </th>
                     </tr>
                   </thead>
-                  <tbody className="divide-y divide-warm-200">
+                  <tbody className="divide-y divide-white/10">
                     {program.paymentSchedule.map((row) => (
                       <tr key={row.enrollment}>
-                        <td className="py-3 pr-4 font-medium text-neutral-700">
+                        <td className="py-3 pr-4 font-medium text-parchment">
                           {row.enrollment}
                         </td>
-                        <td className="py-3 pr-4 text-neutral-600">
+                        <td className="py-3 pr-4 text-sandstone">
                           {row.unitsPerTerm}
                         </td>
-                        <td className="py-3 pr-4 text-neutral-600">
+                        <td className="py-3 pr-4 text-sandstone">
                           {fmt.format(row.tuitionPerTerm)}
                         </td>
-                        <td className="py-3 text-neutral-600">
+                        <td className="py-3 text-sandstone">
                           {row.termsToComplete}
                         </td>
                       </tr>
                     ))}
                   </tbody>
                 </table>
+                </div>
               </div>
             </>
           )}
@@ -212,23 +216,23 @@ export default function TuitionPage() {
           {/* Payment options */}
           {program.paymentOptions.length > 0 && (
             <>
-              <h3 className="mb-4 font-heading text-xl font-bold text-plum-900">
+              <h3 className="mb-4 font-heading text-xl font-bold text-parchment">
                 Payment Options
               </h3>
               <div className="mb-6 grid gap-4 sm:grid-cols-2">
                 {program.paymentOptions.map((opt) => (
                   <Card key={opt.type} className="p-5">
-                    <h4 className="font-body text-sm font-semibold text-plum-900">
+                    <h4 className="font-body text-sm font-semibold text-parchment">
                       {opt.type}
                     </h4>
-                    <p className="mt-1 text-sm leading-relaxed text-neutral-500">
+                    <p className="mt-1 text-sm leading-relaxed text-sandstone">
                       {opt.description}
                     </p>
                     {opt.amount > 0 && (
                       <p className="mt-2 text-sm font-semibold text-pink-500">
                         {fmt.format(opt.amount)}
                         {opt.perPeriod && (
-                          <span className="font-normal text-neutral-500">
+                          <span className="font-normal text-sandstone">
                             {" "}
                             {opt.perPeriod}
                           </span>
@@ -243,15 +247,15 @@ export default function TuitionPage() {
 
           {/* Notes */}
           {program.notes.length > 0 && (
-            <div className="rounded-lg bg-warm-100 p-4 md:p-6">
-              <h4 className="mb-2 text-xs font-semibold uppercase tracking-wider text-neutral-500">
+            <div className="rounded-lg bg-white/5 p-4 md:p-6">
+              <h4 className="mb-2 text-xs font-semibold uppercase tracking-wider text-sandstone">
                 Important Notes
               </h4>
               <ul className="space-y-1.5">
                 {program.notes.map((note, i) => (
                   <li
                     key={i}
-                    className="flex items-start gap-2 text-sm leading-relaxed text-neutral-600"
+                    className="flex items-start gap-2 text-sm leading-relaxed text-sandstone"
                   >
                     <span className="mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-pink-500" />
                     {note}
@@ -297,10 +301,10 @@ export default function TuitionPage() {
       {/* -- Disclosures ---------------------------------------------------- */}
       <Section>
         <div className="mx-auto max-w-3xl">
-          <h2 className="mb-6 font-heading text-2xl font-bold text-plum-900">
+          <h2 className="mb-6 font-heading text-2xl font-bold text-parchment">
             Important Disclosures
           </h2>
-          <div className="space-y-3 text-sm leading-relaxed text-neutral-500">
+          <div className="space-y-3 text-sm leading-relaxed text-sandstone">
             <p>
               Tuition and fees are subject to change. The figures listed above
               reflect the current academic year and are provided for planning
@@ -316,6 +320,48 @@ export default function TuitionPage() {
               Commission of Career Schools and Colleges (ACCSC). The Bachelor of
               Arts program is additionally accredited by the Council for Interior
               Design Accreditation (CIDA).
+            </p>
+          </div>
+
+          {/* Cancellation & Refund Policy */}
+          <div className="mt-8 border-t border-white/10 pt-6">
+            <h3 className="mb-3 font-heading text-lg font-bold text-parchment">
+              Cancellation &amp; Refund Policy
+            </h3>
+            <p className="text-sm leading-relaxed text-sandstone">
+              Students have the right to cancel the enrollment agreement and
+              obtain a refund of charges paid through attendance at the first
+              class session, or the seventh day after enrollment, whichever is
+              later. Students who withdraw after the cancellation period are
+              entitled to a pro-rata refund of unearned tuition. Refunds are
+              issued within 45 days of withdrawal. See the{" "}
+              <a
+                href="/documents/enrollment-agreement.pdf"
+                className="text-pink-500 hover:text-pink-400 transition-colors"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Enrollment Agreement
+              </a>{" "}
+              for complete refund policy details.
+            </p>
+          </div>
+
+          {/* STRF Note */}
+          <div className="mt-6 border-t border-white/10 pt-6">
+            <h3 className="mb-3 font-heading text-lg font-bold text-parchment">
+              Student Tuition Recovery Fund (STRF)
+            </h3>
+            <p className="text-sm leading-relaxed text-sandstone">
+              The STRF assessment is a state-mandated fee paid by California
+              residents. For complete STRF information, see our{" "}
+              <Link
+                href="/disclosures#strf"
+                className="text-pink-500 hover:text-pink-400 transition-colors"
+              >
+                Disclosures page
+              </Link>
+              .
             </p>
           </div>
         </div>

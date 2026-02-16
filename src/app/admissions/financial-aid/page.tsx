@@ -30,13 +30,13 @@ function Breadcrumbs() {
             Home
           </Link>
         </li>
-        <li aria-hidden="true">/</li>
+        <li aria-hidden="true" className="text-sandstone/40">&rsaquo;</li>
         <li>
           <Link href="/admissions" className="hover:text-pink-400 transition-colors">
             Admissions
           </Link>
         </li>
-        <li aria-hidden="true">/</li>
+        <li aria-hidden="true" className="text-sandstone/40">&rsaquo;</li>
         <li className="font-medium text-parchment">Financial Aid</li>
       </ol>
     </nav>
@@ -147,7 +147,7 @@ export default function FinancialAidPage() {
                 </svg>
               </div>
               <div>
-                <p className="text-base leading-relaxed text-neutral-600">
+                <p className="text-base leading-relaxed text-sandstone">
                   Financial aid is available for degree-seeking students enrolled
                   in the Associate of Arts, Bachelor of Arts, and Master of
                   Interior Architecture programs. The Certificate Course is not
@@ -194,13 +194,13 @@ export default function FinancialAidPage() {
         <div className="mx-auto max-w-3xl space-y-8">
           {/* School code callout */}
           <Card className="p-6 md:p-8 text-center">
-            <p className="text-sm font-semibold uppercase tracking-wider text-neutral-500">
+            <p className="text-sm font-semibold uppercase tracking-wider text-sandstone">
               IDI Federal School Code
             </p>
             <p className="mt-2 font-heading text-4xl font-bold text-pink-500 md:text-5xl">
               {federalSchoolCode}
             </p>
-            <p className="mt-2 text-sm text-neutral-500">
+            <p className="mt-2 text-sm text-sandstone">
               Use this code when completing your FAFSA application
             </p>
           </Card>
@@ -212,10 +212,10 @@ export default function FinancialAidPage() {
                 1
               </span>
               <div>
-                <h3 className="font-body text-base font-semibold text-plum-900">
+                <h3 className="font-body text-base font-semibold text-parchment">
                   Complete the FAFSA
                 </h3>
-                <p className="mt-1 text-sm leading-relaxed text-neutral-500">
+                <p className="mt-1 text-sm leading-relaxed text-sandstone">
                   Visit{" "}
                   <a
                     href="https://studentaid.gov/h/apply-for-aid/fafsa"
@@ -236,10 +236,10 @@ export default function FinancialAidPage() {
                 2
               </span>
               <div>
-                <h3 className="font-body text-base font-semibold text-plum-900">
+                <h3 className="font-body text-base font-semibold text-parchment">
                   Review Your Award Letter
                 </h3>
-                <p className="mt-1 text-sm leading-relaxed text-neutral-500">
+                <p className="mt-1 text-sm leading-relaxed text-sandstone">
                   Once your FAFSA is processed, IDI&apos;s Financial Aid office
                   will send you an award letter detailing the types and amounts
                   of aid you are eligible to receive.
@@ -252,10 +252,10 @@ export default function FinancialAidPage() {
                 3
               </span>
               <div>
-                <h3 className="font-body text-base font-semibold text-plum-900">
+                <h3 className="font-body text-base font-semibold text-parchment">
                   Accept Your Aid &amp; Enroll
                 </h3>
-                <p className="mt-1 text-sm leading-relaxed text-neutral-500">
+                <p className="mt-1 text-sm leading-relaxed text-sandstone">
                   Work with our Financial Aid office to accept your aid package,
                   complete any remaining requirements, and finalize your
                   enrollment.
@@ -269,10 +269,10 @@ export default function FinancialAidPage() {
       {/* -- Net Price Calculator ------------------------------------------- */}
       <Section bg="light">
         <div className="mx-auto max-w-3xl text-center">
-          <h2 className="font-heading text-3xl font-bold text-plum-900 md:text-4xl">
+          <h2 className="font-heading text-3xl font-bold text-parchment md:text-4xl">
             Net Price Calculator
           </h2>
-          <p className="mt-4 text-lg leading-relaxed text-neutral-500">
+          <p className="mt-4 text-lg leading-relaxed text-sandstone">
             Get an estimated cost of attendance based on your individual
             circumstances using our Net Price Calculator.
           </p>
@@ -282,7 +282,7 @@ export default function FinancialAidPage() {
               href="https://idi.edu/net-price-calculator"
               variant="secondary"
               size="lg"
-              className="border-plum-900 text-plum-900 hover:bg-plum-900 hover:text-parchment"
+              className="border-white/20 text-parchment hover:bg-white/10"
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -299,7 +299,7 @@ export default function FinancialAidPage() {
         subtitle="Review important financial aid policies, disclosures, and consumer information."
       >
         <div className="mx-auto max-w-3xl">
-          <Card className="divide-y divide-warm-200">
+          <Card className="divide-y divide-white/10">
             {[
               {
                 label: "Financial Aid Policies & Procedures",
@@ -321,13 +321,13 @@ export default function FinancialAidPage() {
               <Link
                 key={doc.label}
                 href={doc.href}
-                className="flex items-center justify-between p-4 transition-colors hover:bg-warm-50 group"
+                className="flex items-center justify-between p-4 transition-colors hover:bg-white/5 group"
               >
-                <span className="text-sm font-medium text-neutral-700 group-hover:text-pink-500 transition-colors">
+                <span className="text-sm font-medium text-parchment group-hover:text-pink-500 transition-colors">
                   {doc.label}
                 </span>
                 <svg
-                  className="h-4 w-4 text-neutral-400 group-hover:text-pink-500 transition-colors"
+                  className="h-4 w-4 text-sandstone/60 group-hover:text-pink-500 transition-colors"
                   fill="none"
                   viewBox="0 0 24 24"
                   strokeWidth={2}
@@ -366,8 +366,8 @@ export default function FinancialAidPage() {
             </p>
             <p>
               <span className="font-semibold text-parchment">Email:</span>{" "}
-              <a href={`mailto:${EMAIL}`} className="hover:text-pink-400 transition-colors">
-                {EMAIL}
+              <a href="mailto:financialaid@idi.edu" className="hover:text-pink-400 transition-colors">
+                financialaid@idi.edu
               </a>
             </p>
           </div>

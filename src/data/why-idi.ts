@@ -22,7 +22,7 @@ export const whyIDIPoints: WhyIDIPoint[] = [
   {
     title: "CIDA Accredited BA",
     description:
-      "The gold standard in design education — and our BA carries it. CIDA accreditation is what top employers and licensing bodies look for first. It's the credential that puts your resume at the top of the stack.",
+      "CIDA is the recognized accrediting body for interior design education — and our BA carries it. CIDA accreditation is what top design employers and licensing bodies look for. It's the credential that signals rigorous, industry-aligned education.",
     icon: "award",
   },
   {
@@ -44,7 +44,7 @@ export const whyIDIPoints: WhyIDIPoint[] = [
  */
 export const idiStats = [
   {
-    value: "40+",
+    value: "42+",
     label: "Years Strong",
     description: "Shaping designers since 1984",
   },
@@ -59,8 +59,8 @@ export const idiStats = [
     description: "Small enough to matter. Focused enough to transform.",
   },
   {
-    value: "1000s",
-    label: "Graduates Designing",
-    description: "In firms, studios, and businesses they built themselves",
+    value: "1000+",
+    label: "Graduates & Counting",
+    description: "Designing across Southern California and beyond since 1984",
   },
 ];

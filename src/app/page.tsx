@@ -5,6 +5,7 @@ import { StatsSection } from "@/components/sections/stats-section";
 import { TestimonialsSection } from "@/components/sections/testimonials-section";
 import { CampusSection } from "@/components/sections/campus-section";
 import { CTAFinale } from "@/components/sections/cta-finale";
+import { ConsumerInfoBar } from "@/components/sections/consumer-info-bar";
 
 export default function Home() {
   return (
@@ -26,6 +27,9 @@ export default function Home() {
 
       {/* Section 6: Campus & Location — Split Screen */}
       <CampusSection />
+
+      {/* Consumer Information — Regulatory Links */}
+      <ConsumerInfoBar />
 
       {/* Section 7: CTA Finale — Dramatic Close */}
       <CTAFinale />

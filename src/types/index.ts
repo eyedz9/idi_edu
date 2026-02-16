@@ -43,6 +43,7 @@ export interface Program {
   partTimeOnly?: boolean;
   careerOutcomes: string[];
   careerNote?: string;
+  careerDisclaimer?: string;
   courses: Course[];
   lectures?: CertificateLecture[];
   studios?: CertificateStudio[];

@@ -77,7 +77,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${playfairDisplay.variable} ${inter.variable} bg-warm-50 font-body text-neutral-700 antialiased`}
+        className={`${playfairDisplay.variable} ${inter.variable} overflow-x-hidden bg-plum-900 font-body text-parchment antialiased`}
       >
         <a
           href="#main-content"

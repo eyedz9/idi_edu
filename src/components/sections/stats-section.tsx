@@ -8,10 +8,10 @@ import { AnimatedSection } from "@/components/animations/animated-section";
 /* -------------------------------------------------------------------------- */
 
 const stats = [
-  { target: 40, suffix: "+", label: "Years", sub: "of Excellence" },
+  { target: 42, suffix: "+", label: "Years", sub: "of Excellence" },
   { target: 4, suffix: "", label: "Programs", sub: "Certificate to Master's" },
   { target: 15, suffix: ":1", label: "Ratio", sub: "Student-to-Faculty" },
-  { target: 1000, suffix: "s", label: "Graduates", sub: "& Counting" },
+  { target: 1000, suffix: "+", label: "Graduates", sub: "& Counting" },
 ];
 
 /* -------------------------------------------------------------------------- */
@@ -43,7 +43,7 @@ export function StatsSection() {
                 <p className="mt-2 font-body text-sm font-semibold uppercase tracking-wider text-parchment">
                   {stat.label}
                 </p>
-                <p className="mt-0.5 text-xs text-sandstone">{stat.sub}</p>
+                <p className="mt-0.5 text-xs sm:text-sm text-sandstone">{stat.sub}</p>
               </div>
             ))}
           </div>

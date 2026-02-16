@@ -199,7 +199,7 @@ export default function Header({
           {/* ---- Logo / Brand -------------------------------------------- */}
           <Link
             href="/"
-            className="flex items-center gap-2"
+            className="flex items-center gap-2 min-h-[44px]"
             aria-label={`${brandName} - Home`}
           >
             <Image
@@ -283,7 +283,7 @@ export default function Header({
               href="/admissions/apply"
               variant="primary"
               size="sm"
-              className="hidden sm:inline-flex"
+              className="hidden sm:inline-flex min-h-[44px]"
             >
               Apply Now
             </Button>
@@ -292,7 +292,7 @@ export default function Header({
             <button
               type="button"
               onClick={() => setMobileOpen(true)}
-              className="rounded-lg p-2 text-parchment transition-colors hover:bg-white/5 lg:hidden"
+              className="rounded-lg p-2.5 text-parchment transition-colors hover:bg-white/5 lg:hidden"
               aria-label="Open menu"
               aria-expanded={mobileOpen}
             >

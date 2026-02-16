@@ -68,20 +68,20 @@ export default function AccreditationPage() {
     <>
       {/* ── Breadcrumb ──────────────────────────────────────────────────── */}
       <nav aria-label="Breadcrumb" className="mx-auto max-w-7xl px-4 pt-6 sm:px-6 lg:px-8">
-        <ol className="flex items-center gap-2 text-sm text-neutral-400">
+        <ol className="flex items-center gap-2 text-sm text-sandstone/60">
           <li>
             <Link href="/" className="hover:text-pink-500 transition-colors">
               Home
             </Link>
           </li>
-          <li aria-hidden="true">/</li>
+          <li aria-hidden="true" className="text-sandstone/40">&rsaquo;</li>
           <li>
             <Link href="/about" className="hover:text-pink-500 transition-colors">
               About
             </Link>
           </li>
-          <li aria-hidden="true">/</li>
-          <li className="text-plum-900 font-medium">Accreditation</li>
+          <li aria-hidden="true" className="text-sandstone/40">&rsaquo;</li>
+          <li className="text-parchment font-medium">Accreditation</li>
         </ol>
       </nav>
 
@@ -131,7 +131,7 @@ export default function AccreditationPage() {
             {aboutIDI.accreditation.body.split("\n\n").map((paragraph, i) => (
               <p
                 key={i}
-                className="mb-6 text-base leading-relaxed text-neutral-600 last:mb-0"
+                className="mb-6 text-base leading-relaxed text-sandstone last:mb-0"
               >
                 {paragraph}
               </p>
@@ -262,7 +262,7 @@ export default function AccreditationPage() {
       {/* ── Compliance Documents ─────────────────────────────────────────── */}
       <Section overline="Documents" title="Compliance Documents">
         <AnimatedSection>
-          <p className="mx-auto mb-10 max-w-2xl text-center text-neutral-500">
+          <p className="mx-auto mb-10 max-w-2xl text-center text-sandstone">
             The following documents are available for review in accordance with
             our accreditation and regulatory requirements.
           </p>
@@ -273,7 +273,7 @@ export default function AccreditationPage() {
                 href={doc.path}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group flex items-start gap-3 rounded-xl border border-warm-200 bg-warm-50 p-4 transition-all hover:border-amber-500/30 hover:shadow-md hover:shadow-amber-500/5"
+                className="group flex items-start gap-3 rounded-xl border border-white/10 bg-white/5 p-4 transition-all hover:border-amber-500/30 hover:shadow-[0_0_20px_rgba(176,108,255,0.08)] hover:shadow-amber-500/5"
               >
                 {/* PDF icon */}
                 <svg
@@ -291,11 +291,11 @@ export default function AccreditationPage() {
                   />
                 </svg>
                 <div>
-                  <p className="text-sm font-semibold text-plum-900 group-hover:text-pink-500 transition-colors">
+                  <p className="text-sm font-semibold text-parchment group-hover:text-pink-500 transition-colors">
                     {doc.name}
                   </p>
                   {doc.description && (
-                    <p className="mt-1 text-xs text-neutral-500 line-clamp-2">
+                    <p className="mt-1 text-xs text-sandstone line-clamp-2">
                       {doc.description}
                     </p>
                   )}

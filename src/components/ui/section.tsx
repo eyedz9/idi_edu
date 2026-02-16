@@ -6,10 +6,10 @@ import { cn } from "@/lib/cn";
 /* -------------------------------------------------------------------------- */
 
 const bgVariants = {
-  default: "bg-warm-50 text-neutral-700",
+  default: "bg-plum-900 text-parchment",
   dark: "bg-plum-900 text-parchment",
   accent: "bg-plum-800 text-parchment",
-  light: "bg-warm-100 text-neutral-700",
+  light: "bg-plum-800 text-parchment",
   mesh: "text-parchment",
 } as const;
 
@@ -50,7 +50,7 @@ export function Section({
   ...props
 }: SectionProps) {
   const hasHeader = overline || title || subtitle;
-  const isDark = bg === "dark" || bg === "accent" || bg === "mesh";
+  const isDark = true;
   const showGrain = grain && isDark;
 
   return (

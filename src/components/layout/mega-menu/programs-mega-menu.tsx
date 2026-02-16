@@ -172,7 +172,7 @@ export function ProgramsMegaMenu({ open, onClose }: ProgramsMegaMenuProps) {
           className="col-span-1 row-span-1 flex flex-col items-center justify-center gap-2 rounded-2xl border border-white/5 bg-plum-800/40 p-4 text-center"
         >
           <Link
-            href="/programs"
+            href="/programs/compare"
             role="menuitem"
             onClick={onClose}
             className="font-body text-xs font-semibold text-parchment underline underline-offset-4 decoration-pink-500/40 hover:decoration-pink-500 transition-colors"

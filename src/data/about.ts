@@ -38,7 +38,7 @@ Four decades in, thousands of graduates are shaping interiors across Southern Ca
     {
       year: 2005,
       event:
-        "CIDA accreditation awarded for the BA program — the highest seal of approval in design education.",
+        "CIDA accreditation awarded for the BA program — the recognized accrediting body for interior design education in North America.",
     },
     {
       year: 2010,
@@ -46,9 +46,9 @@ Four decades in, thousands of graduates are shaping interiors across Southern Ca
         "The Master of Interior Architecture program debuts, offering graduate-level rigor for designers ready to lead.",
     },
     {
-      year: 2024,
+      year: 2026,
       event:
-        "Forty years strong — and still the most focused interior design school on the West Coast.",
+        "Over four decades of design education excellence — still dedicated exclusively to interior design education.",
     },
   ] as HistoryMilestone[],
 

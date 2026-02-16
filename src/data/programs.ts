@@ -22,7 +22,7 @@ export const programs: Program[] = [
     accreditor: "ACCSC",
     careerOutcomes: [],
     careerNote:
-      "Many certificate graduates have launched their own design businesses or landed roles in the industry. That said, this program is designed as a foundation — your springboard, not your ceiling.",
+      "This program is designed for personal enrichment and exploration of interior design. It is not designed to lead to employment. Students interested in pursuing design as a career should consider our degree programs.",
     courses: [],
     lectures: [
       { title: "Beautiful Kitchens" },
@@ -70,14 +70,14 @@ export const programs: Program[] = [
     isAccredited: true,
     accreditor: "ACCSC",
     careerOutcomes: [
-      "Style model homes that sell before the open house ends",
-      "Build sets that make directors say yes on the first take",
-      "Plan offices where people actually want to work",
-      "Design boutiques and restaurants with unforgettable atmosphere",
-      "Render interiors so vivid clients feel like they're standing in them",
-      "Create furniture that belongs in both a living room and a gallery",
-      "Specify textiles and wallcoverings that tell a story on every surface",
-      "Shape spaces with light — from ambient warmth to dramatic focus",
+      "Model home staging and residential merchandising",
+      "Set design for film, television, and events",
+      "Office and workplace design",
+      "Retail, restaurant, and hospitality design",
+      "Interior rendering and visualization",
+      "Furniture design and custom fabrication",
+      "Textile and wallcovering specification",
+      "Lighting design and specification",
     ],
     courses: [
       {
@@ -255,15 +255,15 @@ export const programs: Program[] = [
     cidaAccredited: true,
     requiresGE: "45 quarter units of General Education from an accredited institution",
     careerOutcomes: [
-      "Design hotels and resorts that guests never want to leave",
-      "Create healing environments in hospitals and wellness centers",
-      "Shape offices that reflect a company's culture and ambition",
-      "Craft retail experiences that turn browsers into buyers",
-      "Build immersive sets for film, television, and events",
-      "Render photorealistic interiors that stop the scroll",
-      "Engineer lighting schemes that transform the ordinary into the extraordinary",
-      "Design furniture and objects that blur the line between art and function",
-      "Develop textile and wallcovering collections for the trade",
+      "Hospitality design for hotels, resorts, and boutique properties",
+      "Healthcare and wellness facility design",
+      "Corporate and workplace interior design",
+      "Retail design and visual merchandising",
+      "Set design for film, television, and events",
+      "Interior rendering and photorealistic visualization",
+      "Lighting design and architectural lighting",
+      "Furniture and product design",
+      "Textile and wallcovering design for the trade",
     ],
     courses: [
       {
@@ -353,11 +353,11 @@ export const programs: Program[] = [
       "Requires a Bachelor of Arts in interior design or architecture from an accredited US institution, portfolio review, and personal interview.",
     schedule: "Part-time, in-class only, Monday and Thursday evenings.",
     careerOutcomes: [
-      "Lead design teams as a senior designer or design director",
-      "Run complex projects from concept to ribbon-cutting",
-      "Shape the next generation as a design educator",
-      "Launch an independent consultancy on your own terms",
-      "Drive research and innovation in the built environment",
+      "Senior design and design director roles at leading firms",
+      "Complex project management from concept through completion",
+      "Design education and academic positions",
+      "Independent consulting and design entrepreneurship",
+      "Research and innovation in the built environment",
     ],
     courses: [
       {
