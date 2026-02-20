@@ -53,7 +53,7 @@ export function ConsumerInfoBar() {
     <section className="border-y border-white/10 bg-plum-800/50 py-10 md:py-12">
       <div className="mx-auto max-w-7xl px-4 text-center sm:px-6 lg:px-8">
         <p className="mb-6 text-xs font-semibold uppercase tracking-widest text-sandstone/60">
-          Consumer Information
+          Documents &amp; Disclosures
         </p>
         <div className="flex flex-wrap items-center justify-center gap-3">
           {consumerLinks.map((link) => (

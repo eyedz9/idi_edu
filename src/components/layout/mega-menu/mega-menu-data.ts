@@ -81,4 +81,10 @@ export const admissionsMenuItems: AdmissionsMenuItem[] = [
     description: "Scholarships, grants, and federal aid options.",
     icon: "banknotes",
   },
+  {
+    title: "Documents & Disclosures",
+    href: "/disclosures",
+    description: "Institutional documents, accreditation, and consumer information.",
+    icon: "document",
+  },
 ];

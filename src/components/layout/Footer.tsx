@@ -84,7 +84,7 @@ const defaultColumns: FooterColumn[] = [
   {
     title: "Resources",
     links: [
-      { label: "Consumer Information", href: "/disclosures" },
+      { label: "Documents & Disclosures", href: "/disclosures" },
       { label: "Financial Aid", href: "/admissions/financial-aid" },
       { label: "Privacy Policy", href: "/disclosures#privacy" },
       { label: "Accreditation", href: "/about/accreditation" },
@@ -246,15 +246,17 @@ export default function Footer({
                 style={{ height: 'auto', width: 'auto', maxHeight: '2rem' }}
                 unoptimized
               />
-              <Image
-                src="/images/bppe-logo.png"
-                alt="BPPE Approved"
-                width={80}
-                height={32}
-                className="brightness-0 invert opacity-60 hover:opacity-100 transition-opacity"
-                style={{ height: 'auto', width: 'auto', maxHeight: '2rem' }}
-                unoptimized
-              />
+              <a href="https://www.bppe.ca.gov" target="_blank" rel="noopener noreferrer">
+                <Image
+                  src="/images/bppe-logo.png"
+                  alt="BPPE Approved"
+                  width={80}
+                  height={32}
+                  className="brightness-0 invert opacity-60 hover:opacity-100 transition-opacity"
+                  style={{ height: 'auto', width: 'auto', maxHeight: '2rem' }}
+                  unoptimized
+                />
+              </a>
               <Image
                 src="/images/cida_logo.png"
                 alt="CIDA Accredited"

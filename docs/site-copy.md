@@ -1,7 +1,20 @@
 # IDI Website — Complete Site Copy
-**Generated:** 2026-02-16
-**Source:** All 19 pages + homepage sections + data files
+**Generated:** 2026-02-18
+**Source:** All 20 pages + homepage sections + data files + component source code
 **Purpose:** Copy editing reference. Make changes in this document, save with a new filename, and upload for implementation.
+
+---
+
+> **EDITOR NOTE — Date Discrepancy:**
+> Two different "next class" dates exist in the codebase:
+> - `constants.ts` → NEXT_CLASS_DATE = **"May 11"** (used by the **Hero** and **CTA Finale** on the homepage)
+> - `enrollment.ts` → nextClassDate = **"May 5"** (used by the **Apply** page and **Admissions** page)
+> - The Certificate Course schedule also says **"May 11, 2026"**
+>
+> Please confirm the correct date and we will unify it sitewide.
+
+> **EDITOR NOTE — Unused Alternate Homepage Copy:**
+> The file `homepage.ts` contains alternate hero copy ("DESIGN IS A LANGUAGE. LEARN TO SPEAK IT."), alternate gallery captions, alternate testimonials, an alternate campus section, and an alternate CTA section. These are **NOT rendered** on the live site — the homepage components use their own hardcoded copy instead. The copy below reflects what is **actually displayed**.
 
 ---
 
@@ -40,7 +53,8 @@
 - **Fax:** (949) 759-0667
 - **Email:** contact@idi.edu
 - **Address:** 1061 Camelback Street, Newport Beach, CA 92660
-- **Next Class Date:** May 5
+- **Next Class Date (constants.ts):** May 11 *(see date discrepancy note above)*
+- **Next Class Date (enrollment.ts):** May 5 *(see date discrepancy note above)*
 - **Enrollment Period:** Spring/Summer 2026
 - **BPPE School Code:** 2302631
 - **Federal School Code (FAFSA):** 041863
@@ -70,7 +84,7 @@
 
 ### Hero Section
 
-- **Badge:** Classes Starting May 5
+- **Badge:** Classes Starting May 11 *(uses NEXT_CLASS_DATE from constants.ts)*
 - **Headline:** DESIGN YOUR FUTURE
 - **Subtitle:** California's Premier Interior Design School · Newport Beach
 - **CTA 1:** Explore Programs
@@ -135,16 +149,16 @@
 - **Overline:** Student Stories
 
 **Testimonial 1:**
-> "IDI gave me the foundation and confidence to launch my own residential design firm. The small class sizes meant I got real mentorship from faculty who are working designers themselves."
-— Sarah Mitchell, Principal Designer, Mitchell Interiors (BA in Interior Design)
+> "When looking for an interior design school, I chose IDI because of its excellent reputation and the positive things I was hearing from IDI graduates and students alike. I was attracted to the smallness of the school and felt that it was a good fit for my interior design education. The education I received at IDI set me up well for my future career in design. As the principal of Haus of Design, I am fortunate to work in an industry I love and work with other creatives who inspire me daily! I also value the connection I still maintain with IDI, as some of our best interns have come from the school, and we have also hired IDI graduates as designers at the company."
+— Nicole Perrault, Principal, Haus of Design (Associate of Arts Degree in Interior Design)
 
 **Testimonial 2:**
-> "The Master of Interior Architecture program challenged me to think critically about space and human experience. The connections I made at IDI opened doors I never expected."
-— David Chen, Senior Designer, Gensler (Master of Interior Architecture)
+> "My dream has been to pursue theme park design, so I cannot thank you and the rest of the faculty enough for providing me with the knowledge and tools to get to this point. The best part about IDI is the faculty. Each professor had professional experiences that they brought to the classroom to prepare me better. Their attentive teaching styles and hands-on learning created a unique environment that provided the tools for a more successful career."
+— Brad Bain, Theme Lighting Designer, Walt Disney Imagineering (Bachelor of Arts Degree in Interior Design)
 
 **Testimonial 3:**
-> "Starting with the certificate course was the best decision. It confirmed my passion for design, and I continued all the way through the BA program. The Newport Beach location is incredibly inspiring."
-— Maria Gonzalez, Interior Designer, HBA Design (AA in Interior Design)
+> "I had finally found a college that understood what I wanted to do and knew how to get me there."
+— Sarah Libben, Interior Designer, Project Manager — NBC Universal (Master of Interior Architecture)
 
 ### Campus Section
 
@@ -161,9 +175,14 @@
 
 - **CTA:** Visit Our Campus
 
+### Consumer Info Bar
+
+- **Label:** Consumer Information
+- Links: School Catalog, Performance Fact Sheet, Student Outcomes, STRF Information, All Disclosures
+
 ### CTA Finale Section
 
-- **Badge:** Next Class: May 5
+- **Badge:** Next Class: May 11 *(uses NEXT_CLASS_DATE from constants.ts)*
 - **Headline:** Your Design Career Starts Here
 - **Body:** Take the first step toward a rewarding career in interior design. Join a community of passionate creatives at California's premier design school.
 - **CTA 1:** Apply Now
@@ -212,7 +231,7 @@ With four progressive programs from a Certificate Course through a Master of Int
 - 42+ Years Strong — Shaping designers since 1984
 - 4 Programs — From first sketch to master's thesis
 - 15:1 Student-to-Faculty Ratio — Small enough to matter. Focused enough to transform.
-- 1000+ Graduates & Counting — In firms, studios, and businesses they built themselves
+- 1000+ Graduates & Counting — Designing across Southern California and beyond since 1984
 
 ### Philosophy Section
 
@@ -253,9 +272,9 @@ Every aspect of our institution — from our ACCSC and CIDA accreditations to ou
 2. **1990** — The Institute moves to Newport Beach — planting itself in the heart of Southern California's design community.
 3. **1994** — The Associate of Arts program launches, giving students a career-ready degree in interior design.
 4. **2000** — The Bachelor of Arts program arrives — raising the bar with advanced technical skills and CIDA-track curriculum.
-5. **2005** — CIDA accreditation awarded for the BA program — the highest seal of approval in design education.
+5. **2005** — CIDA accreditation awarded for the BA program — the recognized accrediting body for interior design education in North America.
 6. **2010** — The Master of Interior Architecture program debuts, offering graduate-level rigor for designers ready to lead.
-7. **2026** — Over four decades of design education excellence — and still the most focused interior design school on the West Coast.
+7. **2026** — Over four decades of design education excellence — still dedicated exclusively to interior design education.
 
 ### Narrative
 
@@ -524,7 +543,7 @@ Our small campus means you will know our staff by name, and they will know you. 
 
 ### Hero
 
-- **Badge:** Spring/Summer 2026 — Classes Start May 5
+- **Badge:** Spring/Summer 2026 — Classes Start May 5 *(uses enrollmentConfig.nextClassDate)*
 - **Headline:** Begin Your Design Journey
 - **Subtitle:** Whether you're exploring interior design for the first time or advancing your career, IDI has a program for you. Here's how to get started.
 
@@ -602,9 +621,9 @@ Our small campus means you will know our staff by name, and they will know you. 
 
 ### Hero
 
-- **Badge:** Now Enrolling — Spring/Summer 2026
+- **Badge:** Now Enrolling — Spring/Summer 2026 *(uses enrollmentConfig.registrationPeriod)*
 - **Headline:** Apply to IDI
-- **Subtitle:** Take the first step toward your interior design career. Next classes begin **May 5**.
+- **Subtitle:** Take the first step toward your interior design career. Next classes begin **May 5**. *(uses enrollmentConfig.nextClassDate)*
 - **CTA:** Start Your Application
 
 ### Enrollment Info Cards
@@ -618,6 +637,18 @@ Our small campus means you will know our staff by name, and they will know you. 
 - **Overline:** At a Glance
 - **Title:** Admission Requirements
 - **Subtitle:** Key requirements for each program level. See the full admissions page for complete details.
+
+### Enrollment Steps
+
+- **Overline:** The Process
+- **Title:** How to Enroll
+- **Subtitle:** From application to first day of class, here is what to expect.
+
+*(Uses the same enrollment steps as the Admissions page — see Section 8.)*
+
+### Notice to Prospective Students
+
+As a prospective student, you are encouraged to review the School Catalog and School Performance Fact Sheet prior to signing an enrollment agreement.
 
 ### FAQs
 
@@ -642,6 +673,12 @@ Our small campus means you will know our staff by name, and they will know you. 
 - **Body:** Our admissions team is here to help. Reach out anytime.
 - Phone: (949) 675-4451
 - Email: contact@idi.edu
+
+### Pre-Enrollment Documents
+
+- School Catalog
+- Performance Fact Sheet
+- STRF Disclosure
 
 ---
 
@@ -803,7 +840,11 @@ Twelve weeks. One decision. A whole new creative direction. This is where your d
 
 ### Career Note
 
-Many certificate graduates have launched their own design businesses or landed roles in the industry. That said, this program is designed as a foundation — your springboard, not your ceiling.
+This program is designed for personal enrichment and exploration of interior design. It is not designed to lead to employment. Students interested in pursuing design as a career should consider our degree programs.
+
+### Avocational Program Notice *(on program detail page)*
+
+This program is designed for personal enrichment and is not intended to lead to employment in interior design. Completion of this program does not confer a degree. The Certificate of Completion does not guarantee admission to IDI's degree programs.
 
 ### Lectures (16)
 
@@ -857,14 +898,14 @@ Two years to fluency in the language of design. This is where you stop admiring 
 
 ### Career Outcomes
 
-- Style model homes that sell before the open house ends
-- Build sets that make directors say yes on the first take
-- Plan offices where people actually want to work
-- Design boutiques and restaurants with unforgettable atmosphere
-- Render interiors so vivid clients feel like they're standing in them
-- Create furniture that belongs in both a living room and a gallery
-- Specify textiles and wallcoverings that tell a story on every surface
-- Shape spaces with light — from ambient warmth to dramatic focus
+- Model home staging and residential merchandising
+- Set design for film, television, and events
+- Office and workplace design
+- Retail, restaurant, and hospitality design
+- Interior rendering and visualization
+- Furniture design and custom fabrication
+- Textile and wallcovering specification
+- Lighting design and specification
 
 ### Courses (22)
 
@@ -914,15 +955,21 @@ The degree that opens every door in the design industry. With CIDA accreditation
 
 ### Career Outcomes
 
-- Design hotels and resorts that guests never want to leave
-- Create healing environments in hospitals and wellness centers
-- Shape offices that reflect a company's culture and ambition
-- Craft retail experiences that turn browsers into buyers
-- Build immersive sets for film, television, and events
-- Render photorealistic interiors that stop the scroll
-- Engineer lighting schemes that transform the ordinary into the extraordinary
-- Design furniture and objects that blur the line between art and function
-- Develop textile and wallcovering collections for the trade
+- Hospitality design for hotels, resorts, and boutique properties
+- Healthcare and wellness facility design
+- Corporate and workplace interior design
+- Retail design and visual merchandising
+- Set design for film, television, and events
+- Interior rendering and photorealistic visualization
+- Lighting design and architectural lighting
+- Furniture and product design
+- Textile and wallcovering design for the trade
+
+### CIDA Accreditation Notice *(on program detail page)*
+
+The Bachelor of Arts in Interior Design is accredited by the Council for Interior Design Accreditation (CIDA). CIDA accreditation is recognized by employers and licensing bodies in the interior design profession.
+
+This program requires 45 quarter units of General Education coursework from an accredited institution.
 
 ### Courses (9)
 
@@ -961,11 +1008,15 @@ For designers who want to shape the built environment — not just fill it. This
 
 ### Career Outcomes
 
-- Lead design teams as a senior designer or design director
-- Run complex projects from concept to ribbon-cutting
-- Shape the next generation as a design educator
-- Launch an independent consultancy on your own terms
-- Drive research and innovation in the built environment
+- Senior design and design director roles at leading firms
+- Complex project management from concept through completion
+- Design education and academic positions
+- Independent consulting and design entrepreneurship
+- Research and innovation in the built environment
+
+### Terminal Degree Notice *(on program detail page)*
+
+The Master of Interior Architecture is a terminal degree in the field of interior architecture.
 
 ### Courses (8)
 
@@ -1142,10 +1193,132 @@ Beyond design, Newport Beach offers beaches, art galleries, fine dining, and a q
 
 ### Meta
 
-- **Title:** Disclosures & Documents
-- **Description:** Access important consumer information, compliance documents, and disclosures for Interior Designers Institute. ACCSC, CIDA, BPPE, and institutional documents.
+- **Title:** Documents & Disclosures
+- **Description:** Access institutional documents, accreditation disclosures, financial aid information, and student outcome reports from Interior Designers Institute.
 
-*(Document list is dynamically generated from the disclosures data file. Documents include institutional policies, ACCSC compliance, BPPE disclosures, and student consumer information.)*
+### Hero
+
+- **Overline:** Transparency
+- **Headline:** Documents & Disclosures
+- **Subtitle:** Interior Designers Institute is committed to institutional transparency. The following documents are provided in accordance with federal, state, and accreditation requirements.
+
+### Introduction
+
+As an accredited institution, IDI makes the following documents available to prospective students, current students, and the public. These documents include institutional policies, accreditation information, financial aid disclosures, student outcome reports, and program-specific details. All documents are provided as PDF files.
+
+### Document Categories
+
+**Institutional Documents:**
+Core institutional documents including the school catalog, student handbook, and enrollment agreement.
+
+**ACCSC Documents:**
+Documents related to our accreditation by the Accrediting Commission of Career Schools and Colleges.
+
+**BPPE Documents:**
+Documents required by the California Bureau for Private Postsecondary Education.
+
+**Financial Aid Documents:**
+Financial aid policies, consumer information, and net price calculators.
+
+**Student Outcomes Documents:**
+Gainful employment disclosures and student outcome data for each program.
+
+**Program-Specific Documents:**
+CIDA accreditation documentation and detailed program outlines for each degree.
+
+### Student Tuition Recovery Fund (STRF)
+
+The following disclosure is required by California Education Code Section 76215 and must be provided verbatim.
+
+The State of California established the Student Tuition Recovery Fund (STRF) to relieve or mitigate economic loss suffered by a student in an educational program at a qualifying institution, who is or was a California resident while enrolled, or was enrolled in a residency program, if the student enrolled in the institution, prepaid tuition, and suffered an economic loss. Unless relieved of the obligation to do so, you must pay the state-imposed assessment for the STRF, or it must be paid on your behalf, if you are a student in an educational program, who is a California resident, or are enrolled in a residency program, and prepay all or part of your tuition.
+
+You are not eligible for protection from the STRF and you are not required to pay the STRF assessment, if you are not a California resident, or are not enrolled in a residency program.
+
+It is important that you keep copies of your enrollment agreement, financial aid documents, receipts, or any other information that documents the amount paid to the institution. Questions regarding the STRF may be directed to the Bureau for Private Postsecondary Education, 1747 N. Market Blvd., Suite 225, Sacramento, CA 95834, (916) 431-6959 or (888) 370-7589.
+
+To be eligible for STRF, you must be a California resident or enrolled in a residency program, prepaid tuition, paid or deemed to have paid the STRF assessment, and suffered an economic loss as a result of any of the following:
+
+1. The institution, a location of the institution, or an educational program offered by the institution was closed or discontinued, and you did not choose to participate in a teach-out plan approved by the Bureau or did not complete a chosen teach-out plan approved by the Bureau.
+2. You were enrolled at an institution or a location of the institution within the 120 day period before the closure of the institution or location of the institution, or were enrolled in an educational program within the 120 day period before the program was discontinued.
+3. You were enrolled at an institution or a location of the institution more than 120 days before the closure of the institution or location of the institution, in an educational program offered by the institution as to which the Bureau determined there was a significant decline in the quality or value of the program more than 120 days before closure.
+4. The institution has been ordered to pay a refund by the Bureau but has failed to do so.
+5. The institution has failed to pay or reimburse loan proceeds under a federal student loan program as required by law, or has failed to pay or reimburse proceeds received by the institution in excess of tuition and other costs.
+6. You have been awarded restitution, a refund, or other monetary award by an arbitrator or court, based on a violation of this chapter by an institution or representative of an institution, but have been unable to collect the award from the institution.
+7. You sought legal counsel that resulted in the cancellation of one or more of your student loans and have an invoice for services rendered and evidence of the cancellation of the student loan or loans.
+
+To qualify for STRF reimbursement, the application must be received within four (4) years from the date of the action or event that made the student eligible for recovery from STRF.
+
+A student whose loan is revived by a loan holder or debt collector after a period of noncollection may, at any time, file a written application for recovery from STRF for the debt that would have otherwise been eligible for recovery. If it has been more than four (4) years since the action or event that made the student eligible, the student must have filed a written application for recovery within the original four (4) year period, unless the period has been extended by another act of law.
+
+However, no claim can be paid to any student without a social security number or a taxpayer identification number.
+
+### BPPE Complaint Information
+
+A student or any member of the public may file a complaint about this institution with the Bureau for Private Postsecondary Education by calling the toll-free number or by completing a complaint form, which can be obtained on the bureau's Internet Web site.
+
+**Bureau for Private Postsecondary Education**
+1747 N. Market Blvd., Suite 225
+Sacramento, CA 95834
+Phone: (916) 431-6959
+Toll-Free: (888) 370-7589
+Fax: (916) 263-1897
+Website: www.bppe.ca.gov
+
+### Housing Disclosure
+
+Required by California Code of Regulations Section 71810(b)(13)(C).
+
+Interior Designers Institute does not have dormitory facilities under its control and has no responsibility to find or assist a student in finding housing.
+
+### Cancellation & Refund Policy
+
+The following is a summary of key cancellation and refund provisions as required by California Code of Regulations Section 71810(b)(11). Please refer to the Enrollment Agreement for the complete policy.
+
+**Right to Cancel:**
+Students have the right to cancel the enrollment agreement and obtain a refund of charges paid through attendance at the first class session, or the seventh day after enrollment, whichever is later.
+
+**Withdrawal After Cancellation Period:**
+Students who withdraw after the cancellation period are entitled to a pro-rata refund of tuition charges.
+
+**Refund Timeline:**
+Refunds are issued within 45 days of the student's withdrawal date.
+
+**Complete Refund Policy:**
+For complete details on the cancellation and refund policy, please review the Enrollment Agreement.
+
+### Credit Transferability Notice
+
+Required by California Code of Regulations Sections 71775 and 71775.5.
+
+The transferability of credits you earn at Interior Designers Institute is at the complete discretion of an institution to which you may seek to transfer. Acceptance of the degree, diploma, or certificate you earn is also at the complete discretion of the institution to which you may seek to transfer. If the credits or degree, diploma, or certificate that you earn at this institution are not accepted at the institution to which you seek to transfer, you may be required to repeat some or all of your coursework at that institution. For this reason you should make certain that your attendance at this institution will meet your educational goals. This may include contacting an institution to which you may seek to transfer after attending Interior Designers Institute to determine if your credits or degree, diploma, or certificate will transfer.
+
+### Notice to Prospective Students
+
+Required by the Bureau for Private Postsecondary Education.
+
+As a prospective student, you are encouraged to review this catalog prior to signing an enrollment agreement. You are also encouraged to review the School Performance Fact Sheet, which must be provided to you prior to signing an enrollment agreement.
+
+### Privacy Policy
+
+Interior Designers Institute is committed to protecting the privacy of prospective students, current students, alumni, and visitors to our website.
+
+**Information We Collect:**
+We collect information you provide directly, such as when you request information, apply for admission, or contact us. This may include your name, email address, phone number, mailing address, and educational background. We also collect standard web analytics data through cookies and similar technologies.
+
+**How We Use Your Information:**
+We use collected information to respond to your inquiries, process applications, provide educational services, send communications about our programs, and improve our website. We do not sell or rent personal information to third parties.
+
+**Data Security:**
+We implement appropriate security measures to protect personal information against unauthorized access, alteration, or destruction. Student educational records are protected in accordance with FERPA (Family Educational Rights and Privacy Act).
+
+**Contact Us:**
+If you have questions about our privacy practices, please contact us at our contact page or call (949) 675-4451.
+
+### CTA
+
+- **Headline:** Questions about our disclosures?
+- **Body:** If you have questions about any of these documents or need additional information, please contact our office.
+- **CTA:** Contact Us
 
 ---
 
@@ -1153,41 +1326,56 @@ Beyond design, Newport Beach offers beaches, art galleries, fine dining, and a q
 
 ### Footer Content
 
-**Logo + Description:**
-Interior Designers Institute — California's premier interior design school since 1984. ACCSC accredited. CIDA accredited BA program.
+**Logo + Tagline:**
+Interior Designers Institute — Where Creative Talent Becomes Professional Design
 
-**Programs:**
-- Certificate Course → /programs/certificate
-- AA in Interior Design → /programs/associate-of-arts
-- BA in Interior Design → /programs/bachelor-of-arts
-- MIA → /programs/master-interior-architecture
+**Address:**
+1061 Camelback Street, Newport Beach, CA 92660
 
-**Quick Links:**
-- About → /about
+**Phone:** (949) 675-4451
+**Email:** contact@idi.edu
+
+**Column 1 — Quick Links:**
+- Programs → /programs
 - Admissions → /admissions
-- Financial Aid → /admissions/financial-aid
-- Tuition & Fees → /admissions/tuition
 - Campus Life → /campus-life
-- Contact → /contact
+- About → /about
 
-**Contact:**
-- 1061 Camelback Street, Newport Beach, CA 92660
-- Phone: (949) 675-4451
-- Email: contact@idi.edu
+**Column 2 — Resources:**
+- Consumer Information → /disclosures
+- Financial Aid → /admissions/financial-aid
+- Privacy Policy → /disclosures#privacy
+- Accreditation → /about/accreditation
 
-**Newsletter:**
-- Label: Stay Updated
-- Placeholder: Enter your email
-- Button: Subscribe
+**Column 3 — Stay Connected:**
+- Social Icons: Facebook, Instagram, YouTube, TikTok, Pinterest
+- Newsletter: "Subscribe for updates and events"
 
 **Bottom Bar:**
 - © 2026 Interior Designers Institute. All rights reserved.
-- Links: Disclosures, Privacy Policy, Catalog
+- Accreditation Logos: ACCSC, BPPE, CIDA
 
-**Accreditation Logos:**
-- ACCSC
-- BPPE
-- CIDA
+---
+
+## Program Detail Page — Common Disclosures
+
+All four program detail pages include the following standard disclosures:
+
+**Credit Transferability (all programs):**
+The transferability of credits you earn at Interior Designers Institute is at the complete discretion of an institution to which you may seek to transfer. *(Full text same as Disclosures page — see Section 20.)*
+
+**Required Disclosure Document Links (all programs):**
+- School Performance Fact Sheet
+- Gainful Employment Disclosure
+
+**Career Outcomes Disclaimer (all programs):**
+Career outcomes are not guaranteed and depend on individual qualifications, experience, and market conditions.
+
+**CTA (all programs):**
+- Headline: Apply to the [Program Name]
+- Body: Take the next step toward your interior design career. Our admissions team is ready to guide you through the process.
+- CTA 1: Start Your Application
+- CTA 2: Compare Programs
 
 ---
 
@@ -1201,7 +1389,7 @@ These expanded descriptions are used on the About page and homepage:
 
 3. **ACCSC Accredited** — Nationally recognized. Federally approved. Your degree means something — to employers, to licensing boards, and to you. ACCSC accreditation guarantees our programs meet rigorous standards for quality, outcomes, and institutional integrity.
 
-4. **CIDA Accredited BA** — The gold standard in design education — and our BA carries it. CIDA accreditation is what top employers and licensing bodies look for first. It's the credential that puts your resume at the top of the stack.
+4. **CIDA Accredited BA** — CIDA is the recognized accrediting body for interior design education — and our BA carries it. CIDA accreditation is what top design employers and licensing bodies look for. It's the credential that signals rigorous, industry-aligned education.
 
 5. **Industry-Connected Faculty** — They don't just teach design — they practice it. Every day. Our faculty run active studios, consult for real clients, and bring today's industry realities straight into the classroom. You're not learning from textbooks. You're learning from the people writing them.
 

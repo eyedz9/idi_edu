@@ -34,6 +34,14 @@ function BanknotesIcon() {
   );
 }
 
+function DocumentIcon() {
+  return (
+    <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" aria-hidden="true">
+      <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" />
+    </svg>
+  );
+}
+
 function ArrowRightIcon() {
   return (
     <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" aria-hidden="true">
@@ -46,6 +54,7 @@ const iconMap: Record<string, () => React.JSX.Element> = {
   clipboard: ClipboardIcon,
   calculator: CalculatorIcon,
   banknotes: BanknotesIcon,
+  document: DocumentIcon,
 };
 
 /* -------------------------------------------------------------------------- */
@@ -64,38 +73,38 @@ interface AdmissionsMegaMenuProps {
 export function AdmissionsMegaMenu({ open, onClose }: AdmissionsMegaMenuProps) {
   return (
     <MegaMenuWrapper open={open} onClose={onClose} id="mega-admissions">
-      <div className="grid grid-cols-4 gap-3">
-        {/* ── Apply Now CTA cell (1×2) ────────────────────────────────── */}
+      <div className="grid grid-cols-6 gap-3">
+        {/* ── Featured Cell (2×2) ─────────────────────────────────────── */}
         <div
           data-mega-cell
-          className="col-span-1 row-span-2 relative overflow-hidden rounded-2xl bg-gradient-to-b from-pink-500/15 via-plum-800 to-plum-900 p-6 flex flex-col justify-between min-h-[220px]"
+          className="col-span-2 row-span-2 relative overflow-hidden rounded-2xl bg-gradient-to-br from-plum-700 via-plum-800 to-plum-900 p-6 flex flex-col justify-end min-h-[260px]"
         >
-          <div className="absolute -left-8 -top-8 h-32 w-32 rounded-full bg-pink-500/15 blur-3xl" />
-          <div className="absolute -bottom-8 -right-8 h-24 w-24 rounded-full bg-violet/10 blur-3xl" />
+          <div className="absolute inset-0 opacity-30 mesh-plum" />
+          <div className="absolute -right-12 -top-12 h-40 w-40 rounded-full bg-pink-500/10 blur-3xl" />
           <div className="relative z-10">
-            <p className="font-body text-xs font-semibold uppercase tracking-[0.2em] text-pink-500">
+            <p className="mb-1 font-body text-xs font-semibold uppercase tracking-[0.2em] text-pink-500">
               Start Here
             </p>
-            <h3 className="mt-2 font-heading text-xl font-bold text-parchment">
+            <h3 className="font-heading text-2xl font-bold text-parchment">
               Ready to Apply?
             </h3>
-            <p className="mt-2 text-xs leading-relaxed text-sandstone">
+            <p className="mt-2 text-sm leading-relaxed text-sandstone">
               Begin your journey to becoming a professional interior designer.
             </p>
+            <Button
+              as="a"
+              href="/admissions/apply"
+              variant="primary"
+              size="sm"
+              className="mt-4"
+              onClick={onClose}
+            >
+              Apply Now
+            </Button>
           </div>
-          <Button
-            as="a"
-            href="/admissions/apply"
-            variant="primary"
-            size="sm"
-            className="relative z-10 mt-4 w-full justify-center"
-            onClick={onClose}
-          >
-            Apply Now
-          </Button>
         </div>
 
-        {/* ── Admissions link cells (2×1 each) ────────────────────────── */}
+        {/* ── Admissions link cells (2×1 each) ──────────────────────────── */}
         {admissionsMenuItems.map((item) => {
           const Icon = iconMap[item.icon];
           return (
@@ -130,7 +139,7 @@ export function AdmissionsMegaMenu({ open, onClose }: AdmissionsMegaMenuProps) {
           );
         })}
 
-        {/* ── Next Class stat cell (1×1) ──────────────────────────────── */}
+        {/* ── Next Class Starts stat cell (1×1) ──────────────────────── */}
         <div
           data-mega-cell
           className="col-span-1 row-span-1 flex flex-col items-center justify-center rounded-2xl border border-pink-500/15 bg-plum-800/80 p-4 text-center"
@@ -142,6 +151,29 @@ export function AdmissionsMegaMenu({ open, onClose }: AdmissionsMegaMenuProps) {
             {NEXT_CLASS_DATE}
           </p>
           <p className="mt-0.5 text-[11px] text-sandstone">Enroll today</p>
+        </div>
+
+        {/* ── Contact & Overview cell (1×1) ───────────────────────────── */}
+        <div
+          data-mega-cell
+          className="col-span-1 row-span-1 flex flex-col items-center justify-center gap-2 rounded-2xl border border-white/5 bg-plum-800/40 p-4 text-center"
+        >
+          <Link
+            href="/contact"
+            role="menuitem"
+            onClick={onClose}
+            className="font-body text-xs font-semibold text-parchment underline underline-offset-4 decoration-pink-500/40 hover:decoration-pink-500 transition-colors"
+          >
+            Contact Admissions
+          </Link>
+          <Link
+            href="/admissions"
+            role="menuitem"
+            onClick={onClose}
+            className="font-body text-[11px] text-sandstone hover:text-pink-400 transition-colors"
+          >
+            Overview &rarr;
+          </Link>
         </div>
       </div>
     </MegaMenuWrapper>
