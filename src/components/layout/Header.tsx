@@ -1,170 +1,341 @@
-'use client';
+"use client";
 
-import { useState, useEffect } from 'react';
-import Image from 'next/image';
-import Link from 'next/link';
-import { Menu, X } from 'lucide-react';
-import { cn } from '@/lib/utils';
+import { useState, useCallback, useRef, useEffect } from "react";
+import Link from "next/link";
+import Image from "next/image";
+import { cn } from "@/lib/cn";
+import { Button } from "@/components/ui/button";
+import { MobileNav } from "./mobile-nav";
+import { ProgramsMegaMenu } from "./mega-menu/programs-mega-menu";
+import { AdmissionsMegaMenu } from "./mega-menu/admissions-mega-menu";
+import { AboutMegaMenu } from "./mega-menu/about-mega-menu";
+import type { NavItem } from "@/types";
 
-const navigation = [
-  { name: 'Programs', href: '/programs' },
-  { name: 'About', href: '/about' },
-  { name: 'Admissions', href: '/admissions' },
-  { name: 'Student Life', href: '/student-life' },
-  { name: 'Contact', href: '/contact' },
+/* -------------------------------------------------------------------------- */
+/*  Props                                                                     */
+/* -------------------------------------------------------------------------- */
+
+interface HeaderProps {
+  navigation?: NavItem[];
+  phone?: string;
+  /** Visible brand text when no logo image is ready */
+  brandName?: string;
+}
+
+/* -------------------------------------------------------------------------- */
+/*  Icons                                                                     */
+/* -------------------------------------------------------------------------- */
+
+function PhoneIcon({ className }: { className?: string }) {
+  return (
+    <svg
+      className={cn("h-4 w-4", className)}
+      fill="none"
+      viewBox="0 0 24 24"
+      strokeWidth={1.5}
+      stroke="currentColor"
+      aria-hidden="true"
+    >
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 0 0 2.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 0 1-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 0 0-1.091-.852H4.5A2.25 2.25 0 0 0 2.25 4.5v2.25Z"
+      />
+    </svg>
+  );
+}
+
+function HamburgerIcon({ className }: { className?: string }) {
+  return (
+    <svg
+      className={cn("h-6 w-6", className)}
+      fill="none"
+      viewBox="0 0 24 24"
+      strokeWidth={1.5}
+      stroke="currentColor"
+      aria-hidden="true"
+    >
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
+      />
+    </svg>
+  );
+}
+
+function ChevronDownIcon({ className }: { className?: string }) {
+  return (
+    <svg
+      className={cn("h-3.5 w-3.5", className)}
+      fill="none"
+      viewBox="0 0 24 24"
+      strokeWidth={2}
+      stroke="currentColor"
+      aria-hidden="true"
+    >
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="m19.5 8.25-7.5 7.5-7.5-7.5"
+      />
+    </svg>
+  );
+}
+
+/* -------------------------------------------------------------------------- */
+/*  Mega-menu trigger labels (keys for which menus exist)                     */
+/* -------------------------------------------------------------------------- */
+
+const MEGA_MENU_KEYS = new Set(["Programs", "Admissions", "About"]);
+
+/* -------------------------------------------------------------------------- */
+/*  Default navigation data                                                   */
+/* -------------------------------------------------------------------------- */
+
+const defaultNavigation: NavItem[] = [
+  {
+    label: "Programs",
+    href: "/programs",
+    children: [
+      { label: "Interior Design Certificate", href: "/programs/certificate" },
+      { label: "Associate of Arts", href: "/programs/associate-of-arts" },
+      { label: "Bachelor of Arts", href: "/programs/bachelor-of-arts" },
+      { label: "Master of Interior Architecture", href: "/programs/master-interior-architecture" },
+    ],
+  },
+  {
+    label: "Admissions",
+    href: "/admissions",
+    children: [
+      { label: "How to Apply", href: "/admissions/apply" },
+      { label: "Tuition & Fees", href: "/admissions/tuition" },
+      { label: "Financial Aid", href: "/admissions/financial-aid" },
+    ],
+  },
+  { label: "Campus Life", href: "/campus-life" },
+  {
+    label: "About",
+    href: "/about",
+    children: [
+      { label: "Our History", href: "/about/history" },
+      { label: "Accreditation", href: "/about/accreditation" },
+      { label: "Faculty", href: "/about/faculty" },
+      { label: "Staff Directory", href: "/about/staff" },
+    ],
+  },
+  { label: "Contact", href: "/contact" },
 ];
 
-export function Header() {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isVisible, setIsVisible] = useState(false);
+/* -------------------------------------------------------------------------- */
+/*  Header Component                                                          */
+/* -------------------------------------------------------------------------- */
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
-    };
+export default function Header({
+  navigation = defaultNavigation,
+  phone = "(949) 675-4451",
+  brandName = "Interior Designers Institute",
+}: HeaderProps) {
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const [openMenu, setOpenMenu] = useState<string | null>(null);
+  const leaveTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const headerRef = useRef<HTMLElement>(null);
+  const triggerRefs = useRef<Record<string, HTMLButtonElement | null>>({});
 
-    window.addEventListener('scroll', handleScroll);
+  /* ── Hover intent helpers ────────────────────────────────────────────── */
 
-    // Trigger entrance animation after mount
-    const timer = setTimeout(() => setIsVisible(true), 500);
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-      clearTimeout(timer);
-    };
+  const openMega = useCallback((label: string) => {
+    if (leaveTimerRef.current) {
+      clearTimeout(leaveTimerRef.current);
+      leaveTimerRef.current = null;
+    }
+    setOpenMenu(label);
   }, []);
 
-  // Close mobile menu when resizing to desktop
+  const closeMega = useCallback(() => {
+    setOpenMenu(null);
+  }, []);
+
+  const schedulClose = useCallback(() => {
+    leaveTimerRef.current = setTimeout(() => {
+      setOpenMenu(null);
+    }, 150);
+  }, []);
+
+  const cancelClose = useCallback(() => {
+    if (leaveTimerRef.current) {
+      clearTimeout(leaveTimerRef.current);
+      leaveTimerRef.current = null;
+    }
+  }, []);
+
+  /* ── Close on click outside ──────────────────────────────────────────── */
+
   useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth >= 768) {
-        setIsMobileMenuOpen(false);
+    if (!openMenu) return;
+
+    function handleClickOutside(e: MouseEvent) {
+      if (headerRef.current && !headerRef.current.contains(e.target as Node)) {
+        setOpenMenu(null);
       }
-    };
+    }
 
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, [openMenu]);
 
-  const closeMobileMenu = () => {
-    setIsMobileMenuOpen(false);
-  };
+  /* ── Close mega + return focus to trigger ─────────────────────────────── */
+
+  const closeMegaAndFocus = useCallback(() => {
+    const key = openMenu;
+    setOpenMenu(null);
+    if (key && triggerRefs.current[key]) {
+      triggerRefs.current[key]?.focus();
+    }
+  }, [openMenu]);
+
+  const phoneHref = `tel:${phone.replace(/[^0-9+]/g, "")}`;
 
   return (
-    <div
-      className={cn(
-        'fixed top-6 left-0 right-0 z-50 flex justify-center px-4 transition-all duration-1000',
-        isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4'
-      )}
-    >
-      <nav
-        className={cn(
-          'w-full max-w-6xl flex items-center justify-between px-2 py-2 pr-6 backdrop-blur-xl rounded-full shadow-2xl transition-all duration-300'
-        )}
-        style={{
-          borderWidth: '1px',
-          borderColor: 'var(--border-default)',
-          backgroundColor: isScrolled ? 'rgba(20, 32, 48, 0.95)' : 'rgba(20, 32, 48, 0.85)',
-          padding: '0.25rem 1rem'
-        }}
+    <>
+      <header
+        ref={headerRef}
+        className="sticky top-0 z-50 border-b border-white/5 bg-plum-900/95 backdrop-blur-xl"
+        role="banner"
+        onMouseLeave={schedulClose}
+        onMouseEnter={cancelClose}
       >
-        {/* Logo Area */}
-        <Link
-          href="/"
-          className="flex items-center pl-4 group cursor-pointer"
-          onClick={closeMobileMenu}
-        >
-          <Image
-            src="/idi_logo_stacked.png"
-            alt="Interior Designers Institute"
-            width={120}
-            height={40}
-            className="h-8 w-auto group-hover:scale-105 transition-transform"
-            priority
-          />
-        </Link>
-
-        {/* Desktop Navigation Links */}
-        <div className="hidden md:flex items-center gap-8 text-sm font-medium" style={{ color: 'var(--text-secondary)' }}>
-          {navigation.map((item) => (
-            <Link
-              key={item.name}
-              href={item.href}
-              className="transition-colors focus-visible:outline-none cursor-pointer hover:text-[var(--text-primary)]"
-              style={{ color: 'var(--text-secondary)' }}
-            >
-              {item.name}
-            </Link>
-          ))}
-        </div>
-
-        {/* Desktop Actions */}
-        <div className="hidden md:flex items-center gap-2">
+        <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
+          {/* ---- Logo / Brand -------------------------------------------- */}
           <Link
-            href="/admissions"
-            className="px-5 py-2.5 font-medium rounded-full transition-all text-sm cursor-pointer"
-            style={{ backgroundColor: 'var(--accent-gold)', color: 'var(--text-inverse)', padding: '0.25rem 3rem' }}
+            href="/"
+            className="flex items-center gap-2 min-h-[44px]"
+            aria-label={`${brandName} - Home`}
           >
-            Apply Now
+            <Image
+              src="/images/idi_logo_stacked.png"
+              alt={brandName}
+              width={180}
+              height={48}
+              className="h-10 w-auto"
+              priority
+              unoptimized
+            />
           </Link>
+
+          {/* ---- Desktop Navigation -------------------------------------- */}
+          <nav
+            className="hidden items-center gap-6 lg:flex"
+            aria-label="Main navigation"
+          >
+            {navigation.map((item) =>
+              MEGA_MENU_KEYS.has(item.label) ? (
+                <button
+                  key={item.label}
+                  ref={(el) => { triggerRefs.current[item.label] = el; }}
+                  type="button"
+                  onClick={() => setOpenMenu((prev) => (prev === item.label ? null : item.label))}
+                  onMouseEnter={() => openMega(item.label)}
+                  aria-expanded={openMenu === item.label}
+                  aria-haspopup="true"
+                  aria-controls={`mega-${item.label.toLowerCase()}`}
+                  className="inline-flex items-center gap-1 font-body text-sm font-medium text-parchment/80 transition-colors hover:text-pink-500"
+                >
+                  {item.label}
+                  <ChevronDownIcon
+                    className={cn(
+                      "transition-transform duration-200",
+                      openMenu === item.label && "rotate-180",
+                    )}
+                  />
+                </button>
+              ) : (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className="font-body text-sm font-medium text-parchment/80 transition-colors hover:text-pink-500"
+                  {...(item.isExternal
+                    ? { target: "_blank", rel: "noopener noreferrer" }
+                    : {})}
+                >
+                  {item.label}
+                </Link>
+              ),
+            )}
+          </nav>
+
+          {/* ---- Right actions ------------------------------------------- */}
+          <div className="flex items-center gap-3">
+            {/* Phone */}
+            <a
+              href={phoneHref}
+              className="hidden items-center gap-1.5 font-body text-sm font-medium text-sandstone transition-colors hover:text-pink-500 md:inline-flex"
+              aria-label={`Call us at ${phone}`}
+            >
+              <PhoneIcon />
+              <span>{phone}</span>
+            </a>
+
+            {/* Request Info - Ghost */}
+            <Link href="/contact" className="hidden lg:inline-flex">
+              <Button
+                as="span"
+                variant="ghost"
+                size="sm"
+              >
+                Request Info
+              </Button>
+            </Link>
+
+            {/* Apply Now - Primary Gold */}
+            <Link href="/admissions/apply" className="hidden sm:inline-flex">
+              <Button
+                as="span"
+                variant="primary"
+                size="sm"
+                className="min-h-[44px]"
+              >
+                Apply Now
+              </Button>
+            </Link>
+
+            {/* Mobile hamburger */}
+            <button
+              type="button"
+              onClick={() => setMobileOpen(true)}
+              className="rounded-lg p-2.5 text-parchment transition-colors hover:bg-white/5 lg:hidden"
+              aria-label="Open menu"
+              aria-expanded={mobileOpen}
+            >
+              <HamburgerIcon />
+            </button>
+          </div>
         </div>
 
-        {/* Mobile Menu Button */}
-        <button
-          className="md:hidden w-10 h-10 rounded-full flex items-center justify-center transition-colors"
-          style={{ color: 'var(--text-secondary)' }}
-          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
-          aria-expanded={isMobileMenuOpen}
-          aria-controls="mobile-menu"
-        >
-          {isMobileMenuOpen ? (
-            <X className="w-5 h-5" aria-hidden="true" />
-          ) : (
-            <Menu className="w-5 h-5" aria-hidden="true" />
-          )}
-        </button>
-      </nav>
+        {/* ---- Mega Menu Panels (desktop only) ----------------------------- */}
+        <div className="hidden lg:block">
+          <ProgramsMegaMenu
+            open={openMenu === "Programs"}
+            onClose={closeMegaAndFocus}
+          />
+          <AdmissionsMegaMenu
+            open={openMenu === "Admissions"}
+            onClose={closeMegaAndFocus}
+          />
+          <AboutMegaMenu
+            open={openMenu === "About"}
+            onClose={closeMegaAndFocus}
+          />
+        </div>
+      </header>
 
-      {/* Mobile Navigation Panel */}
-      <div
-        id="mobile-menu"
-        className={cn(
-          'md:hidden fixed top-24 left-4 right-4 backdrop-blur-xl rounded-3xl overflow-hidden transition-all duration-300 shadow-2xl',
-          isMobileMenuOpen
-            ? 'opacity-100 visible translate-y-0'
-            : 'opacity-0 invisible -translate-y-4 pointer-events-none'
-        )}
-        style={{ backgroundColor: 'rgba(20, 32, 48, 0.98)', borderWidth: '1px', borderColor: 'var(--border-default)' }}
-        aria-hidden={!isMobileMenuOpen}
-      >
-        <nav className="flex flex-col p-4" aria-label="Mobile navigation">
-          {navigation.map((item) => (
-            <Link
-              key={item.name}
-              href={item.href}
-              onClick={closeMobileMenu}
-              className="block px-4 py-4 min-h-[48px] rounded-xl transition-colors cursor-pointer"
-              style={{ color: 'var(--text-secondary)' }}
-            >
-              {item.name}
-            </Link>
-          ))}
-
-          {/* Mobile CTAs */}
-          <div className="flex flex-col gap-3 mt-4 pt-4" style={{ borderTopWidth: '1px', borderTopColor: 'var(--border-default)' }}>
-            <Link
-              href="/admissions"
-              onClick={closeMobileMenu}
-              className="text-center px-6 py-3.5 min-h-[48px] font-semibold rounded-full transition-all duration-200 cursor-pointer"
-              style={{ backgroundColor: 'var(--accent-gold)', color: 'var(--text-inverse)' }}
-            >
-              Apply Now
-            </Link>
-          </div>
-        </nav>
-      </div>
-    </div>
+      {/* Mobile nav drawer */}
+      <MobileNav
+        navigation={navigation}
+        open={mobileOpen}
+        onClose={() => setMobileOpen(false)}
+        phone={phone}
+      />
+    </>
   );
 }
