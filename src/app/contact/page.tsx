@@ -1,836 +1,423 @@
-'use client';
+import type { Metadata } from "next";
+import Image from "next/image";
+import Link from "next/link";
+import { Section } from "@/components/ui/section";
+import { Card } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import {
+  contactInfo,
+  socialLinks,
+  fullAddress,
+  officeHours,
+  googleMapsEmbedUrl,
+  googleMapsDirectionsUrl,
+} from "@/data";
+import { PHONE, FAX, EMAIL } from "@/lib/constants";
+import { ContactForm } from "@/components/forms/contact-form";
 
-import { useState } from 'react';
-import Link from 'next/link';
-import { MapPin, Phone, Mail, Clock, Send, Facebook, Instagram, Linkedin, Calendar } from 'lucide-react';
+/* -------------------------------------------------------------------------- */
+/*  Metadata                                                                  */
+/* -------------------------------------------------------------------------- */
 
-const contactInfo = [
-  {
-    icon: MapPin,
-    title: 'Campus Location',
-    content: '1061 Camelback Street\nNewport Beach, CA 92660',
-    link: 'https://www.google.com/maps/place/1061+Camelback+St,+Newport+Beach,+CA+92660',
-    linkText: 'Get Directions',
-    external: true,
-  },
-  {
-    icon: Phone,
-    title: 'Phone',
-    content: '(949) 675-4451',
-    link: 'tel:+19496754451',
-    linkText: 'Call Us',
-    subtitle: 'Fax: (949) 759-0667',
-  },
-  {
-    icon: Mail,
-    title: 'Email',
-    content: 'contact@idi.edu',
-    link: 'mailto:contact@idi.edu',
-    linkText: 'Send Email',
-  },
-  {
-    icon: Clock,
-    title: 'Office Hours',
-    content: 'Contact for current hours and appointment availability',
-    subtitle: 'Zoom appointments available upon request',
-  },
-];
-
-const quickActions = [
-  {
-    title: 'Winter 2026 Registration',
-    description: 'Register for upcoming winter quarter',
-    link: 'https://interiordesignersinstitute.formstack.com/forms/winter_2026_registration',
-    buttonText: 'Register Now',
-    external: true,
-  },
-  {
-    title: 'MIA Application',
-    description: 'Apply for Master of Interior Architecture program',
-    link: 'https://idi.edu/wp-content/uploads/2025/09/MIA-Application2.pdf',
-    buttonText: 'Download PDF',
-    external: true,
-  },
-  {
-    title: 'Transfer Student Registration',
-    description: 'Register as a transfer student',
-    link: 'https://interiordesignersinstitute.formstack.com/forms/transfer_student',
-    buttonText: 'Transfer Form',
-    external: true,
-  },
-  {
-    title: 'Net Price Calculator',
-    description: 'Calculate your estimated costs and financial aid',
-    link: 'https://idi.edu/NetPriceCalculator/npcalc.html',
-    buttonText: 'Calculate Costs',
-    external: true,
-  },
-  {
-    title: 'School Catalog',
-    description: '2025-26 complete catalog and addendum',
-    link: 'https://idi.edu/wp-content/uploads/2025/03/IDI-Catalog-Addendum-24-25-032025.pdf',
-    buttonText: 'Download Catalog',
-    external: true,
-  },
-  {
-    title: 'Schedule a Campus Visit',
-    description: 'Tour our facilities and meet with faculty',
-    link: '/admissions#visit',
-    buttonText: 'Schedule Visit',
-    external: false,
-  },
-];
-
-const socialLinks = [
-  { name: 'Facebook', icon: Facebook, href: '#', color: 'hover:text-[#1877F2]' },
-  { name: 'Instagram', icon: Instagram, href: '#', color: 'hover:text-[#E4405F]' },
-  { name: 'LinkedIn', icon: Linkedin, href: '#', color: 'hover:text-[#0A66C2]' },
-];
-
-// Schema.org LocalBusiness schema for Contact page
-const localBusinessSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'EducationalOrganization',
-  '@id': 'https://idi.edu',
-  name: 'Interior Designers Institute',
-  alternateName: 'IDI',
-  url: 'https://idi.edu',
-  logo: 'https://idi.edu/logo.png',
-  image: 'https://idi.edu/campus.jpg',
-  description: 'CIDA-accredited interior design school offering Certificate, Associate, Bachelor, and Master\'s programs in Newport Beach, California.',
-  address: {
-    '@type': 'PostalAddress',
-    streetAddress: '1061 Camelback Street',
-    addressLocality: 'Newport Beach',
-    addressRegion: 'CA',
-    postalCode: '92660',
-    addressCountry: 'US',
-  },
-  geo: {
-    '@type': 'GeoCoordinates',
-    latitude: 33.6189,
-    longitude: -117.9298,
-  },
-  telephone: '+1-949-675-4451',
-  faxNumber: '+1-949-759-0667',
-  email: 'contact@idi.edu',
-  openingHoursSpecification: {
-    '@type': 'OpeningHoursSpecification',
-    dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
-    description: 'Contact for current office hours and appointment availability',
-  },
-  sameAs: [
-    'https://www.facebook.com/interiordesignersinstitute',
-    'https://www.instagram.com/idi_newportbeach',
-    'https://www.linkedin.com/school/interior-designers-institute',
-  ],
-  priceRange: '$2,795 - $61,450',
-  areaServed: {
-    '@type': 'GeoCircle',
-    geoMidpoint: {
-      '@type': 'GeoCoordinates',
-      latitude: 33.6189,
-      longitude: -117.9298,
-    },
-    geoRadius: '100000',
-  },
+export const metadata: Metadata = {
+  title: "Contact Us",
+  description:
+    "Contact Interior Designers Institute in Newport Beach, CA. Phone, email, address, office hours, and campus map. We're here to help with admissions, financial aid, and more.",
+  alternates: { canonical: "/contact" },
 };
 
+/* -------------------------------------------------------------------------- */
+/*  Breadcrumbs                                                               */
+/* -------------------------------------------------------------------------- */
+
+function Breadcrumbs() {
+  return (
+    <nav aria-label="Breadcrumb" className="mb-4 text-sm text-sandstone/70">
+      <ol className="flex items-center gap-1.5">
+        <li>
+          <Link href="/" className="hover:text-pink-400 transition-colors">
+            Home
+          </Link>
+        </li>
+        <li aria-hidden="true" className="text-sandstone/40">&rsaquo;</li>
+        <li className="font-medium text-white">Contact</li>
+      </ol>
+    </nav>
+  );
+}
+
+/* -------------------------------------------------------------------------- */
+/*  Social icon map                                                           */
+/* -------------------------------------------------------------------------- */
+
+function SocialIcon({ icon }: { icon: string }) {
+  switch (icon) {
+    case "facebook":
+      return (
+        <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" />
+        </svg>
+      );
+    case "instagram":
+      return (
+        <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 0 1 1.772 1.153 4.902 4.902 0 0 1 1.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 0 1-1.153 1.772 4.902 4.902 0 0 1-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 0 1-1.772-1.153 4.902 4.902 0 0 1-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 0 1 1.153-1.772A4.902 4.902 0 0 1 5.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 0 0-.748-1.15 3.098 3.098 0 0 0-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 1 1 0 10.27 5.135 5.135 0 0 1 0-10.27zm0 1.802a3.333 3.333 0 1 0 0 6.666 3.333 3.333 0 0 0 0-6.666zm5.338-3.205a1.2 1.2 0 1 1 0 2.4 1.2 1.2 0 0 1 0-2.4z" />
+        </svg>
+      );
+    case "youtube":
+      return (
+        <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+        </svg>
+      );
+    case "tiktok":
+      return (
+        <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z" />
+        </svg>
+      );
+    case "pinterest":
+      return (
+        <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M12 0C5.373 0 0 5.372 0 12c0 5.084 3.163 9.426 7.627 11.174-.105-.949-.2-2.405.042-3.441.218-.937 1.407-5.965 1.407-5.965s-.359-.719-.359-1.782c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738a.36.36 0 0 1 .083.345l-.333 1.36c-.053.22-.174.267-.402.161-1.499-.698-2.436-2.889-2.436-4.649 0-3.785 2.75-7.262 7.929-7.262 4.163 0 7.398 2.967 7.398 6.931 0 4.136-2.607 7.464-6.227 7.464-1.216 0-2.359-.631-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24 12 24c6.627 0 12-5.373 12-12 0-6.628-5.373-12-12-12z" />
+        </svg>
+      );
+    default:
+      return null;
+  }
+}
+
+/* -------------------------------------------------------------------------- */
+/*  Page                                                                      */
+/* -------------------------------------------------------------------------- */
+
 export default function ContactPage() {
-  const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
-    email: '',
-    phone: '',
-    program: '',
-    contactMethod: '',
-    message: '',
-  });
-
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-
-    // Simulate form submission
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setSubmitStatus('success');
-      setFormData({
-        firstName: '',
-        lastName: '',
-        email: '',
-        phone: '',
-        program: '',
-        contactMethod: '',
-        message: '',
-      });
-
-      // Reset success message after 5 seconds
-      setTimeout(() => setSubmitStatus('idle'), 5000);
-    }, 1500);
-  };
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
-  };
-
   return (
     <>
-      {/* Schema.org JSON-LD */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }}
-      />
+      {/* -- Hero ---------------------------------------------------------- */}
+      <section className="relative overflow-hidden mesh-aurora grain py-24 md:py-32">
+        {/* Unsplash hero image */}
+        <div className="absolute inset-0">
+          <Image
+            src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=1920&q=80"
+            alt="Modern office space with warm lighting and contemporary design"
+            fill
+            priority
+            className="object-cover"
+            sizes="100vw"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-plum-900 via-plum-900/85 to-plum-900/40" />
+          <div className="absolute inset-0 bg-gradient-to-t from-plum-900/70 via-transparent to-plum-900/30" />
+        </div>
 
-      {/* Hero Section */}
-      <section className="relative text-[var(--text-primary)] py-24 md:py-32 animate-on-scroll" style={{ backgroundColor: 'var(--bg-primary)' }}>
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="max-w-3xl">
-            {/* Breadcrumb */}
-            <nav className="mb-8 text-sm" style={{ animationDelay: '0.1s' }}>
-              <ol className="flex items-center gap-2" style={{ color: 'var(--text-secondary)' }}>
-                <li>
-                  <Link href="/" className="transition-colors" style={{ color: 'var(--text-secondary)' }}>
-                    Home
-                  </Link>
-                </li>
-                <li>/</li>
-                <li style={{ color: 'var(--text-primary)' }}>Contact</li>
-              </ol>
-            </nav>
-
-            <h1 className="font-hero uppercase text-5xl md:text-6xl lg:text-7xl font-bold mb-6 tracking-tight" style={{ animationDelay: '0.2s', color: 'var(--text-primary)' }}>
-              Contact Us
-            </h1>
-            <p className="text-xl md:text-2xl leading-relaxed" style={{ animationDelay: '0.3s', color: 'var(--text-secondary)' }}>
-              Connect with our admissions team, career services, or financial aid office. We're here to help you start your <span className="font-display italic" style={{ color: 'var(--accent-gold)' }}>interior design journey</span>.
-            </p>
-          </div>
+        <div className="relative z-10 mx-auto max-w-5xl px-4 text-center sm:px-6 lg:px-8">
+          <Breadcrumbs />
+          <h1 className="font-heading text-5xl font-bold text-parchment md:text-6xl lg:text-7xl">
+            Contact <span className="text-gradient-pink">Us</span>
+          </h1>
+          <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-sandstone">
+            We&apos;d love to hear from you. Reach out with questions about
+            admissions, programs, financial aid, or to schedule a campus tour.
+          </p>
         </div>
       </section>
 
-      {/* Quick Actions */}
-      <section className="py-20 animate-on-scroll" style={{ backgroundColor: 'var(--bg-light)' }}>
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center mb-12" style={{ animationDelay: '0.1s' }}>
-            <h2 className="font-bricolage text-3xl md:text-4xl font-bold mb-4" style={{ color: 'var(--text-dark)' }}>
-              Quick Links
-            </h2>
-            <p className="text-xl" style={{ color: 'var(--text-dark)', opacity: 0.7 }}>
-              Access forms, calculators, and important resources
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
-            {quickActions.map((action, index) => (
-              <a
-                key={action.title}
-                href={action.link}
-                target={action.external ? '_blank' : undefined}
-                rel={action.external ? 'noopener noreferrer' : undefined}
-                className="bg-white p-8 rounded-[32px] text-center hover:shadow-lg transition-all animate-on-scroll group"
-                style={{
-                  animationDelay: `${0.2 + index * 0.05}s`,
-                  borderWidth: '1px',
-                  borderStyle: 'solid',
-                  borderColor: 'var(--border-default)'
-                }}
-              >
-                <h3 className="font-bricolage text-xl font-semibold mb-3" style={{ color: 'var(--text-dark)' }}>
-                  {action.title}
-                </h3>
-                <p className="mb-6" style={{ color: 'var(--text-dark)', opacity: 0.7 }}>
-                  {action.description}
-                </p>
-                <span className="inline-flex items-center justify-center px-6 py-3 bg-white font-semibold rounded-full transition-all group-hover:text-white" style={{
-                  color: 'var(--text-dark)',
-                  borderWidth: '1px',
-                  borderStyle: 'solid',
-                  borderColor: 'var(--text-dark)',
-                  backgroundColor: 'white'
-                }}>
-                  {action.buttonText}
-                </span>
-              </a>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Staff Directory */}
-      <section className="py-20 bg-white animate-on-scroll">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center mb-12" style={{ animationDelay: '0.1s' }}>
-            <h2 className="font-bricolage text-3xl md:text-4xl font-bold mb-4" style={{ color: 'var(--text-dark)' }}>
-              Staff Directory
-            </h2>
-            <p className="text-xl" style={{ color: 'var(--text-dark)', opacity: 0.7 }}>
-              Connect with the right department for your needs
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-            <div className="p-8 rounded-[32px] animate-on-scroll" style={{
-              animationDelay: '0.2s',
-              backgroundColor: 'var(--bg-light)',
-              borderWidth: '1px',
-              borderStyle: 'solid',
-              borderColor: 'var(--border-default)'
-            }}>
-              <h3 className="font-bricolage text-xl font-semibold mb-4" style={{ color: 'var(--text-dark)' }}>
-                Admissions & Student Services
-              </h3>
-              <div className="space-y-2 text-sm">
-                <p style={{ color: 'var(--text-dark)', opacity: 0.7 }}>
-                  <strong>Phone:</strong> <a href="tel:+19496754451" className="hover:opacity-100 transition-opacity">(949) 675-4451</a>
-                </p>
-                <p style={{ color: 'var(--text-dark)', opacity: 0.7 }}>
-                  <strong>Email:</strong> <a href="mailto:contact@idi.edu" className="hover:opacity-100 transition-opacity">contact@idi.edu</a>
-                </p>
-              </div>
-            </div>
-
-            <div className="p-8 rounded-[32px] animate-on-scroll" style={{
-              animationDelay: '0.3s',
-              backgroundColor: 'var(--bg-light)',
-              borderWidth: '1px',
-              borderStyle: 'solid',
-              borderColor: 'var(--border-default)'
-            }}>
-              <h3 className="font-bricolage text-xl font-semibold mb-4" style={{ color: 'var(--text-dark)' }}>
-                Career Services
-              </h3>
-              <div className="space-y-2 text-sm">
-                <p style={{ color: 'var(--text-dark)', opacity: 0.7 }}>
-                  <strong>Contact:</strong> Rachel Hulan
-                </p>
-                <p style={{ color: 'var(--text-dark)', opacity: 0.7 }}>
-                  <strong>Email:</strong> <a href="mailto:rhulan@idi.edu" className="hover:opacity-100 transition-opacity">rhulan@idi.edu</a>
-                </p>
-              </div>
-            </div>
-
-            <div className="p-8 rounded-[32px] animate-on-scroll" style={{
-              animationDelay: '0.4s',
-              backgroundColor: 'var(--bg-light)',
-              borderWidth: '1px',
-              borderStyle: 'solid',
-              borderColor: 'var(--border-default)'
-            }}>
-              <h3 className="font-bricolage text-xl font-semibold mb-4" style={{ color: 'var(--text-dark)' }}>
-                Financial Aid Office
-              </h3>
-              <div className="space-y-2 text-sm">
-                <p style={{ color: 'var(--text-dark)', opacity: 0.7 }}>
-                  <strong>Contact:</strong> Renee Robles
-                </p>
-                <p style={{ color: 'var(--text-dark)', opacity: 0.7 }}>
-                  <strong>Phone:</strong> <a href="tel:+19496754451" className="hover:opacity-100 transition-opacity">(949) 675-4451</a>
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Contact Information & Form */}
-      <section className="py-20 animate-on-scroll" style={{ backgroundColor: 'var(--bg-primary)' }}>
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
-            {/* Contact Information Sidebar */}
-            <div className="lg:col-span-1" style={{ animationDelay: '0.1s' }}>
-              <h2 className="font-bricolage text-3xl font-bold mb-8" style={{ color: 'var(--text-primary)' }}>
-                Main Contact
+      {/* -- Contact Info + Map -------------------------------------------- */}
+      <Section>
+        <div className="grid gap-12 lg:grid-cols-2">
+          {/* Left: Contact details */}
+          <div>
+            {/* Address */}
+            <div className="mb-8">
+              <h2 className="font-heading text-2xl font-bold text-parchment">
+                Visit Our Campus
               </h2>
+              <address className="mt-4 not-italic text-sandstone leading-relaxed">
+                <p className="font-semibold text-parchment">
+                  Interior Designers Institute
+                </p>
+                <p>{contactInfo.address}</p>
+                <p>
+                  {contactInfo.city}, {contactInfo.state} {contactInfo.zip}
+                </p>
+              </address>
+              <div className="mt-4">
+                <Button
+                  as="a"
+                  href={googleMapsDirectionsUrl}
+                  variant="secondary"
+                  size="sm"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="border-white/20 text-parchment hover:bg-white/10 min-h-[44px]"
+                >
+                  Get Directions
+                </Button>
+              </div>
+            </div>
 
-              <div className="space-y-8">
-                {contactInfo.map((info, index) => {
-                  const Icon = info.icon;
-                  return (
-                    <div key={info.title} className="flex gap-4" style={{ animationDelay: `${0.2 + index * 0.1}s` }}>
-                      <div className="flex-shrink-0">
-                        <div className="w-12 h-12 rounded-xl flex items-center justify-center" style={{
-                          backgroundColor: 'rgba(233, 216, 200, 0.1)'
-                        }}>
-                          <Icon className="w-6 h-6" style={{ color: 'var(--text-primary)' }} />
-                        </div>
-                      </div>
-                      <div>
-                        <h3 className="font-semibold mb-2" style={{ color: 'var(--text-primary)' }}>{info.title}</h3>
-                        <p className="text-sm leading-relaxed whitespace-pre-line mb-2" style={{ color: 'var(--text-secondary)' }}>
-                          {info.content}
-                        </p>
-                        {info.subtitle && (
-                          <p className="text-xs mb-2" style={{ color: 'var(--text-muted)' }}>
-                            {info.subtitle}
-                          </p>
-                        )}
-                        {info.link && (
-                          <a
-                            href={info.link}
-                            target={info.external ? '_blank' : undefined}
-                            rel={info.external ? 'noopener noreferrer' : undefined}
-                            className="font-semibold text-sm transition-opacity hover:opacity-80"
-                            style={{ color: 'var(--text-primary)' }}
-                          >
-                            {info.linkText} →
-                          </a>
-                        )}
-                      </div>
-                    </div>
-                  );
-                })}
+            {/* Phone, Fax, Email */}
+            <div className="mb-8 space-y-3">
+              <h3 className="font-heading text-lg font-bold text-parchment">
+                Get in Touch
+              </h3>
+              <div className="flex items-center gap-3">
+                <svg
+                  className="h-5 w-5 flex-shrink-0 text-pink-500"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={1.5}
+                  stroke="currentColor"
+                  aria-hidden="true"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 0 0 2.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 0 1-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 0 0-1.091-.852H4.5A2.25 2.25 0 0 0 2.25 4.5v2.25Z"
+                  />
+                </svg>
+                <div>
+                  <p className="text-xs sm:text-sm font-semibold uppercase tracking-wider text-sandstone">
+                    Phone
+                  </p>
+                  <a
+                    href={`tel:${PHONE.replace(/\D/g, "")}`}
+                    className="text-sm font-medium text-parchment hover:text-pink-500 transition-colors"
+                  >
+                    {PHONE}
+                  </a>
+                </div>
               </div>
 
-              {/* Social Media */}
-              <div className="mt-12">
-                <h3 className="font-semibold mb-4" style={{ color: 'var(--text-primary)' }}>Connect With Us</h3>
-                <div className="flex gap-4">
-                  {socialLinks.map((social) => {
-                    const Icon = social.icon;
-                    return (
-                      <a
-                        key={social.name}
-                        href={social.href}
-                        className="p-3 rounded-xl transition-all"
-                        style={{
-                          backgroundColor: 'rgba(233, 216, 200, 0.05)',
-                          borderWidth: '1px',
-                          borderStyle: 'solid',
-                          borderColor: 'var(--border-default)'
-                        }}
-                        aria-label={social.name}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <Icon className="w-6 h-6" style={{ color: 'var(--text-primary)' }} />
-                      </a>
-                    );
-                  })}
+              <div className="flex items-center gap-3">
+                <svg
+                  className="h-5 w-5 flex-shrink-0 text-pink-500"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={1.5}
+                  stroke="currentColor"
+                  aria-hidden="true"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M6.72 13.829c-.24.03-.48.062-.72.096m.72-.096a42.415 42.415 0 0 1 10.56 0m-10.56 0L6.34 18m10.94-4.171c.24.03.48.062.72.096m-.72-.096L17.66 18m0 0 .229 2.523a1.125 1.125 0 0 1-1.12 1.227H7.231c-.662 0-1.18-.568-1.12-1.227L6.34 18m11.318 0h1.091A2.25 2.25 0 0 0 21 15.75V9.456c0-1.081-.768-2.015-1.837-2.175a48.055 48.055 0 0 0-1.913-.247M6.34 18H5.25A2.25 2.25 0 0 1 3 15.75V9.456c0-1.081.768-2.015 1.837-2.175a48.041 48.041 0 0 1 1.913-.247m10.5 0a48.536 48.536 0 0 0-10.5 0m10.5 0V3.375c0-.621-.504-1.125-1.125-1.125h-8.25c-.621 0-1.125.504-1.125 1.125v3.659M18.75 7.131V3.375c0-.621-.504-1.125-1.125-1.125H6.375c-.621 0-1.125.504-1.125 1.125v3.756"
+                  />
+                </svg>
+                <div>
+                  <p className="text-xs sm:text-sm font-semibold uppercase tracking-wider text-sandstone">
+                    Fax
+                  </p>
+                  <p className="text-sm font-medium text-parchment">{FAX}</p>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-3">
+                <svg
+                  className="h-5 w-5 flex-shrink-0 text-pink-500"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={1.5}
+                  stroke="currentColor"
+                  aria-hidden="true"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"
+                  />
+                </svg>
+                <div>
+                  <p className="text-xs sm:text-sm font-semibold uppercase tracking-wider text-sandstone">
+                    Email
+                  </p>
+                  <a
+                    href={`mailto:${EMAIL}`}
+                    className="text-sm font-medium text-parchment hover:text-pink-500 transition-colors"
+                  >
+                    {EMAIL}
+                  </a>
                 </div>
               </div>
             </div>
 
-            {/* Contact Form */}
-            <div className="lg:col-span-2" style={{ animationDelay: '0.2s' }}>
-              <div className="p-8 md:p-12 rounded-[32px]" style={{
-                backgroundColor: 'var(--bg-secondary)',
-                borderWidth: '1px',
-                borderStyle: 'solid',
-                borderColor: 'var(--border-default)'
-              }}>
-                <h2 className="font-bricolage text-3xl font-bold mb-2" style={{ color: 'var(--text-primary)' }}>
-                  Send Us a Message
-                </h2>
-                <p className="mb-8" style={{ color: 'var(--text-secondary)' }}>
-                  Fill out the form below and we'll get back to you within 24 hours.
-                </p>
+            {/* Office Hours */}
+            <div className="mb-8">
+              <h3 className="font-heading text-lg font-bold text-parchment">
+                Office Hours
+              </h3>
+              <div className="mt-3 space-y-1 text-sm text-sandstone">
+                <p>{officeHours.weekdays}</p>
+                <p>{officeHours.saturday}</p>
+                <p>{officeHours.sunday}</p>
+              </div>
+            </div>
 
-                <form id="contact-form" onSubmit={handleSubmit}>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-                    <div>
-                      <label htmlFor="firstName" className="block text-sm font-semibold mb-2" style={{ color: 'var(--text-primary)' }}>
-                        First Name <span style={{ color: 'var(--text-muted)' }}>*</span>
-                      </label>
-                      <input
-                        type="text"
-                        id="firstName"
-                        name="firstName"
-                        value={formData.firstName}
-                        onChange={handleChange}
-                        required
-                        className="w-full px-4 py-3 rounded-xl focus:outline-none focus:ring-2 transition-colors"
-                        style={{
-                          borderWidth: '1px',
-                          borderStyle: 'solid',
-                          borderColor: 'var(--border-default)',
-                          backgroundColor: 'rgba(0, 0, 0, 0.3)',
-                          color: 'var(--text-primary)'
-                        }}
-                        placeholder="John"
-                      />
-                    </div>
-
-                    <div>
-                      <label htmlFor="lastName" className="block text-sm font-semibold mb-2" style={{ color: 'var(--text-primary)' }}>
-                        Last Name <span style={{ color: 'var(--text-muted)' }}>*</span>
-                      </label>
-                      <input
-                        type="text"
-                        id="lastName"
-                        name="lastName"
-                        value={formData.lastName}
-                        onChange={handleChange}
-                        required
-                        className="w-full px-4 py-3 rounded-xl focus:outline-none focus:ring-2 transition-colors"
-                        style={{
-                          borderWidth: '1px',
-                          borderStyle: 'solid',
-                          borderColor: 'var(--border-default)',
-                          backgroundColor: 'rgba(0, 0, 0, 0.3)',
-                          color: 'var(--text-primary)'
-                        }}
-                        placeholder="Doe"
-                      />
-                    </div>
-                  </div>
-
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-                    <div>
-                      <label htmlFor="email" className="block text-sm font-semibold mb-2" style={{ color: 'var(--text-primary)' }}>
-                        Email <span style={{ color: 'var(--text-muted)' }}>*</span>
-                      </label>
-                      <input
-                        type="email"
-                        id="email"
-                        name="email"
-                        value={formData.email}
-                        onChange={handleChange}
-                        required
-                        className="w-full px-4 py-3 rounded-xl focus:outline-none focus:ring-2 transition-colors"
-                        style={{
-                          borderWidth: '1px',
-                          borderStyle: 'solid',
-                          borderColor: 'var(--border-default)',
-                          backgroundColor: 'rgba(0, 0, 0, 0.3)',
-                          color: 'var(--text-primary)'
-                        }}
-                        placeholder="john@example.com"
-                      />
-                    </div>
-
-                    <div>
-                      <label htmlFor="phone" className="block text-sm font-semibold mb-2" style={{ color: 'var(--text-primary)' }}>
-                        Phone <span className="text-xs" style={{ color: 'var(--text-muted)' }}>(optional)</span>
-                      </label>
-                      <input
-                        type="tel"
-                        id="phone"
-                        name="phone"
-                        value={formData.phone}
-                        onChange={handleChange}
-                        className="w-full px-4 py-3 rounded-xl focus:outline-none focus:ring-2 transition-colors"
-                        style={{
-                          borderWidth: '1px',
-                          borderStyle: 'solid',
-                          borderColor: 'var(--border-default)',
-                          backgroundColor: 'rgba(0, 0, 0, 0.3)',
-                          color: 'var(--text-primary)'
-                        }}
-                        placeholder="(555) 123-4567"
-                      />
-                    </div>
-                  </div>
-
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-                    <div>
-                      <label htmlFor="program" className="block text-sm font-semibold mb-2" style={{ color: 'var(--text-primary)' }}>
-                        Program of Interest <span style={{ color: 'var(--text-muted)' }}>*</span>
-                      </label>
-                      <select
-                        id="program"
-                        name="program"
-                        value={formData.program}
-                        onChange={handleChange}
-                        required
-                        className="w-full px-4 py-3 rounded-xl focus:outline-none focus:ring-2 transition-colors"
-                        style={{
-                          borderWidth: '1px',
-                          borderStyle: 'solid',
-                          borderColor: 'var(--border-default)',
-                          backgroundColor: 'rgba(0, 0, 0, 0.3)',
-                          color: 'var(--text-primary)'
-                        }}
-                      >
-                        <option value="">Select a program</option>
-                        <option value="certificate">Certificate Program</option>
-                        <option value="associate">Associate's Degree</option>
-                        <option value="bachelor">Bachelor's Degree</option>
-                        <option value="masters">Master's Degree</option>
-                        <option value="undecided">Not Sure / General Inquiry</option>
-                      </select>
-                    </div>
-
-                    <div>
-                      <label htmlFor="contactMethod" className="block text-sm font-semibold mb-2" style={{ color: 'var(--text-primary)' }}>
-                        Preferred Contact Method <span className="text-xs" style={{ color: 'var(--text-muted)' }}>(optional)</span>
-                      </label>
-                      <select
-                        id="contactMethod"
-                        name="contactMethod"
-                        value={formData.contactMethod}
-                        onChange={handleChange}
-                        className="w-full px-4 py-3 rounded-xl focus:outline-none focus:ring-2 transition-colors"
-                        style={{
-                          borderWidth: '1px',
-                          borderStyle: 'solid',
-                          borderColor: 'var(--border-default)',
-                          backgroundColor: 'rgba(0, 0, 0, 0.3)',
-                          color: 'var(--text-primary)'
-                        }}
-                      >
-                        <option value="">Select preferred method</option>
-                        <option value="email">Email</option>
-                        <option value="phone">Phone</option>
-                        <option value="text">Text Message</option>
-                        <option value="any">Any Method</option>
-                      </select>
-                    </div>
-                  </div>
-
-                  <div className="mb-6">
-                    <label htmlFor="message" className="block text-sm font-semibold mb-2" style={{ color: 'var(--text-primary)' }}>
-                      Message <span style={{ color: 'var(--text-muted)' }}>*</span>
-                    </label>
-                    <textarea
-                      id="message"
-                      name="message"
-                      value={formData.message}
-                      onChange={handleChange}
-                      required
-                      rows={6}
-                      className="w-full px-4 py-3 rounded-xl focus:outline-none focus:ring-2 transition-colors resize-none"
-                      style={{
-                        borderWidth: '1px',
-                        borderStyle: 'solid',
-                        borderColor: 'var(--border-default)',
-                        backgroundColor: 'rgba(0, 0, 0, 0.3)',
-                        color: 'var(--text-primary)'
-                      }}
-                      placeholder="Tell us about your questions or how we can help you..."
-                    />
-                  </div>
-
-                  {submitStatus === 'success' && (
-                    <div className="mb-6 p-4 rounded-xl" style={{
-                      backgroundColor: 'rgba(74, 124, 89, 0.1)',
-                      borderWidth: '1px',
-                      borderStyle: 'solid',
-                      borderColor: 'rgba(74, 124, 89, 0.2)'
-                    }}>
-                      <p className="font-semibold" style={{ color: '#4A7C59' }}>
-                        Thank you! Your message has been sent successfully. We'll get back to you within 24 hours.
-                      </p>
-                    </div>
-                  )}
-
-                  {submitStatus === 'error' && (
-                    <div className="mb-6 p-4 rounded-xl" style={{
-                      backgroundColor: 'rgba(196, 93, 93, 0.1)',
-                      borderWidth: '1px',
-                      borderStyle: 'solid',
-                      borderColor: 'rgba(196, 93, 93, 0.2)'
-                    }}>
-                      <p className="font-semibold" style={{ color: '#C45D5D' }}>
-                        Sorry, there was an error sending your message. Please try again or call us directly.
-                      </p>
-                    </div>
-                  )}
-
-                  <button
-                    type="submit"
-                    disabled={isSubmitting}
-                    className="w-full px-8 py-4 font-semibold rounded-full transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-3"
-                    style={{
-                      backgroundColor: 'white',
-                      color: 'var(--text-dark)'
-                    }}
+            {/* Social Media */}
+            <div className="mb-8">
+              <h3 className="font-heading text-lg font-bold text-parchment">
+                Follow Us
+              </h3>
+              <div className="mt-3 flex gap-3">
+                {socialLinks.map((link) => (
+                  <a
+                    key={link.platform}
+                    href={link.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex h-11 w-11 items-center justify-center rounded-full bg-white/10 text-sandstone transition-all duration-200 hover:bg-pink-500 hover:text-white hover:scale-110"
+                    aria-label={`Follow IDI on ${link.platform}`}
                   >
-                    {isSubmitting ? (
-                      <>
-                        <span className="w-5 h-5 border-2 rounded-full animate-spin" style={{
-                          borderColor: 'rgba(0, 0, 0, 0.3)',
-                          borderTopColor: 'black'
-                        }} />
-                        Sending...
-                      </>
-                    ) : (
-                      <>
-                        <Send className="w-5 h-5" />
-                        Send Message
-                      </>
-                    )}
-                  </button>
-
-                  <p className="text-sm mt-4 text-center" style={{ color: 'var(--text-muted)' }}>
-                    By submitting this form, you agree to be contacted by IDI regarding your inquiry.
-                  </p>
-                </form>
+                    <SocialIcon icon={link.icon} />
+                  </a>
+                ))}
               </div>
             </div>
+
+          </div>
+
+          {/* Right: Map */}
+          <div className="flex flex-col">
+            <Card className="flex-1 overflow-hidden">
+              <iframe
+                src={googleMapsEmbedUrl}
+                width="100%"
+                height="100%"
+                style={{ border: 0, minHeight: "450px" }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                title={`Map showing Interior Designers Institute at ${fullAddress}`}
+              />
+            </Card>
+            <p className="mt-3 text-center text-xs text-sandstone">
+              {fullAddress}
+            </p>
           </div>
         </div>
-      </section>
+      </Section>
 
-      {/* Map Section */}
-      <section className="py-20 animate-on-scroll" style={{ backgroundColor: 'var(--bg-light)' }}>
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center mb-12" style={{ animationDelay: '0.1s' }}>
-            <h2 className="font-bricolage text-3xl md:text-4xl font-bold mb-4" style={{ color: 'var(--text-dark)' }}>
-              Visit Our <span className="font-display italic" style={{ color: 'var(--accent-gold)' }}>Campus</span>
-            </h2>
-            <p className="text-xl mb-2" style={{ color: 'var(--text-dark)', opacity: 0.7 }}>
-              1061 Camelback Street, Newport Beach, CA 92660
-            </p>
-            <p style={{ color: 'var(--text-dark)', opacity: 0.6 }}>
-              Located in the heart of Orange County design. Near Laguna Design Center, Fashion Island, and SOCO.
-            </p>
-          </div>
+      {/* -- Contact Form --------------------------------------------------- */}
+      <Section
+        bg="dark"
+        grain
+        overline="Request Information"
+        title="Send Us a Message"
+        subtitle="Fill out the form below and our admissions team will get back to you promptly."
+      >
+        <div className="mx-auto max-w-2xl">
+          <Card className="p-6 md:p-10">
+            <ContactForm />
+          </Card>
+        </div>
+      </Section>
 
-          {/* Google Maps Embed Placeholder */}
-          <div className="bg-white rounded-[32px] overflow-hidden animate-on-scroll" style={{
-            animationDelay: '0.2s',
-            borderWidth: '1px',
-            borderStyle: 'solid',
-            borderColor: 'var(--border-default)'
-          }}>
-            <div className="aspect-[16/9] md:aspect-[21/9] bg-neutral-100 flex items-center justify-center relative">
-              {/* Placeholder for Google Maps - Replace with actual embed in production */}
-              <div className="absolute inset-0 flex flex-col items-center justify-center p-8 text-center">
-                <MapPin className="w-16 h-16 mb-4" style={{ color: 'var(--text-dark)' }} />
-                <h3 className="font-bricolage text-2xl font-bold mb-2" style={{ color: 'var(--text-dark)' }}>
-                  Interactive Map Coming Soon
-                </h3>
-                <p className="mb-6 max-w-md" style={{ color: 'var(--text-dark)', opacity: 0.7 }}>
-                  Google Maps integration will be added during production deployment
+      {/* -- Staff Directory ----------------------------------------------- */}
+      <Section
+        bg="light"
+        overline="Our Team"
+        title="Department Contacts"
+        subtitle="Reach the right person for your inquiry."
+      >
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {[
+            {
+              department: "Admissions & Student Services",
+              description:
+                "Questions about programs, enrollment, campus tours, and the application process.",
+              email: "samantha@idi.edu",
+              phone: PHONE,
+            },
+            {
+              department: "Financial Aid & Title IX",
+              description:
+                "FAFSA assistance, grants, loans, scholarships, payment plans, and Title IX inquiries.",
+              email: "renee@idi.edu",
+              phone: PHONE,
+            },
+            {
+              department: "Academic Affairs",
+              description:
+                "Curriculum questions, faculty inquiries, academic policies, and program information.",
+              email: "Tamara.Gonzalez@idi.edu",
+              phone: PHONE,
+            },
+            {
+              department: "Career Placement",
+              description:
+                "Job placement assistance, resume review, and industry connections.",
+              email: "rhulan@idi.edu",
+              phone: PHONE,
+            },
+            {
+              department: "Library",
+              description:
+                "Design resources, trade publications, and research support.",
+              email: "library@idi.edu",
+              phone: PHONE,
+            },
+            {
+              department: "General Inquiries",
+              description:
+                "All other questions, media requests, and partnership opportunities.",
+              email: "tammy@idi.edu",
+              phone: PHONE,
+            },
+          ].map((dept) => (
+            <Card key={dept.department} className="p-6 border-white/10 hover:border-amber-500/30 hover:shadow-[0_0_20px_rgba(176,108,255,0.08)] transition-all duration-300">
+              <h3 className="font-heading text-lg font-bold text-parchment">
+                {dept.department}
+              </h3>
+              <p className="mt-2 text-sm leading-relaxed text-sandstone">
+                {dept.description}
+              </p>
+              <div className="mt-4 space-y-1.5 text-sm">
+                <p>
+                  <a
+                    href={`mailto:${dept.email}`}
+                    className="text-pink-500 hover:text-pink-400 transition-colors"
+                  >
+                    {dept.email}
+                  </a>
                 </p>
-                <a
-                  href="https://www.google.com/maps/place/1061+Camelback+St,+Newport+Beach,+CA+92660"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center px-6 py-3 bg-white font-semibold rounded-full transition-all"
-                  style={{
-                    color: 'var(--text-dark)',
-                    borderWidth: '1px',
-                    borderStyle: 'solid',
-                    borderColor: 'var(--text-dark)'
-                  }}
-                >
-                  Open in Google Maps
-                </a>
+                <p>
+                  <a
+                    href={`tel:${dept.phone.replace(/\D/g, "")}`}
+                    className="text-sandstone hover:text-pink-500 transition-colors"
+                  >
+                    {dept.phone}
+                  </a>
+                </p>
               </div>
-            </div>
-          </div>
-
-          <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6">
-            <a
-              href="tel:+19496754451"
-              className="bg-white p-6 rounded-[32px] hover:shadow-lg transition-all flex items-center gap-4 group animate-on-scroll"
-              style={{
-                animationDelay: '0.3s',
-                borderWidth: '1px',
-                borderStyle: 'solid',
-                borderColor: 'var(--border-default)'
-              }}
-            >
-              <div className="w-12 h-12 rounded-xl flex items-center justify-center transition-colors" style={{
-                backgroundColor: 'rgba(45, 42, 38, 0.05)'
-              }}>
-                <Phone className="w-6 h-6" style={{ color: 'var(--text-dark)' }} />
-              </div>
-              <div>
-                <p className="text-sm mb-1" style={{ color: 'var(--text-dark)', opacity: 0.6 }}>Call Us</p>
-                <p className="font-semibold" style={{ color: 'var(--text-dark)' }}>(949) 675-4451</p>
-              </div>
-            </a>
-
-            <a
-              href="mailto:contact@idi.edu"
-              className="bg-white p-6 rounded-[32px] hover:shadow-lg transition-all flex items-center gap-4 group animate-on-scroll"
-              style={{
-                animationDelay: '0.4s',
-                borderWidth: '1px',
-                borderStyle: 'solid',
-                borderColor: 'var(--border-default)'
-              }}
-            >
-              <div className="w-12 h-12 rounded-xl flex items-center justify-center transition-colors" style={{
-                backgroundColor: 'rgba(45, 42, 38, 0.05)'
-              }}>
-                <Mail className="w-6 h-6" style={{ color: 'var(--text-dark)' }} />
-              </div>
-              <div>
-                <p className="text-sm mb-1" style={{ color: 'var(--text-dark)', opacity: 0.6 }}>Email Us</p>
-                <p className="font-semibold" style={{ color: 'var(--text-dark)' }}>contact@idi.edu</p>
-              </div>
-            </a>
-
-            <Link
-              href="/admissions#visit"
-              className="bg-white p-6 rounded-[32px] hover:shadow-lg transition-all flex items-center gap-4 group animate-on-scroll"
-              style={{
-                animationDelay: '0.5s',
-                borderWidth: '1px',
-                borderStyle: 'solid',
-                borderColor: 'var(--border-default)'
-              }}
-            >
-              <div className="w-12 h-12 rounded-xl flex items-center justify-center transition-colors" style={{
-                backgroundColor: 'rgba(45, 42, 38, 0.05)'
-              }}>
-                <Calendar className="w-6 h-6" style={{ color: 'var(--text-dark)' }} />
-              </div>
-              <div>
-                <p className="text-sm mb-1" style={{ color: 'var(--text-dark)', opacity: 0.6 }}>Schedule</p>
-                <p className="font-semibold" style={{ color: 'var(--text-dark)' }}>Campus Visit</p>
-              </div>
-            </Link>
-          </div>
+            </Card>
+          ))}
         </div>
-      </section>
+      </Section>
 
-      {/* FAQ Quick Links */}
-      <section className="py-20 animate-on-scroll" style={{ backgroundColor: 'var(--bg-primary)' }}>
-        <div className="max-w-4xl mx-auto px-6 text-center">
-          <h2 className="font-bricolage text-3xl md:text-4xl font-bold mb-6" style={{ animationDelay: '0.1s', color: 'var(--text-primary)' }}>
-            Looking for Something Else?
+      {/* -- CTA ----------------------------------------------------------- */}
+      <section className="relative overflow-hidden mesh-aurora grain py-16 md:py-24" aria-label="Call to action">
+        <div className="relative z-10 mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
+          <h2 className="font-heading text-3xl font-bold text-parchment md:text-4xl lg:text-5xl">
+            Ready to Start Your <span className="text-gradient-pink">Design Journey</span>?
           </h2>
-          <p className="mb-8" style={{ animationDelay: '0.2s', color: 'var(--text-secondary)' }}>
-            Find quick answers to common questions
+          <p className="mx-auto mt-4 max-w-2xl text-lg leading-relaxed text-sandstone">
+            Schedule a campus tour or apply today. Our admissions team is ready
+            to help you every step of the way.
           </p>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <Link
-              href="/admissions#faq"
-              className="p-6 rounded-[32px] transition-all text-left animate-on-scroll"
-              style={{
-                animationDelay: '0.3s',
-                backgroundColor: 'var(--bg-secondary)',
-                borderWidth: '1px',
-                borderStyle: 'solid',
-                borderColor: 'var(--border-default)'
-              }}
-            >
-              <h3 className="font-bricolage text-lg font-semibold mb-2" style={{ color: 'var(--text-primary)' }}>
-                Admissions FAQ
-              </h3>
-              <p className="text-sm" style={{ color: 'var(--text-secondary)' }}>
-                Application process, requirements, and deadlines
-              </p>
+          <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
+            <Link href="/admissions/apply">
+              <Button as="span" variant="primary" size="lg" className="glow-amber">
+                Apply Now
+              </Button>
             </Link>
-            <Link
-              href="/programs"
-              className="p-6 rounded-[32px] transition-all text-left animate-on-scroll"
-              style={{
-                animationDelay: '0.4s',
-                backgroundColor: 'var(--bg-secondary)',
-                borderWidth: '1px',
-                borderStyle: 'solid',
-                borderColor: 'var(--border-default)'
-              }}
+            <Button
+              as="a"
+              href={`tel:${PHONE.replace(/\D/g, "")}`}
+              variant="secondary"
+              size="lg"
             >
-              <h3 className="font-bricolage text-lg font-semibold mb-2" style={{ color: 'var(--text-primary)' }}>
-                Program Information
-              </h3>
-              <p className="text-sm" style={{ color: 'var(--text-secondary)' }}>
-                Detailed program descriptions and curriculum
-              </p>
-            </Link>
+              Call {PHONE}
+            </Button>
           </div>
         </div>
       </section>

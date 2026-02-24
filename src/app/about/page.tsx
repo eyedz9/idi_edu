@@ -1,669 +1,339 @@
-import { Metadata } from 'next';
-import Link from 'next/link';
-import Image from 'next/image';
-import { ChevronRight, MapPin, Users, Award, Lightbulb, Target, Heart, GraduationCap } from 'lucide-react';
+import type { Metadata } from "next";
+import Image from "next/image";
+import Link from "next/link";
+import { aboutIDI } from "@/data/about";
+import { idiStats } from "@/data/why-idi";
+import { SITE_NAME } from "@/lib/constants";
+import { Section } from "@/components/ui/section";
+import { Card } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { AnimatedSection, CountUp, MagneticButton } from "@/components/animations";
+import { MissionCta } from "@/components/sections/mission-cta";
 
 export const metadata: Metadata = {
-  title: 'About Us | Orange County Interior Design School Since 1984',
-  description: "Orange County's only dedicated interior design school since 1984. CIDA-accredited programs, 10:1 student-faculty ratio, 100% practicing professionals as instructors. Newport Beach campus near Laguna Design Center.",
-  keywords: [
-    'interior design school Orange County',
-    'CIDA accredited interior design',
-    'Newport Beach design school',
-    'interior design education California',
-    'practicing design professionals',
-  ],
-  openGraph: {
-    title: 'About IDI | Orange County Interior Design School Since 1984',
-    description: "Orange County's only dedicated interior design school. CIDA-accredited, 88% graduation rate, 100% practicing professionals.",
-  },
+  title: "About",
+  description: `Learn about ${SITE_NAME}, California's premier interior design school since 1984. Accredited programs, Newport Beach campus, and over 40 years of excellence in design education.`,
+  alternates: { canonical: "/about" },
 };
 
-// Schema.org JSON-LD for Educational Organization
-const organizationSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'EducationalOrganization',
-  name: 'Interior Designers Institute',
-  alternateName: 'IDI',
-  description: "Orange County's only dedicated interior design school, offering CIDA-accredited programs since 1984",
-  foundingDate: '1984',
-  url: 'https://idi.edu',
-  logo: 'https://idi.edu/logo.png',
-  address: {
-    '@type': 'PostalAddress',
-    streetAddress: '1061 Camelback Street',
-    addressLocality: 'Newport Beach',
-    addressRegion: 'CA',
-    postalCode: '92660',
-    addressCountry: 'US',
-  },
-  geo: {
-    '@type': 'GeoCoordinates',
-    latitude: '33.6189',
-    longitude: '-117.9298',
-  },
-  telephone: '(949) 675-4451',
-  email: 'contact@idi.edu',
-  sameAs: [
-    'https://www.facebook.com/interiordesignersinstitute',
-    'https://www.instagram.com/idi_newportbeach',
-  ],
-  accreditedBy: [
-    {
-      '@type': 'Organization',
-      name: 'Council for Interior Design Accreditation',
-      alternateName: 'CIDA',
-    },
-    {
-      '@type': 'Organization',
-      name: 'Accrediting Commission of Career Schools and Colleges',
-      alternateName: 'ACCSC',
-    },
-    {
-      '@type': 'Organization',
-      name: 'Bureau for Private Postsecondary Education',
-      alternateName: 'BPPE',
-    },
-  ],
-  hasCredential: [
-    {
-      '@type': 'EducationalOccupationalCredential',
-      name: 'Certificate of Completion in Interior Design',
-      credentialCategory: 'Certificate',
-    },
-    {
-      '@type': 'EducationalOccupationalCredential',
-      name: 'Associate of Arts in Interior Design',
-      credentialCategory: 'Associate Degree',
-    },
-    {
-      '@type': 'EducationalOccupationalCredential',
-      name: 'Bachelor of Arts in Interior Design',
-      credentialCategory: "Bachelor's Degree",
-    },
-    {
-      '@type': 'EducationalOccupationalCredential',
-      name: 'Master of Interior Architecture',
-      credentialCategory: "Master's Degree",
-    },
-  ],
-  numberOfStudents: {
-    '@type': 'QuantitativeValue',
-    value: 150,
-  },
-  alumniOf: {
-    '@type': 'Organization',
-    name: 'Interior Designers Institute Alumni Network',
-  },
-};
-
-const whyAttendIDI = [
+const quickLinks = [
   {
-    icon: Users,
-    title: 'Small Class Sizes',
-    description: 'Studio classes maximum 22 students (average 15), lecture classes maximum 49. 10:1 student-to-faculty ratio ensures personalized attention and detailed feedback.',
+    title: "Our History",
+    description: "From our founding in 1984 to four decades of design education excellence.",
+    href: "/about/history",
+    imageSrc: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=75",
   },
   {
-    icon: GraduationCap,
-    title: '100% Practicing Professionals',
-    description: 'Every instructor is an active design professional bringing current industry experience, real-world projects, and valuable networking opportunities.',
+    title: "Accreditation",
+    description: "ACCSC and CIDA accredited with California BPPE approval.",
+    href: "/about/accreditation",
+    imageSrc: "https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=75",
   },
   {
-    icon: Award,
-    title: 'CIDA Accredited',
-    description: 'Our Bachelor of Arts program has been CIDA accredited since 1992. Over 60% of employers prefer CIDA graduates, who score 16% higher on NCIDQ licensing exams.',
+    title: "Faculty",
+    description: "Industry-connected professionals who bring real-world expertise to the classroom.",
+    href: "/about/faculty",
+    imageSrc: "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=800&q=75",
   },
   {
-    icon: Lightbulb,
-    title: 'Flexible Scheduling',
-    description: 'Day and evening classes accommodate working professionals. Many students work full-time while pursuing their degree.',
-  },
-  {
-    icon: Target,
-    title: 'Technology Training',
-    description: 'Master industry-standard software including Revit, AutoCAD, SketchUp, Photoshop, InDesign, TinkerCad, and Design Manager.',
-  },
-  {
-    icon: Heart,
-    title: 'Career Development',
-    description: 'Internship program for BA students, job placement assistance for AA, BA, and MIA graduates, plus industry connections through ASID, IIDA, NEWH, and NKBA chapters.',
+    title: "Staff Directory",
+    description: "Meet the dedicated team supporting your educational journey at IDI.",
+    href: "/about/staff",
+    imageSrc: "https://images.unsplash.com/photo-1631679706909-1844bbd07221?w=800&q=75",
   },
 ];
 
-const campusFeatures = [
-  'Design studios with professional-grade drafting equipment',
-  'Computer center with industry-standard software (AutoCAD, Revit, SketchUp, Photoshop)',
-  'Library with design reference materials and industry publications',
-  'Extensive material samples and finish libraries',
-  'Student lounge for collaboration and study',
-  'On-site parking',
-  'Near Laguna Design Center (Orange County\'s premier design resource)',
-  'Near Stonemill Design Center and SOCO/The OC Mix showrooms',
-];
+/** Extract a numeric target from stat value strings like "40+" or "4" */
+function parseStatTarget(value: string): number | null {
+  const match = value.match(/(\d+)/);
+  return match ? parseInt(match[1], 10) : null;
+}
 
 export default function AboutPage() {
   return (
     <>
-      {/* Schema.org JSON-LD */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
-      />
-
-      {/* Hero Section */}
-      <section
-        className="relative min-h-[60vh] flex items-center justify-center overflow-hidden"
-        style={{ backgroundColor: 'var(--bg-primary)', color: 'var(--text-primary)' }}
-      >
-        {/* Background Image */}
-        <div className="absolute inset-0 z-0">
-          <Image
-            src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=1920&q=80&fit=crop"
-            alt="Interior design studio workspace"
-            fill
-            className="object-cover opacity-20"
-            priority
-          />
-          <div
-            className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/70 to-black"
-            style={{
-              background: `linear-gradient(to bottom,
-                var(--bg-primary) 0%,
-                rgba(20, 32, 48, 0.7) 50%,
-                var(--bg-primary) 100%)`
-            }}
-          />
-        </div>
-
-        {/* Content */}
-        <div className="relative z-10 max-w-7xl mx-auto px-6 py-24 text-center animate-on-scroll">
-          {/* Breadcrumb */}
-          <nav
-            className="flex items-center justify-center gap-2 text-sm mb-8"
-            aria-label="Breadcrumb"
-            style={{ color: 'var(--text-muted)' }}
-          >
-            <Link
-              href="/"
-              className="transition-colors hover:opacity-100"
-              style={{ color: 'var(--text-primary)', opacity: 0.6 }}
-            >
+      {/* ── Breadcrumb ──────────────────────────────────────────────────── */}
+      <nav aria-label="Breadcrumb" className="mx-auto max-w-7xl px-4 pt-6 sm:px-6 lg:px-8">
+        <ol className="flex items-center gap-2 text-sm text-sandstone/60">
+          <li>
+            <Link href="/" className="hover:text-pink-500 transition-colors">
               Home
             </Link>
-            <ChevronRight className="w-4 h-4" />
-            <span style={{ color: 'var(--text-primary)' }}>About</span>
-          </nav>
+          </li>
+          <li aria-hidden="true" className="text-sandstone/40">&rsaquo;</li>
+          <li className="text-parchment font-medium">About</li>
+        </ol>
+      </nav>
 
-          <h1 className="font-bricolage text-5xl md:text-7xl font-bold mb-6">
-            About Interior Designers Institute
+      {/* ── Hero ────────────────────────────────────────────────────────── */}
+      <section className="relative overflow-hidden mesh-aurora grain py-24 md:py-32 lg:py-40">
+        {/* Background image */}
+        <div className="absolute inset-0">
+          <Image
+            src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=1920&q=80"
+            alt="Modern design studio representing IDI's creative learning environment"
+            fill
+            priority
+            className="object-cover"
+            sizes="100vw"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-plum-900/80 via-plum-900/70 to-plum-900/90" />
+          <div className="absolute inset-0 bg-gradient-to-r from-plum-900/60 to-transparent" />
+        </div>
+        <div className="relative z-10 mx-auto max-w-7xl px-4 text-center sm:px-6 lg:px-8">
+          <p className="mb-3 font-body text-xs sm:text-sm font-semibold uppercase tracking-[0.2em] text-pink-500">
+            About
+          </p>
+          <h1 className="font-heading text-5xl font-bold text-parchment md:text-6xl lg:text-7xl">
+            {aboutIDI.headline.split(" ").length > 2 ? (
+              <>
+                {aboutIDI.headline.split(" ").slice(0, -1).join(" ")}{" "}
+                <span className="text-gradient-pink">
+                  {aboutIDI.headline.split(" ").slice(-1)[0]}
+                </span>
+              </>
+            ) : (
+              <span className="text-gradient-pink">{aboutIDI.headline}</span>
+            )}
           </h1>
-          <p
-            className="font-body text-xl md:text-2xl max-w-3xl mx-auto"
-            style={{ color: 'var(--text-secondary)' }}
-          >
-            Orange County's only dedicated interior design school since 1984, offering CIDA-accredited programs taught by 100% practicing professionals
+          <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-sandstone">
+            {aboutIDI.tagline}
           </p>
         </div>
       </section>
 
-      {/* History/Story Section */}
-      <article className="py-24 px-6" style={{ backgroundColor: 'var(--bg-primary)' }}>
-        <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            {/* Text Content */}
-            <div className="animate-on-scroll">
-              <div className="inline-block mb-4">
-                <span
-                  className="font-mono text-sm font-semibold uppercase tracking-wider"
-                  style={{ color: 'var(--accent-gold)' }}
-                >
-                  Since 1984
-                </span>
-              </div>
-              <h2
-                className="font-bricolage text-4xl md:text-5xl font-light mb-6"
-                style={{ color: 'var(--text-primary)' }}
-              >
-                40 Years of Design Education Excellence
-              </h2>
-              <div
-                className="space-y-6 font-body text-lg leading-relaxed"
-                style={{ color: 'var(--text-secondary)' }}
-              >
-                <p>
-                  <strong style={{ color: 'var(--text-primary)' }}>Founded in 1984 in Corona del Mar, California</strong>, Interior Designers Institute
-                  relocated to its current <strong style={{ color: 'var(--text-primary)' }}>Newport Beach location in 1990</strong>, establishing itself as{' '}
-                  <strong style={{ color: 'var(--text-primary)' }}>Orange County's only school exclusively dedicated to interior design education</strong>.
+      {/* ── Our Mission ──────────────────────────────────────────────────── */}
+      <Section
+        overline="Our Mission"
+        title="Shaping the Future of Interior Design"
+      >
+        <AnimatedSection>
+          <div className="grid gap-12 lg:grid-cols-2 lg:items-start">
+            {/* Copy — left-justified */}
+            <div className="space-y-8">
+              <div className="space-y-6">
+                <p className="text-lg leading-relaxed text-sandstone">
+                  Interior Designers Institute has been dedicated to providing
+                  quality education in interior design since 1984. Located in
+                  Newport Beach, California, our mission is to nurture creative
+                  talent through hands-on, studio-based learning and personalized
+                  mentorship from industry-connected faculty.
                 </p>
-                <p>
-                  For four decades, we have maintained our commitment to small class sizes, personalized instruction, and hands-on
-                  learning from working design professionals. IDI is one of only four CIDA-accredited programs in Southern California,
-                  with our Bachelor of Arts program achieving accreditation in 1992.
-                </p>
-                <p>
-                  What sets IDI apart is our unwavering commitment to quality. With a{' '}
-                  <strong className="font-mono" style={{ color: 'var(--text-primary)' }}>10:1 student-to-faculty ratio</strong>, studio classes averaging just 15 students,
-                  and <strong style={{ color: 'var(--text-primary)' }}>100% practicing professionals as instructors</strong>, every student receives personalized
-                  mentorship from designers actively working in the field.
-                </p>
-                <p>
-                  We have developed active student chapters of ASID (American Society of Interior Designers), IIDA (International Interior
-                  Design Association), NEWH (Hospitality Industry Network), and NKBA (National Kitchen & Bath Association), providing students
-                  with professional networking opportunities before graduation.
-                </p>
-                <p>
-                  Located in the heart of Newport Beach, we're surrounded by Orange County's premier design centers including Laguna Design Center,
-                  Stonemill Design Center, and SOCO/The OC Mix, providing unparalleled access to industry resources and the region's vibrant design market.
+                <p className="text-lg leading-relaxed text-sandstone">
+                  With four progressive programs from a Certificate Course through a
+                  Master of Interior Architecture, IDI offers a comprehensive
+                  pathway for aspiring designers at every stage of their career. Our
+                  small class sizes ensure every student receives the attention they
+                  deserve.
                 </p>
               </div>
 
-              {/* Key Stats */}
-              <div
-                className="grid grid-cols-2 gap-8 mt-12 pt-12 border-t"
-                style={{ borderColor: 'var(--border-default)' }}
-              >
-                <div>
-                  <div
-                    className="font-mono text-5xl font-bold mb-2"
-                    style={{ color: 'var(--accent-gold)' }}
-                  >
-                    40
-                  </div>
-                  <div
-                    className="font-body"
-                    style={{ color: 'var(--text-muted)' }}
-                  >
-                    Years of Excellence
-                  </div>
-                </div>
-                <div>
-                  <div
-                    className="font-mono text-5xl font-bold mb-2"
-                    style={{ color: 'var(--accent-gold)' }}
-                  >
-                    88%
-                  </div>
-                  <div
-                    className="font-body"
-                    style={{ color: 'var(--text-muted)' }}
-                  >
-                    Graduation Rate
-                  </div>
+              <div>
+                <h3 className="font-heading text-xl font-bold text-parchment mb-3">
+                  Mission Statement
+                </h3>
+                <p className="text-lg leading-relaxed text-sandstone">
+                  Interior Designers Institute (IDI) is a private college offering degrees to educate students in the development of creative concepts and effective solutions to complex problems. The IDI faculty is composed of practicing architects and interior designers creating a learning environment that fosters and supports creativity. With a focused curriculum IDI adapts and assimilates current market and industry trends to best prepare students entering into the global workforce or for career advancement.
+                </p>
+              </div>
+
+              <div>
+                <h3 className="font-heading text-xl font-bold text-parchment mb-3">
+                  Goal of the Institute
+                </h3>
+                <p className="text-lg leading-relaxed text-sandstone">
+                  Interior Designers Institute is a boutique college teaching interior design and interior architecture. The college&apos;s specialized curriculum offers students a personalized education with student-focused faculty who love teaching. IDI&apos;s mission is to be an exclusive producer of interior design graduates who become some of the country&apos;s most well-known and successful designers.
+                </p>
+              </div>
+
+              <div>
+                <h3 className="font-heading text-xl font-bold text-parchment mb-3">
+                  Additional Goals of the Program
+                </h3>
+                <div className="space-y-3 text-lg leading-relaxed text-sandstone">
+                  <p>The program aims to prepare graduates to enter the interior design profession as entry-level designers and/or for career advancement.</p>
+                  <p>Students will learn to design spaces that serve diverse communities with varying cultures, physical abilities, and economic backgrounds.</p>
+                  <p>The program emphasizes the importance of professional ethics, integrity, and encourages students to contribute their interior design skills and talents to their community.</p>
+                  <p>Additionally, students will develop the technical, analytical, conceptual, and communication skills essential for success in the design profession.</p>
+                  <p>The program strives to create a learning environment that fosters individuality, creativity, and motivation to succeed.</p>
                 </div>
               </div>
             </div>
 
-            {/* Image */}
-            <div className="relative h-[600px] rounded-[32px] overflow-hidden shadow-xl animate-on-scroll" style={{ animationDelay: '0.2s' }}>
-              <Image
-                src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?w=800&q=80&fit=crop"
-                alt="Students working in design studio at Interior Designers Institute"
-                fill
-                className="object-cover"
-              />
-            </div>
-          </div>
-        </div>
-      </article>
-
-      {/* Why Attend IDI Section - Light background for contrast */}
-      <section className="py-24 px-6" style={{ backgroundColor: 'var(--bg-light)' }}>
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16 animate-on-scroll">
-            <h2
-              className="font-bricolage text-4xl md:text-5xl font-light mb-6"
-              style={{ color: 'var(--text-dark)' }}
-            >
-              Why Attend Interior Designers Institute?
-            </h2>
-            <p
-              className="font-body text-xl max-w-3xl mx-auto"
-              style={{ color: 'var(--text-dark-secondary)' }}
-            >
-              Six key advantages that set IDI apart from other interior design schools.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {whyAttendIDI.map((reason, index) => {
-              const Icon = reason.icon;
-              return (
-                <div
-                  key={index}
-                  className="rounded-3xl p-8 border shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 animate-on-scroll"
-                  style={{
-                    backgroundColor: 'white',
-                    borderColor: 'rgba(45, 42, 38, 0.1)',
-                    animationDelay: `${0.1 + index * 0.1}s`
-                  }}
-                >
-                  <div
-                    className="w-14 h-14 rounded-2xl flex items-center justify-center mb-6"
-                    style={{ backgroundColor: 'rgba(45, 42, 38, 0.05)' }}
-                  >
-                    <Icon className="w-7 h-7" strokeWidth={1.5} style={{ color: 'var(--text-dark)' }} />
-                  </div>
-                  <h3
-                    className="font-bricolage text-xl font-medium mb-3"
-                    style={{ color: 'var(--text-dark)' }}
-                  >
-                    {reason.title}
-                  </h3>
-                  <p
-                    className="font-body leading-relaxed"
-                    style={{ color: 'var(--text-dark-secondary)' }}
-                  >
-                    {reason.description}
-                  </p>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* Campus Section */}
-      <section className="py-24 px-6" style={{ backgroundColor: 'var(--bg-primary)' }}>
-        <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            {/* Image */}
-            <div className="relative h-[500px] rounded-[32px] overflow-hidden shadow-xl order-2 lg:order-1 animate-on-scroll">
-              <Image
-                src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=800&q=80&fit=crop"
-                alt="IDI campus at 1061 Camelback Street, Newport Beach, California"
-                fill
-                className="object-cover"
-              />
-            </div>
-
-            {/* Text Content */}
-            <div className="order-1 lg:order-2 animate-on-scroll" style={{ animationDelay: '0.2s' }}>
-              <div
-                className="inline-flex items-center gap-2 mb-4"
-                style={{ color: 'var(--accent-gold)' }}
-              >
-                <MapPin className="w-5 h-5" />
-                <span className="font-mono text-sm font-semibold uppercase tracking-wider">
-                  Newport Beach, CA
-                </span>
+            {/* Image + CTA */}
+            <div className="space-y-6 lg:sticky lg:top-28">
+              <div className="relative aspect-[3/4] overflow-hidden rounded-xl">
+                <Image
+                  src="/images/gallery/gallery-05.jpg"
+                  alt="IDI student design work showcasing interior design excellence"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-plum-900/40 to-transparent" />
               </div>
-              <h2
-                className="font-bricolage text-4xl md:text-5xl font-light mb-6"
-                style={{ color: 'var(--text-primary)' }}
-              >
-                Campus Facilities
-              </h2>
-              <p
-                className="font-body text-lg leading-relaxed mb-8"
-                style={{ color: 'var(--text-secondary)' }}
-              >
-                IDI's <strong style={{ color: 'var(--text-primary)' }}>Newport Beach campus at 1061 Camelback Street</strong> provides
-                a focused design education environment with professional-grade facilities in the heart of Orange County's
-                affluent design market.
-              </p>
+              <MissionCta />
+            </div>
+          </div>
+        </AnimatedSection>
+      </Section>
 
-              <div className="space-y-4 mb-8">
-                {campusFeatures.map((feature, index) => (
-                  <div key={index} className="flex items-start gap-3">
-                    <div
-                      className="w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5"
-                      style={{ backgroundColor: 'rgba(255, 92, 141, 0.2)' }}
-                    >
-                      <div
-                        className="w-2 h-2 rounded-full"
-                        style={{ backgroundColor: 'var(--accent-gold)' }}
-                      />
-                    </div>
-                    <span
-                      className="font-body"
-                      style={{ color: 'var(--text-secondary)' }}
-                    >
-                      {feature}
+      {/* ── Quick Links ─────────────────────────────────────────────────── */}
+      <Section bg="light" overline="Explore" title="Learn More About IDI">
+        <AnimatedSection stagger={0.1}>
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {quickLinks.map((link) => (
+              <Link key={link.href} href={link.href} className="group">
+                <Card className="group flex h-full flex-col overflow-hidden transition-all hover:shadow-[0_0_30px_rgba(176,108,255,0.12)] hover:ring-2 hover:ring-amber-500/20">
+                  <div className="relative aspect-[16/10] w-full overflow-hidden">
+                    <Image
+                      src={link.imageSrc}
+                      alt={link.title}
+                      fill
+                      className="object-cover transition-transform duration-500 group-hover:scale-105"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-plum-900/60 to-transparent" />
+                  </div>
+                  <div className="flex flex-1 flex-col p-6">
+                    <h3 className="font-heading text-lg font-bold text-parchment">
+                      {link.title}
+                    </h3>
+                    <p className="mt-2 flex-1 text-sm leading-relaxed text-sandstone">
+                      {link.description}
+                    </p>
+                    <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-pink-500">
+                      Learn More
+                      <svg
+                        className="h-4 w-4 transition-transform group-hover:translate-x-0.5"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        strokeWidth={2}
+                        stroke="currentColor"
+                        aria-hidden="true"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"
+                        />
+                      </svg>
                     </span>
                   </div>
-                ))}
-              </div>
-
-              <a
-                href="https://www.google.com/maps/search/?api=1&query=1061+Camelback+Street,Newport+Beach,CA+92660"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-6 py-3 font-semibold rounded-full transition-colors hover:opacity-80"
-                style={{
-                  backgroundColor: 'var(--bg-light)',
-                  color: 'var(--text-dark)'
-                }}
-              >
-                <MapPin className="w-5 h-5" />
-                View on Map
-              </a>
-            </div>
+                </Card>
+              </Link>
+            ))}
           </div>
-        </div>
-      </section>
+        </AnimatedSection>
+      </Section>
 
-      {/* Accreditation Section */}
-      <section className="py-24 px-6" style={{ backgroundColor: 'var(--bg-secondary)' }}>
-        <div className="max-w-7xl mx-auto text-center animate-on-scroll">
-          <span
-            className="text-xs uppercase tracking-[0.3em] font-medium mb-4 block"
-            style={{ color: 'var(--text-muted)' }}
-          >
-            Industry Recognized
-          </span>
-          <h2
-            className="font-bricolage text-4xl md:text-5xl font-light mb-6"
-            style={{ color: 'var(--text-primary)' }}
-          >
-            Accreditation & Recognition
-          </h2>
-          <p
-            className="text-lg max-w-2xl mx-auto mb-8"
-            style={{ color: 'var(--text-muted)' }}
-          >
-            Our programs meet the highest standards of quality in design education.
-          </p>
-          <div className="flex flex-wrap items-center justify-center gap-6 mb-12">
-            <span
-              className="px-8 py-4 rounded-full border text-sm uppercase tracking-wider"
-              style={{
-                borderColor: 'var(--border-default)',
-                backgroundColor: 'rgba(233, 216, 200, 0.05)',
-                color: 'var(--text-muted)'
-              }}
-            >
-              CIDA Accredited Since 1992
-            </span>
-            <span
-              className="px-8 py-4 rounded-full border text-sm uppercase tracking-wider"
-              style={{
-                borderColor: 'var(--border-default)',
-                backgroundColor: 'rgba(233, 216, 200, 0.05)',
-                color: 'var(--text-muted)'
-              }}
-            >
-              ACCSC Accredited
-            </span>
-            <span
-              className="px-8 py-4 rounded-full border text-sm uppercase tracking-wider"
-              style={{
-                borderColor: 'var(--border-default)',
-                backgroundColor: 'rgba(233, 216, 200, 0.05)',
-                color: 'var(--text-muted)'
-              }}
-            >
-              BPPE Approved
-            </span>
-          </div>
-          <div
-            className="max-w-3xl mx-auto text-left space-y-4 font-body"
-            style={{ color: 'var(--text-muted)' }}
-          >
-            <p>
-              <strong style={{ color: 'var(--text-primary)' }}>CIDA (Council for Interior Design Accreditation)</strong> - Our Bachelor of Arts program
-              has been CIDA accredited since 1992. Over 60% of hiring professionals prefer CIDA graduates, who score 16% higher on
-              NCIDQ licensing exams.
-            </p>
-            <p>
-              <strong style={{ color: 'var(--text-primary)' }}>ACCSC (Accrediting Commission of Career Schools and Colleges)</strong> - Institutional
-              accreditation ensuring educational quality and student success.
-            </p>
-            <p>
-              <strong style={{ color: 'var(--text-primary)' }}>BPPE (Bureau of Private Postsecondary Education)</strong> - Approved by California's
-              regulatory agency for private postsecondary institutions.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* Faculty Overview Section */}
-      <section className="py-24 px-6" style={{ backgroundColor: 'var(--bg-primary)' }}>
-        <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            {/* Text Content */}
-            <div className="animate-on-scroll">
-              <div
-                className="inline-flex items-center gap-2 mb-4"
-                style={{ color: 'var(--accent-gold)' }}
-              >
-                <GraduationCap className="w-5 h-5" />
-                <span className="font-mono text-sm font-semibold uppercase tracking-wider">
-                  Expert Faculty
-                </span>
-              </div>
-              <h2
-                className="font-bricolage text-4xl md:text-5xl font-light mb-6"
-                style={{ color: 'var(--text-primary)' }}
-              >
-                Learn from Practicing Professionals
+      {/* ── Stats ───────────────────────────────────────────────────────── */}
+      <section className="relative overflow-hidden bg-plum-900 py-16 grain md:py-24" aria-label="IDI by the numbers">
+        {/* Subtle amber glow bar at top */}
+        <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-amber-500/40 to-transparent" />
+        <AnimatedSection>
+          <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div className="mb-12 text-center md:mb-16">
+              <p className="mb-3 font-body text-xs sm:text-sm font-semibold uppercase tracking-[0.2em] text-pink-500">
+                By the Numbers
+              </p>
+              <h2 className="font-heading text-3xl font-bold text-parchment md:text-4xl lg:text-5xl">
+                IDI at a Glance
               </h2>
-              <div
-                className="space-y-6 font-body text-lg leading-relaxed"
-                style={{ color: 'var(--text-secondary)' }}
-              >
-                <p>
-                  At IDI, <strong className="font-mono" style={{ color: 'var(--text-primary)' }}>100% of our faculty are practicing professionals</strong>{' '}
-                  actively working in the interior design industry. This isn't just a statistic—it's a fundamental
-                  part of who we are.
-                </p>
-                <p>
-                  Our 17 practicing design professionals bring an average of 10 years of experience directly into the classroom,
-                  sharing current industry practices, emerging trends, and practical insights. Many hold affiliations with ASID,
-                  IIDA, and AIA. Several are award-winning designers, and many are IDI alumni who returned to teach. More than
-                  half of our faculty hold master's degrees.
-                </p>
-                <p>
-                  Faculty maintain relationships with design firms, vendors, and clients throughout Southern California, providing
-                  students with valuable networking opportunities. IDI graduates have been hired by leading firms including Gensler
-                  (world's largest architecture firm), WATG, Disney Studios, HGTV, Sony Studios, and IA Interior Architects.
-                </p>
-                <p>
-                  From residential design specialists to commercial space planners, from sustainable design experts to
-                  hospitality designers, our faculty represents the full spectrum of interior design practice, preparing
-                  students for any career path in the profession.
-                </p>
-              </div>
-
-              <div
-                className="mt-12 p-8 rounded-2xl border"
-                style={{
-                  backgroundColor: 'var(--bg-secondary)',
-                  borderColor: 'var(--border-default)'
-                }}
-              >
-                <div
-                  className="font-mono text-4xl font-bold mb-2"
-                  style={{ color: 'var(--accent-gold)' }}
-                >
-                  10:1
-                </div>
-                <div
-                  className="font-body font-semibold mb-2"
-                  style={{ color: 'var(--text-primary)' }}
-                >
-                  Student-to-Faculty Ratio
-                </div>
-                <p
-                  className="font-body"
-                  style={{ color: 'var(--text-muted)' }}
-                >
-                  Small class sizes mean personalized attention, detailed feedback on your work, and meaningful
-                  mentorship relationships.
-                </p>
-              </div>
             </div>
-
-            {/* Faculty Grid Placeholder */}
-            <div className="grid grid-cols-2 gap-6 animate-on-scroll" style={{ animationDelay: '0.2s' }}>
-              {[1, 2, 3, 4].map((item) => (
-                <div
-                  key={item}
-                  className="relative aspect-square rounded-2xl overflow-hidden"
-                  style={{ backgroundColor: 'var(--bg-secondary)' }}
-                >
-                  <Image
-                    src={`https://images.unsplash.com/photo-${
-                      item === 1 ? '1573496359142-b9b36e926d57' :
-                      item === 2 ? '1560250097-0b93528c311a' :
-                      item === 3 ? '1573497019940-1c28c88b4f3e' :
-                      '1580489944761-15a19d654956'
-                    }?w=400&q=80&fit=crop`}
-                    alt={`Faculty member ${item}`}
-                    fill
-                    className="object-cover grayscale hover:grayscale-0 transition-all duration-300"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 hover:opacity-100 transition-opacity" />
-                </div>
-              ))}
+            <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+              {idiStats.map((stat) => {
+                const numTarget = parseStatTarget(stat.value);
+                return (
+                  <div key={stat.label} className="text-center">
+                    <p className="font-heading text-4xl font-bold text-pink-500 drop-shadow-[0_0_20px_rgba(245,166,35,0.25)] md:text-5xl lg:text-6xl">
+                      {numTarget !== null ? (
+                        <>
+                          <CountUp target={numTarget} />
+                          {stat.value.replace(String(numTarget), "")}
+                        </>
+                      ) : (
+                        stat.value
+                      )}
+                    </p>
+                    <p className="mt-2 font-body text-sm font-semibold uppercase tracking-wider text-parchment">
+                      {stat.label}
+                    </p>
+                    <p className="mt-1 text-xs sm:text-sm text-sandstone">
+                      {stat.description}
+                    </p>
+                  </div>
+                );
+              })}
             </div>
           </div>
-        </div>
+        </AnimatedSection>
+        {/* Subtle amber glow bar at bottom */}
+        <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-amber-500/40 to-transparent" />
       </section>
 
-      {/* CTA Section */}
-      <section
-        className="py-24 px-6"
-        style={{ backgroundColor: '#000000', color: 'var(--text-primary)' }}
-      >
-        <div className="max-w-4xl mx-auto text-center animate-on-scroll">
-          <h2 className="font-bricolage text-4xl md:text-5xl font-light mb-6">
-            Ready to Start Your Design Journey?
-          </h2>
-          <p
-            className="font-body text-xl mb-12 max-w-2xl mx-auto"
-            style={{ color: 'var(--text-secondary)' }}
-          >
-            Join 40 years of design excellence. Explore our programs, schedule a campus visit, or speak with an admissions advisor.
-          </p>
+      {/* ── Philosophy ───────────────────────────────────────────────── */}
+      <Section overline="Philosophy" title="Our Commitment to Design Education">
+        <AnimatedSection>
+          <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
+            {/* Image — left side */}
+            <div className="relative aspect-[4/3] overflow-hidden rounded-xl">
+              <Image
+                src="/images/gallery/gallery-12.jpg"
+                alt="Interior design studio environment at IDI"
+                fill
+                className="object-cover"
+                sizes="(max-width: 1024px) 100vw, 50vw"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-plum-900/40 to-transparent" />
+            </div>
 
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Link
-              href="/programs"
-              className="w-full sm:w-auto px-8 py-4 font-semibold rounded-full transition-colors text-center hover:opacity-80"
-              style={{
-                backgroundColor: 'var(--bg-light)',
-                color: 'var(--text-dark)'
-              }}
-            >
-              Explore Programs
-            </Link>
-            <Link
-              href="/admissions#visit"
-              className="w-full sm:w-auto px-8 py-4 border font-semibold rounded-full transition-colors text-center hover:bg-white/10"
-              style={{
-                backgroundColor: 'transparent',
-                borderColor: 'var(--border-default)',
-                color: 'var(--text-primary)'
-              }}
-            >
-              Schedule a Visit
-            </Link>
-            <Link
-              href="/contact"
-              className="w-full sm:w-auto px-8 py-4 font-semibold transition-colors text-center hover:opacity-100"
-              style={{ color: 'var(--text-primary)', opacity: 0.6 }}
-            >
-              Contact Us
+            {/* Copy — left-justified */}
+            <div className="space-y-6">
+              <div>
+                <h3 className="font-heading text-xl font-bold text-parchment mb-3">
+                  Philosophy of the Program
+                </h3>
+                <p className="text-lg leading-relaxed text-sandstone">
+                  Interior Design includes a scope of services performed by a professional design practitioner, qualified through <strong className="text-parchment">education</strong>, <strong className="text-parchment">experience</strong>, and <strong className="text-parchment">examination</strong> to protect and enhance the life, health, safety, and welfare of the public.
+                </p>
+              </div>
+              <p className="text-lg leading-relaxed text-sandstone">
+                At IDI, we believe that great design begins with a strong
+                foundation in both technical skill and creative vision. Our
+                studio-based curriculum immerses students in real-world projects,
+                from residential interiors to commercial spaces, while our
+                partnerships with industry professionals ensure graduates are
+                prepared for the demands of modern design practice.
+              </p>
+              <p className="text-lg leading-relaxed text-sandstone">
+                Every aspect of our institution — from our ACCSC and CIDA
+                accreditations to our intentionally small class sizes — reflects
+                our dedication to student success. We are proud to be a community
+                where aspiring designers find their voice and build the skills to
+                transform spaces and lives.
+              </p>
+            </div>
+          </div>
+        </AnimatedSection>
+      </Section>
+
+      {/* ── CTA ─────────────────────────────────────────────────────────── */}
+      <section className="relative overflow-hidden mesh-aurora grain py-16 md:py-24">
+        <div className="relative z-10 mx-auto max-w-7xl px-4 text-center sm:px-6 lg:px-8">
+          <h2 className="font-heading text-3xl font-bold text-parchment md:text-4xl lg:text-5xl">
+            Ready to explore our{" "}
+            <span className="text-gradient-pink">programs</span>?
+          </h2>
+          <p className="mx-auto mt-4 max-w-xl text-sandstone">
+            Discover the program that fits your goals — from a 12-week
+            certificate to a master&apos;s degree in interior architecture.
+          </p>
+          <div className="mt-8">
+            <Link href="/programs">
+              <Button as="span" variant="primary" size="lg" className="glow-amber">
+                Explore Programs
+              </Button>
             </Link>
           </div>
         </div>
