@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import { MobileNav } from "./mobile-nav";
 import { ProgramsMegaMenu } from "./mega-menu/programs-mega-menu";
 import { AdmissionsMegaMenu } from "./mega-menu/admissions-mega-menu";
+import { AboutMegaMenu } from "./mega-menu/about-mega-menu";
 import type { NavItem } from "@/types";
 
 /* -------------------------------------------------------------------------- */
@@ -86,7 +87,7 @@ function ChevronDownIcon({ className }: { className?: string }) {
 /*  Mega-menu trigger labels (keys for which menus exist)                     */
 /* -------------------------------------------------------------------------- */
 
-const MEGA_MENU_KEYS = new Set(["Programs", "Admissions"]);
+const MEGA_MENU_KEYS = new Set(["Programs", "Admissions", "About"]);
 
 /* -------------------------------------------------------------------------- */
 /*  Default navigation data                                                   */
@@ -113,7 +114,16 @@ const defaultNavigation: NavItem[] = [
     ],
   },
   { label: "Campus Life", href: "/campus-life" },
-  { label: "About", href: "/about" },
+  {
+    label: "About",
+    href: "/about",
+    children: [
+      { label: "Our History", href: "/about/history" },
+      { label: "Accreditation", href: "/about/accreditation" },
+      { label: "Faculty", href: "/about/faculty" },
+      { label: "Staff Directory", href: "/about/staff" },
+    ],
+  },
   { label: "Contact", href: "/contact" },
 ];
 
@@ -267,26 +277,27 @@ export default function Header({
             </a>
 
             {/* Request Info - Ghost */}
-            <Button
-              as="a"
-              href="/contact"
-              variant="ghost"
-              size="sm"
-              className="hidden lg:inline-flex"
-            >
-              Request Info
-            </Button>
+            <Link href="/contact" className="hidden lg:inline-flex">
+              <Button
+                as="span"
+                variant="ghost"
+                size="sm"
+              >
+                Request Info
+              </Button>
+            </Link>
 
             {/* Apply Now - Primary Gold */}
-            <Button
-              as="a"
-              href="/admissions/apply"
-              variant="primary"
-              size="sm"
-              className="hidden sm:inline-flex min-h-[44px]"
-            >
-              Apply Now
-            </Button>
+            <Link href="/admissions/apply" className="hidden sm:inline-flex">
+              <Button
+                as="span"
+                variant="primary"
+                size="sm"
+                className="min-h-[44px]"
+              >
+                Apply Now
+              </Button>
+            </Link>
 
             {/* Mobile hamburger */}
             <button
@@ -309,6 +320,10 @@ export default function Header({
           />
           <AdmissionsMegaMenu
             open={openMenu === "Admissions"}
+            onClose={closeMegaAndFocus}
+          />
+          <AboutMegaMenu
+            open={openMenu === "About"}
             onClose={closeMegaAndFocus}
           />
         </div>

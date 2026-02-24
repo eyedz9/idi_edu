@@ -10,7 +10,7 @@ import {
   enrollmentSteps,
   admissionRequirements,
 } from "@/data";
-import { FORMSTACK_URL } from "@/lib/constants";
+import { APPLY_PATH } from "@/lib/constants";
 
 /* -------------------------------------------------------------------------- */
 /*  Metadata                                                                  */
@@ -321,25 +321,25 @@ export default function AdmissionsPage() {
             designers at IDI.
           </p>
           <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
-            <Button
-              as="a"
-              href={FORMSTACK_URL}
-              variant="primary"
-              size="lg"
-              className="glow-amber"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Apply Now
-            </Button>
-            <Button
-              as="a"
-              href="/contact"
-              variant="secondary"
-              size="lg"
-            >
-              Contact Us
-            </Button>
+            <Link href={APPLY_PATH}>
+              <Button
+                as="span"
+                variant="primary"
+                size="lg"
+                className="glow-amber"
+              >
+                Apply Now
+              </Button>
+            </Link>
+            <Link href="/contact">
+              <Button
+                as="span"
+                variant="secondary"
+                size="lg"
+              >
+                Contact Us
+              </Button>
+            </Link>
           </div>
         </div>
       </section>

@@ -54,15 +54,15 @@ export function WhyIDISection() {
           {whyIDIPoints.map((point) => (
             <div
               key={point.title}
-              className="rounded-xl bg-warm-100 p-6 shadow-sm transition-shadow duration-300 hover:shadow-md"
+              className="rounded-xl bg-white/5 border border-white/10 p-6 transition-colors duration-300 hover:bg-white/10"
             >
-              <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-lg bg-accent-500/10 text-accent-500">
+              <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-lg bg-pink-500/15 text-pink-500">
                 {iconMap[point.icon] ?? iconMap["shield-check"]}
               </div>
-              <h3 className="font-heading text-lg font-bold text-brand-900">
+              <h3 className="font-heading text-lg font-bold text-parchment">
                 {point.title}
               </h3>
-              <p className="mt-2 text-sm leading-relaxed text-neutral-500 line-clamp-4">
+              <p className="mt-2 text-sm leading-relaxed text-sandstone line-clamp-4">
                 {point.description}
               </p>
             </div>

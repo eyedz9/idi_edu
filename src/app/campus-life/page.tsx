@@ -57,34 +57,26 @@ const studentOrganizations = [
       "The IIDA student chapter at IDI provides connections to a global network of design professionals. Students participate in IIDA events, explore commercial and contract design career paths, and build relationships with industry leaders in commercial interiors.",
     imageSrc: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=75",
   },
+  {
+    name: "NKBA Student Chapter",
+    fullName: "National Kitchen & Bath Association",
+    description:
+      "The NKBA Student Chapter is the leading trade association for the kitchen and bath industry. Being part of the NKBA Student Chapter helps students build industry connections early, understand current trends and codes, and transition more smoothly into professional membership after graduation.",
+    imageSrc: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&q=75",
+  },
+  {
+    name: "NEWH Student Chapter",
+    fullName: "Network of Executive Women in Hospitality",
+    description:
+      "NEWH is an international organization dedicated to hospitality, interior design, and related industries. The NEWH Student Chapter connects students pursuing careers in hospitality design with industry professionals and real-world opportunities. Membership provides access to scholarships, grant opportunities, mentorship, and career guidance.",
+    imageSrc: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&q=75",
+  },
 ];
 
-const galleryImages = [
-  {
-    src: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=800&q=80",
-    alt: "Design studio with modern furnishings and creative workspace",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=800&q=80",
-    alt: "Bright workspace with professional design tools",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1631679706909-1844bbd07221?w=800&q=80",
-    alt: "Modern room featuring contemporary interior design",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&q=80",
-    alt: "Elegant interior with refined architectural details",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&q=80",
-    alt: "Beautifully designed living room with curated decor",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=800&q=80",
-    alt: "Luxury design interior showcasing premium materials",
-  },
-];
+const galleryImages = Array.from({ length: 20 }, (_, i) => ({
+  src: `/images/gallery/gallery-${String(i + 1).padStart(2, "0")}.jpg`,
+  alt: `IDI student design project ${i + 1}`,
+}));
 
 export default function CampusLifePage() {
   return (
@@ -120,7 +112,7 @@ export default function CampusLifePage() {
         </div>
 
         <div className="relative z-10 mx-auto max-w-7xl px-4 text-center sm:px-6 lg:px-8">
-          <p className="mb-3 font-body text-xs font-semibold uppercase tracking-[0.2em] text-pink-500">
+          <p className="mb-3 font-body text-xs sm:text-sm font-semibold uppercase tracking-[0.2em] text-pink-500">
             Student Experience
           </p>
           <h1 className="font-heading text-5xl font-bold text-parchment md:text-6xl lg:text-7xl">
@@ -316,7 +308,7 @@ export default function CampusLifePage() {
           </p>
           <div className="mt-8 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
             <Link href="/contact">
-              <Button as="button" variant="primary" size="lg" className="glow-amber">
+              <Button as="span" variant="primary" size="lg" className="glow-amber">
                 Schedule a Campus Visit
               </Button>
             </Link>

@@ -45,7 +45,7 @@ export const fullAddress = `${contactInfo.address}, ${contactInfo.city}, ${conta
 
 /** Google Maps embed URL for the campus location */
 export const googleMapsEmbedUrl =
-  "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3323.4!2d-117.8769!3d33.6189!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80dcdf0d4a5e073f%3A0x8e4e3dd5a9e0c0a!2sInterior+Designers+Institute!5e0!3m2!1sen!2sus!4v1";
+  "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3324.0!2d-117.9028!3d33.6172!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80dd20046c2754d9%3A0xe0b0c3e3429f2ced!2s1061+Camelback+St%2C+Newport+Beach%2C+CA+92660!5e0!3m2!1sen!2sus!4v1";
 
 /** Google Maps link for directions */
 export const googleMapsDirectionsUrl =
@@ -57,9 +57,3 @@ export const officeHours = {
   saturday: "Saturday: By appointment",
   sunday: "Sunday: Closed",
 };
-
-/** BPPE school code */
-export const bppeSchoolCode = "2302631";
-
-/** Federal school code for FAFSA */
-export const federalSchoolCode = "041863";

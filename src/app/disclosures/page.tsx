@@ -51,7 +51,7 @@ export default function DisclosuresPage() {
       {/* -- Hero ---------------------------------------------------------- */}
       <section className="relative overflow-hidden mesh-plum grain py-24 md:py-32">
         <div className="relative z-10 mx-auto max-w-7xl px-4 text-center sm:px-6 lg:px-8">
-          <p className="mb-3 font-body text-xs font-semibold uppercase tracking-[0.2em] text-pink-500">
+          <p className="mb-3 font-body text-xs sm:text-sm font-semibold uppercase tracking-[0.2em] text-pink-500">
             Transparency
           </p>
           <h1 className="font-heading text-5xl font-bold text-parchment md:text-6xl lg:text-7xl">
@@ -639,7 +639,7 @@ export default function DisclosuresPage() {
           </p>
           <div className="mt-8">
             <Link href="/contact">
-              <Button as="button" variant="primary" size="lg" className="glow-amber">
+              <Button as="span" variant="primary" size="lg" className="glow-amber">
                 Contact Us
               </Button>
             </Link>

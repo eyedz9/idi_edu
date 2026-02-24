@@ -211,7 +211,7 @@ export function CampusSection() {
           {/* CTA */}
           <div className="mt-10">
             <Link href="/contact">
-              <Button variant="primary" size="lg" className="glow-amber">
+              <Button as="span" variant="primary" size="lg" className="glow-amber">
                 Visit Our Campus
               </Button>
             </Link>

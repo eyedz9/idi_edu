@@ -10,7 +10,8 @@ import {
   enrollmentSteps,
   admissionRequirements,
 } from "@/data";
-import { FORMSTACK_URL, PHONE, EMAIL, SITE_URL } from "@/lib/constants";
+import { PHONE, EMAIL, SITE_URL } from "@/lib/constants";
+import { ApplicationForm } from "@/components/forms/application-form";
 import { FAQAccordion } from "@/components/sections/faq-accordion";
 import { JsonLd } from "@/components/seo/JsonLd";
 
@@ -196,12 +197,10 @@ export default function ApplyPage() {
           <div className="mt-10">
             <Button
               as="a"
-              href={FORMSTACK_URL}
+              href="#application"
               variant="primary"
               size="lg"
               className="glow-amber"
-              target="_blank"
-              rel="noopener noreferrer"
             >
               Start Your Application
             </Button>
@@ -333,15 +332,27 @@ export default function ApplyPage() {
         <div className="mt-12 text-center">
           <Button
             as="a"
-            href={FORMSTACK_URL}
+            href="#application"
             variant="primary"
             size="lg"
             className="glow-amber"
-            target="_blank"
-            rel="noopener noreferrer"
           >
             Start Your Application
           </Button>
+        </div>
+      </Section>
+
+      {/* -- Application Form ----------------------------------------------- */}
+      <Section
+        id="application"
+        overline="Apply Online"
+        title="Start Your Application"
+        subtitle="Complete the form below to begin your enrollment. No application fee — your information is transmitted securely."
+      >
+        <div className="mx-auto max-w-3xl">
+          <Card className="p-6 md:p-10">
+            <ApplicationForm />
+          </Card>
         </div>
       </Section>
 
@@ -407,12 +418,12 @@ export default function ApplyPage() {
           </div>
           <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
             <Link href="/admissions/tuition">
-              <Button variant="secondary" size="md" className="border-white/20 text-parchment hover:bg-white/10">
+              <Button as="span" variant="secondary" size="md" className="border-white/20 text-parchment hover:bg-white/10">
                 View Tuition
               </Button>
             </Link>
             <Link href="/admissions/financial-aid">
-              <Button variant="secondary" size="md" className="border-white/20 text-parchment hover:bg-white/10">
+              <Button as="span" variant="secondary" size="md" className="border-white/20 text-parchment hover:bg-white/10">
                 Financial Aid
               </Button>
             </Link>

@@ -118,7 +118,7 @@ export function CTAFinale() {
           <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
             <MagneticButton as="div" strength={0.15}>
               <Link href="/admissions">
-                <Button variant="primary" size="lg" className="glow-amber">
+                <Button as="span" variant="primary" size="lg" className="glow-amber">
                   Apply Now
                 </Button>
               </Link>
@@ -126,7 +126,7 @@ export function CTAFinale() {
 
             <MagneticButton as="div" strength={0.15}>
               <Link href="/contact">
-                <Button variant="secondary" size="lg">
+                <Button as="span" variant="secondary" size="lg">
                   Request Information
                 </Button>
               </Link>

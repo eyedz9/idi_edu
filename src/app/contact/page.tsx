@@ -11,10 +11,9 @@ import {
   officeHours,
   googleMapsEmbedUrl,
   googleMapsDirectionsUrl,
-  bppeSchoolCode,
-  federalSchoolCode,
 } from "@/data";
 import { PHONE, FAX, EMAIL } from "@/lib/constants";
+import { ContactForm } from "@/components/forms/contact-form";
 
 /* -------------------------------------------------------------------------- */
 /*  Metadata                                                                  */
@@ -275,26 +274,6 @@ export default function ContactPage() {
               </div>
             </div>
 
-            {/* School Codes */}
-            <div>
-              <h3 className="font-heading text-lg font-bold text-parchment">
-                School Codes
-              </h3>
-              <div className="mt-3 space-y-2 text-sm text-sandstone">
-                <p>
-                  <span className="font-semibold text-parchment">
-                    BPPE School Code:
-                  </span>{" "}
-                  {bppeSchoolCode}
-                </p>
-                <p>
-                  <span className="font-semibold text-parchment">
-                    Federal School Code (FAFSA):
-                  </span>{" "}
-                  {federalSchoolCode}
-                </p>
-              </div>
-            </div>
           </div>
 
           {/* Right: Map */}
@@ -318,6 +297,21 @@ export default function ContactPage() {
         </div>
       </Section>
 
+      {/* -- Contact Form --------------------------------------------------- */}
+      <Section
+        bg="dark"
+        grain
+        overline="Request Information"
+        title="Send Us a Message"
+        subtitle="Fill out the form below and our admissions team will get back to you promptly."
+      >
+        <div className="mx-auto max-w-2xl">
+          <Card className="p-6 md:p-10">
+            <ContactForm />
+          </Card>
+        </div>
+      </Section>
+
       {/* -- Staff Directory ----------------------------------------------- */}
       <Section
         bg="light"
@@ -328,45 +322,45 @@ export default function ContactPage() {
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {[
             {
-              department: "Admissions",
+              department: "Admissions & Student Services",
               description:
                 "Questions about programs, enrollment, campus tours, and the application process.",
-              email: "admissions@idi.edu",
+              email: "samantha@idi.edu",
               phone: PHONE,
             },
             {
-              department: "Financial Aid",
+              department: "Financial Aid & Title IX",
               description:
-                "FAFSA assistance, grants, loans, scholarships, and payment plans.",
-              email: "financialaid@idi.edu",
-              phone: PHONE,
-            },
-            {
-              department: "Student Services",
-              description:
-                "Current student support, academic advising, and registrar services.",
-              email: "studentservices@idi.edu",
-              phone: PHONE,
-            },
-            {
-              department: "Career Services",
-              description:
-                "Job placement assistance, resume review, and industry connections.",
-              email: "careers@idi.edu",
+                "FAFSA assistance, grants, loans, scholarships, payment plans, and Title IX inquiries.",
+              email: "renee@idi.edu",
               phone: PHONE,
             },
             {
               department: "Academic Affairs",
               description:
-                "Curriculum questions, faculty inquiries, and academic policies.",
-              email: "academics@idi.edu",
+                "Curriculum questions, faculty inquiries, academic policies, and program information.",
+              email: "Tamara.Gonzalez@idi.edu",
+              phone: PHONE,
+            },
+            {
+              department: "Career Placement",
+              description:
+                "Job placement assistance, resume review, and industry connections.",
+              email: "rhulan@idi.edu",
+              phone: PHONE,
+            },
+            {
+              department: "Library",
+              description:
+                "Design resources, trade publications, and research support.",
+              email: "library@idi.edu",
               phone: PHONE,
             },
             {
               department: "General Inquiries",
               description:
                 "All other questions, media requests, and partnership opportunities.",
-              email: "contact@idi.edu",
+              email: "tammy@idi.edu",
               phone: PHONE,
             },
           ].map((dept) => (
@@ -412,7 +406,7 @@ export default function ContactPage() {
           </p>
           <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
             <Link href="/admissions/apply">
-              <Button variant="primary" size="lg" className="glow-amber">
+              <Button as="span" variant="primary" size="lg" className="glow-amber">
                 Apply Now
               </Button>
             </Link>

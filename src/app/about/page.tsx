@@ -7,7 +7,8 @@ import { SITE_NAME } from "@/lib/constants";
 import { Section } from "@/components/ui/section";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { AnimatedSection, CountUp } from "@/components/animations";
+import { AnimatedSection, CountUp, MagneticButton } from "@/components/animations";
+import { MissionCta } from "@/components/sections/mission-cta";
 
 export const metadata: Metadata = {
   title: "About",
@@ -65,12 +66,12 @@ export default function AboutPage() {
       </nav>
 
       {/* ── Hero ────────────────────────────────────────────────────────── */}
-      <Section bg="dark" className="relative overflow-hidden mesh-aurora grain">
+      <section className="relative overflow-hidden mesh-aurora grain py-24 md:py-32 lg:py-40">
         {/* Background image */}
         <div className="absolute inset-0">
           <Image
-            src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1920&q=80"
-            alt="Elegant interior design showcasing IDI design excellence"
+            src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=1920&q=80"
+            alt="Modern design studio representing IDI's creative learning environment"
             fill
             priority
             className="object-cover"
@@ -79,7 +80,7 @@ export default function AboutPage() {
           <div className="absolute inset-0 bg-gradient-to-b from-plum-900/80 via-plum-900/70 to-plum-900/90" />
           <div className="absolute inset-0 bg-gradient-to-r from-plum-900/60 to-transparent" />
         </div>
-        <div className="relative text-center">
+        <div className="relative z-10 mx-auto max-w-7xl px-4 text-center sm:px-6 lg:px-8">
           <p className="mb-3 font-body text-xs sm:text-sm font-semibold uppercase tracking-[0.2em] text-pink-500">
             About
           </p>
@@ -99,29 +100,80 @@ export default function AboutPage() {
             {aboutIDI.tagline}
           </p>
         </div>
-      </Section>
+      </section>
 
-      {/* ── Overview ────────────────────────────────────────────────────── */}
+      {/* ── Our Mission ──────────────────────────────────────────────────── */}
       <Section
         overline="Our Mission"
         title="Shaping the Future of Interior Design"
       >
         <AnimatedSection>
-          <div className="mx-auto max-w-3xl space-y-6 text-center">
-            <p className="text-lg leading-relaxed text-sandstone">
-              Interior Designers Institute has been dedicated to providing
-              quality education in interior design since 1984. Located in
-              Newport Beach, California, our mission is to nurture creative
-              talent through hands-on, studio-based learning and personalized
-              mentorship from industry-connected faculty.
-            </p>
-            <p className="text-lg leading-relaxed text-sandstone">
-              With four progressive programs from a Certificate Course through a
-              Master of Interior Architecture, IDI offers a comprehensive
-              pathway for aspiring designers at every stage of their career. Our
-              small class sizes ensure every student receives the attention they
-              deserve.
-            </p>
+          <div className="grid gap-12 lg:grid-cols-2 lg:items-start">
+            {/* Copy — left-justified */}
+            <div className="space-y-8">
+              <div className="space-y-6">
+                <p className="text-lg leading-relaxed text-sandstone">
+                  Interior Designers Institute has been dedicated to providing
+                  quality education in interior design since 1984. Located in
+                  Newport Beach, California, our mission is to nurture creative
+                  talent through hands-on, studio-based learning and personalized
+                  mentorship from industry-connected faculty.
+                </p>
+                <p className="text-lg leading-relaxed text-sandstone">
+                  With four progressive programs from a Certificate Course through a
+                  Master of Interior Architecture, IDI offers a comprehensive
+                  pathway for aspiring designers at every stage of their career. Our
+                  small class sizes ensure every student receives the attention they
+                  deserve.
+                </p>
+              </div>
+
+              <div>
+                <h3 className="font-heading text-xl font-bold text-parchment mb-3">
+                  Mission Statement
+                </h3>
+                <p className="text-lg leading-relaxed text-sandstone">
+                  Interior Designers Institute (IDI) is a private college offering degrees to educate students in the development of creative concepts and effective solutions to complex problems. The IDI faculty is composed of practicing architects and interior designers creating a learning environment that fosters and supports creativity. With a focused curriculum IDI adapts and assimilates current market and industry trends to best prepare students entering into the global workforce or for career advancement.
+                </p>
+              </div>
+
+              <div>
+                <h3 className="font-heading text-xl font-bold text-parchment mb-3">
+                  Goal of the Institute
+                </h3>
+                <p className="text-lg leading-relaxed text-sandstone">
+                  Interior Designers Institute is a boutique college teaching interior design and interior architecture. The college&apos;s specialized curriculum offers students a personalized education with student-focused faculty who love teaching. IDI&apos;s mission is to be an exclusive producer of interior design graduates who become some of the country&apos;s most well-known and successful designers.
+                </p>
+              </div>
+
+              <div>
+                <h3 className="font-heading text-xl font-bold text-parchment mb-3">
+                  Additional Goals of the Program
+                </h3>
+                <div className="space-y-3 text-lg leading-relaxed text-sandstone">
+                  <p>The program aims to prepare graduates to enter the interior design profession as entry-level designers and/or for career advancement.</p>
+                  <p>Students will learn to design spaces that serve diverse communities with varying cultures, physical abilities, and economic backgrounds.</p>
+                  <p>The program emphasizes the importance of professional ethics, integrity, and encourages students to contribute their interior design skills and talents to their community.</p>
+                  <p>Additionally, students will develop the technical, analytical, conceptual, and communication skills essential for success in the design profession.</p>
+                  <p>The program strives to create a learning environment that fosters individuality, creativity, and motivation to succeed.</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Image + CTA */}
+            <div className="space-y-6 lg:sticky lg:top-28">
+              <div className="relative aspect-[3/4] overflow-hidden rounded-xl">
+                <Image
+                  src="/images/gallery/gallery-05.jpg"
+                  alt="IDI student design work showcasing interior design excellence"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-plum-900/40 to-transparent" />
+              </div>
+              <MissionCta />
+            </div>
           </div>
         </AnimatedSection>
       </Section>
@@ -220,25 +272,48 @@ export default function AboutPage() {
         <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-amber-500/40 to-transparent" />
       </section>
 
-      {/* ── Mission / Philosophy ─────────────────────────────────────── */}
+      {/* ── Philosophy ───────────────────────────────────────────────── */}
       <Section overline="Philosophy" title="Our Commitment to Design Education">
         <AnimatedSection>
-          <div className="mx-auto max-w-3xl space-y-6 text-center">
-            <p className="text-lg leading-relaxed text-sandstone">
-              At IDI, we believe that great design begins with a strong
-              foundation in both technical skill and creative vision. Our
-              studio-based curriculum immerses students in real-world projects,
-              from residential interiors to commercial spaces, while our
-              partnerships with industry professionals ensure graduates are
-              prepared for the demands of modern design practice.
-            </p>
-            <p className="text-lg leading-relaxed text-sandstone">
-              Every aspect of our institution — from our ACCSC and CIDA
-              accreditations to our intentionally small class sizes — reflects
-              our dedication to student success. We are proud to be a community
-              where aspiring designers find their voice and build the skills to
-              transform spaces and lives.
-            </p>
+          <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
+            {/* Image — left side */}
+            <div className="relative aspect-[4/3] overflow-hidden rounded-xl">
+              <Image
+                src="/images/gallery/gallery-12.jpg"
+                alt="Interior design studio environment at IDI"
+                fill
+                className="object-cover"
+                sizes="(max-width: 1024px) 100vw, 50vw"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-plum-900/40 to-transparent" />
+            </div>
+
+            {/* Copy — left-justified */}
+            <div className="space-y-6">
+              <div>
+                <h3 className="font-heading text-xl font-bold text-parchment mb-3">
+                  Philosophy of the Program
+                </h3>
+                <p className="text-lg leading-relaxed text-sandstone">
+                  Interior Design includes a scope of services performed by a professional design practitioner, qualified through <strong className="text-parchment">education</strong>, <strong className="text-parchment">experience</strong>, and <strong className="text-parchment">examination</strong> to protect and enhance the life, health, safety, and welfare of the public.
+                </p>
+              </div>
+              <p className="text-lg leading-relaxed text-sandstone">
+                At IDI, we believe that great design begins with a strong
+                foundation in both technical skill and creative vision. Our
+                studio-based curriculum immerses students in real-world projects,
+                from residential interiors to commercial spaces, while our
+                partnerships with industry professionals ensure graduates are
+                prepared for the demands of modern design practice.
+              </p>
+              <p className="text-lg leading-relaxed text-sandstone">
+                Every aspect of our institution — from our ACCSC and CIDA
+                accreditations to our intentionally small class sizes — reflects
+                our dedication to student success. We are proud to be a community
+                where aspiring designers find their voice and build the skills to
+                transform spaces and lives.
+              </p>
+            </div>
           </div>
         </AnimatedSection>
       </Section>
@@ -256,7 +331,7 @@ export default function AboutPage() {
           </p>
           <div className="mt-8">
             <Link href="/programs">
-              <Button as="button" variant="primary" size="lg" className="glow-amber">
+              <Button as="span" variant="primary" size="lg" className="glow-amber">
                 Explore Programs
               </Button>
             </Link>

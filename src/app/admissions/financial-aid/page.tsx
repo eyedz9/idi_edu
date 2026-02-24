@@ -4,7 +4,7 @@ import { Section } from "@/components/ui/section";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { federalSchoolCode, contactInfo } from "@/data";
+import { contactInfo } from "@/data";
 import { PHONE, EMAIL } from "@/lib/constants";
 
 /* -------------------------------------------------------------------------- */
@@ -14,7 +14,7 @@ import { PHONE, EMAIL } from "@/lib/constants";
 export const metadata: Metadata = {
   title: "Financial Aid",
   description:
-    "Explore financial aid options at Interior Designers Institute including federal grants, loans, and scholarships. FAFSA school code 041863.",
+    "Explore financial aid options at Interior Designers Institute including federal grants, loans, and scholarships. Learn about FAFSA, grants, loans, and more.",
   alternates: { canonical: "/admissions/financial-aid" },
 };
 
@@ -193,19 +193,6 @@ export default function FinancialAidPage() {
         subtitle="The first step to receiving federal financial aid is completing the Free Application for Federal Student Aid (FAFSA)."
       >
         <div className="mx-auto max-w-3xl space-y-8">
-          {/* School code callout */}
-          <Card className="p-6 md:p-8 text-center">
-            <p className="text-sm font-semibold uppercase tracking-wider text-sandstone">
-              IDI Federal School Code
-            </p>
-            <p className="mt-2 font-heading text-4xl font-bold text-pink-500 md:text-5xl">
-              {federalSchoolCode}
-            </p>
-            <p className="mt-2 text-sm text-sandstone">
-              Use this code when completing your FAFSA application
-            </p>
-          </Card>
-
           {/* Steps */}
           <div className="space-y-6">
             <div className="flex items-start gap-4">
@@ -226,8 +213,7 @@ export default function FinancialAidPage() {
                   >
                     studentaid.gov
                   </a>{" "}
-                  to fill out the FAFSA. Be sure to include IDI&apos;s federal
-                  school code: <strong>{federalSchoolCode}</strong>.
+                  to fill out the FAFSA.
                 </p>
               </div>
             </div>
@@ -374,12 +360,13 @@ export default function FinancialAidPage() {
           </div>
           <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
             <Link href="/admissions/apply">
-              <Button variant="primary" size="lg" className="glow-amber">
+              <Button as="span" variant="primary" size="lg" className="glow-amber">
                 Apply Now
               </Button>
             </Link>
             <Link href="/admissions/tuition">
               <Button
+                as="span"
                 variant="secondary"
                 size="lg"
               >

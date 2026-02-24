@@ -4,7 +4,7 @@ import { Section } from "@/components/ui/section";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { tuitionData, getCombinedBATuition } from "@/data";
-import { FORMSTACK_URL } from "@/lib/constants";
+import { APPLY_PATH } from "@/lib/constants";
 
 /* -------------------------------------------------------------------------- */
 /*  Metadata                                                                  */
@@ -281,20 +281,19 @@ export default function TuitionPage() {
           </p>
           <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
             <Link href="/admissions/financial-aid">
-              <Button variant="primary" size="lg" className="glow-amber">
+              <Button as="span" variant="primary" size="lg" className="glow-amber">
                 Explore Financial Aid
               </Button>
             </Link>
-            <Button
-              as="a"
-              href={FORMSTACK_URL}
-              variant="secondary"
-              size="lg"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Apply Now
-            </Button>
+            <Link href={APPLY_PATH}>
+              <Button
+                as="span"
+                variant="secondary"
+                size="lg"
+              >
+                Apply Now
+              </Button>
+            </Link>
           </div>
         </div>
       </section>

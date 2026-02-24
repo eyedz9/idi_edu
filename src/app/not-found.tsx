@@ -21,7 +21,7 @@ export default function NotFound() {
 
         <div className="mt-10">
           <Link href="/">
-            <Button as="button" variant="primary" size="lg" className="glow-amber">
+            <Button as="span" variant="primary" size="lg" className="glow-amber">
               Return Home
             </Button>
           </Link>

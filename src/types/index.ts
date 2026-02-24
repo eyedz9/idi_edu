@@ -139,7 +139,6 @@ export interface ContactInfo {
 export interface EnrollmentConfig {
   nextClassDate: string;
   registrationPeriod: string;
-  formstackUrl: string;
 }
 
 // ─── Disclosure Types ────────────────────────────────────────────────────────

@@ -170,12 +170,12 @@ export function HeroSection() {
             className="mt-10 flex flex-col items-start gap-4 sm:flex-row sm:items-center"
           >
             <Link href="/programs">
-              <Button variant="primary" size="lg" className="glow-amber">
+              <Button as="span" variant="primary" size="lg" className="glow-amber">
                 Explore Programs
               </Button>
             </Link>
             <Link href="/contact">
-              <Button variant="secondary" size="lg">
+              <Button as="span" variant="secondary" size="lg">
                 Request Information
               </Button>
             </Link>

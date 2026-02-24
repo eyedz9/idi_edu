@@ -6,8 +6,9 @@ export const FAX = "(949) 759-0667";
 export const EMAIL = "contact@idi.edu";
 export const ADDRESS =
   "1061 Camelback Street, Newport Beach, CA 92660";
-export const FORMSTACK_URL =
-  "https://interiordesignersinstitute.formstack.com/forms/spring_summer_2026_registration";
+/** @deprecated Formstack removed — application form is now native at /admissions/apply */
+export const FORMSTACK_URL = "/admissions/apply#application";
+export const APPLY_PATH = "/admissions/apply#application";
 
 export const SOCIAL_LINKS = {
   facebook: "https://www.facebook.com/interiordesignersinstitute/",

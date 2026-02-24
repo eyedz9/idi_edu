@@ -26,19 +26,9 @@ Four decades in, thousands of graduates are shaping interiors across Southern Ca
         "The Institute moves to Newport Beach — planting itself in the heart of Southern California's design community.",
     },
     {
-      year: 1994,
+      year: 1992,
       event:
-        "The Associate of Arts program launches, giving students a career-ready degree in interior design.",
-    },
-    {
-      year: 2000,
-      event:
-        "The Bachelor of Arts program arrives — raising the bar with advanced technical skills and CIDA-track curriculum.",
-    },
-    {
-      year: 2005,
-      event:
-        "CIDA accreditation awarded for the BA program — the recognized accrediting body for interior design education in North America.",
+        "The Bachelor of Arts program receives CIDA accreditation — the recognized accrediting body for interior design education in North America.",
     },
     {
       year: 2010,
@@ -58,7 +48,7 @@ Four decades in, thousands of graduates are shaping interiors across Southern Ca
 
 Our institutional accreditation from ACCSC confirms that every program we offer meets national standards for educational quality, student support, and measurable outcomes. Our BA program's CIDA accreditation goes further — it's the mark that top design firms and state licensing boards look for when evaluating candidates.
 
-We're approved to operate by the California Bureau for Private Postsecondary Education (BPPE School Code: 2302631) and approved by the U.S. Department of Education for Title IV Federal Financial Aid. Translation: your investment is protected, and funding is accessible.`,
+We're approved to operate by the California Bureau for Private Postsecondary Education and approved by the U.S. Department of Education for Title IV Federal Financial Aid. Translation: your investment is protected, and funding is accessible.`,
     bodies: [
       {
         name: "Accrediting Commission of Career Schools and Colleges",

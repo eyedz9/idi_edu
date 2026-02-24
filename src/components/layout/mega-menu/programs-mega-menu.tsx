@@ -92,16 +92,16 @@ export function ProgramsMegaMenu({ open, onClose }: ProgramsMegaMenuProps) {
             <p className="mt-2 text-sm leading-relaxed text-sandstone">
               From 12-week certificates to graduate degrees — find the path that matches your ambition.
             </p>
-            <Button
-              as="a"
-              href="/programs"
-              variant="primary"
-              size="sm"
-              className="mt-4"
-              onClick={onClose}
-            >
-              All Programs
-            </Button>
+            <Link href="/programs" onClick={onClose}>
+              <Button
+                as="span"
+                variant="primary"
+                size="sm"
+                className="mt-4"
+              >
+                All Programs
+              </Button>
+            </Link>
           </div>
         </div>
 

@@ -1,10 +1,8 @@
 import type { EnrollmentConfig } from "@/types";
 
 export const enrollmentConfig: EnrollmentConfig = {
-  nextClassDate: "May 5",
+  nextClassDate: "May 11",
   registrationPeriod: "Spring/Summer 2026",
-  formstackUrl:
-    "https://interiordesignersinstitute.formstack.com/forms/spring_summer_2026_registration",
 };
 
 /**
@@ -33,7 +31,7 @@ export const enrollmentSteps = [
     step: 4,
     title: "Sort Out Funding",
     description:
-      "If you need financial aid, complete the FAFSA (School Code: 041863) and our Financial Aid team will help you explore every option available.",
+      "If you need financial aid, complete the FAFSA and our Financial Aid team will help you explore every option available.",
   },
   {
     step: 5,

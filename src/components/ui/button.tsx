@@ -1,4 +1,4 @@
-import { forwardRef, type ButtonHTMLAttributes, type AnchorHTMLAttributes } from "react";
+import { forwardRef, type ButtonHTMLAttributes, type AnchorHTMLAttributes, type HTMLAttributes } from "react";
 import { cn } from "@/lib/cn";
 
 /* -------------------------------------------------------------------------- */
@@ -45,7 +45,12 @@ type ButtonAsAnchor = ButtonBaseProps &
     as: "a";
   };
 
-export type ButtonProps = ButtonAsButton | ButtonAsAnchor;
+type ButtonAsSpan = ButtonBaseProps &
+  Omit<HTMLAttributes<HTMLSpanElement>, keyof ButtonBaseProps> & {
+    as: "span";
+  };
+
+export type ButtonProps = ButtonAsButton | ButtonAsAnchor | ButtonAsSpan;
 
 /* -------------------------------------------------------------------------- */
 /*  Component                                                                 */
@@ -55,7 +60,7 @@ const shared =
   "inline-flex items-center justify-center font-body font-semibold rounded-lg transition-all duration-200 ease-out hover:scale-[1.02] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50";
 
 export const Button = forwardRef<
-  HTMLButtonElement | HTMLAnchorElement,
+  HTMLButtonElement | HTMLAnchorElement | HTMLSpanElement,
   ButtonProps
 >(function Button(props, ref) {
   const {
@@ -75,6 +80,17 @@ export const Button = forwardRef<
         ref={ref as React.Ref<HTMLAnchorElement>}
         className={classes}
         {...anchorProps}
+      />
+    );
+  }
+
+  if (as === "span") {
+    const spanProps = rest as HTMLAttributes<HTMLSpanElement>;
+    return (
+      <span
+        ref={ref as React.Ref<HTMLSpanElement>}
+        className={classes}
+        {...spanProps}
       />
     );
   }

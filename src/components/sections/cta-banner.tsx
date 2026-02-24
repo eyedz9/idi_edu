@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { cn } from "@/lib/cn";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -83,35 +84,37 @@ export function CTABanner({
         )}
 
         <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
-          <Button
-            as="a"
-            href={primaryAction.href}
-            variant={primaryAction.variant ?? "primary"}
-            size="lg"
-            className={cn(
-              bg === "accent" &&
-                primaryAction.variant !== "secondary" &&
-                "bg-white text-accent-500 hover:bg-warm-50",
-            )}
-          >
-            {primaryAction.label}
-          </Button>
-
-          {secondaryAction && (
+          <Link href={primaryAction.href}>
             <Button
-              as="a"
-              href={secondaryAction.href}
-              variant={secondaryAction.variant ?? "secondary"}
+              as="span"
+              variant={primaryAction.variant ?? "primary"}
               size="lg"
               className={cn(
-                bg === "dark" &&
-                  "border-white text-white hover:bg-white hover:text-brand-900",
                 bg === "accent" &&
-                  "border-white text-white hover:bg-white hover:text-accent-500",
+                  primaryAction.variant !== "secondary" &&
+                  "bg-white text-accent-500 hover:bg-warm-50",
               )}
             >
-              {secondaryAction.label}
+              {primaryAction.label}
             </Button>
+          </Link>
+
+          {secondaryAction && (
+            <Link href={secondaryAction.href}>
+              <Button
+                as="span"
+                variant={secondaryAction.variant ?? "secondary"}
+                size="lg"
+                className={cn(
+                  bg === "dark" &&
+                    "border-white text-white hover:bg-white hover:text-brand-900",
+                  bg === "accent" &&
+                    "border-white text-white hover:bg-white hover:text-accent-500",
+                )}
+              >
+                {secondaryAction.label}
+              </Button>
+            </Link>
           )}
         </div>
       </div>

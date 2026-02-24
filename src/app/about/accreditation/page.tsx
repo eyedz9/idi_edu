@@ -42,10 +42,9 @@ const accreditationDetails: Record<
   },
   BPPE: {
     description:
-      "The Bureau for Private Postsecondary Education (BPPE) is the California state agency that regulates private postsecondary educational institutions. IDI is approved to operate by the BPPE, ensuring compliance with California state requirements for educational quality and consumer protection. BPPE School Code: 2302631.",
+      "The Bureau for Private Postsecondary Education (BPPE) is the California state agency that regulates private postsecondary educational institutions. IDI is approved to operate by the BPPE, ensuring compliance with California state requirements for educational quality and consumer protection.",
     highlights: [
       "California state approval to operate",
-      "BPPE School Code: 2302631",
       "Consumer protection oversight",
       "Compliance with California Education Code",
     ],
@@ -87,7 +86,7 @@ export default function AccreditationPage() {
       </nav>
 
       {/* ── Hero ────────────────────────────────────────────────────────── */}
-      <Section bg="dark" className="relative overflow-hidden mesh-aurora grain">
+      <section className="relative overflow-hidden mesh-aurora grain py-24 md:py-32 lg:py-40">
         {/* Background image */}
         <div className="absolute inset-0">
           <Image
@@ -101,8 +100,8 @@ export default function AccreditationPage() {
           <div className="absolute inset-0 bg-gradient-to-b from-plum-900/80 via-plum-900/70 to-plum-900/90" />
           <div className="absolute inset-0 bg-gradient-to-r from-plum-900/60 to-transparent" />
         </div>
-        <div className="relative text-center">
-          <p className="mb-3 font-body text-xs font-semibold uppercase tracking-[0.2em] text-pink-500">
+        <div className="relative z-10 mx-auto max-w-7xl px-4 text-center sm:px-6 lg:px-8">
+          <p className="mb-3 font-body text-xs sm:text-sm font-semibold uppercase tracking-[0.2em] text-pink-500">
             Quality Assurance
           </p>
           <h1 className="font-heading text-5xl font-bold text-parchment md:text-6xl lg:text-7xl">
@@ -123,7 +122,7 @@ export default function AccreditationPage() {
             success.
           </p>
         </div>
-      </Section>
+      </section>
 
       {/* ── Overview ────────────────────────────────────────────────────── */}
       <Section overline="Overview" title="Our Accreditations">

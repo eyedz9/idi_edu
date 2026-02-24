@@ -211,15 +211,16 @@ export function MobileNav({
             </svg>
             Call {phone}
           </a>
-          <Button
-            as="a"
-            href="/admissions/apply"
-            variant="primary"
-            size="md"
-            className="w-full"
-          >
-            Apply Now
-          </Button>
+          <Link href="/admissions/apply" onClick={onClose}>
+            <Button
+              as="span"
+              variant="primary"
+              size="md"
+              className="w-full"
+            >
+              Apply Now
+            </Button>
+          </Link>
         </div>
       </div>
     </div>

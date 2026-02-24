@@ -1,5 +1,5 @@
 import type { NavItem, PersistentCTA } from "@/types";
-import { PHONE, FORMSTACK_URL } from "@/lib/constants";
+import { PHONE } from "@/lib/constants";
 
 export const primaryNav: NavItem[] = [
   {

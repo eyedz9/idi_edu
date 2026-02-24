@@ -8,31 +8,13 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { AnimatedSection } from "@/components/animations";
+import { formatCurrency, programImages } from "@/lib/utils";
 
 export const metadata: Metadata = {
   title: "Our Programs",
   description: `Explore accredited interior design programs at ${SITE_NAME}. Certificate, Associate, Bachelor's, and Master's degrees in Interior Design and Interior Architecture.`,
   alternates: { canonical: "/programs" },
 };
-
-const programImages: Record<string, string> = {
-  certificate:
-    "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&q=75",
-  "associate-of-arts":
-    "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=800&q=75",
-  "bachelor-of-arts":
-    "https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=75",
-  "master-interior-architecture":
-    "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&q=75",
-};
-
-function formatCurrency(amount: number): string {
-  return new Intl.NumberFormat("en-US", {
-    style: "currency",
-    currency: "USD",
-    maximumFractionDigits: 0,
-  }).format(amount);
-}
 
 export default function ProgramsPage() {
   return (
@@ -138,7 +120,7 @@ export default function ProgramsPage() {
                     {/* CTA */}
                     <div className="mt-6">
                       <Link href={`/programs/${program.slug}`}>
-                        <Button as="button" variant="primary" size="sm" className="w-full min-h-[44px]">
+                        <Button as="span" variant="primary" size="sm" className="w-full min-h-[44px]">
                           Learn More
                         </Button>
                       </Link>
@@ -163,7 +145,7 @@ export default function ProgramsPage() {
           </p>
           <div className="mt-8">
             <Link href="/programs/compare">
-              <Button as="button" variant="secondary" size="md">
+              <Button as="span" variant="secondary" size="md">
                 Compare Programs
               </Button>
             </Link>

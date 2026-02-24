@@ -39,7 +39,7 @@ export default function HistoryPage() {
       </nav>
 
       {/* ── Hero ────────────────────────────────────────────────────────── */}
-      <Section bg="dark" className="relative overflow-hidden mesh-aurora grain">
+      <section className="relative overflow-hidden mesh-aurora grain py-24 md:py-32 lg:py-40">
         {/* Background image */}
         <div className="absolute inset-0">
           <Image
@@ -53,7 +53,7 @@ export default function HistoryPage() {
           <div className="absolute inset-0 bg-gradient-to-b from-plum-900/80 via-plum-900/70 to-plum-900/90" />
           <div className="absolute inset-0 bg-gradient-to-r from-plum-900/60 to-transparent" />
         </div>
-        <div className="relative text-center">
+        <div className="relative z-10 mx-auto max-w-7xl px-4 text-center sm:px-6 lg:px-8">
           <Badge variant="accent" className="mb-4">
             Founded 1984
           </Badge>
@@ -65,7 +65,7 @@ export default function HistoryPage() {
             interior design institute in Newport Beach.
           </p>
         </div>
-      </Section>
+      </section>
 
       {/* ── Timeline ────────────────────────────────────────────────────── */}
       <Section overline="Milestones" title="Four Decades of Growth">
@@ -134,8 +134,8 @@ export default function HistoryPage() {
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {[
               {
-                src: "https://images.unsplash.com/photo-1562774053-701939374585?w=800&q=80",
-                alt: "Modern campus building exterior with clean architectural lines",
+                src: "/images/gallery/gallery-16.jpg",
+                alt: "IDI Campus in Newport Beach",
                 label: "IDI Campus, Newport Beach",
               },
               {

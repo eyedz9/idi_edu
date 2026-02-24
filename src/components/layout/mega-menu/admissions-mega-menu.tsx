@@ -91,16 +91,16 @@ export function AdmissionsMegaMenu({ open, onClose }: AdmissionsMegaMenuProps) {
             <p className="mt-2 text-sm leading-relaxed text-sandstone">
               Begin your journey to becoming a professional interior designer.
             </p>
-            <Button
-              as="a"
-              href="/admissions/apply"
-              variant="primary"
-              size="sm"
-              className="mt-4"
-              onClick={onClose}
-            >
-              Apply Now
-            </Button>
+            <Link href="/admissions/apply" onClick={onClose}>
+              <Button
+                as="span"
+                variant="primary"
+                size="sm"
+                className="mt-4"
+              >
+                Apply Now
+              </Button>
+            </Link>
           </div>
         </div>
 

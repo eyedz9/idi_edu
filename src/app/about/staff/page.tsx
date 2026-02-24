@@ -28,60 +28,60 @@ interface StaffMember {
 
 const staffMembers: StaffMember[] = [
   {
-    name: "Patricia Deaton-Morgan",
-    title: "President & Director",
+    name: "Tammy Solomons",
+    title: "Executive Director",
     department: "Executive Administration",
-    email: "director@idi.edu",
-    bio: "Leading IDI with a vision for excellence in interior design education, Patricia oversees all institutional operations and ensures that the school's mission of nurturing creative talent continues to guide every decision.",
-    imageSrc: "https://images.unsplash.com/photo-1587614382346-4ec70e388b28?w=600&q=80",
+    email: "tammy@idi.edu",
+    bio: "Leading IDI as Executive Director, Tammy oversees all institutional operations and ensures that the school's mission of nurturing creative talent continues to guide every decision.",
+    imageSrc: "/images/staff/tammy-solomons.png",
   },
   {
-    name: "Lauren Castellano",
-    title: "Director of Admissions",
+    name: "Tamara Gonzalez, ASID, IIDA",
+    title: "Director of Education",
+    department: "Academic Affairs",
+    email: "Tamara.Gonzalez@idi.edu",
+    bio: "As Director of Education, Tamara oversees IDI's academic programs and curriculum development, bringing her expertise as a practicing interior designer and Master of Interior Architecture graduate.",
+    imageSrc: "/images/staff/tamara-gonzalez.jpg",
+  },
+  {
+    name: "Becky Mauldin",
+    title: "Associate Director of Education",
+    department: "Academic Affairs",
+    email: "becky@idi.edu",
+    bio: "Becky supports the academic programs as Associate Director of Education, working closely with faculty and students to ensure a high-quality learning experience.",
+    imageSrc: "/images/staff/becky-mauldin.jpg",
+  },
+  {
+    name: "Samantha Arizaga",
+    title: "Admissions & Student Services",
     department: "Admissions",
-    email: "admissions@idi.edu",
-    bio: "Lauren guides prospective students through the admissions process, from initial inquiry to enrollment. She is dedicated to helping applicants find the program that best fits their goals and creative aspirations.",
-    imageSrc: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=600&q=80",
+    email: "samantha@idi.edu",
+    bio: "Samantha guides prospective and current students through the admissions process and student services, helping them navigate their journey at IDI from enrollment to graduation.",
+    imageSrc: "/images/staff/samantha-arizaga.jpg",
   },
   {
-    name: "Michael Tran",
-    title: "Registrar",
-    department: "Academic Records",
-    email: "registrar@idi.edu",
-    bio: "Michael manages student records, course scheduling, and academic policies. He ensures that transcripts, enrollment verifications, and graduation requirements are handled with accuracy and care.",
-    imageSrc: "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=600&q=80",
-  },
-  {
-    name: "Sandra Okafor",
-    title: "Financial Aid Director",
-    department: "Financial Aid",
-    email: "financialaid@idi.edu",
-    bio: "Sandra helps students navigate financial aid options, including federal aid, scholarships, and payment plans. She is committed to making design education accessible and works personally with each student to find solutions.",
-    imageSrc: "https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=600&q=80",
-  },
-  {
-    name: "Jessica Reyes",
-    title: "Student Services Coordinator",
-    department: "Student Services",
-    email: "studentservices@idi.edu",
-    bio: "Jessica is the go-to resource for student life at IDI. From orientation to campus events and academic support, she ensures every student has the resources they need to thrive throughout their educational journey.",
-    imageSrc: "https://images.unsplash.com/photo-1598550874175-4d0ef436c909?w=600&q=80",
-  },
-  {
-    name: "Daniel Park",
-    title: "Career Services Advisor",
+    name: "Rachel Hulan, ASID, IIDA, LEED AP, CID",
+    title: "Career Placement",
     department: "Career Services",
-    email: "careers@idi.edu",
-    bio: "Daniel connects students and graduates with industry opportunities. From resume workshops and portfolio reviews to employer partnerships and job placement assistance, he helps IDI graduates launch successful design careers.",
-    imageSrc: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=600&q=80",
+    email: "rhulan@idi.edu",
+    bio: "Rachel connects students and graduates with industry opportunities, leveraging her extensive professional network as President of Hulan Design and Certified Green Building Professional.",
+    imageSrc: "/images/staff/rachel-hulan.png",
   },
   {
-    name: "Amy Chen",
-    title: "Administrative Coordinator",
-    department: "Administration",
-    email: "contact@idi.edu",
-    bio: "Amy keeps daily operations running smoothly at IDI. She manages front desk communications, campus coordination, and administrative support, serving as a welcoming first point of contact for students, faculty, and visitors.",
-    imageSrc: "https://images.unsplash.com/photo-1607746882042-944635dfe10e?w=600&q=80",
+    name: "Renee Robles",
+    title: "Financial Aid Administrator & Title IX Coordinator",
+    department: "Financial Aid",
+    email: "renee@idi.edu",
+    bio: "Renee helps students navigate financial aid options and serves as IDI's Title IX Coordinator, ensuring compliance and supporting students throughout the financial aid process.",
+    imageSrc: "/images/staff/renee-robles.jpg",
+  },
+  {
+    name: "Stephanie Pappas",
+    title: "Librarian",
+    department: "Library",
+    email: "library@idi.edu",
+    bio: "Stephanie manages IDI's resource library, curating design books, trade publications, and digital resources to support student research and creative exploration.",
+    imageSrc: "/images/staff/stephanie-pappas.jpg",
   },
 ];
 
@@ -112,7 +112,7 @@ export default function StaffPage() {
       </nav>
 
       {/* -- Hero ---------------------------------------------------------- */}
-      <Section bg="dark" className="relative overflow-hidden mesh-plum grain">
+      <section className="relative overflow-hidden mesh-plum grain py-24 md:py-32 lg:py-40">
         <div className="absolute inset-0">
           <Image
             src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=1920&q=80"
@@ -125,8 +125,8 @@ export default function StaffPage() {
           <div className="absolute inset-0 bg-gradient-to-b from-plum-900/80 via-plum-900/70 to-plum-900/90" />
           <div className="absolute inset-0 bg-gradient-to-r from-plum-900/60 to-transparent" />
         </div>
-        <div className="relative text-center">
-          <p className="mb-3 font-body text-xs font-semibold uppercase tracking-[0.2em] text-pink-500">
+        <div className="relative z-10 mx-auto max-w-7xl px-4 text-center sm:px-6 lg:px-8">
+          <p className="mb-3 font-body text-xs sm:text-sm font-semibold uppercase tracking-[0.2em] text-pink-500">
             Our Team
           </p>
           <h1 className="font-heading text-5xl font-bold text-parchment md:text-6xl lg:text-7xl">
@@ -137,7 +137,7 @@ export default function StaffPage() {
             from admissions through graduation and beyond.
           </p>
         </div>
-      </Section>
+      </section>
 
       {/* -- Introduction -------------------------------------------------- */}
       <Section overline="Here to Help" title="Your Support Team">
@@ -162,17 +162,18 @@ export default function StaffPage() {
       {/* -- Staff Grid ---------------------------------------------------- */}
       <Section bg="dark" grain overline="Directory" title="Meet Our Staff">
         <AnimatedSection stagger={0.08}>
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {staffMembers.map((member) => (
               <Card key={member.name} className="group overflow-hidden">
                 {/* Photo */}
-                <div className="relative aspect-[4/3] w-full overflow-hidden bg-plum-700">
+                <div className="relative w-full overflow-hidden bg-plum-700">
                   <Image
                     src={member.imageSrc}
                     alt={member.name}
-                    fill
-                    className="object-cover transition-transform duration-500 group-hover:scale-105"
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    width={254}
+                    height={338}
+                    className="w-full h-auto transition-transform duration-500 group-hover:scale-105"
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-plum-900/60 via-transparent to-transparent" />
                 </div>
@@ -298,12 +299,12 @@ export default function StaffPage() {
           </p>
           <div className="mt-8 flex flex-wrap justify-center gap-4">
             <Link href="/admissions">
-              <Button as="button" variant="primary" size="lg" className="glow-amber">
+              <Button as="span" variant="primary" size="lg" className="glow-amber">
                 Start Your Application
               </Button>
             </Link>
             <Link href="/contact">
-              <Button as="button" variant="secondary" size="lg">
+              <Button as="span" variant="secondary" size="lg">
                 Contact Us
               </Button>
             </Link>

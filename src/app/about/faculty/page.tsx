@@ -30,76 +30,166 @@ interface FacultyMember {
 
 const facultyMembers: FacultyMember[] = [
   {
-    name: "Dr. Caroline Whitfield",
-    title: "Department Chair & Program Director",
-    credentials: "Ph.D. Interior Architecture, UCLA; M.A. Interior Design, RISD",
-    specialization: "Design Theory & Professional Practice",
-    bio: "With over 25 years in both professional practice and academia, Dr. Whitfield leads IDI's interior design programs. Her research in biophilic design and sustainable interiors has been published internationally, and she brings a deep commitment to mentoring the next generation of designers.",
-    imageSrc: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600&q=80",
-    specialties: ["Design Theory", "Sustainability", "Biophilic Design"],
+    name: "Chidimma Abuka",
+    title: "LEED AP ID+C, Fitwel Ambassador, WELL AP",
+    credentials: "MBA, Concordia University Irvine; MIA, Interior Designers Institute",
+    specialization: "Sustainability & Resilience Design",
+    bio: "Studio Design Resilience Leader at Gensler and Sustainability Design Coordinator. Brings expertise in sustainable design, wellness-focused environments, and resilient design practices to IDI's curriculum.",
+    imageSrc: "/images/faculty/chidimma-abuka.jpg",
+    specialties: ["LEED", "WELL", "Sustainable Design"],
   },
   {
-    name: "Marcus Avery, IIDA",
-    title: "Associate Professor, Interior Design Fundamentals",
-    credentials: "M.F.A. Interior Design, Savannah College of Art & Design",
-    specialization: "Space Planning & Residential Design",
-    bio: "Marcus brings 18 years of residential and hospitality design experience to his fundamentals courses. A practicing designer with projects spanning Southern California, he emphasizes human-centered design and the relationship between space, light, and well-being.",
-    imageSrc: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=80",
-    specialties: ["Space Planning", "Residential", "Hospitality"],
+    name: "Angela Blake, ASID, IIDA",
+    title: "Principal, A. Blake Designs",
+    credentials: "BA Interior Design, IDI; BS, Azusa Pacific University",
+    specialization: "Entertainment & Residential Design",
+    bio: "With over 12 years of experience in the entertainment and electronic software industry, Angela brings a unique blend of creative direction and interior design expertise to her teaching at IDI.",
+    imageSrc: "/images/faculty/angela-blake.jpg",
+    specialties: ["Residential Design", "Entertainment", "Creative Direction"],
   },
   {
-    name: "Sophia Nguyen, ASID",
-    title: "Associate Professor, Color & Materials",
-    credentials: "M.A. Interior Design, Parsons School of Design",
-    specialization: "Color Theory & Materials Science",
-    bio: "Sophia's expertise in color psychology and materials innovation shapes IDI's materials curriculum. Previously a senior designer at Gensler, she guides students through material sourcing, specification, and the art of creating cohesive palettes for residential and commercial projects.",
-    imageSrc: "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=600&q=80",
-    specialties: ["Color Theory", "Materials", "Specifications"],
+    name: "Hiba Chabani",
+    title: "CAD/SketchUp Designer",
+    credentials: "BA Interior Design, Interior Designers Institute",
+    specialization: "Digital Design & CAD",
+    bio: "A CAD/SketchUp Designer at Move West Design and freelance designer, Hiba brings current digital design practice directly from the field into the classroom.",
+    imageSrc: "/images/faculty/hiba-chabani.jpg",
+    specialties: ["CAD", "SketchUp", "Digital Design"],
   },
   {
-    name: "David Ochoa",
-    title: "Assistant Professor, CAD & Digital Design",
-    credentials: "M.Arch., SCI-Arc; B.F.A. Digital Arts, Art Center College of Design",
-    specialization: "Digital Visualization & BIM",
-    bio: "David bridges traditional design thinking with cutting-edge digital tools. Proficient in AutoCAD, Revit, SketchUp, and emerging AI-driven visualization, he prepares students for the technology-forward expectations of today's design firms and ensures graduates are industry-ready from day one.",
-    imageSrc: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=600&q=80",
-    specialties: ["AutoCAD", "Revit", "3D Visualization"],
+    name: "Amy Creager, AIA, LEED AP",
+    title: "Principal Architect, Brion Jeannette Architecture",
+    credentials: "BA, CSU Long Beach",
+    specialization: "Sustainable Architecture",
+    bio: "A licensed architect and LEED Accredited Professional specializing in sustainable residential design. As Principal Architect at Brion Jeannette Architecture, Amy brings real-world sustainable building expertise to IDI students.",
+    imageSrc: "/images/faculty/amy-creager.jpg",
+    specialties: ["Architecture", "LEED", "Sustainable Homes"],
   },
   {
-    name: "Dr. Elena Rossini",
-    title: "Associate Professor, History of Architecture & Design",
-    credentials: "Ph.D. Architectural History, Columbia University",
-    specialization: "Design History & Cultural Context",
-    bio: "Dr. Rossini's courses illuminate the historical roots of contemporary design. From ancient civilizations through modernism and beyond, she helps students understand how cultural movements, technology, and aesthetics have shaped the built environment we inhabit today.",
-    imageSrc: "https://images.unsplash.com/photo-1594744803329-e58b31de8bf5?w=600&q=80",
-    specialties: ["Design History", "Modernism", "Cultural Studies"],
+    name: "Allison Crosland, ASID",
+    title: "President, Crosland Designs",
+    credentials: "MIA, Interior Designers Institute",
+    specialization: "High-End Residential & Hospitality",
+    bio: "President of Crosland Designs specializing in high-end residential, commercial, and hospitality design. Allison brings extensive luxury design experience to her courses at IDI.",
+    imageSrc: "/images/faculty/allison-crosland.jpg",
+    specialties: ["Residential", "Hospitality", "Luxury Design"],
   },
   {
-    name: "James Hartley, NCIDQ",
-    title: "Associate Professor, Studio & Portfolio",
-    credentials: "M.F.A. Interior Design, Pratt Institute",
-    specialization: "Studio Practice & Portfolio Development",
-    bio: "James leads IDI's studio courses where students tackle real-world design challenges. His 15 years at boutique design studios in Los Angeles and New York inform a practice-based teaching approach that results in portfolio-ready work clients and employers actively seek.",
-    imageSrc: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=600&q=80",
-    specialties: ["Studio Practice", "Portfolio", "Commercial Design"],
+    name: "Pete Cruz",
+    title: "Principal, SdDESIGNWORKS",
+    credentials: "AA, Interior Designers Institute",
+    specialization: "Interior Design & Technology",
+    bio: "Principal of SdDESIGNWORKS and former Interior Designer at Nicholson Construction. Pete combines interior design expertise with technology background as a Microsoft Certified Systems Engineer.",
+    imageSrc: "/images/faculty/pete-cruz.jpg",
+    specialties: ["Interior Design", "Technology", "Construction"],
   },
   {
-    name: "Rachel Kim, LEED AP",
-    title: "Assistant Professor, Sustainable Design",
-    credentials: "M.S. Sustainable Design, Philadelphia University; B.A. Interior Design",
-    specialization: "Sustainable & Wellness-Focused Design",
-    bio: "Rachel brings a passion for environmental responsibility to IDI's curriculum. Her coursework in sustainable materials, WELL Building standards, and evidence-based design ensures students graduate prepared to create interiors that are both beautiful and responsibly designed.",
-    imageSrc: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=600&q=80",
-    specialties: ["LEED", "WELL", "Sustainable Materials"],
+    name: "Reya Duenas, ASID, NCIDQ",
+    title: "Founder & Designer, Reya Duenas Design",
+    credentials: "MA Interior Design, New England School of Art & Design, Suffolk University",
+    specialization: "Hospitality & Commercial Design",
+    bio: "With over 13 years of experience in hospitality and commercial design, Reya is the founder of Reya Duenas Design and is NCIDQ certified, bringing professional practice standards directly into the classroom.",
+    imageSrc: "/images/faculty/reya-duenas.jpg",
+    specialties: ["Hospitality", "Commercial Design", "NCIDQ"],
   },
   {
-    name: "Anthony Morales, AIA",
-    title: "Adjunct Professor, Professional Practice",
-    credentials: "M.Arch., USC; Licensed Architect, State of California",
-    specialization: "Business of Design & Building Codes",
-    bio: "A licensed architect with an active practice in Orange County, Anthony teaches students the business side of design. His courses cover contracts, project management, building codes, and client relations, equipping graduates with the professional acumen to launch successful careers.",
-    imageSrc: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=600&q=80",
-    specialties: ["Business of Design", "Building Codes", "Project Management"],
+    name: "Rick Fox, AIA, ICC",
+    title: "Licensed Architect",
+    credentials: "MA Philosophy, CSU Long Beach; B. Arch, Cal Poly SLO",
+    specialization: "Architecture & Building Codes",
+    bio: "A licensed architect with an extensive portfolio including the Corporate Headquarters for National Bank of Long Beach, BASF Research & Development Facility, and Xerox Service Training Center.",
+    imageSrc: "/images/faculty/rick-fox.jpg",
+    specialties: ["Architecture", "Building Codes", "Commercial Projects"],
+  },
+  {
+    name: "Donald Gardner, IIDA",
+    title: "Commercial Interior Designer",
+    credentials: "BS Interior Design, Woodbury College; Advanced Studies, UCLA; Inst. D'Architecttura, Venice, Italy",
+    specialization: "Commercial & Set Design",
+    bio: "An accomplished commercial interior designer and CBS Television Studio Set Designer. Notable projects include the Canadian Consulate General Offices and Residences.",
+    imageSrc: "/images/faculty/donald-gardner.jpg",
+    specialties: ["Commercial Design", "Set Design", "Television"],
+  },
+  {
+    name: "Tamara Gonzalez",
+    title: "Founder, Tamara Gonzalez Interiors",
+    credentials: "Master of Interior Architecture, Interior Designers Institute",
+    specialization: "Interior Design & Historic Preservation",
+    bio: "Founder of Tamara Gonzalez Interiors and member of the City of Pomona Historic Preservation Commission. Also serves as IDI's Director of Education.",
+    imageSrc: "/images/faculty/tamara-gonzalez.jpg",
+    specialties: ["Interior Design", "Historic Preservation", "Education"],
+  },
+  {
+    name: "Rachel Hulan, ASID, IIDA, LEED AP",
+    title: "President, Hulan Design",
+    credentials: "BA Interior Design, Interior Designers Institute",
+    specialization: "Green Building & Sustainable Design",
+    bio: "President of Hulan Design and a Certified Green Building Professional. Rachel brings expertise in sustainable design practices and environmental responsibility to IDI's curriculum.",
+    imageSrc: "/images/faculty/rachel-hulan.jpg",
+    specialties: ["Green Building", "LEED", "Sustainable Design"],
+  },
+  {
+    name: "Kristin Pipal-Keehne",
+    title: "Interior Designer",
+    credentials: "BA, Interior Designers Institute",
+    specialization: "Architectural Interiors",
+    bio: "An Interior Designer at Kelly Sutherlin McCleod Architecture, Inc., Kristin brings professional architectural interior design practice to her teaching at IDI.",
+    imageSrc: "/images/faculty/kristin-pipal-keehne.jpg",
+    specialties: ["Architectural Interiors", "Professional Practice"],
+  },
+  {
+    name: "Megan Keith, ASID",
+    title: "Designer & Researcher",
+    credentials: "M.Arch, SCI-Arc; BA Anthropology, Scripps College; AA, IDI",
+    specialization: "Architecture & Design Research",
+    bio: "A freelance designer and researcher specializing in Rhino and Revit, with a focus on LA architectural history research. Megan bridges design technology with historical and cultural understanding.",
+    imageSrc: "/images/faculty/megan-keith.jpg",
+    specialties: ["Rhino", "Revit", "Design Research"],
+  },
+  {
+    name: "Brad Smith, IIDA",
+    title: "Project Designer",
+    credentials: "BFA Interior Design, University of Houston",
+    specialization: "Healthcare Design",
+    bio: "Former IIDA President of the SoCal Chapter (2001) and Project Designer for the Hoag Hospital Breast Center. Published in Interior Design Magazine and Healthcare Design Magazine.",
+    imageSrc: "/images/faculty/brad-smith.jpg",
+    specialties: ["Healthcare Design", "IIDA", "Project Design"],
+  },
+  {
+    name: "Mark Teale, CID",
+    title: "Owner, Teale Architecture",
+    credentials: "B. Arch, SCI-Arc",
+    specialization: "Architecture & Energy Auditing",
+    bio: "Owner of Teale Architecture and a Certified Energy Auditor for the State of California. Notable projects include the Porcelanosa Showroom in Anaheim.",
+    imageSrc: "/images/faculty/mark-teale.jpg",
+    specialties: ["Architecture", "Energy Auditing", "Showroom Design"],
+  },
+  {
+    name: "Tasha Thayer",
+    title: "CAD Designer & Interior Designer",
+    credentials: "BA, CSU Long Beach; AA, Interior Designers Institute",
+    specialization: "CAD & Residential Design",
+    bio: "An ASID Allied member with experience as CAD Designer at Erica Bryen Design, Principal Interior Designer at LH Designs, and Interior Designer at BB Architects Inc.",
+    imageSrc: "/images/faculty/tasha-thayer.jpg",
+    specialties: ["CAD", "Residential Design", "ASID"],
+  },
+  {
+    name: "Kristen White-Scully, ASID, NKBA",
+    title: "Senior Interior Designer",
+    credentials: "BS Interior Design, The Art Institute of California",
+    specialization: "Kitchen & Bath Design",
+    bio: "Interior Designer for West & Northwest Region at Made Renovation and Senior Interior Designer at Ferguson Enterprises. Brings kitchen and bath specialization and NKBA expertise to IDI.",
+    imageSrc: "/images/faculty/kristen-white-scully.jpg",
+    specialties: ["Kitchen & Bath", "NKBA", "Residential"],
+  },
+  {
+    name: "Michele Prata",
+    title: "Principal, Prata Studio Interiors",
+    credentials: "BA, CSU Long Beach; AA Interior Design, IDI",
+    specialization: "Residential Interior Design",
+    bio: "Past President of ASID Orange County with over 20 years as principal of Prata Studio Interiors. Featured on HGTV Designer's Challenge.",
+    imageSrc: "/images/faculty/michele-prata.jpg",
+    specialties: ["ASID", "Residential Design", "HGTV Featured"],
   },
 ];
 
@@ -130,7 +220,7 @@ export default function FacultyPage() {
       </nav>
 
       {/* -- Hero ---------------------------------------------------------- */}
-      <Section bg="dark" className="relative overflow-hidden mesh-aurora grain">
+      <section className="relative overflow-hidden mesh-aurora grain py-24 md:py-32 lg:py-40">
         <div className="absolute inset-0">
           <Image
             src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=1920&q=80"
@@ -143,8 +233,8 @@ export default function FacultyPage() {
           <div className="absolute inset-0 bg-gradient-to-b from-plum-900/80 via-plum-900/70 to-plum-900/90" />
           <div className="absolute inset-0 bg-gradient-to-r from-plum-900/60 to-transparent" />
         </div>
-        <div className="relative text-center">
-          <p className="mb-3 font-body text-xs font-semibold uppercase tracking-[0.2em] text-pink-500">
+        <div className="relative z-10 mx-auto max-w-7xl px-4 text-center sm:px-6 lg:px-8">
+          <p className="mb-3 font-body text-xs sm:text-sm font-semibold uppercase tracking-[0.2em] text-pink-500">
             Our Educators
           </p>
           <h1 className="font-heading text-5xl font-bold text-parchment md:text-6xl lg:text-7xl">
@@ -156,7 +246,7 @@ export default function FacultyPage() {
             hands-on, studio-based learning.
           </p>
         </div>
-      </Section>
+      </section>
 
       {/* -- Introduction -------------------------------------------------- */}
       <Section overline="Excellence in Teaching" title="Dedicated Design Educators">
@@ -182,17 +272,18 @@ export default function FacultyPage() {
       {/* -- Faculty Grid -------------------------------------------------- */}
       <Section bg="dark" grain overline="Instructors" title="Our Faculty Members">
         <AnimatedSection stagger={0.08}>
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {facultyMembers.map((member) => (
               <Card key={member.name} className="group overflow-hidden">
                 {/* Photo */}
-                <div className="relative aspect-[3/4] w-full overflow-hidden bg-plum-700">
+                <div className="relative w-full overflow-hidden bg-plum-700">
                   <Image
                     src={member.imageSrc}
                     alt={member.name}
-                    fill
-                    className="object-cover transition-transform duration-500 group-hover:scale-105"
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    width={254}
+                    height={338}
+                    className="w-full h-auto transition-transform duration-500 group-hover:scale-105"
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-plum-900/60 via-transparent to-transparent" />
                 </div>
@@ -277,12 +368,12 @@ export default function FacultyPage() {
           </p>
           <div className="mt-8 flex flex-wrap justify-center gap-4">
             <Link href="/programs">
-              <Button as="button" variant="primary" size="lg" className="glow-amber">
+              <Button as="span" variant="primary" size="lg" className="glow-amber">
                 Explore Programs
               </Button>
             </Link>
             <Link href="/admissions">
-              <Button as="button" variant="secondary" size="lg">
+              <Button as="span" variant="secondary" size="lg">
                 Apply Now
               </Button>
             </Link>

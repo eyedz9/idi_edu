@@ -7,20 +7,13 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { AnimatedSection } from "@/components/animations";
+import { formatCurrency } from "@/lib/utils";
 
 export const metadata: Metadata = {
   title: "Compare Programs",
   description: `Compare all interior design programs at ${SITE_NAME}. See degree types, duration, tuition, and career outcomes side by side.`,
   alternates: { canonical: "/programs/compare" },
 };
-
-function formatCurrency(amount: number): string {
-  return new Intl.NumberFormat("en-US", {
-    style: "currency",
-    currency: "USD",
-    maximumFractionDigits: 0,
-  }).format(amount);
-}
 
 /* ────────────────────────────────────────────────────────────────────────── */
 /*  Comparison data rows                                                     */
@@ -139,7 +132,7 @@ export default function CompareProgramsPage() {
       {/* ── Hero ────────────────────────────────────────────────────────── */}
       <Section bg="mesh" grain className="relative overflow-hidden">
         <div className="relative text-center">
-          <p className="mb-3 font-body text-xs font-semibold uppercase tracking-[0.2em] text-pink-500">
+          <p className="mb-3 font-body text-xs sm:text-sm font-semibold uppercase tracking-[0.2em] text-pink-500">
             Compare
           </p>
           <h1 className="font-heading text-4xl font-bold text-parchment md:text-5xl lg:text-6xl">
@@ -207,7 +200,7 @@ export default function CompareProgramsPage() {
                     {programs.map((p) => (
                       <td key={p.slug} className="px-6 py-4">
                         <Link href={`/programs/${p.slug}`}>
-                          <Button as="button" variant="primary" size="sm" className="min-h-[44px]">
+                          <Button as="span" variant="primary" size="sm" className="min-h-[44px]">
                             Learn More
                           </Button>
                         </Link>
@@ -295,7 +288,7 @@ export default function CompareProgramsPage() {
                   <div className="px-5 py-4">
                     <Link href={`/programs/${p.slug}`}>
                       <Button
-                        as="button"
+                        as="span"
                         variant="primary"
                         size="sm"
                         className="w-full min-h-[44px]"
@@ -323,13 +316,13 @@ export default function CompareProgramsPage() {
           </p>
           <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
             <Link href="/admissions/apply">
-              <Button as="button" variant="primary" size="lg" className="glow-amber">
+              <Button as="span" variant="primary" size="lg" className="glow-amber">
                 Apply Now
               </Button>
             </Link>
             <Link href="/programs">
               <Button
-                as="button"
+                as="span"
                 variant="ghost"
                 size="lg"
                 className="text-parchment decoration-parchment/60 hover:decoration-parchment"

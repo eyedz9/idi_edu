@@ -59,6 +59,6 @@ export const homepageCopy = {
     headline: "Your Next Chapter Starts with One Conversation",
     subheadline:
       "Classes are small. Spots fill fast. Talk to our admissions team and find out which program fits your goals — and your life.",
-    badge: "Next class starts May 5",
+    badge: "Next class starts May 11",
   },
 };

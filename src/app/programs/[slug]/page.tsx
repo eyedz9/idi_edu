@@ -10,17 +10,7 @@ import { Button } from "@/components/ui/button";
 import { Card, ProgramCard } from "@/components/ui/card";
 import { AnimatedSection } from "@/components/animations";
 import { JsonLd } from "@/components/seo/JsonLd";
-
-const programImages: Record<string, string> = {
-  certificate:
-    "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&q=75",
-  "associate-of-arts":
-    "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=800&q=75",
-  "bachelor-of-arts":
-    "https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=75",
-  "master-interior-architecture":
-    "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&q=75",
-};
+import { formatCurrency, programImages } from "@/lib/utils";
 
 /* ────────────────────────────────────────────────────────────────────────── */
 /*  Static Params                                                            */
@@ -50,18 +40,6 @@ export async function generateMetadata({
       canonical: `/programs/${slug}`,
     },
   };
-}
-
-/* ────────────────────────────────────────────────────────────────────────── */
-/*  Helpers                                                                  */
-/* ────────────────────────────────────────────────────────────────────────── */
-
-function formatCurrency(amount: number): string {
-  return new Intl.NumberFormat("en-US", {
-    style: "currency",
-    currency: "USD",
-    maximumFractionDigits: 0,
-  }).format(amount);
 }
 
 /* ────────────────────────────────────────────────────────────────────────── */
@@ -777,12 +755,12 @@ export default async function ProgramDetailPage({ params }: PageProps) {
           </p>
           <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
             <Link href="/admissions/apply">
-              <Button as="button" variant="primary" size="lg" className="glow-amber">
+              <Button as="span" variant="primary" size="lg" className="glow-amber">
                 Start Your Application
               </Button>
             </Link>
             <Link href="/programs/compare">
-              <Button as="button" variant="ghost" size="lg" className="text-parchment decoration-parchment/60 hover:decoration-parchment">
+              <Button as="span" variant="ghost" size="lg" className="text-parchment decoration-parchment/60 hover:decoration-parchment">
                 Compare Programs
               </Button>
             </Link>

@@ -62,6 +62,42 @@ export const programMenuItems: ProgramMenuItem[] = [
 
 /* ── Admissions ───────────────────────────────────────────────────────────── */
 
+export interface AboutMenuItem {
+  title: string;
+  href: string;
+  description: string;
+  icon: string;
+}
+
+export const aboutMenuItems: AboutMenuItem[] = [
+  {
+    title: "Our History",
+    href: "/about/history",
+    description: "From 1984 in Corona del Mar to four decades of design education excellence.",
+    icon: "clock",
+  },
+  {
+    title: "Accreditation",
+    href: "/about/accreditation",
+    description: "ACCSC and CIDA accredited with California BPPE approval.",
+    icon: "shield",
+  },
+  {
+    title: "Faculty",
+    href: "/about/faculty",
+    description: "Industry-connected professionals bringing real-world expertise to the classroom.",
+    icon: "users",
+  },
+  {
+    title: "Staff Directory",
+    href: "/about/staff",
+    description: "The dedicated team supporting your educational journey at IDI.",
+    icon: "identification",
+  },
+];
+
+/* ── Admissions ───────────────────────────────────────────────────────────── */
+
 export const admissionsMenuItems: AdmissionsMenuItem[] = [
   {
     title: "How to Apply",

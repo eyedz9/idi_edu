@@ -5,5 +5,5 @@ export { primaryNav, persistentCTAs, footerNav } from "./navigation";
 export { aboutIDI } from "./about";
 export { disclosures, getDisclosuresByCategory, disclosureCategoryOrder } from "./disclosures";
 export { enrollmentConfig, enrollmentSteps, admissionRequirements } from "./enrollment";
-export { contactInfo, socialLinks, fullAddress, officeHours, googleMapsEmbedUrl, googleMapsDirectionsUrl, bppeSchoolCode, federalSchoolCode } from "./contact";
+export { contactInfo, socialLinks, fullAddress, officeHours, googleMapsEmbedUrl, googleMapsDirectionsUrl } from "./contact";
 export { whyIDIPoints, idiStats } from "./why-idi";
