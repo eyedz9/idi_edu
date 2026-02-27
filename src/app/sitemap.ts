@@ -1,3 +1,4 @@
+/** Generates XML sitemap with all public pages and their priorities. */
 import type { MetadataRoute } from "next";
 import { SITE_URL } from "@/lib/constants";
 
@@ -21,6 +22,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     // Admissions sub-pages
     { url: `${SITE_URL}/admissions/tuition`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
     { url: `${SITE_URL}/admissions/financial-aid`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
+    { url: `${SITE_URL}/admissions/visit`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
 
     // About section
     { url: `${SITE_URL}/about`, lastModified: now, changeFrequency: "yearly", priority: 0.7 },

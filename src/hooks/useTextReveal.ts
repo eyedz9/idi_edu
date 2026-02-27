@@ -1,3 +1,4 @@
+/** Hook that splits text into word spans and animates each with a staggered GSAP reveal on scroll. */
 "use client";
 
 import { type RefObject, useCallback } from "react";

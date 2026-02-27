@@ -1,3 +1,4 @@
+/** Animated container for mega-menu panels with GSAP clip-path reveal. */
 "use client";
 
 import { useRef, useEffect, useCallback, type ReactNode } from "react";

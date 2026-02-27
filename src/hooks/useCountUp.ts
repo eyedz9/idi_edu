@@ -1,3 +1,4 @@
+/** Hook that animates a number counting up from 0 to a target value on scroll. */
 "use client";
 
 import { useRef, useState, useEffect } from "react";

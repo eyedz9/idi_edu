@@ -1,3 +1,4 @@
+/** Reusable call-to-action banner with headline, subtitle, and action buttons. */
 import Link from "next/link";
 import { cn } from "@/lib/cn";
 import { Button } from "@/components/ui/button";

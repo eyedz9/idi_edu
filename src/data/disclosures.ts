@@ -1,3 +1,4 @@
+/** Disclosure documents grouped by category (general, financial, compliance, program-specific). */
 import type { DisclosureDocument } from "@/types";
 
 export const disclosures: DisclosureDocument[] = [

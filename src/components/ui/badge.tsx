@@ -1,3 +1,4 @@
+/** Small inline badge/pill component for labels and status indicators. */
 import type { HTMLAttributes } from "react";
 import { cn } from "@/lib/cn";
 
@@ -7,7 +8,7 @@ import { cn } from "@/lib/cn";
 
 const variantStyles = {
   accent:
-    "bg-pink-500/15 text-pink-500 border border-amber-500/25",
+    "bg-pink-500/15 text-parchment border border-amber-500/25",
   dark:
     "bg-plum-900 text-parchment border border-plum-700",
   outline:

@@ -1,3 +1,4 @@
+/** Programs index page with card grid for all four interior design programs and a compare CTA. */
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
@@ -9,6 +10,7 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { AnimatedSection } from "@/components/animations";
 import { formatCurrency, programImages } from "@/lib/utils";
+import { Breadcrumb } from "@/components/ui/breadcrumb";
 
 export const metadata: Metadata = {
   title: "Our Programs",
@@ -36,6 +38,7 @@ export default function ProgramsPage() {
         </div>
 
         <div className="relative z-10 mx-auto max-w-7xl px-4 text-center sm:px-6 lg:px-8">
+          <Breadcrumb items={[{ label: "Programs" }]} />
           <p className="mb-3 font-body text-xs sm:text-sm font-semibold uppercase tracking-[0.2em] text-pink-500">
             Programs
           </p>

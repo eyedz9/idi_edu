@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IDI Site Image Inventory</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #0f0f0f; color: #e0e0e0; padding: 2rem; }
+  h1 { font-size: 1.5rem; margin-bottom: .25rem; color: #fff; }
+  .subtitle { color: #888; margin-bottom: 1.5rem; font-size: .85rem; }
+  .filters { display: flex; gap: .75rem; margin-bottom: 1rem; flex-wrap: wrap; }
+  .filters input, .filters select { padding: .4rem .6rem; border-radius: 6px; border: 1px solid #333; background: #1a1a1a; color: #e0e0e0; font-size: .8rem; }
+  .filters input { width: 260px; }
+  .count { color: #888; font-size: .75rem; margin-bottom: .75rem; }
+  table { width: 100%; border-collapse: collapse; font-size: .8rem; }
+  thead { position: sticky; top: 0; z-index: 10; }
+  th { background: #1a1a1a; color: #aaa; text-align: left; padding: .5rem .6rem; font-weight: 600; text-transform: uppercase; font-size: .65rem; letter-spacing: .05em; border-bottom: 1px solid #333; }
+  td { padding: .4rem .6rem; border-bottom: 1px solid #1a1a1a; vertical-align: middle; }
+  tr:hover td { background: #1a1a1a; }
+  .thumb { width: 80px; height: 56px; object-fit: cover; border-radius: 4px; background: #222; display: block; }
+  .thumb-cell { width: 96px; }
+  .page-badge { display: inline-block; padding: .15rem .45rem; border-radius: 4px; font-size: .7rem; font-weight: 600; background: #2a1a3a; color: #c89aff; white-space: nowrap; }
+  .section-text { color: #bbb; }
+  .filename { font-family: 'SF Mono', 'Consolas', monospace; font-size: .7rem; color: #8ab4f8; word-break: break-all; }
+  .alt-text { color: #999; font-style: italic; max-width: 280px; }
+  .type-local { display: inline-block; padding: .15rem .45rem; border-radius: 4px; font-size: .7rem; font-weight: 600; background: #1a2a1a; color: #7acc7a; }
+  .type-unsplash { display: inline-block; padding: .15rem .45rem; border-radius: 4px; font-size: .7rem; font-weight: 600; background: #1a1a2a; color: #8ab4f8; }
+</style>
+</head>
+<body>
+
+<h1>IDI Website — Image Inventory</h1>
+<p class="subtitle">All images across 21 pages &middot; Generated 2026-02-27</p>
+
+<div class="filters">
+  <input type="text" id="search" placeholder="Search by name, alt, page, section...">
+  <select id="pageFilter"><option value="">All Pages</option></select>
+  <select id="typeFilter">
+    <option value="">All Types</option>
+    <option value="unsplash">Unsplash</option>
+    <option value="local">Local</option>
+  </select>
+</div>
+<p class="count"><span id="count"></span> images</p>
+
+<table>
+<thead>
+<tr>
+  <th class="thumb-cell">Thumbnail</th>
+  <th>Page</th>
+  <th>Section</th>
+  <th>Image Name</th>
+  <th>Alt Tag</th>
+  <th>Type</th>
+</tr>
+</thead>
+<tbody id="tbody"></tbody>
+</table>
+
+<script>
+const DATA = [
+  {page:"Homepage",section:"Header",name:"idi_logo_stacked.png",alt:"Interior Designers Institute",src:"/images/idi_logo_stacked.png",type:"local"},
+  {page:"Homepage",section:"Hero",name:"photo-1502005229762-cf1b2da7c5d6.jpg",alt:"Warm staircase interior showcasing elegant design",src:"https://images.unsplash.com/photo-1502005229762-cf1b2da7c5d6?w=400&q=60",type:"unsplash"},
+  {page:"Homepage",section:"Hero — Accreditation",name:"ACCCS_logo.png",alt:"ACCSC logo",src:"/images/ACCCS_logo.png",type:"local"},
+  {page:"Homepage",section:"Hero — Accreditation",name:"cida_logo.png",alt:"CIDA logo",src:"/images/cida_logo.png",type:"local"},
+  {page:"Homepage",section:"Bento Grid — Feature",name:"photo-1749930206000-179d0b85aa7e.jpg",alt:"Modern living room with curated designer details",src:"https://images.unsplash.com/photo-1749930206000-179d0b85aa7e?w=400&q=60",type:"unsplash"},
+  {page:"Homepage",section:"Bento Grid — Certificate",name:"premium_photo-1758530085283-71dd36e22460.jpg",alt:"Color palette and design materials",src:"https://plus.unsplash.com/premium_photo-1758530085283-71dd36e22460?w=400&q=60",type:"unsplash"},
+  {page:"Homepage",section:"Bento Grid — Associate of Arts",name:"photo-1564078516393-cf04bd966897.jpg",alt:"Gray chaise lounge in modern interior",src:"https://images.unsplash.com/photo-1564078516393-cf04bd966897?w=400&q=60",type:"unsplash"},
+  {page:"Homepage",section:"Bento Grid — Bachelor of Arts",name:"photo-1750420556288-d0e32a6f517b.jpg",alt:"Modern bedroom with designer finishes",src:"https://images.unsplash.com/photo-1750420556288-d0e32a6f517b?w=400&q=60",type:"unsplash"},
+  {page:"Homepage",section:"Bento Grid — MIA",name:"photo-1761116186680-4c1da2eb416b.jpg",alt:"Vaulted ceiling staircase interior",src:"https://images.unsplash.com/photo-1761116186680-4c1da2eb416b?w=400&q=60",type:"unsplash"},
+  {page:"Homepage",section:"Gallery",name:"photo-1768397003905-a202ea6325f5.jpg",alt:"Bold red living room with statement furniture",src:"https://images.unsplash.com/photo-1768397003905-a202ea6325f5?w=400&q=60",type:"unsplash"},
+  {page:"Homepage",section:"Gallery",name:"photo-1741852197045-cc35920a3aa0.jpg",alt:"Elegant restaurant interior with ambient lighting",src:"https://images.unsplash.com/photo-1741852197045-cc35920a3aa0?w=400&q=60",type:"unsplash"},
+  {page:"Homepage",section:"Gallery",name:"premium_photo-1758530086086-b40ba4e569ca.jpg",alt:"Interior design moodboard with fabric swatches",src:"https://plus.unsplash.com/premium_photo-1758530086086-b40ba4e569ca?w=400&q=60",type:"unsplash"},
+  {page:"Homepage",section:"Gallery",name:"photo-1761116186680-4c1da2eb416b.jpg",alt:"Dramatic vaulted ceiling staircase design",src:"https://images.unsplash.com/photo-1761116186680-4c1da2eb416b?w=400&q=60",type:"unsplash"},
+  {page:"Homepage",section:"Gallery",name:"photo-1750420556288-d0e32a6f517b.jpg",alt:"Modern bedroom with curated designer details",src:"https://images.unsplash.com/photo-1750420556288-d0e32a6f517b?w=400&q=60",type:"unsplash"},
+  {page:"Homepage",section:"Campus Section",name:"photo-1758747878870-6f2626c93a10.jpg",alt:"Palm trees at sunset in Newport Beach, California",src:"https://images.unsplash.com/photo-1758747878870-6f2626c93a10?w=400&q=60",type:"unsplash"},
+  {page:"Homepage",section:"Campus Section",name:"photo-1762640044491-99634d38c619.jpg",alt:"Modern home with ocean view in Newport Beach",src:"https://images.unsplash.com/photo-1762640044491-99634d38c619?w=400&q=60",type:"unsplash"},
+  {page:"Homepage",section:"Footer",name:"idi_logo_stacked.png",alt:"Interior Designers Institute",src:"/images/idi_logo_stacked.png",type:"local"},
+  {page:"Homepage",section:"Footer — Accreditation",name:"ACCCS_logo.png",alt:"ACCSC Accredited",src:"/images/ACCCS_logo.png",type:"local"},
+  {page:"Homepage",section:"Footer — Accreditation",name:"bppe-logo.png",alt:"BPPE Approved",src:"/images/bppe-logo.png",type:"local"},
+  {page:"Homepage",section:"Footer — Accreditation",name:"cida_logo.png",alt:"CIDA Accredited",src:"/images/cida_logo.png",type:"local"},
+  {page:"Programs",section:"Hero",name:"photo-1618221195710-dd6b41faaea6.jpg",alt:"Interior design workspace",src:"https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=400&q=60",type:"unsplash"},
+  {page:"Programs",section:"Card — Certificate",name:"photo-1586023492125-27b2c045efd7.jpg",alt:"Certificate program",src:"https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=400&q=60",type:"unsplash"},
+  {page:"Programs",section:"Card — Associate of Arts",name:"photo-1618221195710-dd6b41faaea6.jpg",alt:"Associate of Arts program",src:"https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=400&q=60",type:"unsplash"},
+  {page:"Programs",section:"Card — Bachelor of Arts",name:"photo-1497366216548-37526070297c.jpg",alt:"Bachelor of Arts program",src:"https://images.unsplash.com/photo-1497366216548-37526070297c?w=400&q=60",type:"unsplash"},
+  {page:"Programs",section:"Card — Master",name:"photo-1600607687939-ce8a6c25118c.jpg",alt:"Master of Interior Architecture",src:"https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=400&q=60",type:"unsplash"},
+  {page:"Program Detail Pages",section:"Hero",name:"photo-1616486338812-3dadae4b4ace.jpg",alt:"Program detail hero image",src:"https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=400&q=60",type:"unsplash"},
+  {page:"Admissions",section:"Hero",name:"photo-1497366216548-37526070297c.jpg",alt:"Modern campus interior with warm lighting",src:"https://images.unsplash.com/photo-1497366216548-37526070297c?w=400&q=60",type:"unsplash"},
+  {page:"Admissions",section:"Card — Tuition",name:"photo-1586023492125-27b2c045efd7.jpg",alt:"Tuition & Fees",src:"https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=400&q=60",type:"unsplash"},
+  {page:"Admissions",section:"Card — Financial Aid",name:"photo-1618221195710-dd6b41faaea6.jpg",alt:"Financial Aid",src:"https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=400&q=60",type:"unsplash"},
+  {page:"Admissions",section:"Card — Apply Now",name:"photo-1600607687939-ce8a6c25118c.jpg",alt:"Apply Now",src:"https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=400&q=60",type:"unsplash"},
+  {page:"Apply",section:"Hero",name:"photo-1524758631624-e2822e304c36.jpg",alt:"Design workspace with creative materials",src:"https://images.unsplash.com/photo-1524758631624-e2822e304c36?w=400&q=60",type:"unsplash"},
+  {page:"Campus Visit",section:"Hero",name:"photo-1600585154340-be6161a56a0c.jpg",alt:"Newport Beach coastal design inspiration",src:"https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=400&q=60",type:"unsplash"},
+  {page:"About",section:"Hero",name:"photo-1497366216548-37526070297c.jpg",alt:"Modern campus interior",src:"https://images.unsplash.com/photo-1497366216548-37526070297c?w=400&q=60",type:"unsplash"},
+  {page:"About",section:"Explore Card — History",name:"photo-1600585154340-be6161a56a0c.jpg",alt:"History",src:"https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=400&q=60",type:"unsplash"},
+  {page:"About",section:"Explore Card — Admissions",name:"photo-1497366216548-37526070297c.jpg",alt:"Admissions",src:"https://images.unsplash.com/photo-1497366216548-37526070297c?w=400&q=60",type:"unsplash"},
+  {page:"About",section:"Explore Card — Faculty",name:"photo-1616486338812-3dadae4b4ace.jpg",alt:"Faculty",src:"https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=400&q=60",type:"unsplash"},
+  {page:"About",section:"Explore Card — Staff",name:"photo-1631679706909-1844bbd07221.jpg",alt:"Staff",src:"https://images.unsplash.com/photo-1631679706909-1844bbd07221?w=400&q=60",type:"unsplash"},
+  {page:"About",section:"Mission",name:"gallery-05.jpg",alt:"IDI campus",src:"/images/gallery/gallery-05.jpg",type:"local"},
+  {page:"About",section:"Philosophy",name:"gallery-12.jpg",alt:"IDI student work",src:"/images/gallery/gallery-12.jpg",type:"local"},
+  {page:"History",section:"Hero",name:"photo-1497366754035-f200968a6e72.jpg",alt:"Historic campus interior",src:"https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=400&q=60",type:"unsplash"},
+  {page:"History",section:"Gallery",name:"gallery-16.jpg",alt:"IDI campus history",src:"/images/gallery/gallery-16.jpg",type:"local"},
+  {page:"History",section:"Gallery",name:"photo-1524758631624-e2822e304c36.jpg",alt:"Campus design workspace",src:"https://images.unsplash.com/photo-1524758631624-e2822e304c36?w=400&q=60",type:"unsplash"},
+  {page:"History",section:"Gallery",name:"photo-1600607687939-ce8a6c25118c.jpg",alt:"Design studio",src:"https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=400&q=60",type:"unsplash"},
+  {page:"History",section:"Gallery",name:"photo-1523580846011-d3a5bc25702b.jpg",alt:"Design center",src:"https://images.unsplash.com/photo-1523580846011-d3a5bc25702b?w=400&q=60",type:"unsplash"},
+  {page:"History",section:"Gallery",name:"photo-1531482615713-2afd69097998.jpg",alt:"Graduation",src:"https://images.unsplash.com/photo-1531482615713-2afd69097998?w=400&q=60",type:"unsplash"},
+  {page:"History",section:"Gallery",name:"photo-1552664730-d307ca884978.jpg",alt:"Mentoring",src:"https://images.unsplash.com/photo-1552664730-d307ca884978?w=400&q=60",type:"unsplash"},
+  {page:"Faculty",section:"Hero",name:"photo-1524178232363-1fb2b075b655.jpg",alt:"Faculty teaching environment",src:"https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=400&q=60",type:"unsplash"},
+  {page:"Faculty",section:"Faculty Listing",name:"chidimma-abuka.jpg",alt:"Chidimma Abuka",src:"/images/faculty/chidimma-abuka.jpg",type:"local"},
+  {page:"Faculty",section:"Faculty Listing",name:"angela-blake.jpg",alt:"Angela Blake",src:"/images/faculty/angela-blake.jpg",type:"local"},
+  {page:"Faculty",section:"Faculty Listing",name:"hiba-chabani.jpg",alt:"Hiba Chabani",src:"/images/faculty/hiba-chabani.jpg",type:"local"},
+  {page:"Faculty",section:"Faculty Listing",name:"amy-creager.jpg",alt:"Amy Creager",src:"/images/faculty/amy-creager.jpg",type:"local"},
+  {page:"Faculty",section:"Faculty Listing",name:"allison-crosland.jpg",alt:"Allison Crosland",src:"/images/faculty/allison-crosland.jpg",type:"local"},
+  {page:"Faculty",section:"Faculty Listing",name:"pete-cruz.jpg",alt:"Pete Cruz",src:"/images/faculty/pete-cruz.jpg",type:"local"},
+  {page:"Faculty",section:"Faculty Listing",name:"reya-duenas.jpg",alt:"Reya Duenas",src:"/images/faculty/reya-duenas.jpg",type:"local"},
+  {page:"Faculty",section:"Faculty Listing",name:"rick-fox.jpg",alt:"Rick Fox",src:"/images/faculty/rick-fox.jpg",type:"local"},
+  {page:"Faculty",section:"Faculty Listing",name:"donald-gardner.jpg",alt:"Donald Gardner",src:"/images/faculty/donald-gardner.jpg",type:"local"},
+  {page:"Faculty",section:"Faculty Listing",name:"tamara-gonzalez.jpg",alt:"Tamara Gonzalez",src:"/images/faculty/tamara-gonzalez.jpg",type:"local"},
+  {page:"Faculty",section:"Faculty Listing",name:"rachel-hulan.jpg",alt:"Rachel Hulan",src:"/images/faculty/rachel-hulan.jpg",type:"local"},
+  {page:"Faculty",section:"Faculty Listing",name:"kristin-pipal-keehne.jpg",alt:"Kristin Pipal-Keehne",src:"/images/faculty/kristin-pipal-keehne.jpg",type:"local"},
+  {page:"Faculty",section:"Faculty Listing",name:"megan-keith.jpg",alt:"Megan Keith",src:"/images/faculty/megan-keith.jpg",type:"local"},
+  {page:"Faculty",section:"Faculty Listing",name:"brad-smith.jpg",alt:"Brad Smith",src:"/images/faculty/brad-smith.jpg",type:"local"},
+  {page:"Faculty",section:"Faculty Listing",name:"mark-teale.jpg",alt:"Mark Teale",src:"/images/faculty/mark-teale.jpg",type:"local"},
+  {page:"Faculty",section:"Faculty Listing",name:"tasha-thayer.jpg",alt:"Tasha Thayer",src:"/images/faculty/tasha-thayer.jpg",type:"local"},
+  {page:"Faculty",section:"Faculty Listing",name:"kristen-white-scully.jpg",alt:"Kristen White-Scully",src:"/images/faculty/kristen-white-scully.jpg",type:"local"},
+  {page:"Faculty",section:"Faculty Listing",name:"michele-prata.jpg",alt:"Michele Prata",src:"/images/faculty/michele-prata.jpg",type:"local"},
+  {page:"Staff",section:"Hero",name:"photo-1497366216548-37526070297c.jpg",alt:"Staff directory hero",src:"https://images.unsplash.com/photo-1497366216548-37526070297c?w=400&q=60",type:"unsplash"},
+  {page:"Staff",section:"Staff Directory",name:"tammy-solomons.png",alt:"Tammy Solomons",src:"/images/staff/tammy-solomons.png",type:"local"},
+  {page:"Staff",section:"Staff Directory",name:"tamara-gonzalez.jpg",alt:"Tamara Gonzalez",src:"/images/staff/tamara-gonzalez.jpg",type:"local"},
+  {page:"Staff",section:"Staff Directory",name:"becky-mauldin.jpg",alt:"Becky Mauldin",src:"/images/staff/becky-mauldin.jpg",type:"local"},
+  {page:"Staff",section:"Staff Directory",name:"samantha-arizaga.jpg",alt:"Samantha Arizaga",src:"/images/staff/samantha-arizaga.jpg",type:"local"},
+  {page:"Staff",section:"Staff Directory",name:"rachel-hulan.png",alt:"Rachel Hulan",src:"/images/staff/rachel-hulan.png",type:"local"},
+  {page:"Staff",section:"Staff Directory",name:"renee-robles.jpg",alt:"Renee Robles",src:"/images/staff/renee-robles.jpg",type:"local"},
+  {page:"Staff",section:"Staff Directory",name:"stephanie-pappas.jpg",alt:"Stephanie Pappas",src:"/images/staff/stephanie-pappas.jpg",type:"local"},
+  {page:"Accreditation",section:"Hero",name:"photo-1568992687947-868a62a9f521.jpg",alt:"Accreditation hero",src:"https://images.unsplash.com/photo-1568992687947-868a62a9f521?w=400&q=60",type:"unsplash"},
+  {page:"Accreditation",section:"ACCSC",name:"ACCCS_logo.png",alt:"ACCSC logo",src:"/images/ACCCS_logo.png",type:"local"},
+  {page:"Accreditation",section:"CIDA",name:"cida_logo.png",alt:"CIDA logo",src:"/images/cida_logo.png",type:"local"},
+  {page:"Accreditation",section:"BPPE",name:"bppe-logo.png",alt:"BPPE logo",src:"/images/bppe-logo.png",type:"local"},
+  {page:"Campus Life",section:"Hero",name:"photo-1600585154340-be6161a56a0c.jpg",alt:"Luxury home exterior with Newport Beach coastal design",src:"https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=400&q=60",type:"unsplash"},
+  {page:"Campus Life",section:"Facilities — Design Studios",name:"photo-1618221195710-dd6b41faaea6.jpg",alt:"Design Studios",src:"https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=400&q=60",type:"unsplash"},
+  {page:"Campus Life",section:"Facilities — Resource Library",name:"photo-1497366216548-37526070297c.jpg",alt:"Resource Library",src:"https://images.unsplash.com/photo-1497366216548-37526070297c?w=400&q=60",type:"unsplash"},
+  {page:"Campus Life",section:"Facilities — Computer Lab",name:"photo-1631679706909-1844bbd07221.jpg",alt:"Computer Lab",src:"https://images.unsplash.com/photo-1631679706909-1844bbd07221?w=400&q=60",type:"unsplash"},
+  {page:"Campus Life",section:"Facilities — Materials Room",name:"photo-1586023492125-27b2c045efd7.jpg",alt:"Materials Room",src:"https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=400&q=60",type:"unsplash"},
+  {page:"Campus Life",section:"Student Orgs — ASID",name:"photo-1600566753190-17f0baa2a6c3.jpg",alt:"ASID Student Chapter",src:"https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=400&q=60",type:"unsplash"},
+  {page:"Campus Life",section:"Student Orgs — IIDA",name:"photo-1600585154340-be6161a56a0c.jpg",alt:"IIDA Student Chapter",src:"https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=400&q=60",type:"unsplash"},
+  {page:"Campus Life",section:"Student Orgs — NKBA",name:"photo-1556909114-f6e7ad7d3136.jpg",alt:"NKBA Student Chapter",src:"https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=400&q=60",type:"unsplash"},
+  {page:"Campus Life",section:"Student Orgs — NEWH",name:"photo-1600607687939-ce8a6c25118c.jpg",alt:"NEWH Student Chapter",src:"https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=400&q=60",type:"unsplash"},
+  {page:"Campus Life",section:"Gallery",name:"gallery-01.jpg",alt:"IDI student design project 1",src:"/images/gallery/gallery-01.jpg",type:"local"},
+  {page:"Campus Life",section:"Gallery",name:"gallery-02.jpg",alt:"IDI student design project 2",src:"/images/gallery/gallery-02.jpg",type:"local"},
+  {page:"Campus Life",section:"Gallery",name:"gallery-03.jpg",alt:"IDI student design project 3",src:"/images/gallery/gallery-03.jpg",type:"local"},
+  {page:"Campus Life",section:"Gallery",name:"gallery-04.jpg",alt:"IDI student design project 4",src:"/images/gallery/gallery-04.jpg",type:"local"},
+  {page:"Campus Life",section:"Gallery",name:"gallery-05.jpg",alt:"IDI student design project 5",src:"/images/gallery/gallery-05.jpg",type:"local"},
+  {page:"Campus Life",section:"Gallery",name:"gallery-06.jpg",alt:"IDI student design project 6",src:"/images/gallery/gallery-06.jpg",type:"local"},
+  {page:"Campus Life",section:"Gallery",name:"gallery-07.jpg",alt:"IDI student design project 7",src:"/images/gallery/gallery-07.jpg",type:"local"},
+  {page:"Campus Life",section:"Gallery",name:"gallery-08.jpg",alt:"IDI student design project 8",src:"/images/gallery/gallery-08.jpg",type:"local"},
+  {page:"Campus Life",section:"Gallery",name:"gallery-09.jpg",alt:"IDI student design project 9",src:"/images/gallery/gallery-09.jpg",type:"local"},
+  {page:"Campus Life",section:"Gallery",name:"gallery-10.jpg",alt:"IDI student design project 10",src:"/images/gallery/gallery-10.jpg",type:"local"},
+  {page:"Campus Life",section:"Gallery",name:"gallery-11.jpg",alt:"IDI student design project 11",src:"/images/gallery/gallery-11.jpg",type:"local"},
+  {page:"Campus Life",section:"Gallery",name:"gallery-12.jpg",alt:"IDI student design project 12",src:"/images/gallery/gallery-12.jpg",type:"local"},
+  {page:"Campus Life",section:"Gallery",name:"gallery-13.jpg",alt:"IDI student design project 13",src:"/images/gallery/gallery-13.jpg",type:"local"},
+  {page:"Campus Life",section:"Gallery",name:"gallery-14.jpg",alt:"IDI student design project 14",src:"/images/gallery/gallery-14.jpg",type:"local"},
+  {page:"Campus Life",section:"Gallery",name:"gallery-15.jpg",alt:"IDI student design project 15",src:"/images/gallery/gallery-15.jpg",type:"local"},
+  {page:"Campus Life",section:"Gallery",name:"gallery-16.jpg",alt:"IDI student design project 16",src:"/images/gallery/gallery-16.jpg",type:"local"},
+  {page:"Campus Life",section:"Gallery",name:"gallery-17.jpg",alt:"IDI student design project 17",src:"/images/gallery/gallery-17.jpg",type:"local"},
+  {page:"Campus Life",section:"Gallery",name:"gallery-18.jpg",alt:"IDI student design project 18",src:"/images/gallery/gallery-18.jpg",type:"local"},
+  {page:"Campus Life",section:"Gallery",name:"gallery-19.jpg",alt:"IDI student design project 19",src:"/images/gallery/gallery-19.jpg",type:"local"},
+  {page:"Campus Life",section:"Gallery",name:"gallery-20.jpg",alt:"IDI student design project 20",src:"/images/gallery/gallery-20.jpg",type:"local"},
+  {page:"Contact",section:"Hero",name:"photo-1497366216548-37526070297c.jpg",alt:"Contact page hero",src:"https://images.unsplash.com/photo-1497366216548-37526070297c?w=400&q=60",type:"unsplash"},
+];
+
+const BASE = 'http://localhost:3001';
+const pages = [...new Set(DATA.map(d => d.page))];
+const pageFilter = document.getElementById('pageFilter');
+pages.forEach(p => {
+  const o = document.createElement('option');
+  o.value = p;
+  o.textContent = p;
+  pageFilter.appendChild(o);
+});
+
+const tbody = document.getElementById('tbody');
+const countEl = document.getElementById('count');
+const searchEl = document.getElementById('search');
+const typeFilterEl = document.getElementById('typeFilter');
+
+function render() {
+  const q = searchEl.value.toLowerCase();
+  const pf = pageFilter.value;
+  const tf = typeFilterEl.value;
+
+  const filtered = DATA.filter(d => {
+    if (pf && d.page !== pf) return false;
+    if (tf && d.type !== tf) return false;
+    if (q && !(d.page + d.section + d.name + d.alt).toLowerCase().includes(q)) return false;
+    return true;
+  });
+
+  countEl.textContent = String(filtered.length);
+
+  // Clear table
+  while (tbody.firstChild) tbody.removeChild(tbody.firstChild);
+
+  filtered.forEach(d => {
+    const tr = document.createElement('tr');
+
+    // Thumbnail cell
+    const tdThumb = document.createElement('td');
+    tdThumb.className = 'thumb-cell';
+    const img = document.createElement('img');
+    img.className = 'thumb';
+    img.src = d.src.startsWith('/') ? BASE + d.src : d.src;
+    img.alt = d.alt;
+    img.loading = 'lazy';
+    img.onerror = function() { this.style.display = 'none'; };
+    tdThumb.appendChild(img);
+    tr.appendChild(tdThumb);
+
+    // Page cell
+    const tdPage = document.createElement('td');
+    const badge = document.createElement('span');
+    badge.className = 'page-badge';
+    badge.textContent = d.page;
+    tdPage.appendChild(badge);
+    tr.appendChild(tdPage);
+
+    // Section cell
+    const tdSection = document.createElement('td');
+    tdSection.className = 'section-text';
+    tdSection.textContent = d.section;
+    tr.appendChild(tdSection);
+
+    // Filename cell
+    const tdName = document.createElement('td');
+    tdName.className = 'filename';
+    tdName.textContent = d.name;
+    tr.appendChild(tdName);
+
+    // Alt cell
+    const tdAlt = document.createElement('td');
+    tdAlt.className = 'alt-text';
+    tdAlt.textContent = d.alt;
+    tr.appendChild(tdAlt);
+
+    // Type cell
+    const tdType = document.createElement('td');
+    const typeBadge = document.createElement('span');
+    typeBadge.className = d.type === 'local' ? 'type-local' : 'type-unsplash';
+    typeBadge.textContent = d.type === 'local' ? 'Local' : 'Unsplash';
+    tdType.appendChild(typeBadge);
+    tr.appendChild(tdType);
+
+    tbody.appendChild(tr);
+  });
+}
+
+searchEl.addEventListener('input', render);
+pageFilter.addEventListener('change', render);
+typeFilterEl.addEventListener('change', render);
+render();
+</script>
+</body>
+</html>

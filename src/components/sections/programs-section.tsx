@@ -1,3 +1,4 @@
+/** Grid of program cards for the programs overview page. */
 "use client";
 
 import { AnimatedSection } from "@/components/animations/animated-section";

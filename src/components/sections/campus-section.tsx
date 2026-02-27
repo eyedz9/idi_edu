@@ -1,3 +1,4 @@
+/** Split-screen campus and location section with parallax image. */
 "use client";
 
 import { useRef } from "react";
@@ -135,10 +136,10 @@ export function CampusSection() {
         >
           <div data-campus-inner className="absolute inset-[-30px]">
             <Image
-              src="https://images.unsplash.com/photo-1758747878870-6f2626c93a10?w=1920&q=80"
-              alt="Palm trees at sunset in Newport Beach, California"
+              src="/images/campus.jpeg"
+              alt="IDI campus in Newport Beach"
               fill
-              className="object-cover"
+              className="object-cover object-right"
               sizes="(max-width: 1024px) 100vw, 50vw"
             />
           </div>
@@ -221,8 +222,8 @@ export function CampusSection() {
           <div className="mt-10 hidden lg:block">
             <div className="relative h-40 w-64 overflow-hidden rounded-xl">
               <Image
-                src="https://images.unsplash.com/photo-1762640044491-99634d38c619?w=800&q=80"
-                alt="Modern home with ocean view in Newport Beach"
+                src="/images/npb.avif"
+                alt="Newport Beach coastal view"
                 fill
                 className="object-cover"
                 sizes="256px"

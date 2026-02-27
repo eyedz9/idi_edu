@@ -1,3 +1,4 @@
+/** Contact method cards (phone, email, form) with a request info CTA. */
 import Link from "next/link";
 import { Section } from "@/components/ui/section";
 import { Button } from "@/components/ui/button";

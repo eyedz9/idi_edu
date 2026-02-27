@@ -1,3 +1,4 @@
+/** Site-wide footer with contact info, link columns, social icons, and newsletter signup. */
 import Link from "next/link";
 import Image from "next/image";
 import { cn } from "@/lib/cn";

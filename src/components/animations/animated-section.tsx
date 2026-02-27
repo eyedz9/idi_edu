@@ -1,3 +1,4 @@
+/** Wrapper component that applies scroll-triggered entrance animations to its children. */
 "use client";
 
 import { useRef, type ReactNode } from "react";

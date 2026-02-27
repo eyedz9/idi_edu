@@ -1,3 +1,4 @@
+/** Contact page with address, phone, email, office hours, Google Maps embed, contact form, and department directory. */
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
@@ -14,6 +15,7 @@ import {
 } from "@/data";
 import { PHONE, FAX, EMAIL } from "@/lib/constants";
 import { ContactForm } from "@/components/forms/contact-form";
+import { Breadcrumb } from "@/components/ui/breadcrumb";
 
 /* -------------------------------------------------------------------------- */
 /*  Metadata                                                                  */
@@ -25,26 +27,6 @@ export const metadata: Metadata = {
     "Contact Interior Designers Institute in Newport Beach, CA. Phone, email, address, office hours, and campus map. We're here to help with admissions, financial aid, and more.",
   alternates: { canonical: "/contact" },
 };
-
-/* -------------------------------------------------------------------------- */
-/*  Breadcrumbs                                                               */
-/* -------------------------------------------------------------------------- */
-
-function Breadcrumbs() {
-  return (
-    <nav aria-label="Breadcrumb" className="mb-4 text-sm text-sandstone/70">
-      <ol className="flex items-center gap-1.5">
-        <li>
-          <Link href="/" className="hover:text-pink-400 transition-colors">
-            Home
-          </Link>
-        </li>
-        <li aria-hidden="true" className="text-sandstone/40">&rsaquo;</li>
-        <li className="font-medium text-white">Contact</li>
-      </ol>
-    </nav>
-  );
-}
 
 /* -------------------------------------------------------------------------- */
 /*  Social icon map                                                           */
@@ -111,7 +93,7 @@ export default function ContactPage() {
         </div>
 
         <div className="relative z-10 mx-auto max-w-5xl px-4 text-center sm:px-6 lg:px-8">
-          <Breadcrumbs />
+          <Breadcrumb items={[{ label: "Contact" }]} />
           <h1 className="font-heading text-5xl font-bold text-parchment md:text-6xl lg:text-7xl">
             Contact <span className="text-gradient-pink">Us</span>
           </h1>
@@ -410,14 +392,11 @@ export default function ContactPage() {
                 Apply Now
               </Button>
             </Link>
-            <Button
-              as="a"
-              href={`tel:${PHONE.replace(/\D/g, "")}`}
-              variant="secondary"
-              size="lg"
-            >
-              Call {PHONE}
-            </Button>
+            <Link href="/admissions/visit">
+              <Button as="span" variant="secondary" size="lg">
+                Schedule a Visit
+              </Button>
+            </Link>
           </div>
         </div>
       </section>

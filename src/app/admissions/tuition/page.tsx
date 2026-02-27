@@ -1,10 +1,13 @@
+/** Tuition and fees page with per-program cost breakdowns, payment schedules, and refund policy. */
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { Section } from "@/components/ui/section";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { tuitionData, getCombinedBATuition } from "@/data";
 import { APPLY_PATH } from "@/lib/constants";
+import { Breadcrumb } from "@/components/ui/breadcrumb";
 
 /* -------------------------------------------------------------------------- */
 /*  Metadata                                                                  */
@@ -28,32 +31,6 @@ const fmt = new Intl.NumberFormat("en-US", {
 });
 
 /* -------------------------------------------------------------------------- */
-/*  Breadcrumbs                                                               */
-/* -------------------------------------------------------------------------- */
-
-function Breadcrumbs() {
-  return (
-    <nav aria-label="Breadcrumb" className="mb-4 text-sm text-sandstone/70">
-      <ol className="flex items-center gap-1.5">
-        <li>
-          <Link href="/" className="hover:text-pink-400 transition-colors">
-            Home
-          </Link>
-        </li>
-        <li aria-hidden="true" className="text-sandstone/40">&rsaquo;</li>
-        <li>
-          <Link href="/admissions" className="hover:text-pink-400 transition-colors">
-            Admissions
-          </Link>
-        </li>
-        <li aria-hidden="true" className="text-sandstone/40">&rsaquo;</li>
-        <li className="font-medium text-parchment">Tuition &amp; Fees</li>
-      </ol>
-    </nav>
-  );
-}
-
-/* -------------------------------------------------------------------------- */
 /*  Page                                                                      */
 /* -------------------------------------------------------------------------- */
 
@@ -64,8 +41,21 @@ export default function TuitionPage() {
     <>
       {/* -- Hero ----------------------------------------------------------- */}
       <section className="relative overflow-hidden mesh-plum grain py-24 md:py-32">
+        {/* Background image */}
+        <div className="absolute inset-0">
+          <Image
+            src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6e?w=1920&q=80"
+            alt="Interior design workspace with material samples and floor plans"
+            fill
+            priority
+            className="object-cover"
+            sizes="100vw"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-plum-900 via-plum-900/85 to-plum-900/60" />
+          <div className="absolute inset-0 bg-gradient-to-t from-plum-900/70 via-transparent to-plum-900/50" />
+        </div>
         <div className="relative z-10 mx-auto max-w-5xl px-4 text-center sm:px-6 lg:px-8">
-          <Breadcrumbs />
+          <Breadcrumb items={[{ label: "Admissions", href: "/admissions" }, { label: "Tuition & Fees" }]} />
           <h1 className="font-heading text-5xl font-bold text-parchment md:text-6xl">
             <span className="text-gradient-pink">Tuition</span> &amp; Fees
           </h1>

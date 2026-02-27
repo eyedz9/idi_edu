@@ -1,3 +1,4 @@
+/** Merges Tailwind CSS classes with clsx and tailwind-merge for conflict resolution. */
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
 

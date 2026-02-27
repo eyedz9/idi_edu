@@ -1,3 +1,4 @@
+/** Faculty directory with photo grid, bios, credentials, specialties, and teaching philosophy section. */
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
@@ -7,6 +8,7 @@ import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { AnimatedSection } from "@/components/animations";
+import { Breadcrumb } from "@/components/ui/breadcrumb";
 
 export const metadata: Metadata = {
   title: "Faculty",
@@ -200,25 +202,6 @@ const facultyMembers: FacultyMember[] = [
 export default function FacultyPage() {
   return (
     <>
-      {/* -- Breadcrumb ---------------------------------------------------- */}
-      <nav aria-label="Breadcrumb" className="mx-auto max-w-7xl px-4 pt-6 sm:px-6 lg:px-8">
-        <ol className="flex items-center gap-2 text-sm text-sandstone/60">
-          <li>
-            <Link href="/" className="hover:text-pink-500 transition-colors">
-              Home
-            </Link>
-          </li>
-          <li aria-hidden="true" className="text-sandstone/40">&rsaquo;</li>
-          <li>
-            <Link href="/about" className="hover:text-pink-500 transition-colors">
-              About
-            </Link>
-          </li>
-          <li aria-hidden="true" className="text-sandstone/40">&rsaquo;</li>
-          <li className="text-parchment font-medium">Faculty</li>
-        </ol>
-      </nav>
-
       {/* -- Hero ---------------------------------------------------------- */}
       <section className="relative overflow-hidden mesh-aurora grain py-24 md:py-32 lg:py-40">
         <div className="absolute inset-0">
@@ -234,6 +217,7 @@ export default function FacultyPage() {
           <div className="absolute inset-0 bg-gradient-to-r from-plum-900/60 to-transparent" />
         </div>
         <div className="relative z-10 mx-auto max-w-7xl px-4 text-center sm:px-6 lg:px-8">
+          <Breadcrumb items={[{ label: "About", href: "/about" }, { label: "Faculty" }]} />
           <p className="mb-3 font-body text-xs sm:text-sm font-semibold uppercase tracking-[0.2em] text-pink-500">
             Our Educators
           </p>

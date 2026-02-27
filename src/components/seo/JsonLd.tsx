@@ -1,3 +1,4 @@
+/** Injects structured data (JSON-LD) into the page head for SEO. */
 export function JsonLd({ data }: { data: Record<string, unknown> }) {
   return (
     <script

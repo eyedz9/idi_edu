@@ -1,4 +1,4 @@
-// Barrel export for all data modules
+/** Barrel export for all data modules. */
 export { programs, getProgramBySlug, getDegreePrograms, getProgramNavItems } from "./programs";
 export { tuitionData, getTuitionByProgram, getCombinedBATuition } from "./tuition";
 export { primaryNav, persistentCTAs, footerNav } from "./navigation";

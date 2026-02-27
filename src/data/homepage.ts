@@ -1,3 +1,4 @@
+/** Homepage-specific copy and content data. */
 export const homepageCopy = {
   hero: {
     headline: "DESIGN IS A LANGUAGE. LEARN TO SPEAK IT.",

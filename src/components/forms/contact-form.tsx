@@ -1,3 +1,4 @@
+/** Contact/request-info form that validates client-side and submits to /api/contact. */
 "use client";
 
 import { useState, useRef, type FormEvent, type ChangeEvent } from "react";

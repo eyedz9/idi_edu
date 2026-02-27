@@ -1,3 +1,4 @@
+/** Dramatic full-viewport call-to-action section with magnetic buttons. */
 "use client";
 
 import { useRef } from "react";

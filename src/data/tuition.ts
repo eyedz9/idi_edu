@@ -1,3 +1,4 @@
+/** Tuition, fees, and payment schedule data for all programs. */
 import type { TuitionInfo } from "@/types";
 
 export const tuitionData: TuitionInfo[] = [

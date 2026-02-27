@@ -1,3 +1,4 @@
+/** Grid of selling points explaining why students should choose IDI. */
 "use client";
 
 import { AnimatedSection } from "@/components/animations/animated-section";

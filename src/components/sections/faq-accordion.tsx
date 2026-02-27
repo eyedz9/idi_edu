@@ -1,3 +1,4 @@
+/** Accordion-style FAQ component with toggle expand/collapse. */
 "use client";
 
 import { useState } from "react";

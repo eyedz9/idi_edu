@@ -1,3 +1,4 @@
+/** Reusable page section wrapper with optional overline, title, subtitle, and background variants. */
 import type { HTMLAttributes, ReactNode } from "react";
 import { cn } from "@/lib/cn";
 

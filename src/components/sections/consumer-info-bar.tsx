@@ -1,3 +1,4 @@
+/** Regulatory compliance section linking to required disclosure documents. */
 import Link from "next/link";
 
 const consumerLinks = [
@@ -56,16 +57,31 @@ export function ConsumerInfoBar() {
           Documents &amp; Disclosures
         </p>
         <div className="flex flex-wrap items-center justify-center gap-3">
-          {consumerLinks.map((link) => (
-            <Link
-              key={link.label}
-              href={link.href}
-              className="inline-flex items-center gap-2 rounded-lg border border-white/10 bg-white/5 px-4 py-2.5 text-sm font-medium text-parchment transition-all hover:border-pink-500/30 hover:bg-pink-500/10 hover:text-pink-400"
-            >
-              {link.icon}
-              {link.label}
-            </Link>
-          ))}
+          {consumerLinks.map((link) => {
+            const isPdf = link.href.endsWith(".pdf");
+            const className = "inline-flex items-center gap-2 rounded-lg border border-white/10 bg-white/5 px-4 py-2.5 text-sm font-medium text-parchment transition-all hover:border-pink-500/30 hover:bg-pink-500/10 hover:text-pink-400";
+            return isPdf ? (
+              <a
+                key={link.label}
+                href={link.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={className}
+              >
+                {link.icon}
+                {link.label}
+              </a>
+            ) : (
+              <Link
+                key={link.label}
+                href={link.href}
+                className={className}
+              >
+                {link.icon}
+                {link.label}
+              </Link>
+            );
+          })}
         </div>
       </div>
     </section>

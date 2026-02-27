@@ -1,3 +1,4 @@
+/** About mega-menu panel with history, accreditation, faculty, and staff links. */
 "use client";
 
 import Link from "next/link";

@@ -1,4 +1,6 @@
+/** Financial aid page covering federal grants, loans, scholarships, FAFSA steps, and net price calculator. */
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { Section } from "@/components/ui/section";
 import { Card } from "@/components/ui/card";
@@ -6,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { contactInfo } from "@/data";
 import { PHONE, EMAIL } from "@/lib/constants";
+import { Breadcrumb } from "@/components/ui/breadcrumb";
 
 /* -------------------------------------------------------------------------- */
 /*  Metadata                                                                  */
@@ -17,32 +20,6 @@ export const metadata: Metadata = {
     "Explore financial aid options at Interior Designers Institute including federal grants, loans, and scholarships. Learn about FAFSA, grants, loans, and more.",
   alternates: { canonical: "/admissions/financial-aid" },
 };
-
-/* -------------------------------------------------------------------------- */
-/*  Breadcrumbs                                                               */
-/* -------------------------------------------------------------------------- */
-
-function Breadcrumbs() {
-  return (
-    <nav aria-label="Breadcrumb" className="mb-4 text-sm text-sandstone/70">
-      <ol className="flex items-center gap-1.5">
-        <li>
-          <Link href="/" className="hover:text-pink-400 transition-colors">
-            Home
-          </Link>
-        </li>
-        <li aria-hidden="true" className="text-sandstone/40">&rsaquo;</li>
-        <li>
-          <Link href="/admissions" className="hover:text-pink-400 transition-colors">
-            Admissions
-          </Link>
-        </li>
-        <li aria-hidden="true" className="text-sandstone/40">&rsaquo;</li>
-        <li className="font-medium text-parchment">Financial Aid</li>
-      </ol>
-    </nav>
-  );
-}
 
 /* -------------------------------------------------------------------------- */
 /*  Aid types data                                                            */
@@ -120,8 +97,21 @@ export default function FinancialAidPage() {
     <>
       {/* -- Hero ----------------------------------------------------------- */}
       <section className="relative overflow-hidden mesh-plum grain py-24 md:py-32">
+        {/* Background image */}
+        <div className="absolute inset-0">
+          <Image
+            src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=1920&q=80"
+            alt="Student studying with financial documents and laptop"
+            fill
+            priority
+            className="object-cover"
+            sizes="100vw"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-plum-900 via-plum-900/85 to-plum-900/60" />
+          <div className="absolute inset-0 bg-gradient-to-t from-plum-900/70 via-transparent to-plum-900/50" />
+        </div>
         <div className="relative z-10 mx-auto max-w-5xl px-4 text-center sm:px-6 lg:px-8">
-          <Breadcrumbs />
+          <Breadcrumb items={[{ label: "Admissions", href: "/admissions" }, { label: "Financial Aid" }]} />
           <h1 className="font-heading text-5xl font-bold text-parchment md:text-6xl">
             <span className="text-gradient-pink">Financial</span> Aid
           </h1>

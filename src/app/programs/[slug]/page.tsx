@@ -1,9 +1,10 @@
+/** Dynamic program detail page with hero, overview, curriculum, tuition, career outcomes, and disclosures. */
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { programs, getProgramBySlug, getTuitionByProgram } from "@/data";
-import { SITE_NAME, SITE_URL } from "@/lib/constants";
+import { SITE_NAME } from "@/lib/constants";
 import { Section } from "@/components/ui/section";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -11,6 +12,7 @@ import { Card, ProgramCard } from "@/components/ui/card";
 import { AnimatedSection } from "@/components/animations";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { formatCurrency, programImages } from "@/lib/utils";
+import { Breadcrumb } from "@/components/ui/breadcrumb";
 
 /* ────────────────────────────────────────────────────────────────────────── */
 /*  Static Params                                                            */
@@ -93,52 +95,6 @@ export default async function ProgramDetailPage({ params }: PageProps) {
           },
         }}
       />
-      <JsonLd
-        data={{
-          "@context": "https://schema.org",
-          "@type": "BreadcrumbList",
-          itemListElement: [
-            {
-              "@type": "ListItem",
-              position: 1,
-              name: "Home",
-              item: SITE_URL,
-            },
-            {
-              "@type": "ListItem",
-              position: 2,
-              name: "Programs",
-              item: `${SITE_URL}/programs`,
-            },
-            {
-              "@type": "ListItem",
-              position: 3,
-              name: program.shortName,
-            },
-          ],
-        }}
-      />
-
-      {/* ── Breadcrumb ──────────────────────────────────────────────────── */}
-      <div className="border-b border-white/10 bg-plum-800">
-        <div className="mx-auto max-w-7xl px-4 py-3 sm:px-6 lg:px-8">
-          <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-sm">
-            <Link
-              href="/programs"
-              className="text-sandstone/60 transition-colors hover:text-pink-500"
-            >
-              Programs
-            </Link>
-            <span className="text-sandstone/40" aria-hidden="true">
-              &rsaquo;
-            </span>
-            <span className="font-medium text-parchment">
-              {program.shortName}
-            </span>
-          </nav>
-        </div>
-      </div>
-
       {/* ── 1. Hero ─────────────────────────────────────────────────────── */}
       <section className="relative overflow-hidden mesh-aurora grain py-20 md:py-28">
         {/* Unsplash background image */}
@@ -156,6 +112,7 @@ export default async function ProgramDetailPage({ params }: PageProps) {
         </div>
 
         <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <Breadcrumb items={[{ label: "Programs", href: "/programs" }, { label: program.shortName }]} />
           <Badge variant="accent" className="mb-4">
             {program.degreeType}
           </Badge>

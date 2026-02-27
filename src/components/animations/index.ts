@@ -1,3 +1,4 @@
+/** Barrel export for all animation components and the MotionProvider. */
 export { MotionProvider, useMotion } from "./motion-provider";
 export { AnimatedSection } from "./animated-section";
 export { CountUp } from "./count-up";

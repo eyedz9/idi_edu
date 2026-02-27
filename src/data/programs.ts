@@ -1,3 +1,4 @@
+/** Program definitions: Certificate, Associate, Bachelor's, and Master's with full curriculum data. */
 import type { Program } from "@/types";
 
 export const programs: Program[] = [

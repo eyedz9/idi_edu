@@ -1,3 +1,4 @@
+/** Animated mission card with floating doodle SVGs and squiggle underline. */
 "use client";
 
 import { useRef } from "react";

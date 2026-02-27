@@ -1,4 +1,6 @@
+/** Disclosures page with categorized documents, STRF disclosure, BPPE complaint info, refund policy, and privacy policy. */
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import {
   getDisclosuresByCategory,
@@ -8,6 +10,7 @@ import { SITE_NAME } from "@/lib/constants";
 import { Section } from "@/components/ui/section";
 import { Button } from "@/components/ui/button";
 import { AnimatedSection } from "@/components/animations";
+import { Breadcrumb } from "@/components/ui/breadcrumb";
 
 export const metadata: Metadata = {
   title: "Documents & Disclosures",
@@ -35,22 +38,23 @@ export default function DisclosuresPage() {
 
   return (
     <>
-      {/* -- Breadcrumb ---------------------------------------------------- */}
-      <nav aria-label="Breadcrumb" className="mx-auto max-w-7xl px-4 pt-6 sm:px-6 lg:px-8">
-        <ol className="flex items-center gap-2 text-sm text-sandstone/60">
-          <li>
-            <Link href="/" className="hover:text-pink-500 transition-colors">
-              Home
-            </Link>
-          </li>
-          <li aria-hidden="true" className="text-sandstone/40">&rsaquo;</li>
-          <li className="text-parchment font-medium">Disclosures</li>
-        </ol>
-      </nav>
-
       {/* -- Hero ---------------------------------------------------------- */}
       <section className="relative overflow-hidden mesh-plum grain py-24 md:py-32">
+        {/* Background image */}
+        <div className="absolute inset-0">
+          <Image
+            src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=1920&q=80"
+            alt="Professional documents and regulatory compliance materials"
+            fill
+            priority
+            className="object-cover"
+            sizes="100vw"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-plum-900 via-plum-900/85 to-plum-900/60" />
+          <div className="absolute inset-0 bg-gradient-to-t from-plum-900/70 via-transparent to-plum-900/50" />
+        </div>
         <div className="relative z-10 mx-auto max-w-7xl px-4 text-center sm:px-6 lg:px-8">
+          <Breadcrumb items={[{ label: "Disclosures" }]} />
           <p className="mb-3 font-body text-xs sm:text-sm font-semibold uppercase tracking-[0.2em] text-pink-500">
             Transparency
           </p>

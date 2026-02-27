@@ -1,3 +1,4 @@
+/** Simple email newsletter signup form rendered in the footer. */
 "use client";
 
 export function NewsletterForm() {

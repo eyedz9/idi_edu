@@ -1,3 +1,4 @@
+/** Generates robots.txt allowing search crawlers while blocking training-only bots. */
 import type { MetadataRoute } from "next";
 
 export default function robots(): MetadataRoute.Robots {

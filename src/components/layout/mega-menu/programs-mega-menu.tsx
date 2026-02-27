@@ -1,3 +1,4 @@
+/** Programs mega-menu panel with program cards, stats, and compare link. */
 "use client";
 
 import Link from "next/link";

@@ -1,3 +1,4 @@
+/** Root layout with fonts, global metadata, skip-to-content link, structured data, header, and footer. */
 import type { Metadata } from "next";
 import { Playfair_Display, Inter } from "next/font/google";
 import Header from "@/components/layout/Header";
@@ -27,6 +28,17 @@ export const metadata: Metadata = {
   },
   description:
     "IDI in Newport Beach, CA offers accredited Certificate, Associate, Bachelor's, and Master's programs in Interior Design. Enroll for Spring 2026.",
+  icons: {
+    icon: [
+      { url: "/favicon/favicon.ico", sizes: "any" },
+      { url: "/favicon/favicon-16x16.png", sizes: "16x16", type: "image/png" },
+      { url: "/favicon/favicon-32x32.png", sizes: "32x32", type: "image/png" },
+    ],
+    apple: [
+      { url: "/favicon/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
+    ],
+  },
+  manifest: "/favicon/site.webmanifest",
   alternates: {
     canonical: "/",
   },

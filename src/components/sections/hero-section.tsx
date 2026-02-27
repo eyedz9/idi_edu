@@ -1,6 +1,8 @@
+/** Full-viewport cinematic hero with GSAP entrance animations. */
 "use client";
 
 import { useRef, useEffect, useCallback } from "react";
+
 import Image from "next/image";
 import Link from "next/link";
 import gsap from "gsap";
@@ -158,7 +160,7 @@ export function HeroSection() {
           {/* Subtitle */}
           <p
             ref={subtitleRef}
-            className="mt-6 max-w-lg text-lg leading-relaxed text-sandstone md:text-xl"
+            className="mt-6 text-lg leading-relaxed text-sandstone md:text-xl whitespace-nowrap"
           >
             California&apos;s Premier Interior Design School &middot; Newport
             Beach

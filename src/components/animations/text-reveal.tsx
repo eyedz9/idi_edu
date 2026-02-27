@@ -1,3 +1,4 @@
+/** Component that splits text into word-level spans and animates them in with a staggered reveal. */
 "use client";
 
 import { useRef, type ReactNode } from "react";

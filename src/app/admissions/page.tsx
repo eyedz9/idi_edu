@@ -1,3 +1,4 @@
+/** Admissions overview with enrollment steps, admission requirements, quick links, and pre-enrollment info. */
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
@@ -11,6 +12,7 @@ import {
   admissionRequirements,
 } from "@/data";
 import { APPLY_PATH } from "@/lib/constants";
+import { Breadcrumb } from "@/components/ui/breadcrumb";
 
 /* -------------------------------------------------------------------------- */
 /*  Metadata                                                                  */
@@ -22,26 +24,6 @@ export const metadata: Metadata = {
     "Learn how to apply to Interior Designers Institute. Explore enrollment steps, admission requirements, tuition, financial aid, and start your application.",
   alternates: { canonical: "/admissions" },
 };
-
-/* -------------------------------------------------------------------------- */
-/*  Breadcrumbs                                                               */
-/* -------------------------------------------------------------------------- */
-
-function Breadcrumbs() {
-  return (
-    <nav aria-label="Breadcrumb" className="mb-4 text-sm text-sandstone/70">
-      <ol className="flex items-center gap-1.5">
-        <li>
-          <Link href="/" className="hover:text-pink-400 transition-colors">
-            Home
-          </Link>
-        </li>
-        <li aria-hidden="true" className="text-sandstone/40">&rsaquo;</li>
-        <li className="font-medium text-parchment">Admissions</li>
-      </ol>
-    </nav>
-  );
-}
 
 /* -------------------------------------------------------------------------- */
 /*  Requirement group display names                                           */
@@ -121,7 +103,7 @@ export default function AdmissionsPage() {
         </div>
 
         <div className="relative z-10 mx-auto max-w-5xl px-4 text-center sm:px-6 lg:px-8">
-          <Breadcrumbs />
+          <Breadcrumb items={[{ label: "Admissions" }]} />
           <div className="mb-6 inline-flex items-center gap-2">
             <span className="relative flex h-2.5 w-2.5">
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-pink-500 opacity-75" />

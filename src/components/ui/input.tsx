@@ -1,3 +1,4 @@
+/** Floating-label text input with error and hint support. */
 "use client";
 
 import {

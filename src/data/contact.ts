@@ -1,3 +1,4 @@
+/** Contact information, social media links, and department directory. */
 import type { ContactInfo, SocialLink } from "@/types";
 
 export const socialLinks: SocialLink[] = [

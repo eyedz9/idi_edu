@@ -1,4 +1,6 @@
+/** Side-by-side comparison table of all programs with responsive desktop table and mobile card layout. */
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { programs, getTuitionByProgram } from "@/data";
 import { SITE_NAME } from "@/lib/constants";
@@ -8,6 +10,7 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { AnimatedSection } from "@/components/animations";
 import { formatCurrency } from "@/lib/utils";
+import { Breadcrumb } from "@/components/ui/breadcrumb";
 
 export const metadata: Metadata = {
   title: "Compare Programs",
@@ -109,29 +112,24 @@ const rows: ComparisonRow[] = [
 export default function CompareProgramsPage() {
   return (
     <>
-      {/* ── Breadcrumb ──────────────────────────────────────────────────── */}
-      <div className="border-b border-white/10 bg-plum-800">
-        <div className="mx-auto max-w-7xl px-4 py-3 sm:px-6 lg:px-8">
-          <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-sm">
-            <Link
-              href="/programs"
-              className="text-sandstone/60 transition-colors hover:text-pink-500"
-            >
-              Programs
-            </Link>
-            <span className="text-sandstone/40" aria-hidden="true">
-              &rsaquo;
-            </span>
-            <span className="font-medium text-parchment">
-              Compare Programs
-            </span>
-          </nav>
-        </div>
-      </div>
-
       {/* ── Hero ────────────────────────────────────────────────────────── */}
-      <Section bg="mesh" grain className="relative overflow-hidden">
-        <div className="relative text-center">
+      <section className="relative overflow-hidden py-24 md:py-32">
+        {/* Background image */}
+        <div className="absolute inset-0">
+          <Image
+            src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=1920&q=80"
+            alt="Modern interior design with elegant furnishings"
+            fill
+            priority
+            className="object-cover"
+            sizes="100vw"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-plum-900 via-plum-900/85 to-plum-900/60" />
+          <div className="absolute inset-0 bg-gradient-to-t from-plum-900/70 via-transparent to-plum-900/50" />
+        </div>
+
+        <div className="relative z-10 mx-auto max-w-5xl px-4 text-center sm:px-6 lg:px-8">
+          <Breadcrumb items={[{ label: "Programs", href: "/programs" }, { label: "Compare Programs" }]} />
           <p className="mb-3 font-body text-xs sm:text-sm font-semibold uppercase tracking-[0.2em] text-pink-500">
             Compare
           </p>
@@ -143,7 +141,7 @@ export default function CompareProgramsPage() {
             goals, timeline, and budget.
           </p>
         </div>
-      </Section>
+      </section>
 
       {/* ── Desktop Table ───────────────────────────────────────────────── */}
       <Section>

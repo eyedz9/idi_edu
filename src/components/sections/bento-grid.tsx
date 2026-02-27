@@ -1,3 +1,4 @@
+/** Bento-style grid showcasing programs, stats, and accreditation highlights. */
 "use client";
 
 import Image from "next/image";

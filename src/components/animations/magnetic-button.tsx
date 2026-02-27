@@ -1,3 +1,4 @@
+/** Interactive button that magnetically follows the cursor on hover. */
 "use client";
 
 import { useRef, useCallback, type ReactNode } from "react";

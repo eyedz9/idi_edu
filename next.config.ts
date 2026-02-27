@@ -33,6 +33,19 @@ const nextConfig: NextConfig = {
             key: "Permissions-Policy",
             value: "camera=(), microphone=(), geolocation=()",
           },
+          {
+            key: "Content-Security-Policy",
+            value: [
+              "default-src 'self'",
+              // TODO: Remove sandbox domains before production launch
+              "script-src 'self' 'unsafe-eval' 'unsafe-inline' https://checkout.clover.com https://checkout.sandbox.dev.clover.com",
+              "style-src 'self' 'unsafe-inline'",
+              "img-src 'self' data: https://images.unsplash.com https://plus.unsplash.com https://idi.edu https://www.idi.edu blob:",
+              "font-src 'self'",
+              "frame-src https://checkout.clover.com https://checkout.sandbox.dev.clover.com https://www.google.com https://maps.google.com",
+              "connect-src 'self' https://checkout.clover.com https://checkout.sandbox.dev.clover.com https://scl.clover.com https://hooks.zapier.com https://*.vercel-storage.com",
+            ].join("; "),
+          },
         ],
       },
     ];

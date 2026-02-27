@@ -1,3 +1,4 @@
+/** Primary navigation items, persistent CTAs, and footer link columns. */
 import type { NavItem, PersistentCTA } from "@/types";
 import { PHONE } from "@/lib/constants";
 
@@ -47,6 +48,10 @@ export const primaryNav: NavItem[] = [
       {
         label: "Request Information",
         href: "/contact",
+      },
+      {
+        label: "Schedule a Visit",
+        href: "/admissions/visit",
       },
       {
         label: "Apply Now",

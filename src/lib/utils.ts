@@ -1,3 +1,4 @@
+/** Formats a number as a USD currency string (no decimals). */
 export function formatCurrency(amount: number): string {
   return new Intl.NumberFormat("en-US", {
     style: "currency",

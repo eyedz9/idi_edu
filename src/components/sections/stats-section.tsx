@@ -1,3 +1,4 @@
+/** Animated statistics bar showing key IDI metrics (years, programs, ratio, graduates). */
 "use client";
 
 import { CountUp } from "@/components/animations/count-up";

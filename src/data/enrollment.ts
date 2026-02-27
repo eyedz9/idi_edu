@@ -1,3 +1,4 @@
+/** Enrollment configuration: next class date, requirements, steps, and program-specific prereqs. */
 import type { EnrollmentConfig } from "@/types";
 
 export const enrollmentConfig: EnrollmentConfig = {

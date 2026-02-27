@@ -1,3 +1,4 @@
+/** Card components: base Card, ProgramCard, TestimonialCard, and FacultyCard. */
 import type { HTMLAttributes, ReactNode } from "react";
 import Image from "next/image";
 import Link from "next/link";

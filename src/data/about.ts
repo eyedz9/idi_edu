@@ -1,3 +1,4 @@
+/** About-section data: IDI overview, history milestones, and design philosophy content. */
 import type { HistoryMilestone } from "@/types";
 
 export const aboutIDI = {

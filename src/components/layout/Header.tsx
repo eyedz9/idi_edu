@@ -1,3 +1,4 @@
+/** Site-wide sticky header with desktop mega-menus and mobile nav drawer. */
 "use client";
 
 import { useState, useCallback, useRef, useEffect } from "react";
@@ -156,7 +157,7 @@ export default function Header({
     setOpenMenu(null);
   }, []);
 
-  const schedulClose = useCallback(() => {
+  const scheduleClose = useCallback(() => {
     leaveTimerRef.current = setTimeout(() => {
       setOpenMenu(null);
     }, 150);
@@ -202,7 +203,7 @@ export default function Header({
         ref={headerRef}
         className="sticky top-0 z-50 border-b border-white/5 bg-plum-900/95 backdrop-blur-xl"
         role="banner"
-        onMouseLeave={schedulClose}
+        onMouseLeave={scheduleClose}
         onMouseEnter={cancelClose}
       >
         <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">

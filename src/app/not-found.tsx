@@ -1,3 +1,4 @@
+/** Custom 404 page with navigation fallback links. */
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 

@@ -1,3 +1,4 @@
+/** Accessible modal dialog with focus trap, backdrop, and Escape key support. */
 "use client";
 
 import {

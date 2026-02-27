@@ -1,3 +1,5 @@
+/** Shared TypeScript interfaces for the IDI codebase. */
+
 // ─── Program Types ───────────────────────────────────────────────────────────
 
 export interface Course {

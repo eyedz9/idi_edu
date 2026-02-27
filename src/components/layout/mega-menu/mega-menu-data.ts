@@ -60,7 +60,7 @@ export const programMenuItems: ProgramMenuItem[] = [
   },
 ];
 
-/* ── Admissions ───────────────────────────────────────────────────────────── */
+/* ── About ────────────────────────────────────────────────────────────────── */
 
 export interface AboutMenuItem {
   title: string;
@@ -116,6 +116,12 @@ export const admissionsMenuItems: AdmissionsMenuItem[] = [
     href: "/admissions/financial-aid",
     description: "Scholarships, grants, and federal aid options.",
     icon: "banknotes",
+  },
+  {
+    title: "Schedule a Visit",
+    href: "/admissions/visit",
+    description: "Book a campus tour and meet our faculty in person.",
+    icon: "calendar",
   },
   {
     title: "Documents & Disclosures",

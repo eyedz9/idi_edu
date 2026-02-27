@@ -1,3 +1,4 @@
+/** Context provider that initializes GSAP and exposes a motion-readiness flag to descendants. */
 "use client";
 
 import { createContext, useContext, useEffect, useState, type ReactNode } from "react";

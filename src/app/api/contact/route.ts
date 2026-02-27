@@ -1,46 +1,41 @@
 import { NextResponse } from "next/server";
+import { contactSchema } from "@/lib/schemas";
+import { isValidOrigin } from "@/lib/origin-check";
+import { rateLimit } from "@/lib/rate-limit";
 
 /**
  * POST /api/contact
  *
- * Receives the contact form data and forwards it to a Zapier webhook.
- * The webhook URL is stored in ZAPIER_CONTACT_WEBHOOK_URL env var.
- *
- * Zapier then handles:
- *  - Sending to IDI's CRM
- *  - Sending email notifications to staff
- *  - Auto-reply to the inquirer
+ * Validates contact form data with Zod, then forwards to Zapier.
  */
-
-const REQUIRED_FIELDS = [
-  "howFound",
-  "firstName",
-  "lastName",
-  "contactMethod",
-  "email",
-  "phone",
-  "address",
-] as const;
-
 export async function POST(request: Request) {
   try {
-    const body = await request.json();
-
-    // Basic server-side validation
-    const missing = REQUIRED_FIELDS.filter((f) => !body[f]);
-    if (missing.length > 0) {
+    // Origin check (CSRF protection)
+    if (!isValidOrigin(request)) {
       return NextResponse.json(
-        { error: `Missing required fields: ${missing.join(", ")}` },
-        { status: 400 },
+        { error: "Forbidden" },
+        { status: 403 },
       );
     }
 
-    // Email format check
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(body.email)) {
+    // Rate limit
+    const ip =
+      request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ??
+      "unknown";
+    if (!rateLimit(ip, "contact")) {
       return NextResponse.json(
-        { error: "Please enter a valid email address." },
-        { status: 400 },
+        { error: "Too many requests. Please wait a minute and try again." },
+        { status: 429 },
       );
+    }
+
+    const body = await request.json();
+
+    // Zod validation
+    const result = contactSchema.safeParse(body);
+    if (!result.success) {
+      const firstError = result.error.issues[0]?.message ?? "Invalid data";
+      return NextResponse.json({ error: firstError }, { status: 400 });
     }
 
     const webhookUrl = process.env.ZAPIER_CONTACT_WEBHOOK_URL;
@@ -48,7 +43,10 @@ export async function POST(request: Request) {
     if (!webhookUrl) {
       console.error("[contact] ZAPIER_CONTACT_WEBHOOK_URL is not configured");
       return NextResponse.json(
-        { error: "Contact form is temporarily unavailable. Please call (949) 675-4451 or email contact@idi.edu." },
+        {
+          error:
+            "Contact form is temporarily unavailable. Please call (949) 675-4451 or email contact@idi.edu.",
+        },
         { status: 503 },
       );
     }
@@ -58,7 +56,7 @@ export async function POST(request: Request) {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        ...body,
+        ...result.data,
         submittedAt: new Date().toISOString(),
         source: "idi.edu-contact-form",
       }),
@@ -67,7 +65,10 @@ export async function POST(request: Request) {
     if (!zapierRes.ok) {
       console.error("[contact] Zapier webhook failed:", zapierRes.status);
       return NextResponse.json(
-        { error: "Submission failed. Please try again or call (949) 675-4451." },
+        {
+          error:
+            "Submission failed. Please try again or call (949) 675-4451.",
+        },
         { status: 502 },
       );
     }

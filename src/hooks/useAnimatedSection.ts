@@ -1,3 +1,4 @@
+/** Hook that animates child elements of a ref into view with a staggered fade-up on scroll. */
 "use client";
 
 import { type RefObject, useEffect } from "react";

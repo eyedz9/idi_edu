@@ -1,3 +1,4 @@
+/** Horizontal trust/accreditation badge bar displayed below the hero. */
 import Image from "next/image";
 import { cn } from "@/lib/cn";
 

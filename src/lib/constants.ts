@@ -1,3 +1,4 @@
+/** Site-wide constants (contact info, social links, enrollment dates). */
 export const SITE_NAME = "Interior Designers Institute";
 export const SITE_TAGLINE = "Where Creative Talent Becomes Professional Design";
 export const SITE_URL = "https://idi.edu";

@@ -1,3 +1,4 @@
+/** Image component with a GSAP-powered parallax scroll effect. */
 "use client";
 
 import { useRef } from "react";

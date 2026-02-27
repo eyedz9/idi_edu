@@ -1,3 +1,4 @@
+/** Staff directory with photo grid, bios, department info, email contacts, and general contact cards. */
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
@@ -6,6 +7,7 @@ import { Section } from "@/components/ui/section";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { AnimatedSection } from "@/components/animations";
+import { Breadcrumb } from "@/components/ui/breadcrumb";
 
 export const metadata: Metadata = {
   title: "Staff Directory",
@@ -92,40 +94,23 @@ const staffMembers: StaffMember[] = [
 export default function StaffPage() {
   return (
     <>
-      {/* -- Breadcrumb ---------------------------------------------------- */}
-      <nav aria-label="Breadcrumb" className="mx-auto max-w-7xl px-4 pt-6 sm:px-6 lg:px-8">
-        <ol className="flex items-center gap-2 text-sm text-sandstone/60">
-          <li>
-            <Link href="/" className="hover:text-pink-500 transition-colors">
-              Home
-            </Link>
-          </li>
-          <li aria-hidden="true" className="text-sandstone/40">&rsaquo;</li>
-          <li>
-            <Link href="/about" className="hover:text-pink-500 transition-colors">
-              About
-            </Link>
-          </li>
-          <li aria-hidden="true" className="text-sandstone/40">&rsaquo;</li>
-          <li className="text-parchment font-medium">Staff</li>
-        </ol>
-      </nav>
-
       {/* -- Hero ---------------------------------------------------------- */}
       <section className="relative overflow-hidden mesh-plum grain py-24 md:py-32 lg:py-40">
+        {/* Background image */}
         <div className="absolute inset-0">
           <Image
-            src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=1920&q=80"
-            alt="Professional office environment representing IDI administration"
+            src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=1920&q=80"
+            alt="Professional team collaborating in a modern office"
             fill
             priority
             className="object-cover"
             sizes="100vw"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-plum-900/80 via-plum-900/70 to-plum-900/90" />
-          <div className="absolute inset-0 bg-gradient-to-r from-plum-900/60 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-r from-plum-900 via-plum-900/85 to-plum-900/60" />
+          <div className="absolute inset-0 bg-gradient-to-t from-plum-900/70 via-transparent to-plum-900/50" />
         </div>
         <div className="relative z-10 mx-auto max-w-7xl px-4 text-center sm:px-6 lg:px-8">
+          <Breadcrumb items={[{ label: "About", href: "/about" }, { label: "Staff" }]} />
           <p className="mb-3 font-body text-xs sm:text-sm font-semibold uppercase tracking-[0.2em] text-pink-500">
             Our Team
           </p>

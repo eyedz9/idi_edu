@@ -1,3 +1,4 @@
+/** Slide-in mobile navigation drawer with accordion sub-menus. */
 "use client";
 
 import { useEffect, useRef, useState, useCallback } from "react";

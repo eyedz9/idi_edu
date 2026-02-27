@@ -1,3 +1,4 @@
+/** Campus life page showcasing Newport Beach location, student organizations, gallery, and facilities. */
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
@@ -8,6 +9,7 @@ import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { AnimatedSection } from "@/components/animations";
+import { Breadcrumb } from "@/components/ui/breadcrumb";
 
 export const metadata: Metadata = {
   title: "Campus Life",
@@ -81,19 +83,6 @@ const galleryImages = Array.from({ length: 20 }, (_, i) => ({
 export default function CampusLifePage() {
   return (
     <>
-      {/* -- Breadcrumb ---------------------------------------------------- */}
-      <nav aria-label="Breadcrumb" className="mx-auto max-w-7xl px-4 pt-6 sm:px-6 lg:px-8">
-        <ol className="flex items-center gap-2 text-sm text-sandstone/60">
-          <li>
-            <Link href="/" className="hover:text-pink-500 transition-colors">
-              Home
-            </Link>
-          </li>
-          <li aria-hidden="true" className="text-sandstone/40">&rsaquo;</li>
-          <li className="text-parchment font-medium">Campus Life</li>
-        </ol>
-      </nav>
-
       {/* -- Hero ---------------------------------------------------------- */}
       <section className="relative overflow-hidden mesh-aurora grain py-24 md:py-32 lg:py-40">
         {/* Unsplash hero image — asymmetric right */}
@@ -112,6 +101,7 @@ export default function CampusLifePage() {
         </div>
 
         <div className="relative z-10 mx-auto max-w-7xl px-4 text-center sm:px-6 lg:px-8">
+          <Breadcrumb items={[{ label: "Campus Life" }]} />
           <p className="mb-3 font-body text-xs sm:text-sm font-semibold uppercase tracking-[0.2em] text-pink-500">
             Student Experience
           </p>
@@ -307,7 +297,7 @@ export default function CampusLifePage() {
             experience the IDI community firsthand.
           </p>
           <div className="mt-8 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
-            <Link href="/contact">
+            <Link href="/admissions/visit">
               <Button as="span" variant="primary" size="lg" className="glow-amber">
                 Schedule a Campus Visit
               </Button>

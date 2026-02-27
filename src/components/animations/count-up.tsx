@@ -1,3 +1,4 @@
+/** Component that renders an animated number counting up from 0 on scroll. */
 "use client";
 
 import { useRef } from "react";

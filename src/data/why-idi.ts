@@ -1,3 +1,4 @@
+/** Selling points and differentiators for the "Why IDI" section. */
 import type { WhyIDIPoint } from "@/types";
 
 export const whyIDIPoints: WhyIDIPoint[] = [

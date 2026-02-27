@@ -1,3 +1,4 @@
+/** Floating-label select dropdown with error and hint support. */
 "use client";
 
 import {

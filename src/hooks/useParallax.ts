@@ -1,3 +1,4 @@
+/** Hook that applies a GSAP-powered parallax transform to a ref element on scroll. */
 "use client";
 
 import { type RefObject } from "react";

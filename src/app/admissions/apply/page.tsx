@@ -1,3 +1,4 @@
+/** Application page with enrollment info, requirements summary, application form, FAQs, and contact details. */
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
@@ -10,10 +11,11 @@ import {
   enrollmentSteps,
   admissionRequirements,
 } from "@/data";
-import { PHONE, EMAIL, SITE_URL } from "@/lib/constants";
+import { PHONE, EMAIL } from "@/lib/constants";
 import { ApplicationForm } from "@/components/forms/application-form";
 import { FAQAccordion } from "@/components/sections/faq-accordion";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { Breadcrumb } from "@/components/ui/breadcrumb";
 
 /* -------------------------------------------------------------------------- */
 /*  Metadata                                                                  */
@@ -25,32 +27,6 @@ export const metadata: Metadata = {
     "Start your application to Interior Designers Institute. Apply online for our Certificate, Associate, Bachelor's, or Master's programs in interior design.",
   alternates: { canonical: "/admissions/apply" },
 };
-
-/* -------------------------------------------------------------------------- */
-/*  Breadcrumbs                                                               */
-/* -------------------------------------------------------------------------- */
-
-function Breadcrumbs() {
-  return (
-    <nav aria-label="Breadcrumb" className="mb-4 text-sm text-sandstone/70">
-      <ol className="flex items-center gap-1.5">
-        <li>
-          <Link href="/" className="hover:text-pink-400 transition-colors">
-            Home
-          </Link>
-        </li>
-        <li aria-hidden="true" className="text-sandstone/40">&rsaquo;</li>
-        <li>
-          <Link href="/admissions" className="hover:text-pink-400 transition-colors">
-            Admissions
-          </Link>
-        </li>
-        <li aria-hidden="true" className="text-sandstone/40">&rsaquo;</li>
-        <li className="font-medium text-parchment">Apply</li>
-      </ol>
-    </nav>
-  );
-}
 
 /* -------------------------------------------------------------------------- */
 /*  FAQ data                                                                  */
@@ -141,18 +117,6 @@ export default function ApplyPage() {
           })),
         }}
       />
-      <JsonLd
-        data={{
-          "@context": "https://schema.org",
-          "@type": "BreadcrumbList",
-          itemListElement: [
-            { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL },
-            { "@type": "ListItem", position: 2, name: "Admissions", item: `${SITE_URL}/admissions` },
-            { "@type": "ListItem", position: 3, name: "Apply" },
-          ],
-        }}
-      />
-
       {/* -- Hero ----------------------------------------------------------- */}
       <section className="relative overflow-hidden mesh-aurora grain py-24 md:py-32">
         {/* Background image */}
@@ -170,7 +134,7 @@ export default function ApplyPage() {
         </div>
 
         <div className="relative z-10 mx-auto max-w-5xl px-4 text-center sm:px-6 lg:px-8">
-          <Breadcrumbs />
+          <Breadcrumb items={[{ label: "Admissions", href: "/admissions" }, { label: "Apply" }]} />
           <div className="mb-6 inline-flex items-center gap-2">
             <span className="relative flex h-2.5 w-2.5">
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-pink-500 opacity-75" />

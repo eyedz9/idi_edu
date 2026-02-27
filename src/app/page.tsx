@@ -1,3 +1,4 @@
+/** Homepage composed of hero, bento grid, gallery, stats, testimonials, campus, and CTA sections. */
 import { HeroSection } from "@/components/sections/hero-section";
 import { BentoGrid } from "@/components/sections/bento-grid";
 import { GallerySection } from "@/components/sections/gallery-section";

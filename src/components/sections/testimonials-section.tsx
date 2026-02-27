@@ -1,3 +1,4 @@
+/** Editorial-style testimonial carousel with GSAP crossfade transitions. */
 "use client";
 
 import { useRef, useState, useCallback } from "react";
