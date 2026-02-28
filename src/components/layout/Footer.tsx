@@ -80,6 +80,7 @@ const defaultColumns: FooterColumn[] = [
       { label: "Admissions", href: "/admissions" },
       { label: "Campus Life", href: "/campus-life" },
       { label: "About", href: "/about" },
+      { label: "Blog", href: "/blog" },
     ],
   },
   {

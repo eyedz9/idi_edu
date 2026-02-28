@@ -50,7 +50,7 @@ const faqs = [
   {
     question: "Is there an application fee?",
     answer:
-      "There is no fee to submit the online application. A non-refundable registration fee is due upon enrollment.",
+      "There is no fee to submit the online application. A non-refundable registration fee is due upon enrollment: $95 for the Avocational Certificate Course, $100 for degree programs (Associate of Arts, Bachelor of Arts, and Master of Interior Architecture), or $250 for international students.",
   },
   {
     question: "Can I apply if I have no design experience?",
@@ -201,6 +201,44 @@ export default function ApplyPage() {
               </p>
             </Card>
           </div>
+        </div>
+      </Section>
+
+      {/* -- Registration Fees by Program ---------------------------------- */}
+      <Section
+        overline="Upon Enrollment"
+        title="Registration Fees"
+        subtitle="A non-refundable registration fee is due when you enroll. The amount varies by program."
+      >
+        <div className="mx-auto max-w-3xl">
+          <div className="space-y-3">
+            {[
+              { program: "Avocational Certificate Course", fee: "$95" },
+              { program: "Associate of Arts Degree in Interior Design", fee: "$100" },
+              { program: "Bachelor of Arts Degree in Interior Design", fee: "$100" },
+              { program: "Master of Interior Architecture Degree", fee: "$100" },
+              { program: "International Students", fee: "$250" },
+            ].map((item) => (
+              <div
+                key={item.program}
+                className="flex items-center justify-between rounded-lg border border-white/5 bg-plum-800/40 px-5 py-4"
+              >
+                <span className="text-sm font-medium text-parchment sm:text-base">
+                  {item.program}
+                </span>
+                <span className="ml-4 flex-shrink-0 font-heading text-lg font-bold text-pink-500">
+                  {item.fee}
+                </span>
+              </div>
+            ))}
+          </div>
+          <p className="mt-4 text-center text-xs text-sandstone/60">
+            All registration fees are non-refundable. See the{" "}
+            <Link href="/admissions/tuition" className="text-pink-500 hover:text-pink-400 transition-colors">
+              Tuition &amp; Fees
+            </Link>{" "}
+            page for full program costs.
+          </p>
         </div>
       </Section>
 

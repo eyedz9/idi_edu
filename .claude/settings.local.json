@@ -15,7 +15,10 @@
       "mcp__playwright__browser_evaluate",
       "mcp__playwright__browser_resize",
       "Bash(tasklist:*)",
-      "WebFetch(domain:idi.edu)"
+      "WebFetch(domain:idi.edu)",
+      "Bash(npx tsx:*)",
+      "mcp__playwright__browser_wait_for",
+      "Bash(netstat:*)"
     ]
   }
 }

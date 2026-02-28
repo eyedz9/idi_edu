@@ -7,3 +7,4 @@ export { disclosures, getDisclosuresByCategory, disclosureCategoryOrder } from "
 export { enrollmentConfig, enrollmentSteps, admissionRequirements } from "./enrollment";
 export { contactInfo, socialLinks, fullAddress, officeHours, googleMapsEmbedUrl, googleMapsDirectionsUrl } from "./contact";
 export { whyIDIPoints, idiStats } from "./why-idi";
+export { blogCategories, blogPosts, getBlogBySlug, getBlogsByCategory, getAllBlogPosts, getFeaturedPost, getBlogCategoryBySlug } from "./blog";

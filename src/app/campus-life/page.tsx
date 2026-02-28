@@ -63,14 +63,14 @@ const studentOrganizations = [
     name: "NKBA Student Chapter",
     fullName: "National Kitchen & Bath Association",
     description:
-      "The NKBA Student Chapter is the leading trade association for the kitchen and bath industry. Being part of the NKBA Student Chapter helps students build industry connections early, understand current trends and codes, and transition more smoothly into professional membership after graduation.",
+      "The National Kitchen & Bath Association (NKBA) Student Chapter is the leading trade association for the kitchen and bath industry. Being part of the NKBA Student Chapter helps students build industry connections early, understand current trends and codes, and transition more smoothly into professional membership after graduation.",
     imageSrc: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&q=75",
   },
   {
     name: "NEWH Student Chapter",
     fullName: "Network of Executive Women in Hospitality",
     description:
-      "NEWH is an international organization dedicated to hospitality, interior design, and related industries. The NEWH Student Chapter connects students pursuing careers in hospitality design with industry professionals and real-world opportunities. Membership provides access to scholarships, grant opportunities, mentorship, and career guidance.",
+      "The Network of Executive Women in Hospitality (NEWH) is an international organization dedicated to hospitality, interior design, and related industries. The NEWH Student Chapter connects students pursuing careers in hospitality design with industry professionals and real-world opportunities. Membership provides access to scholarships, grant opportunities, mentorship, and career guidance.",
     imageSrc: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&q=75",
   },
 ];

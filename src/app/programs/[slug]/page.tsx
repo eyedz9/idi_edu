@@ -222,95 +222,97 @@ export default async function ProgramDetailPage({ params }: PageProps) {
       </Section>
 
       {/* ── 3. Curriculum ───────────────────────────────────────────────── */}
-      <Section
-        bg="light"
-        overline="Curriculum"
-        title={
-          program.isAvocational
-            ? "Lectures & Studios"
-            : "Course Catalog"
-        }
-        subtitle={
-          program.isAvocational
-            ? "The Certificate Course includes both lecture sessions and hands-on studio workshops."
-            : `${program.courses.length} courses covering the full breadth of ${program.degreeType === "Master's Degree" ? "interior architecture" : "interior design"}.`
-        }
-      >
-        <AnimatedSection stagger={0.06}>
-          {/* Certificate: lectures + studios */}
-          {program.isAvocational && (
-            <div className="grid gap-8 md:grid-cols-2">
-              {/* Lectures */}
-              <div>
-                <h3 className="mb-4 font-heading text-xl font-bold text-parchment">
-                  Lectures
-                </h3>
-                <ul className="space-y-2">
-                  {program.lectures?.map((lecture, i) => (
-                    <li
-                      key={i}
-                      className="flex items-start gap-3 rounded-lg border border-white/10 bg-white/5 p-3"
-                    >
-                      <span className="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-pink-500/15 text-xs font-semibold text-pink-500">
-                        {i + 1}
-                      </span>
-                      <span className="text-sm text-parchment">
-                        {lecture.title}
-                      </span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
+      {(program.isAvocational || program.courses.length > 0) && (
+        <Section
+          bg="light"
+          overline="Curriculum"
+          title={
+            program.isAvocational
+              ? "Lectures & Studios"
+              : "Course Catalog"
+          }
+          subtitle={
+            program.isAvocational
+              ? "The Certificate Course includes both lecture sessions and hands-on studio workshops."
+              : `${program.courses.length} courses covering the full breadth of ${program.degreeType === "Master's Degree" ? "interior architecture" : "interior design"}.`
+          }
+        >
+          <AnimatedSection stagger={0.06}>
+            {/* Certificate: lectures + studios */}
+            {program.isAvocational && (
+              <div className="grid gap-8 md:grid-cols-2">
+                {/* Lectures */}
+                <div>
+                  <h3 className="mb-4 font-heading text-xl font-bold text-parchment">
+                    Lectures
+                  </h3>
+                  <ul className="space-y-2">
+                    {program.lectures?.map((lecture, i) => (
+                      <li
+                        key={i}
+                        className="flex items-start gap-3 rounded-lg border border-white/10 bg-white/5 p-3"
+                      >
+                        <span className="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-pink-500/15 text-xs font-semibold text-pink-500">
+                          {i + 1}
+                        </span>
+                        <span className="text-sm text-parchment">
+                          {lecture.title}
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
 
-              {/* Studios */}
-              <div>
-                <h3 className="mb-4 font-heading text-xl font-bold text-parchment">
-                  Studios
-                </h3>
-                <ul className="space-y-2">
-                  {program.studios?.map((studio, i) => (
-                    <li
-                      key={i}
-                      className="flex items-start gap-3 rounded-lg border border-white/10 bg-white/5 p-3"
-                    >
-                      <span className="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-white/10 text-xs font-semibold text-parchment">
-                        {i + 1}
-                      </span>
-                      <span className="text-sm text-parchment">
-                        {studio.title}
-                      </span>
-                    </li>
-                  ))}
-                </ul>
+                {/* Studios */}
+                <div>
+                  <h3 className="mb-4 font-heading text-xl font-bold text-parchment">
+                    Studios
+                  </h3>
+                  <ul className="space-y-2">
+                    {program.studios?.map((studio, i) => (
+                      <li
+                        key={i}
+                        className="flex items-start gap-3 rounded-lg border border-white/10 bg-white/5 p-3"
+                      >
+                        <span className="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-white/10 text-xs font-semibold text-parchment">
+                          {i + 1}
+                        </span>
+                        <span className="text-sm text-parchment">
+                          {studio.title}
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               </div>
-            </div>
-          )}
+            )}
 
-          {/* Degree programs: courses */}
-          {!program.isAvocational && (
-            <div className="grid gap-4 md:grid-cols-2">
-              {program.courses.map((course) => (
-                <Card key={course.code} className="p-5">
-                  <div className="flex items-start justify-between gap-3">
-                    <div>
-                      <p className="text-xs sm:text-sm font-semibold uppercase tracking-wider text-pink-500">
-                        IDI {course.code}
-                      </p>
-                      <h4 className="mt-1 font-heading text-base font-bold text-parchment">
-                        {course.name}
-                      </h4>
+            {/* Degree programs: courses */}
+            {!program.isAvocational && program.courses.length > 0 && (
+              <div className="grid gap-4 md:grid-cols-2">
+                {program.courses.map((course) => (
+                  <Card key={course.code} className="p-5">
+                    <div className="flex items-start justify-between gap-3">
+                      <div>
+                        <p className="text-xs sm:text-sm font-semibold uppercase tracking-wider text-pink-500">
+                          IDI {course.code}
+                        </p>
+                        <h4 className="mt-1 font-heading text-base font-bold text-parchment">
+                          {course.name}
+                        </h4>
+                      </div>
+                      <Badge variant="outline">{course.units} units</Badge>
                     </div>
-                    <Badge variant="outline">{course.units} units</Badge>
-                  </div>
-                  <p className="mt-2 text-sm leading-relaxed text-sandstone">
-                    {course.description}
-                  </p>
-                </Card>
-              ))}
-            </div>
-          )}
-        </AnimatedSection>
-      </Section>
+                    <p className="mt-2 text-sm leading-relaxed text-sandstone">
+                      {course.description}
+                    </p>
+                  </Card>
+                ))}
+              </div>
+            )}
+          </AnimatedSection>
+        </Section>
+      )}
 
       {/* ── 4. Tuition ──────────────────────────────────────────────────── */}
       {tuition && (

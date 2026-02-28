@@ -172,3 +172,33 @@ export interface WhyIDIPoint {
   description: string;
   icon: string;
 }
+
+// ─── Blog Types ─────────────────────────────────────────────────────────────
+
+export interface BlogCategory {
+  slug: string;
+  name: string;
+  description: string;
+}
+
+export interface BlogContentSection {
+  heading: string;
+  body: string;
+  image?: string;
+  imageAlt?: string;
+}
+
+export interface BlogPost {
+  slug: string;
+  title: string;
+  excerpt: string;
+  category: string;
+  author: string;
+  publishedAt: string;
+  readTime: string;
+  featuredImage: string;
+  featuredImageAlt: string;
+  content: BlogContentSection[];
+  tags: string[];
+  relatedSlugs: string[];
+}

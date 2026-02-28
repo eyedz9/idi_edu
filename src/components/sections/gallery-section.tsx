@@ -137,8 +137,7 @@ export function GallerySection() {
             scrollTrigger: {
               trigger: headerRef.current,
               start: "top 85%",
-              end: "top 20%",
-              toggleActions: "play reverse none reverse",
+              toggleActions: "play none none none",
             },
           },
         );
@@ -150,8 +149,7 @@ export function GallerySection() {
           scrollTrigger: {
             trigger: card,
             start: "top 90%",
-            end: "top 10%",
-            toggleActions: "play reverse none reverse",
+            toggleActions: "play none none none",
           },
         });
 

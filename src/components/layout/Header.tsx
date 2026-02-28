@@ -125,6 +125,7 @@ const defaultNavigation: NavItem[] = [
       { label: "Staff Directory", href: "/about/staff" },
     ],
   },
+  { label: "Blog", href: "/blog" },
   { label: "Contact", href: "/contact" },
 ];
 

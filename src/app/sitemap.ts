@@ -1,9 +1,18 @@
 /** Generates XML sitemap with all public pages and their priorities. */
 import type { MetadataRoute } from "next";
 import { SITE_URL } from "@/lib/constants";
+import { blogPosts } from "@/data";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
+
+  // Dynamic blog post URLs
+  const blogUrls: MetadataRoute.Sitemap = blogPosts.map((post) => ({
+    url: `${SITE_URL}/blog/${post.slug}`,
+    lastModified: new Date(post.publishedAt),
+    changeFrequency: "monthly" as const,
+    priority: 0.6,
+  }));
 
   return [
     // Core pages
@@ -30,6 +39,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${SITE_URL}/about/faculty`, lastModified: now, changeFrequency: "monthly", priority: 0.6 },
     { url: `${SITE_URL}/about/accreditation`, lastModified: now, changeFrequency: "yearly", priority: 0.7 },
     { url: `${SITE_URL}/about/staff`, lastModified: now, changeFrequency: "monthly", priority: 0.5 },
+
+    // Blog
+    { url: `${SITE_URL}/blog`, lastModified: now, changeFrequency: "weekly", priority: 0.7 },
+    ...blogUrls,
 
     // Other pages
     { url: `${SITE_URL}/campus-life`, lastModified: now, changeFrequency: "monthly", priority: 0.6 },
