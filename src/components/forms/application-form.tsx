@@ -1,7 +1,7 @@
 /** Multi-section application form with schedule selection, file upload, and payment via /api/apply. */
 "use client";
 
-import { useState, useRef, type FormEvent } from "react";
+import { useState, useRef, useCallback, type FormEvent } from "react";
 import { cn } from "@/lib/cn";
 import { Button } from "@/components/ui/button";
 
@@ -313,7 +313,7 @@ function StepProgram({
           <label className="flex cursor-pointer items-start gap-3 p-5">
             <input
               type="radio"
-              name="programType"
+              name="programType_radio"
               value="combined"
               checked={programType === "combined"}
               onChange={() => setProgramType("combined")}
@@ -381,7 +381,7 @@ function StepProgram({
           <label className="flex cursor-pointer items-start gap-3 p-5">
             <input
               type="radio"
-              name="programType"
+              name="programType_radio"
               value="hybrid"
               checked={programType === "hybrid"}
               onChange={() => setProgramType("hybrid")}
@@ -443,7 +443,7 @@ function StepProgram({
           <label className="flex cursor-pointer items-start gap-3 p-5">
             <input
               type="radio"
-              name="programType"
+              name="programType_radio"
               value="single"
               checked={programType === "single"}
               onChange={() => setProgramType("single")}
@@ -533,6 +533,12 @@ export function ApplicationForm() {
   const [isDragOver, setIsDragOver] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
+  const scrollToForm = useCallback(() => {
+    requestAnimationFrame(() => {
+      formRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+  }, []);
+
   function markComplete(step: StepId) {
     if (!completedSteps.includes(step)) {
       setCompletedSteps((prev) => [...prev, step]);
@@ -550,6 +556,7 @@ export function ApplicationForm() {
     markComplete(currentStep);
     if (currentStep < 4) {
       setCurrentStep((prev) => (prev + 1) as StepId);
+      scrollToForm();
     }
   }
 
@@ -557,6 +564,7 @@ export function ApplicationForm() {
     if (currentStep > 1) {
       setErrorMsg("");
       setCurrentStep((prev) => (prev - 1) as StepId);
+      scrollToForm();
     }
   }
 
@@ -564,6 +572,7 @@ export function ApplicationForm() {
     if (completedSteps.includes(step) || step === currentStep) {
       setErrorMsg("");
       setCurrentStep(step);
+      scrollToForm();
     }
   }
 
@@ -575,7 +584,21 @@ export function ApplicationForm() {
     const form = formRef.current;
     if (!form) return;
 
-    const data = Object.fromEntries(new FormData(form));
+    const fd = new FormData(form);
+    // Remove UI-only radio/checkbox duplicates (hidden inputs carry the real values)
+    for (const key of [...fd.keys()]) {
+      if (key.endsWith("_radio") || key.endsWith("_cb")) fd.delete(key);
+    }
+
+    // Collect array-valued fields before collapsing to single-value object
+    const inPerson = fd.getAll("inPersonSchedule").filter(Boolean);
+    const online = fd.getAll("onlineSchedule").filter(Boolean);
+    const hybrid = fd.getAll("hybridSchedule").filter(Boolean);
+    fd.delete("inPersonSchedule");
+    fd.delete("onlineSchedule");
+    fd.delete("hybridSchedule");
+
+    const data = Object.fromEntries(fd);
 
     try {
       // Upload diploma file if present
@@ -607,6 +630,9 @@ export function ApplicationForm() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           ...data,
+          inPersonSchedule: inPerson.length ? inPerson : undefined,
+          onlineSchedule: online.length ? online : undefined,
+          hybridSchedule: hybrid.length ? hybrid : undefined,
           diplomaFileUrl,
         }),
       });
@@ -664,7 +690,21 @@ export function ApplicationForm() {
       ref={formRef}
       onSubmit={handleSubmit}
       noValidate
+      className="scroll-mt-24"
     >
+      {/* Hidden inputs for values from other steps so they persist in FormData */}
+      <input type="hidden" name="programType" value={programType} />
+      <input type="hidden" name="coursePreference" value={coursePreference} />
+      {inPersonSelections.map((v) => (
+        <input key={v} type="hidden" name="inPersonSchedule" value={v} />
+      ))}
+      {onlineSelections.map((v) => (
+        <input key={v} type="hidden" name="onlineSchedule" value={v} />
+      ))}
+      {hybridSelections.map((v) => (
+        <input key={v} type="hidden" name="hybridSchedule" value={v} />
+      ))}
+
       <Stepper
         currentStep={currentStep}
         completedSteps={completedSteps}
@@ -1152,7 +1192,7 @@ export function ApplicationForm() {
                   >
                     <input
                       type="radio"
-                      name="coursePreference"
+                      name="coursePreference_radio"
                       value={opt.value}
                       checked={coursePreference === opt.value}
                       onChange={() => {
@@ -1173,94 +1213,276 @@ export function ApplicationForm() {
 
               {/* ── In-Person schedule ─────────────────────────────────────── */}
               {coursePreference === "in-person" && (
-                <div className="animate-in fade-in space-y-3">
-                  <p className="text-xs font-bold text-parchment mb-3 flex items-center gap-2">
-                    <span className="rounded bg-jade/15 px-2 py-0.5 text-[10px] uppercase tracking-wider text-jade">
-                      In-Person
-                    </span>
-                    Select your preferred schedule(s)
-                  </p>
-                  <div className="space-y-2">
-                    {IN_PERSON_SCHEDULES.map((s) => (
-                      <label
-                        key={s.value}
-                        className={cn(
-                          "flex items-center gap-3 rounded-lg border px-4 py-3 cursor-pointer transition-all",
-                          inPersonSelections.includes(s.value)
-                            ? "border-pink-500/40 bg-pink-500/[0.04]"
-                            : "border-white/5 bg-plum-900/40 hover:border-white/10",
-                        )}
-                      >
-                        <input
-                          type="checkbox"
-                          name="inPersonSchedule"
-                          value={s.value}
-                          checked={inPersonSelections.includes(s.value)}
-                          onChange={(e) => {
-                            if (e.target.checked) {
-                              setInPersonSelections((prev) => [...prev, s.value]);
-                            } else {
-                              setInPersonSelections((prev) => prev.filter((v) => v !== s.value));
-                            }
-                          }}
-                          className="h-4 w-4 accent-pink-500 flex-shrink-0 rounded"
-                        />
-                        <svg className="h-3.5 w-3.5 flex-shrink-0 text-pink-500/60" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-                        </svg>
-                        <span className="flex-1 text-sm text-sandstone">{s.label}</span>
-                        <span className="rounded bg-jade/15 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-jade">
-                          {s.tag}
-                        </span>
-                      </label>
-                    ))}
+                <div className="animate-in fade-in space-y-4">
+                  <div className="rounded-lg border border-amber-500/20 bg-amber-500/5 px-4 py-3">
+                    <p className="text-xs font-semibold text-amber-400">
+                      Select 1 Lecture time + 1 Studio time (or 1 Combined)
+                    </p>
+                  </div>
+
+                  {/* Lectures — clears Combined when selected */}
+                  <div>
+                    <p className="text-xs font-bold text-parchment mb-2">Lecture Times</p>
+                    <div className="space-y-2">
+                      {IN_PERSON_SCHEDULES.filter((s) => s.type === "Lecture").map((s) => {
+                        const selected = inPersonSelections.includes(s.value);
+                        return (
+                          <label
+                            key={s.value}
+                            className={cn(
+                              "flex items-center gap-3 rounded-lg border px-4 py-3 cursor-pointer transition-all",
+                              selected
+                                ? "border-pink-500/40 bg-pink-500/[0.04]"
+                                : "border-white/5 bg-plum-900/40 hover:border-white/10",
+                            )}
+                          >
+                            <input
+                              type="radio"
+                              name="inPersonLecture_radio"
+                              value={s.value}
+                              checked={selected}
+                              onChange={() => {
+                                setInPersonSelections((prev) => [
+                                  ...prev.filter((v) => {
+                                    const opt = IN_PERSON_SCHEDULES.find((o) => o.value === v);
+                                    return opt?.type !== "Lecture" && opt?.type !== "Combined";
+                                  }),
+                                  s.value,
+                                ]);
+                              }}
+                              className="h-4 w-4 accent-pink-500 flex-shrink-0"
+                            />
+                            <svg className="h-3.5 w-3.5 flex-shrink-0 text-pink-500/60" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
+                              <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                            </svg>
+                            <span className="flex-1 text-sm text-sandstone">{s.label}</span>
+                            <span className="rounded bg-jade/15 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-jade">
+                              {s.tag}
+                            </span>
+                          </label>
+                        );
+                      })}
+                    </div>
+                  </div>
+
+                  {/* Studios — clears Combined when selected */}
+                  <div>
+                    <p className="text-xs font-bold text-parchment mb-2">Studio Times</p>
+                    <div className="space-y-2">
+                      {IN_PERSON_SCHEDULES.filter((s) => s.type === "Studio").map((s) => {
+                        const selected = inPersonSelections.includes(s.value);
+                        return (
+                          <label
+                            key={s.value}
+                            className={cn(
+                              "flex items-center gap-3 rounded-lg border px-4 py-3 cursor-pointer transition-all",
+                              selected
+                                ? "border-pink-500/40 bg-pink-500/[0.04]"
+                                : "border-white/5 bg-plum-900/40 hover:border-white/10",
+                            )}
+                          >
+                            <input
+                              type="radio"
+                              name="inPersonStudio_radio"
+                              value={s.value}
+                              checked={selected}
+                              onChange={() => {
+                                setInPersonSelections((prev) => [
+                                  ...prev.filter((v) => {
+                                    const opt = IN_PERSON_SCHEDULES.find((o) => o.value === v);
+                                    return opt?.type !== "Studio" && opt?.type !== "Combined";
+                                  }),
+                                  s.value,
+                                ]);
+                              }}
+                              className="h-4 w-4 accent-pink-500 flex-shrink-0"
+                            />
+                            <svg className="h-3.5 w-3.5 flex-shrink-0 text-pink-500/60" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
+                              <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                            </svg>
+                            <span className="flex-1 text-sm text-sandstone">{s.label}</span>
+                            <span className="rounded bg-jade/15 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-jade">
+                              {s.tag}
+                            </span>
+                          </label>
+                        );
+                      })}
+                    </div>
+                  </div>
+
+                  {/* Combined — clears Lecture + Studio when selected */}
+                  <div>
+                    <p className="text-xs font-bold text-parchment mb-2">Combined (Lecture + Studio)</p>
+                    <div className="space-y-2">
+                      {IN_PERSON_SCHEDULES.filter((s) => s.type === "Combined").map((s) => {
+                        const selected = inPersonSelections.includes(s.value);
+                        return (
+                          <label
+                            key={s.value}
+                            className={cn(
+                              "flex items-center gap-3 rounded-lg border px-4 py-3 cursor-pointer transition-all",
+                              selected
+                                ? "border-pink-500/40 bg-pink-500/[0.04]"
+                                : "border-white/5 bg-plum-900/40 hover:border-white/10",
+                            )}
+                          >
+                            <input
+                              type="radio"
+                              name="inPersonCombined_radio"
+                              value={s.value}
+                              checked={selected}
+                              onChange={() => setInPersonSelections([s.value])}
+                              className="h-4 w-4 accent-pink-500 flex-shrink-0"
+                            />
+                            <svg className="h-3.5 w-3.5 flex-shrink-0 text-pink-500/60" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
+                              <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                            </svg>
+                            <span className="flex-1 text-sm text-sandstone">{s.label}</span>
+                            <span className="rounded bg-jade/15 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-jade">
+                              {s.tag}
+                            </span>
+                          </label>
+                        );
+                      })}
+                    </div>
                   </div>
                 </div>
               )}
 
               {/* ── On-Line schedule ───────────────────────────────────────── */}
               {coursePreference === "online" && (
-                <div className="animate-in fade-in space-y-3">
-                  <p className="text-xs font-bold text-parchment mb-3 flex items-center gap-2">
-                    <span className="rounded bg-violet/15 px-2 py-0.5 text-[10px] uppercase tracking-wider text-violet">
-                      Online
-                    </span>
-                    Select your preferred schedule(s)
-                  </p>
-                  <div className="space-y-2">
-                    {ONLINE_SCHEDULES.map((s) => (
-                      <label
-                        key={s.value}
-                        className={cn(
-                          "flex items-center gap-3 rounded-lg border px-4 py-3 cursor-pointer transition-all",
-                          onlineSelections.includes(s.value)
-                            ? "border-pink-500/40 bg-pink-500/[0.04]"
-                            : "border-white/5 bg-plum-900/40 hover:border-white/10",
-                        )}
-                      >
-                        <input
-                          type="checkbox"
-                          name="onlineSchedule"
-                          value={s.value}
-                          checked={onlineSelections.includes(s.value)}
-                          onChange={(e) => {
-                            if (e.target.checked) {
-                              setOnlineSelections((prev) => [...prev, s.value]);
-                            } else {
-                              setOnlineSelections((prev) => prev.filter((v) => v !== s.value));
-                            }
-                          }}
-                          className="h-4 w-4 accent-pink-500 flex-shrink-0 rounded"
-                        />
-                        <svg className="h-3.5 w-3.5 flex-shrink-0 text-pink-500/60" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-                        </svg>
-                        <span className="flex-1 text-sm text-sandstone">{s.label}</span>
-                        <span className="rounded bg-violet/15 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-violet">
-                          {s.tag}
-                        </span>
-                      </label>
-                    ))}
+                <div className="animate-in fade-in space-y-4">
+                  <div className="rounded-lg border border-amber-500/20 bg-amber-500/5 px-4 py-3">
+                    <p className="text-xs font-semibold text-amber-400">
+                      Select 1 Lecture time + 1 Studio time (or 1 Combined)
+                    </p>
+                  </div>
+
+                  {/* Lectures — clears Combined when selected */}
+                  <div>
+                    <p className="text-xs font-bold text-parchment mb-2">Lecture Times</p>
+                    <div className="space-y-2">
+                      {ONLINE_SCHEDULES.filter((s) => s.type === "Lecture").map((s) => {
+                        const selected = onlineSelections.includes(s.value);
+                        return (
+                          <label
+                            key={s.value}
+                            className={cn(
+                              "flex items-center gap-3 rounded-lg border px-4 py-3 cursor-pointer transition-all",
+                              selected
+                                ? "border-pink-500/40 bg-pink-500/[0.04]"
+                                : "border-white/5 bg-plum-900/40 hover:border-white/10",
+                            )}
+                          >
+                            <input
+                              type="radio"
+                              name="onlineLecture_radio"
+                              value={s.value}
+                              checked={selected}
+                              onChange={() => {
+                                setOnlineSelections((prev) => [
+                                  ...prev.filter((v) => {
+                                    const opt = ONLINE_SCHEDULES.find((o) => o.value === v);
+                                    return opt?.type !== "Lecture" && opt?.type !== "Combined";
+                                  }),
+                                  s.value,
+                                ]);
+                              }}
+                              className="h-4 w-4 accent-pink-500 flex-shrink-0"
+                            />
+                            <svg className="h-3.5 w-3.5 flex-shrink-0 text-pink-500/60" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
+                              <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                            </svg>
+                            <span className="flex-1 text-sm text-sandstone">{s.label}</span>
+                            <span className="rounded bg-violet/15 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-violet">
+                              {s.tag}
+                            </span>
+                          </label>
+                        );
+                      })}
+                    </div>
+                  </div>
+
+                  {/* Studios — clears Combined when selected */}
+                  <div>
+                    <p className="text-xs font-bold text-parchment mb-2">Studio Times</p>
+                    <div className="space-y-2">
+                      {ONLINE_SCHEDULES.filter((s) => s.type === "Studio").map((s) => {
+                        const selected = onlineSelections.includes(s.value);
+                        return (
+                          <label
+                            key={s.value}
+                            className={cn(
+                              "flex items-center gap-3 rounded-lg border px-4 py-3 cursor-pointer transition-all",
+                              selected
+                                ? "border-pink-500/40 bg-pink-500/[0.04]"
+                                : "border-white/5 bg-plum-900/40 hover:border-white/10",
+                            )}
+                          >
+                            <input
+                              type="radio"
+                              name="onlineStudio_radio"
+                              value={s.value}
+                              checked={selected}
+                              onChange={() => {
+                                setOnlineSelections((prev) => [
+                                  ...prev.filter((v) => {
+                                    const opt = ONLINE_SCHEDULES.find((o) => o.value === v);
+                                    return opt?.type !== "Studio" && opt?.type !== "Combined";
+                                  }),
+                                  s.value,
+                                ]);
+                              }}
+                              className="h-4 w-4 accent-pink-500 flex-shrink-0"
+                            />
+                            <svg className="h-3.5 w-3.5 flex-shrink-0 text-pink-500/60" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
+                              <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                            </svg>
+                            <span className="flex-1 text-sm text-sandstone">{s.label}</span>
+                            <span className="rounded bg-violet/15 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-violet">
+                              {s.tag}
+                            </span>
+                          </label>
+                        );
+                      })}
+                    </div>
+                  </div>
+
+                  {/* Combined — clears Lecture + Studio when selected */}
+                  <div>
+                    <p className="text-xs font-bold text-parchment mb-2">Combined (Lecture + Studio)</p>
+                    <div className="space-y-2">
+                      {ONLINE_SCHEDULES.filter((s) => s.type === "Combined").map((s) => {
+                        const selected = onlineSelections.includes(s.value);
+                        return (
+                          <label
+                            key={s.value}
+                            className={cn(
+                              "flex items-center gap-3 rounded-lg border px-4 py-3 cursor-pointer transition-all",
+                              selected
+                                ? "border-pink-500/40 bg-pink-500/[0.04]"
+                                : "border-white/5 bg-plum-900/40 hover:border-white/10",
+                            )}
+                          >
+                            <input
+                              type="radio"
+                              name="onlineCombined_radio"
+                              value={s.value}
+                              checked={selected}
+                              onChange={() => setOnlineSelections([s.value])}
+                              className="h-4 w-4 accent-pink-500 flex-shrink-0"
+                            />
+                            <svg className="h-3.5 w-3.5 flex-shrink-0 text-pink-500/60" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
+                              <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                            </svg>
+                            <span className="flex-1 text-sm text-sandstone">{s.label}</span>
+                            <span className="rounded bg-violet/15 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-violet">
+                              {s.tag}
+                            </span>
+                          </label>
+                        );
+                      })}
+                    </div>
                   </div>
                 </div>
               )}
@@ -1274,28 +1496,28 @@ export function ApplicationForm() {
                     </p>
                   </div>
 
-                  {/* Lectures */}
+                  {/* Lectures — radio: only 1 allowed */}
                   <div>
                     <p className="text-xs font-bold text-parchment mb-2">Lecture Times</p>
                     <div className="space-y-2">
-                      {HYBRID_OPTIONS.filter((o) => o.type === "Lecture").map((s) => (
-                        <label
-                          key={s.value}
-                          className={cn(
-                            "flex items-center gap-3 rounded-lg border px-4 py-3 cursor-pointer transition-all",
-                            hybridSelections.includes(s.value)
-                              ? "border-pink-500/40 bg-pink-500/[0.04]"
-                              : "border-white/5 bg-plum-900/40 hover:border-white/10",
-                          )}
-                        >
-                          <input
-                            type="checkbox"
-                            name="hybridSchedule"
-                            value={s.value}
-                            checked={hybridSelections.includes(s.value)}
-                            onChange={(e) => {
-                              if (e.target.checked) {
-                                // Remove any other lecture selection, then add this one
+                      {HYBRID_OPTIONS.filter((o) => o.type === "Lecture").map((s) => {
+                        const selected = hybridSelections.includes(s.value);
+                        return (
+                          <label
+                            key={s.value}
+                            className={cn(
+                              "flex items-center gap-3 rounded-lg border px-4 py-3 cursor-pointer transition-all",
+                              selected
+                                ? "border-pink-500/40 bg-pink-500/[0.04]"
+                                : "border-white/5 bg-plum-900/40 hover:border-white/10",
+                            )}
+                          >
+                            <input
+                              type="radio"
+                              name="hybridLecture_radio"
+                              value={s.value}
+                              checked={selected}
+                              onChange={() => {
                                 setHybridSelections((prev) => [
                                   ...prev.filter((v) => {
                                     const opt = HYBRID_OPTIONS.find((o) => o.value === v);
@@ -1303,51 +1525,49 @@ export function ApplicationForm() {
                                   }),
                                   s.value,
                                 ]);
-                              } else {
-                                setHybridSelections((prev) => prev.filter((v) => v !== s.value));
-                              }
-                            }}
-                            className="h-4 w-4 accent-pink-500 flex-shrink-0 rounded"
-                          />
-                          <svg className="h-3.5 w-3.5 flex-shrink-0 text-pink-500/60" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
-                            <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-                          </svg>
-                          <span className="flex-1 text-sm text-sandstone">{s.label}</span>
-                          <span
-                            className={cn(
-                              "rounded px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider",
-                              s.tag === "Online" ? "bg-violet/15 text-violet" : "bg-jade/15 text-jade",
-                            )}
-                          >
-                            {s.tag}
-                          </span>
-                        </label>
-                      ))}
+                              }}
+                              className="h-4 w-4 accent-pink-500 flex-shrink-0"
+                            />
+                            <svg className="h-3.5 w-3.5 flex-shrink-0 text-pink-500/60" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
+                              <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                            </svg>
+                            <span className="flex-1 text-sm text-sandstone">{s.label}</span>
+                            <span
+                              className={cn(
+                                "rounded px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider",
+                                s.tag === "Online" ? "bg-violet/15 text-violet" : "bg-jade/15 text-jade",
+                              )}
+                            >
+                              {s.tag}
+                            </span>
+                          </label>
+                        );
+                      })}
                     </div>
                   </div>
 
-                  {/* Studios */}
+                  {/* Studios — radio: only 1 allowed */}
                   <div>
                     <p className="text-xs font-bold text-parchment mb-2">Studio Times</p>
                     <div className="space-y-2">
-                      {HYBRID_OPTIONS.filter((o) => o.type === "Studio").map((s) => (
-                        <label
-                          key={s.value}
-                          className={cn(
-                            "flex items-center gap-3 rounded-lg border px-4 py-3 cursor-pointer transition-all",
-                            hybridSelections.includes(s.value)
-                              ? "border-pink-500/40 bg-pink-500/[0.04]"
-                              : "border-white/5 bg-plum-900/40 hover:border-white/10",
-                          )}
-                        >
-                          <input
-                            type="checkbox"
-                            name="hybridSchedule"
-                            value={s.value}
-                            checked={hybridSelections.includes(s.value)}
-                            onChange={(e) => {
-                              if (e.target.checked) {
-                                // Remove any other studio selection, then add this one
+                      {HYBRID_OPTIONS.filter((o) => o.type === "Studio").map((s) => {
+                        const selected = hybridSelections.includes(s.value);
+                        return (
+                          <label
+                            key={s.value}
+                            className={cn(
+                              "flex items-center gap-3 rounded-lg border px-4 py-3 cursor-pointer transition-all",
+                              selected
+                                ? "border-pink-500/40 bg-pink-500/[0.04]"
+                                : "border-white/5 bg-plum-900/40 hover:border-white/10",
+                            )}
+                          >
+                            <input
+                              type="radio"
+                              name="hybridStudio_radio"
+                              value={s.value}
+                              checked={selected}
+                              onChange={() => {
                                 setHybridSelections((prev) => [
                                   ...prev.filter((v) => {
                                     const opt = HYBRID_OPTIONS.find((o) => o.value === v);
@@ -1355,21 +1575,24 @@ export function ApplicationForm() {
                                   }),
                                   s.value,
                                 ]);
-                              } else {
-                                setHybridSelections((prev) => prev.filter((v) => v !== s.value));
-                              }
-                            }}
-                            className="h-4 w-4 accent-pink-500 flex-shrink-0 rounded"
-                          />
-                          <svg className="h-3.5 w-3.5 flex-shrink-0 text-pink-500/60" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
-                            <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-                          </svg>
-                          <span className="flex-1 text-sm text-sandstone">{s.label}</span>
-                          <span className="rounded bg-jade/15 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-jade">
-                            {s.tag}
-                          </span>
-                        </label>
-                      ))}
+                              }}
+                              className="h-4 w-4 accent-pink-500 flex-shrink-0"
+                            />
+                            <svg className="h-3.5 w-3.5 flex-shrink-0 text-pink-500/60" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
+                              <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                            </svg>
+                            <span className="flex-1 text-sm text-sandstone">{s.label}</span>
+                            <span
+                              className={cn(
+                                "rounded px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider",
+                                s.tag === "Online" ? "bg-violet/15 text-violet" : "bg-jade/15 text-jade",
+                              )}
+                            >
+                              {s.tag}
+                            </span>
+                          </label>
+                        );
+                      })}
                     </div>
                   </div>
                 </div>
@@ -1384,7 +1607,15 @@ export function ApplicationForm() {
             {/* ── Payment Choice ──────────────────────────────────────── */}
             <fieldset>
               <legend className="font-heading text-lg font-bold text-parchment mb-2">
-                Payment Choice Combined Certificate Course{requiredStar}{requiredStar}
+                Payment Choice &mdash;{" "}
+                {programType === "combined"
+                  ? "Combined Certificate Course"
+                  : programType === "hybrid"
+                    ? "Hybrid Certificate Course"
+                    : programType === "single"
+                      ? "Lecture or Studio Only"
+                      : "Certificate Course"}
+                {requiredStar}
               </legend>
               <div className="space-y-3 mt-4">
                 {PAYMENT_TIERS.map((tier) => (

@@ -131,6 +131,17 @@ export function TourForm() {
       return;
     }
 
+    // Validate weekday-only tours
+    const selectedDate = data.preferredDate as string;
+    if (selectedDate) {
+      const day = new Date(selectedDate + "T12:00:00").getDay();
+      if (day === 0 || day === 6) {
+        setStatus("error");
+        setErrorMsg("Campus tours are available Monday–Friday only. Please select a weekday.");
+        return;
+      }
+    }
+
     try {
       const res = await fetch("/api/tour", {
         method: "POST",

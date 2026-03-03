@@ -32,8 +32,8 @@ export default function RegisterPage() {
         {/* Background image */}
         <div className="absolute inset-0">
           <Image
-            src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=1920&q=80"
-            alt="Students celebrating at graduation ceremony"
+            src="/images/campus.jpeg"
+            alt="Interior Designers Institute campus"
             fill
             priority
             className="object-cover"
