@@ -180,8 +180,9 @@ export default function HistoryPage() {
               <Card variant="glass" className="p-8">
                 <p className="font-heading text-4xl font-bold text-gradient-pink inline-block md:text-5xl">1984</p>
                 <p className="mt-3 text-sm leading-relaxed text-sandstone">
-                  Founded in Corona del Mar, California, by Judy Deaton with a
-                  mission to provide quality interior design education.
+                  In 1984 Interior Designers Institute opened in Corona del Mar,
+                  California with a mission to provide quality interior design
+                  education.
                 </p>
               </Card>
               <Card variant="glass" className="p-8">

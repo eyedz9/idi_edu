@@ -155,6 +155,17 @@ export default async function ProgramDetailPage({ params }: PageProps) {
                 {program.description}
               </p>
 
+              {program.prerequisite && (
+                <div className="mt-6 rounded-lg border border-white/10 bg-white/5 p-4">
+                  <p className="text-xs sm:text-sm font-semibold uppercase tracking-wider text-pink-500">
+                    Prerequisite
+                  </p>
+                  <p className="mt-1 text-sm text-sandstone">
+                    {program.prerequisite}
+                  </p>
+                </div>
+              )}
+
               {program.schedule && (
                 <div className="mt-6 rounded-lg border border-white/10 bg-white/5 p-4">
                   <p className="text-xs sm:text-sm font-semibold uppercase tracking-wider text-pink-500">
@@ -233,7 +244,7 @@ export default async function ProgramDetailPage({ params }: PageProps) {
           }
           subtitle={
             program.isAvocational
-              ? "The Certificate Course includes both lecture sessions and hands-on studio workshops."
+              ? "The Certificate Course includes lecture sessions and hands-on studio workshops."
               : `${program.courses.length} courses covering the full breadth of ${program.degreeType === "Master's Degree" ? "interior architecture" : "interior design"}.`
           }
         >
@@ -244,7 +255,7 @@ export default async function ProgramDetailPage({ params }: PageProps) {
                 {/* Lectures */}
                 <div>
                   <h3 className="mb-4 font-heading text-xl font-bold text-parchment">
-                    Lectures
+                    Lecture Topics
                   </h3>
                   <ul className="space-y-2">
                     {program.lectures?.map((lecture, i) => (
@@ -261,6 +272,27 @@ export default async function ProgramDetailPage({ params }: PageProps) {
                       </li>
                     ))}
                   </ul>
+                  {/* Field Trips — unnumbered, after lectures */}
+                  {program.fieldTrips && program.fieldTrips.length > 0 && (
+                    <div className="mt-4 space-y-2">
+                      {program.fieldTrips.map((trip, i) => (
+                        <div
+                          key={i}
+                          className="flex items-start gap-3 rounded-lg border border-white/10 bg-white/5 p-3"
+                        >
+                          <span className="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-pink-500/15">
+                            <svg className="h-3.5 w-3.5 text-pink-500" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" aria-hidden="true">
+                              <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                              <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z" />
+                            </svg>
+                          </span>
+                          <span className="text-sm text-parchment">
+                            {trip.title}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+                  )}
                 </div>
 
                 {/* Studios */}
@@ -295,7 +327,7 @@ export default async function ProgramDetailPage({ params }: PageProps) {
                     <div className="flex items-start justify-between gap-3">
                       <div>
                         <p className="text-xs sm:text-sm font-semibold uppercase tracking-wider text-pink-500">
-                          IDI {course.code}
+                          {course.code}
                         </p>
                         <h4 className="mt-1 font-heading text-base font-bold text-parchment">
                           {course.name}
@@ -338,7 +370,7 @@ export default async function ProgramDetailPage({ params }: PageProps) {
                   />
                   {tuition.supplyCost > 0 && (
                     <TuitionRow
-                      label="Supply Cost"
+                      label="Books & Supplies"
                       amount={tuition.supplyCost}
                     />
                   )}
@@ -348,13 +380,25 @@ export default async function ProgramDetailPage({ params }: PageProps) {
                       amount={tuition.stlmFee}
                     />
                   )}
+                  {tuition.labFee && tuition.labFee > 0 && (
+                    <TuitionRow
+                      label="Computer Lab Fees"
+                      amount={tuition.labFee}
+                    />
+                  )}
                   <TuitionRow
-                    label="Total Charges"
+                    label="TOTAL CHARGES"
                     amount={tuition.totalCharges}
                     bold
                   />
+                  {tuition.estimatedAdditionalSupplies && tuition.estimatedAdditionalSupplies > 0 && (
+                    <TuitionRow
+                      label="Estimated Additional Supplies"
+                      amount={tuition.estimatedAdditionalSupplies}
+                    />
+                  )}
                   <TuitionRow
-                    label="Total Estimated Cost"
+                    label="TOTAL ESTIMATED COST"
                     amount={tuition.totalEstimatedCost}
                     bold
                     accent
@@ -579,6 +623,37 @@ export default async function ProgramDetailPage({ params }: PageProps) {
             </div>
           )}
 
+          {/* Prerequisite Note — Certificate only */}
+          {program.isAvocational && (
+            <div className="rounded-lg border border-white/10 bg-white/5 p-6">
+              <div className="flex items-start gap-3">
+                <svg
+                  className="mt-0.5 h-5 w-5 flex-shrink-0 text-sandstone/60"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={1.5}
+                  stroke="currentColor"
+                  aria-hidden="true"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z"
+                  />
+                </svg>
+                <div>
+                  <h3 className="text-sm font-semibold text-parchment">
+                    Prerequisite*
+                  </h3>
+                  <p className="mt-2 text-sm leading-relaxed text-sandstone">
+                    * Prerequisite is completion of the Associate of Arts Degree
+                    in Interior Design and payment of the tuition.
+                  </p>
+                </div>
+              </div>
+            </div>
+          )}
+
           {/* CIDA Accreditation + GE — BA only */}
           {program.cidaAccredited && (
             <div className="rounded-lg border border-white/10 bg-white/5 p-6">
@@ -674,28 +749,6 @@ export default async function ProgramDetailPage({ params }: PageProps) {
                   />
                 </svg>
                 School Performance Fact Sheet
-              </a>
-              <a
-                href={`/documents/ge-disclosure-${slug}.pdf`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-sm text-pink-500 underline decoration-pink-500/40 underline-offset-2 transition-colors hover:text-pink-400 hover:decoration-pink-400/60"
-              >
-                <svg
-                  className="h-4 w-4"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth={1.5}
-                  stroke="currentColor"
-                  aria-hidden="true"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z"
-                  />
-                </svg>
-                Gainful Employment Disclosure
               </a>
             </div>
           </div>

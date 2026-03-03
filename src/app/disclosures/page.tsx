@@ -27,8 +27,6 @@ const categoryDescriptions: Record<string, string> = {
   BPPE: "Documents required by the California Bureau for Private Postsecondary Education.",
   "Financial Aid":
     "Financial aid policies, consumer information, and net price calculators.",
-  "Student Outcomes":
-    "Gainful employment disclosures and student outcome data for each program.",
   "Program-Specific":
     "CIDA accreditation documentation and detailed program outlines for each degree.",
 };

@@ -41,6 +41,7 @@ export interface Program {
   cidaAccredited?: boolean;
   minimumGPA?: number;
   admissionRequirements?: string;
+  prerequisite?: string;
   requiresGE?: string;
   partTimeOnly?: boolean;
   careerOutcomes: string[];
@@ -48,6 +49,7 @@ export interface Program {
   careerDisclaimer?: string;
   courses: Course[];
   lectures?: CertificateLecture[];
+  fieldTrips?: CertificateLecture[];
   studios?: CertificateStudio[];
 }
 
@@ -73,7 +75,9 @@ export interface TuitionInfo {
   tuition: number;
   registrationFee: number;
   stlmFee: number;
+  labFee?: number;
   supplyCost: number;
+  estimatedAdditionalSupplies?: number;
   totalCharges: number;
   totalEstimatedCost: number;
   paymentSchedule: PaymentScheduleRow[];
@@ -157,7 +161,6 @@ export type DisclosureCategory =
   | "ACCSC"
   | "BPPE"
   | "Financial Aid"
-  | "Student Outcomes"
   | "Program-Specific";
 
 // ─── About / Why IDI Types ───────────────────────────────────────────────────

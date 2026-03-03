@@ -104,7 +104,7 @@ export default function ProgramsPage() {
                     <div className="mt-6 grid grid-cols-2 gap-4 border-t border-white/10 pt-4">
                       <div>
                         <p className="text-xs sm:text-sm text-sandstone/60">
-                          Starting Tuition
+                          Tuition
                         </p>
                         <p className="font-body text-base font-semibold text-parchment">
                           {formatCurrency(

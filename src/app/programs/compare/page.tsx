@@ -52,14 +52,13 @@ const rows: ComparisonRow[] = [
   {
     label: "Courses",
     getValue: (slug) => {
-      const p = programs.find((pr) => pr.slug === slug);
-      if (!p) return "";
-      if (p.isAvocational) {
-        const lectures = p.lectures?.length ?? 0;
-        const studios = p.studios?.length ?? 0;
-        return `${lectures} lectures, ${studios} studios`;
-      }
-      return `${p.courses.length} courses`;
+      const courseCounts: Record<string, string> = {
+        certificate: "2 courses (Lectures & Studio Workshop)",
+        "associate-of-arts": "20 courses",
+        "bachelor-of-arts": "9 courses",
+        "master-interior-architecture": "9 courses",
+      };
+      return courseCounts[slug] ?? "";
     },
   },
   {
@@ -99,8 +98,8 @@ const rows: ComparisonRow[] = [
   {
     label: "Online Option",
     getValue: (slug) => {
-      const p = programs.find((pr) => pr.slug === slug);
-      return p?.onlineAvailable ? "Yes" : "No";
+      if (slug === "certificate") return "In-Person & Online";
+      return "Hybrid*";
     },
   },
 ];
@@ -210,6 +209,11 @@ export default function CompareProgramsPage() {
             </div>
           </div>
 
+          {/* Footnote */}
+          <p className="mt-4 text-xs text-sandstone/60 italic">
+            *Some classes offered live streaming online; program cannot be completed entirely online.
+          </p>
+
           {/* Mobile: stacked cards */}
           <div className="grid gap-6 md:hidden">
             {programs.map((p) => {
@@ -236,9 +240,12 @@ export default function CompareProgramsPage() {
                     <MobileRow
                       label="Courses"
                       value={
-                        p.isAvocational
-                          ? `${p.lectures?.length ?? 0} lectures, ${p.studios?.length ?? 0} studios`
-                          : `${p.courses.length} courses`
+                        {
+                          certificate: "2 courses (Lectures & Studio Workshop)",
+                          "associate-of-arts": "20 courses",
+                          "bachelor-of-arts": "9 courses",
+                          "master-interior-architecture": "9 courses",
+                        }[p.slug] ?? ""
                       }
                     />
                     <MobileRow
@@ -278,7 +285,7 @@ export default function CompareProgramsPage() {
                     />
                     <MobileRow
                       label="Online Option"
-                      value={p.onlineAvailable ? "Yes" : "No"}
+                      value={p.slug === "certificate" ? "In-Person & Online" : "Hybrid*"}
                     />
                   </dl>
 

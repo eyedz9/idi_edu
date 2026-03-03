@@ -38,7 +38,7 @@ export const programMenuItems: ProgramMenuItem[] = [
     duration: "24–48 Months",
     description: "Comprehensive program building core design and technical skills.",
     icon: "associate",
-    badges: ["Online Available"],
+    badges: [],
   },
   {
     title: "Bachelor of Arts",

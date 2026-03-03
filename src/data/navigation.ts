@@ -50,6 +50,10 @@ export const primaryNav: NavItem[] = [
         href: "/contact",
       },
       {
+        label: "Transfer Students",
+        href: "/admissions/transfer-students",
+      },
+      {
         label: "Schedule a Visit",
         href: "/admissions/visit",
       },

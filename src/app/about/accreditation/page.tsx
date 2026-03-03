@@ -120,6 +120,40 @@ export default function AccreditationPage() {
                 {paragraph}
               </p>
             ))}
+
+            <div className="mt-8 rounded-lg border-l-4 border-jade bg-jade/5 p-6">
+              <p className="text-sm font-semibold text-jade">
+                IDI has maintained continuous CIDA accreditation since 1992.
+              </p>
+            </div>
+
+            <div className="mt-8 space-y-6">
+              <p className="text-base leading-relaxed text-sandstone">
+                The Avocational Certificate Course, the Associate of Arts Degree
+                in Interior Design, the Bachelor of Arts Degree in Interior
+                Design, and the Master of Interior Architecture Degree Programs
+                are accredited by the Accrediting Commission of Career Schools
+                &amp; Colleges. The U.S. Department of Education lists ACCSC as
+                a nationally recognized accrediting agency.
+              </p>
+              <p className="text-base leading-relaxed text-sandstone">
+                Interior Designers Institute is approved to offer all programs as
+                hybrid (online/in-person) for California residents. Interior
+                Designers Institute is a private institution approved to operate
+                by the Bureau for Private Postsecondary Education. Approval to
+                operate means compliance with the minimum state standards as set
+                forth in the California Private Post Secondary Act 2009 (as
+                amended), California Education Code (CEC), Division 7.5 of Title
+                5, California Code of Regulations (CCR).
+              </p>
+              <p className="text-base leading-relaxed text-sandstone">
+                The Bachelor of Arts Degree in Interior Design Program is
+                accredited by Council for Interior Design Accreditation (CIDA).
+                Interior Designers Institute reserves the right to change, modify
+                or disassociate the college from any current accrediting agency
+                or institution without prior notice.
+              </p>
+            </div>
           </div>
         </AnimatedSection>
       </Section>

@@ -5,11 +5,11 @@ export const programs: Program[] = [
   // ─── Certificate Course ──────────────────────────────────────────────────────
   {
     slug: "certificate",
-    name: "Certificate Course in Interior Design",
-    shortName: "Certificate Course",
+    name: "Avocational Certificate Course in Interior Design",
+    shortName: "Avocational Certificate Course",
     degreeType: "Certificate of Completion",
     duration: "12 weeks (3 months)",
-    creditUnits: "10 (foundation/avocational)",
+    creditUnits: "8 (foundation/avocational)",
     tuition: 2400,
     totalCharges: 2795,
     totalEstimatedCost: 3045,
@@ -29,8 +29,6 @@ export const programs: Program[] = [
       { title: "Beautiful Kitchens" },
       { title: "The Luxury Bathroom" },
       { title: "Great Windows and Walls" },
-      { title: "Field Trip Stonemill Design Center" },
-      { title: "Field Trip Laguna Design Center" },
       { title: "Magic of Color" },
       { title: "The Natural and Healthy Home" },
       { title: "History of the Chair" },
@@ -42,6 +40,10 @@ export const programs: Program[] = [
       { title: "Home Staging" },
       { title: "Principles & Elements of Design" },
       { title: "Planning the Space" },
+    ],
+    fieldTrips: [
+      { title: "Field Trip Stonemill Design Center" },
+      { title: "Field Trip Laguna Design Center" },
     ],
     studios: [
       { title: "Tools and Equipment" },
@@ -67,7 +69,7 @@ export const programs: Program[] = [
     totalCharges: 40600,
     totalEstimatedCost: 43100,
     description:
-      "Two years to fluency in the language of design. This is where you stop admiring interiors and start creating them. Build technical chops in drafting, codes, and construction — then channel them into residential projects that feel as good as they look. You'll graduate speaking the industry's language and sketching its future.",
+      "Two years to fluency in the language of design. This is where you stop admiring interiors and start creating them. Build technical skills in drafting, codes, and construction — then channel them into residential projects that feel as good as they look. You'll graduate speaking the industry's language and designing its future.",
     isAccredited: true,
     accreditor: "ACCSC",
     careerOutcomes: [
@@ -90,7 +92,7 @@ export const programs: Program[] = [
     shortName: "BA in Interior Design",
     degreeType: "Bachelor of Arts",
     duration: "30\u201354 months",
-    creditUnits: "180 quarter units (120 semester; includes 45 GE transfer)",
+    creditUnits: "180 quarter units (AA 90 + BA 45 + 45 GE transfer)",
     tuition: 19950,
     totalCharges: 20850,
     totalEstimatedCost: 23350,
@@ -99,6 +101,8 @@ export const programs: Program[] = [
     isAccredited: true,
     accreditor: "ACCSC",
     cidaAccredited: true,
+    prerequisite:
+      "*The prerequisite for earning the Bachelor of Arts in Interior Design is completion of the Associate of Arts Degree in Interior Design and payment of the tuition.",
     requiresGE: "45 quarter units of General Education from an accredited institution",
     careerOutcomes: [
       "Hospitality design for hotels, resorts, and boutique properties",
@@ -130,10 +134,10 @@ export const programs: Program[] = [
     isAccredited: true,
     accreditor: "ACCSC",
     minimumGPA: 3.0,
-    partTimeOnly: true,
     admissionRequirements:
       "Requires a Bachelor of Arts in interior design or architecture from an accredited US institution, portfolio review, and personal interview.",
-    schedule: "Part-time, in-class only, Monday and Thursday evenings.",
+    schedule:
+      "Hybrid: Mondays attend the online live streaming interactive lecture. Thursdays attend in person to develop your design project and research skills.",
     careerOutcomes: [
       "Senior design and design director roles at leading firms",
       "Complex project management from concept through completion",
@@ -141,7 +145,71 @@ export const programs: Program[] = [
       "Independent consulting and design entrepreneurship",
       "Research and innovation in the built environment",
     ],
-    courses: [],
+    courses: [
+      {
+        code: "501",
+        name: "GRADUATE SEMINAR, THE ARTS",
+        units: 6.5,
+        description:
+          "This multi-thematic seminar explores topics central to the decorative arts and to connoisseurship. Specialized subjects will be studied in-depth, beyond the scope of the bachelor\u2019s degree. Subjects include antiques, silver appraisal, and glass. The art of collecting fine art through consultants will include contemporary living artists and traditional artists. Guest speakers will include antique and art appraisers and fine art consultants. Field trips will be taken to the Getty Collection in Malibu, the Getty Museum in Los Angeles, and the Los Angeles County Museum of Art, where students will receive lectures from faculty. The course will include lectures, field trips, and workshops.",
+      },
+      {
+        code: "502",
+        name: "DESIGN PROJECT, PART 1",
+        units: 4.5,
+        description:
+          "Students research, develop, and analyze data and design criteria for a substantial design project of their choice involving diverse populations. Students research case studies, project types, and relevant environment and behavior theory. This advanced studio requires students to integrate and synthesize the skills and knowledge gained throughout their studies to create a comprehensive project, which may include presentation drawings, models, material and furniture boards, detail drawings, and specifications. This class is Part 1 in a series of three classes that are integrated with their research thesis.",
+      },
+      {
+        code: "503",
+        name: "RESEARCH METHODS, PART 1",
+        units: 3.0,
+        description:
+          "This research-based course lays the foundation for the thesis to be completed. In consultation with faculty, students will select an appropriate project type, determine the site to be used, and write a project statement and program outline. Students will learn advanced methods of research and the appropriate methods of writing to support their research.",
+      },
+      {
+        code: "504",
+        name: "GRADUATE SEMINAR, SPECIAL TOPICS",
+        units: 6.5,
+        description:
+          "This seminar promotes the discussion of contemporary issues in design and advanced interior design and architectural theory and criticism conducted through case studies and readings from modern commentary and research. Individuals from the industry will be invited to participate in panel discussions on contemporary topics offering students opportunities for interaction with practicing professionals. Topics for discussion will also include global theories referencing concepts for improvement of not only the profession but of society on a global level. Microtrends, aging in place, and sustainable environments are additional topics that will be explored. The course will include lectures, panel discussions, field trips, and workshops.",
+      },
+      {
+        code: "505",
+        name: "DESIGN PROJECT, PART 2",
+        units: 4.5,
+        description:
+          "This course is the second in the thesis capstone project class sequence of a student-generated project document. The course focuses on the further design development of the project and the continuation of research and analysis for thesis texts. A portfolio/sketchbook and completed thesis document are required, as are various assignments. Students are required to create a product or merchandising concept that will be incorporated into their final capstone project.",
+      },
+      {
+        code: "506",
+        name: "RESEARCH METHODS, PART 2",
+        units: 3.0,
+        description:
+          "This course is the second in a series of research methods exposing students to a variety of ways to obtain new knowledge that directly relates to their thesis. Practical research methods and writing are studied. Students\u2019 research will be reviewed and critiqued by faculty.",
+      },
+      {
+        code: "507",
+        name: "GRADUATE SEMINAR, PROFESSIONAL PRACTICES",
+        units: 6.5,
+        description:
+          "Last, in the three-part series, this course concentrates on professional practices and explores major areas related to the practice of interior design and the designer\u2019s role in the organization and management of the firm. Legal documents and issues related to professional practice will be discussed. Individuals from the profession will be guest speakers, and there will be panel discussions from designers in the industry. Field trips to workrooms, fabricators, and design resources are part of this seminar. The course will include lectures, field trips, and workshops.",
+      },
+      {
+        code: "508",
+        name: "DESIGN PROJECT, PART 3",
+        units: 7.5,
+        description:
+          "Students finalize their capstone project. Incorporation of the capstone project into the student\u2019s portfolio will culminate in a student exhibit of this capstone project. Opening the exhibit will include a student verbal presentation of the capstone project, which may include multimedia effects. The presentation will be followed by a reception where students, faculty, and friends are invited.",
+      },
+      {
+        code: "509",
+        name: "RESEARCH METHODS, PART 3",
+        units: 3.0,
+        description:
+          "The final, in a series of three classes, on the preparation of research for the student\u2019s final thesis project and paper. Emphasis is placed on proper formatting of the document in integrating coursework for the preparation of the written thesis document and final project.",
+      },
+    ],
   },
 ];
 

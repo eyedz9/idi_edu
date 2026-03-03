@@ -5,7 +5,7 @@ export const aboutIDI = {
   headline: "Where Design Becomes a Career — and a Calling",
   tagline: "Newport Beach. Since 1984. No compromises.",
 
-  history: `It started with a conviction: that interior design deserved a school as intentional as the spaces it teaches you to create. In 1984, Judy Deaton founded Interior Designers Institute in Corona del Mar, California — a small, fiercely focused school where every student was known, every critique was personal, and the line between classroom and studio didn't exist.
+  history: `It started with a conviction: that interior design deserved a school as intentional as the spaces it teaches you to create. In 1984 Interior Designers Institute opened in Corona del Mar, California — a small, fiercely focused school where every student was known, every critique was personal, and the line between classroom and studio didn't exist.
 
 By 1990, the Institute had outgrown its original home and moved to Newport Beach — right where it belongs. Nestled at 1061 Camelback Street, the campus sits in one of Southern California's richest design ecosystems: showrooms, design centers, and a community of architects and designers who still serve as guest critics, mentors, and employers for IDI students.
 
@@ -19,7 +19,7 @@ Four decades in, thousands of graduates are shaping interiors across Southern Ca
     {
       year: 1984,
       event:
-        "Judy Deaton opens the doors in Corona del Mar with a vision: design education that's personal, rigorous, and studio-driven.",
+        "IDI's doors open in Corona del Mar with a vision: design education that's personal, rigorous, and studio-driven.",
     },
     {
       year: 1990,

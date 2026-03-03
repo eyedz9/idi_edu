@@ -122,6 +122,10 @@ export default function AdmissionsPage() {
             advancing your career, IDI has a program for you. Here&apos;s how to
             get started.
           </p>
+          <p className="mx-auto mt-4 max-w-2xl text-sm font-semibold text-amber-400">
+            Financial Aid is available for the Degree Programs only and to those
+            that qualify.
+          </p>
         </div>
       </section>
 

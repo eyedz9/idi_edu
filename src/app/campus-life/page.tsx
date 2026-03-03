@@ -184,7 +184,8 @@ export default function CampusLifePage() {
             Interior Designers Institute does not have dormitory facilities under
             its control and has no responsibility to find or assist a student in
             finding housing. Students are encouraged to research housing options
-            in the Newport Beach and surrounding areas independently.
+            in the Newport Beach and surrounding areas independently. See catalog
+            for local housing information.
           </p>
         </div>
       </div>

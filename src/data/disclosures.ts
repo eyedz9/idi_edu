@@ -115,36 +115,6 @@ export const disclosures: DisclosureDocument[] = [
       "Policy describing how financial aid funds are returned when a student withdraws.",
   },
 
-  // ─── Student Outcomes ──────────────────────────────────────────────────────
-  {
-    name: "Gainful Employment Disclosure \u2014 Certificate",
-    category: "Student Outcomes",
-    path: "/documents/ge-disclosure-certificate.pdf",
-    description:
-      "Gainful employment disclosure data for the Certificate Course program.",
-  },
-  {
-    name: "Gainful Employment Disclosure \u2014 Associate of Arts",
-    category: "Student Outcomes",
-    path: "/documents/ge-disclosure-aa.pdf",
-    description:
-      "Gainful employment disclosure data for the Associate of Arts program.",
-  },
-  {
-    name: "Gainful Employment Disclosure \u2014 Bachelor of Arts",
-    category: "Student Outcomes",
-    path: "/documents/ge-disclosure-ba.pdf",
-    description:
-      "Gainful employment disclosure data for the Bachelor of Arts program.",
-  },
-  {
-    name: "Gainful Employment Disclosure \u2014 Master of Interior Architecture",
-    category: "Student Outcomes",
-    path: "/documents/ge-disclosure-mia.pdf",
-    description:
-      "Gainful employment disclosure data for the Master of Interior Architecture program.",
-  },
-
   // ─── Program-Specific ──────────────────────────────────────────────────────
   {
     name: "CIDA Accreditation \u2014 Bachelor of Arts",
@@ -203,6 +173,5 @@ export const disclosureCategoryOrder = [
   "ACCSC",
   "BPPE",
   "Financial Aid",
-  "Student Outcomes",
   "Program-Specific",
 ] as const;
